@@ -15,10 +15,10 @@
             <span></span>
         </div>
         <div class="nav-links">
-            <a href="#home">Ana Sayfa</a>
-            <a href="#about">Hakkımda</a>
-            <a href="#products">Ürünler</a>
-            <a href="#contact">İletişim</a>
+            <a href="#home" data-i18n="nav-home">Ana Sayfa</a>
+            <a href="#about" data-i18n="nav-about">Hakkımda</a>
+            <a href="#products" data-i18n="nav-products">Ürünler</a>
+            <a href="#contact" data-i18n="nav-contact">İletişim</a>
         </div>
     </nav>
 
@@ -26,70 +26,70 @@
         <div class="hero-content">
             <div class="terminal-text">
                 <span class="prompt">root@pixelflow:~$</span>
-                <span class="typing-text">İnovasyon bizim DNA'mızda...</span>
+                <span class="typing-text" data-i18n="hero-text">İnovasyon bizim DNA'mızda...</span>
             </div>
         </div>
     </header>
 
     <section id="about" class="features">
-        <h2>Hakkımda</h2>
+        <h2 data-i18n="about-title">Hakkımda</h2>
         <div class="feature-grid">
             <div class="feature-card">
-                <h3>Tanışalım</h3>
-                <p>Merhaba, ben Okan. Yaklaşık bir yıldır Flutter ile projeler geliştiriyorum. Kendimi sürekli geliştirmeyi hedefleyen, öğrenmeye açık biriyim. Her projede kullanıcı deneyimini ve performansı ön planda tutarak, modern ve yenilikçi çözümler sunmayı ilke edindim.</p>
+                <h3 data-i18n="about-introduction-title">Tanışalım</h3>
+                <p data-i18n="about-introduction-text">Merhaba, ben Okan. Yaklaşık bir yıldır Flutter ile projeler geliştiriyorum. Kendimi sürekli geliştirmeyi hedefleyen, öğrenmeye açık biriyim. Her projede kullanıcı deneyimini ve performansı ön planda tutarak, modern ve yenilikçi çözümler sunmayı ilke edindim.</p>
             </div>
             <div class="feature-card">
-                <h3>Mobile Development</h3>
-                <p>Flutter ile mobil uygulama geliştirme</p>
+                <h3 data-i18n="about-mobile-title">Mobile Development</h3>
+                <p data-i18n="about-mobile-text">Flutter ile mobil uygulama geliştirme</p>
             </div>
             <div class="feature-card">
-                <h3>Web Development</h3>
-                <p>Modern web teknolojileri ile geliştirme</p>
+                <h3 data-i18n="about-web-title">Web Development</h3>
+                <p data-i18n="about-web-text">Modern web teknolojileri ile geliştirme</p>
             </div>
             <div class="feature-card">
-                <h3>Backend Development</h3>
-                <p>Güçlü backend çözümleri</p>
+                <h3 data-i18n="about-backend-title">Backend Development</h3>
+                <p data-i18n="about-backend-text">Güçlü backend çözümleri</p>
             </div>
         </div>
     </section>
 
     <section id="products" class="projects">
-        <h2>Ürünler</h2>
+        <h2 data-i18n="products-title">Ürünler</h2>
         <div class="feature-grid">
             <div class="feature-card">
-                <h3>Vardiya Takip Lite</h3>
+                <h3 data-i18n="products-lite-title">Vardiya Takip Lite</h3>
                 <ul class="feature-list">
-                    <li>✓ Vardiya takibi</li>
-                    <li>✓ İzin takibi</li>
-                    <li>✓ Vardiya tipi ekleyebilirsiniz</li>
-                    <li>✓ İzin tipi ekleyebilirsiniz</li>
-                    <li>✓ Ücretsiz erişim</li>
-                    <li>✓ Görev yönetimi</li>
+                    <li>✓ <span data-i18n="products-feature-shift">Vardiya takibi</span></li>
+                    <li>✓ <span data-i18n="products-feature-leave">İzin takibi</span></li>
+                    <li>✓ <span data-i18n="products-feature-shift-type">Vardiya tipi ekleyebilirsiniz</span></li>
+                    <li>✓ <span data-i18n="products-feature-leave-type">İzin tipi ekleyebilirsiniz</span></li>
+                    <li>✓ <span data-i18n="products-feature-free">Ücretsiz erişim</span></li>
+                    <li>✓ <span data-i18n="products-feature-task">Görev yönetimi</span></li>
                 </ul>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip_lite" class="cta-button" target="_blank">Google Play'de İndir</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip_lite" class="cta-button" target="_blank" data-i18n="products-download">Google Play'de İndir</a>
                     <a href="privacy-policy.html" target="_blank" style="color: #666; text-decoration: none; font-size: 0.85em; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                        <span>🔒</span> Privacy Policy
+                        <span>🔒</span> <span data-i18n="products-privacy">Gizlilik Politikası</span>
                     </a>
                 </div>
             </div>
             <div class="feature-card premium">
-                <h3>Vardiya Takip Premium</h3>
+                <h3 data-i18n="products-premium-title">Vardiya Takip Premium</h3>
                 <ul class="feature-list">
-                    <li>✓ Vardiya takibi</li>
-                    <li>✓ İzin takibi</li>
-                    <li>✓ Vardiya tipi ekleyebilirsiniz</li>
-                    <li>✓ İzin tipi ekleyebilirsiniz</li>
-                    <li>✓ Görev yönetimi</li>
-                    <li>✓ Şablonlar ile kolay görev yönetimi</li>
-                    <li>✓ PDF olarak rapor alabilirsiniz</li>
-                    <li>✓ Reklamsız erişim</li>
-                    <li>✓ Ömürlü erişim</li>
+                    <li>✓ <span data-i18n="products-feature-shift">Vardiya takibi</span></li>
+                    <li>✓ <span data-i18n="products-feature-leave">İzin takibi</span></li>
+                    <li>✓ <span data-i18n="products-feature-shift-type">Vardiya tipi ekleyebilirsiniz</span></li>
+                    <li>✓ <span data-i18n="products-feature-leave-type">İzin tipi ekleyebilirsiniz</span></li>
+                    <li>✓ <span data-i18n="products-feature-task">Görev yönetimi</span></li>
+                    <li>✓ <span data-i18n="products-feature-templates">Şablonlar ile kolay görev yönetimi</span></li>
+                    <li>✓ <span data-i18n="products-feature-pdf">PDF olarak rapor alabilirsiniz</span></li>
+                    <li>✓ <span data-i18n="products-feature-no-ads">Reklamsız erişim</span></li>
+                    <li>✓ <span data-i18n="products-feature-lifetime">Ömürlü erişim</span></li>
                 </ul>
                 <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="cta-button" target="_blank">Google Play'de İndir</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="cta-button" target="_blank" data-i18n="products-download">Google Play'de İndir</a>
                     <a href="privacy-policy.html" target="_blank" style="color: #666; text-decoration: none; font-size: 0.85em; display: flex; align-items: center; justify-content: center; gap: 4px;">
-                        <span>🔒</span> Privacy Policy
+                        <span>🔒</span> <span data-i18n="products-privacy">Gizlilik Politikası</span>
                     </a>
                 </div>
             </div>
@@ -97,25 +97,28 @@
     </section>
 
     <section id="contact" class="contact">
-        <h2>İletişim</h2>
+        <h2 data-i18n="contact-title">İletişim</h2>
         <div class="contact-grid">
             <a href="mailto:pixelflowsoftware@gmail.com" class="feature-card">
-                <h3>Email</h3>
+                <h3 data-i18n="contact-email">Email</h3>
                 <p>pixelflowsoftware@gmail.com</p>
             </a>
             <a href="https://github.com/okankayci" class="feature-card">
-                <h3>GitHub</h3>
+                <h3 data-i18n="contact-github">GitHub</h3>
                 <p>github.com/okankayci</p>
             </a>
             <a href="https://linkedin.com/in/okankayci" class="feature-card">
-                <h3>LinkedIn</h3>
+                <h3 data-i18n="contact-linkedin">LinkedIn</h3>
                 <p>linkedin.com/in/okankayci</p>
             </a>
         </div>
     </section>
 
     <footer>
-        <p>© 2024 Pixelflow. Tüm hakları saklıdır. | <a href="privacy-policy.html" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #666;">Privacy Policy</a></p>
+        <p><span data-i18n="footer-copyright">© 2024 Pixelflow. Tüm hakları saklıdır.</span> | <a href="privacy-policy.html" style="color: inherit; text-decoration: none; border-bottom: 1px dotted #666;"><span data-i18n="footer-privacy">Gizlilik Politikası</span></a></p>
     </footer>
+
+    <script src="js/language.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
