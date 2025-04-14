@@ -17,8 +17,3 @@ Bu Flutter tabanlı mobil uygulama, kullanıcıların vardiya programlarını ko
 
 (Screenshots burada paylaşılabilir)
 
-## Kurulum
-
-1. Depoyu klonlayın:
-   ```bash
-   git clone https://github.com/kullaniciadi/vardiya-takip.git
