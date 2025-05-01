@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Vardiyalarınızı, izinlerinizi, çalışma saatlerinizi ve maaşınızı tek uygulamadan yönetin. Görevler oluşturun ve kontrol sağlayın.">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Vardiya Takip Uygulaması</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -90,7 +94,7 @@
             justify-content: center;
             z-index: 1000;
             transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         
         body.dark-mode .app-bar {
@@ -100,6 +104,10 @@
         
         .app-bar.visible {
             transform: translateY(0);
+        }
+        
+        .app-bar.hiding {
+            transform: translateY(-100%);
         }
         
         .app-bar-content {
@@ -225,8 +233,7 @@
         
         .logo img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
         }
         
         h1 {
@@ -541,75 +548,131 @@
         
         /* Responsive Styles */
         @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
             .comparison-container {
                 flex-direction: column;
             }
             
             .platforms-container {
-                flex-direction: row;
-                align-items: center;
-            }
-            
-            .platform {
-                width: calc(50% - 1rem);
-                max-width: 100%;
-            }
-            
-            .theme-toggle, .app-bar-theme-toggle,
-            .lang-toggle, .app-bar-lang-toggle {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .app-bar-title {
-                font-size: 1rem;
-            }
-            
-            .app-bar-logo-icon {
-                width: 32px;
-                height: 32px;
-                background: transparent;
-            }
-            
-            .lang-toggle {
-                right: 3rem;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            .platforms-container {
                 flex-direction: column;
             }
             
             .platform {
-                width: 100%;
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .comparison-card {
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+                padding: 0;
+            }
+            
+            .app-bar-title {
+                font-size: 0.9rem;
             }
         }
         
-        /* Fix for iOS Safari bottom bar */
-        @supports (padding: max(0px)) {
-            body {
-                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+        /* Küçük mobil cihazlar için ekstra düzenlemeler */
+        @media (max-width: 375px) {
+            .platform-button {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            .platform-button i {
+                font-size: 0.85rem;
+            }
+            
+            .comparison-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-feature-list li {
+                font-size: 0.85rem;
             }
         }
         
-        /* Touch friendly improvements */
+        /* Dokunmatik cihazlar için iyileştirmeler */
         @media (hover: none) {
-            .platform:hover {
-                transform: none;
+            .platform-button {
+                padding-top: 0.9rem;
+                padding-bottom: 0.9rem;
             }
             
-            .platform-button:hover::before {
-                left: -100%;
+            .theme-toggle, .lang-toggle,
+            .app-bar-theme-toggle, .app-bar-lang-toggle {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+        
+        /* Tablet için iyileştirmeler */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .platforms-container {
+                flex-direction: row;
+                flex-wrap: wrap;
             }
             
-            .platform-button:active::before {
-                left: 0;
+            .platform {
+                flex-basis: calc(50% - 1rem);
+                min-width: auto;
+            }
+        }
+        
+        /* Yüksek DPI ekranlar için font iyileştirmeleri */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        
+        /* Daha iyi erişilebilirlik için odaklanma stilleri */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* iOS için güvenli alanları iyileştirme */
+        @supports (padding: env(safe-area-inset-top)) {
+            body {
+                padding-top: calc(max(var(--header-height), env(safe-area-inset-top)) + 1rem);
+                padding-right: env(safe-area-inset-right);
+                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+                padding-left: env(safe-area-inset-left);
             }
             
-            .free-button:hover, .premium-button:hover {
-                box-shadow: none;
+            .app-bar {
+                padding-top: env(safe-area-inset-top);
             }
+        }
+        
+        /* Dokunmatik cihazlar için aktif durum stilleri */
+        .touch-device .platform-button:active,
+        .touch-device .theme-toggle:active,
+        .touch-device .lang-toggle:active {
+            transform: scale(0.98);
+        }
+        
+        .touch-active {
+            opacity: 0.8;
         }
     </style>
 </head>
@@ -650,7 +713,7 @@
             <h1 data-tr="Vardiya Takip" data-en="Shift Tracker"></h1>
             <p class="tagline" data-tr="Vardiyalarınızı, izinlerinizi, çalışma saatlerinizi ve maaşınızı tek uygulamadan yönetin. Görevler oluşturun ve kontrol sağlayın." data-en="Manage your shifts, leaves, and working hours in a single app.
                 "></p>
-        </header
+        </header>
         <div class="platforms-container">
             <!-- Android Platform -->
             <div class="platform">
@@ -834,9 +897,34 @@
             });
         }
         
-        // App bar show/hide on scroll
+        // Dokunmatik cihazlar için daha iyi etkileşim
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (isTouchDevice) {
+            document.body.classList.add('touch-device');
+            
+            // Dokunmatik cihazlarda butonlar için aktif durumu iyileştirme
+            const allButtons = document.querySelectorAll('button, .platform-button');
+            allButtons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.classList.add('touch-active');
+                }, {passive: true});
+                
+                button.addEventListener('touchend', function() {
+                    this.classList.remove('touch-active');
+                }, {passive: true});
+            });
+        }
+        
+        // Sayfa yükleme performansı için
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sayfanın tüm içeriği yüklendiğinde
+            document.body.classList.add('page-loaded');
+        });
+        
+        // App bar show/hide on scroll - mobil cihazlar için iyileştirildi
         let lastScrollTop = 0;
-        const scrollThreshold = 100;
+        const scrollThreshold = 50; // Mobil cihazlar için eşiği düşürdük
         
         window.addEventListener('scroll', function() {
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -844,12 +932,22 @@
             // Show app bar when scrolled down enough
             if (scrollTop > scrollThreshold) {
                 appBar.classList.add('visible');
+                
+                // Scroll yönüne göre davranış ekleyelim
+                if (scrollTop > lastScrollTop) {
+                    // Aşağı kaydırma - app bar'ı gizle
+                    appBar.classList.add('hiding');
+                } else {
+                    // Yukarı kaydırma - app bar'ı göster
+                    appBar.classList.remove('hiding');
+                }
             } else {
                 appBar.classList.remove('visible');
+                appBar.classList.remove('hiding');
             }
             
             lastScrollTop = scrollTop;
-        });
+        }, {passive: true}); // passive: true performansı artırır
     </script>
 </body>
-</html> 
+</html>
