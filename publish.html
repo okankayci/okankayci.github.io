@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Vardiyalarınızı, izinlerinizi, çalışma saatlerinizi ve maaşınızı tek uygulamadan yönetin. Görevler oluşturun ve kontrol sağlayın.">
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>ShiftFlow Uygulaması</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #7209b7;
+            --text-light: #f8f9fa;
+            --text-dark: #212529;
+            --bg-light: #f8f9fa;
+            --bg-dark: #121212;
+            --success: #38b000;
+            --border-light: rgba(255, 255, 255, 0.2);
+            --border-dark: rgba(255, 255, 255, 0.05);
+            --card-light: rgba(255, 255, 255, 0.8);
+            --card-dark: rgba(30, 30, 30, 0.8);
+            --shadow-light: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 10px 30px rgba(0, 0, 0, 0.3);
+            --glow-light: 0 0 15px rgba(67, 97, 238, 0.3);
+            --glow-dark: 0 0 15px rgba(67, 97, 238, 0.2);
+            --header-height: 70px;
+            --appbar-bg-light: rgba(248, 249, 250, 0.9);
+            --appbar-bg-dark: rgba(18, 18, 18, 0.9);
+            --gradient-start: #c04de2;
+            --gradient-end: #e45858;
+            --coming-soon: #9e9e9e;
+            --free: #4361ee;
+            --premium: #7209b7;
+            --disabled: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            padding-top: calc(var(--header-height) + 1rem);
+        }
+        
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(1rem, 5vw, 2rem);
+            position: relative;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            position: relative;
+            margin-bottom: 2rem;
+            padding-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .app-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: var(--appbar-bg-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        
+        body.dark-mode .app-bar {
+            background-color: var(--appbar-bg-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .app-bar.visible {
+            transform: translateY(0);
+        }
+        
+        .app-bar.hiding {
+            transform: translateY(-100%);
+        }
+        
+        .app-bar-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 1rem;
+        }
+        
+        .app-bar-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-bar-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            overflow: hidden;
+        }
+        
+        .app-bar-logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .app-bar-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .app-bar-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+        
+        .app-bar-theme-toggle, .app-bar-lang-toggle {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            margin-left: 0.5rem;
+        }
+        
+        .theme-toggle, .lang-toggle {
+            position: absolute;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .theme-toggle {
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+        
+        .lang-toggle {
+            top: 0.5rem;
+            right: 3.5rem;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        
+        .theme-toggle:hover, .app-bar-theme-toggle:hover,
+        .lang-toggle:hover, .app-bar-lang-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        body.dark-mode .theme-toggle:hover, 
+        body.dark-mode .app-bar-theme-toggle:hover,
+        body.dark-mode .lang-toggle:hover, 
+        body.dark-mode .app-bar-lang-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .logo {
+            width: clamp(120px, 25vw, 180px);
+            height: clamp(120px, 25vw, 180px);
+            background: transparent;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-light), var(--glow-light);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body.dark-mode .logo {
+            box-shadow: var(--shadow-dark), var(--glow-dark);
+        }
+        
+        .logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        h1 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        body.dark-mode h1 {
+            color: var(--primary);
+        }
+        
+        .tagline {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            margin-bottom: 1rem;
+            opacity: 0.8;
+            padding: 0 0.5rem;
+        }
+        
+        /* Comparison Styles */
+        .comparison-section {
+            margin: 2rem 0 3rem;
+            text-align: center;
+        }
+        
+        .comparison-title {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .comparison-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .comparison-card {
+            flex: 1;
+            min-width: 250px;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: left;
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-light);
+        }
+        
+        body.dark-mode .comparison-card {
+            box-shadow: var(--shadow-dark);
+            border: 1px solid var(--border-dark);
+        }
+        
+        .free-card {
+            background-color: rgba(67, 97, 238, 0.1);
+            border-top: 4px solid var(--free);
+        }
+        
+        .premium-card {
+            background-color: rgba(114, 9, 183, 0.1);
+            border-top: 4px solid var(--premium);
+        }
+        
+        body.dark-mode .free-card {
+            background-color: rgba(67, 97, 238, 0.2);
+        }
+        
+        body.dark-mode .premium-card {
+            background-color: rgba(114, 9, 183, 0.2);
+        }
+        
+        .comparison-card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        body.dark-mode .comparison-card-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-card-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .free-icon {
+            background-color: var(--free);
+        }
+        
+        .premium-icon {
+            background-color: var(--premium);
+        }
+        
+        .comparison-card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .free-title {
+            color: var(--free);
+        }
+        
+        .premium-title {
+            color: var(--premium);
+        }
+        
+        .comparison-feature-list {
+            list-style-type: none;
+        }
+        
+        .comparison-feature-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .comparison-feature-list i {
+            width: 24px;
+            margin-right: 0.5rem;
+            text-align: center;
+        }
+        
+        .feature-available {
+            color: var(--success);
+        }
+        
+        .feature-unavailable {
+            color: var(--disabled);
+        }
+        
+        /* Cards Container */
+        .platforms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(1rem, 4vw, 2rem);
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        /* Platform Card */
+        .platform {
+            flex: 1;
+            min-width: 280px;
+            max-width: 450px;
+            background-color: var(--card-light);
+            border-radius: 16px;
+            overflow: hidden;
+            padding: clamp(1.25rem, 4vw, 2rem);
+            box-shadow: var(--shadow-light);
+            backdrop-filter: blur(10px) saturate(180%);
+            -webkit-backdrop-filter: blur(10px) saturate(180%);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        body.dark-mode .platform {
+            background-color: var(--card-dark);
+            box-shadow: var(--shadow-dark);
+            border: 1px solid var(--border-dark);
+        }
+        
+        .platform:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-light), var(--glow-light);
+        }
+        
+        body.dark-mode .platform:hover {
+            box-shadow: var(--shadow-dark), var(--glow-dark);
+        }
+        
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+        
+        .platform-icon {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            color: var(--primary);
+            margin-right: 0.75rem;
+        }
+        
+        .platform-title {
+            font-size: clamp(1.25rem, 4vw, 1.5rem);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Buttons */
+        .platform-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .platform-button {
+            padding: clamp(0.75rem, 3vw, 0.9rem) 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            -webkit-tap-highlight-color: transparent;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+            touch-action: manipulation;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease-in-out;
+            z-index: 0;
+        }
+        
+        .platform-button:hover::before, .platform-button:active::before {
+            left: 0;
+        }
+        
+        .platform-button i, .platform-button span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .platform-button i {
+            margin-right: 0.5rem;
+            font-size: clamp(0.9rem, 3vw, 1rem);
+        }
+        
+        .free-button {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .free-button:hover, .free-button:active {
+            background-color: #3651d4;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .premium-button {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .premium-button:hover, .premium-button:active {
+            background-color: #6108a3;
+            box-shadow: 0 5px 15px rgba(114, 9, 183, 0.3);
+        }
+        
+        .coming-soon-button {
+            background-color: var(--coming-soon);
+            color: white;
+            cursor: default;
+        }
+        
+        .coming-soon-button:hover, .coming-soon-button:active {
+            transform: none;
+        }
+        
+        .coming-soon-label {
+            position: relative;
+            display: inline-block;
+            font-size: 0.7rem;
+            background-color: var(--primary);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            opacity: 0.7;
+            font-size: clamp(0.8rem, 3vw, 0.9rem);
+        }
+        
+        body.dark-mode footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links {
+            margin-top: 0.75rem;
+        }
+        
+        .privacy-link {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            background-color: rgba(67, 97, 238, 0.1);
+        }
+        
+        .privacy-link:hover {
+            background-color: rgba(67, 97, 238, 0.2);
+            text-decoration: underline;
+        }
+        
+        body.dark-mode .privacy-link {
+            background-color: rgba(67, 97, 238, 0.2);
+        }
+        
+        body.dark-mode .privacy-link:hover {
+            background-color: rgba(67, 97, 238, 0.3);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .comparison-container {
+                flex-direction: column;
+            }
+            
+            .platforms-container {
+                flex-direction: column;
+            }
+            
+            .platform {
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .comparison-card {
+                min-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+            
+            .logo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+                padding: 0;
+            }
+            
+            .app-bar-title {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Küçük mobil cihazlar için ekstra düzenlemeler */
+        @media (max-width: 375px) {
+            .platform-button {
+                padding: 0.6rem 0.8rem;
+                font-size: 0.85rem;
+            }
+            
+            .platform-button i {
+                font-size: 0.85rem;
+            }
+            
+            .comparison-card {
+                padding: 1.2rem;
+            }
+            
+            .comparison-feature-list li {
+                font-size: 0.85rem;
+            }
+        }
+        
+        /* Dokunmatik cihazlar için iyileştirmeler */
+        @media (hover: none) {
+            .platform-button {
+                padding-top: 0.9rem;
+                padding-bottom: 0.9rem;
+            }
+            
+            .theme-toggle, .lang-toggle,
+            .app-bar-theme-toggle, .app-bar-lang-toggle {
+                min-width: 44px;
+                min-height: 44px;
+            }
+        }
+        
+        /* Tablet için iyileştirmeler */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .platforms-container {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+            
+            .platform {
+                flex-basis: calc(50% - 1rem);
+                min-width: auto;
+            }
+        }
+        
+        /* Yüksek DPI ekranlar için font iyileştirmeleri */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+        
+        /* Daha iyi erişilebilirlik için odaklanma stilleri */
+        a:focus, button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* iOS için güvenli alanları iyileştirme */
+        @supports (padding: env(safe-area-inset-top)) {
+            body {
+                padding-top: calc(max(var(--header-height), env(safe-area-inset-top)) + 1rem);
+                padding-right: env(safe-area-inset-right);
+                padding-bottom: max(1.5rem, env(safe-area-inset-bottom));
+                padding-left: env(safe-area-inset-left);
+            }
+            
+            .app-bar {
+                padding-top: env(safe-area-inset-top);
+            }
+        }
+        
+        /* Dokunmatik cihazlar için aktif durum stilleri */
+        .touch-device .platform-button:active,
+        .touch-device .theme-toggle:active,
+        .touch-device .lang-toggle:active {
+            transform: scale(0.98);
+        }
+        
+        .touch-active {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-bar" id="appBar">
+        <div class="app-bar-content">
+            <div class="app-bar-logo">
+                <div class="app-bar-logo-icon">
+                    <img src="img/icon.png" alt=" Logo">
+                </div>
+                <div class="app-bar-title" data-tr="" data-en="ShiftFlow"></div>
+            </div>
+            <div class="app-bar-actions">
+                <button class="app-bar-lang-toggle" id="appBarLangToggle" aria-label="Dili değiştir">
+                    <span id="appBarLangIcon">TR</span>
+                </button>
+                <button class="app-bar-theme-toggle" id="appBarThemeToggle" aria-label="Temayı değiştir">
+                    <i class="fas fa-moon" id="appBarThemeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <header>
+            <button class="lang-toggle" id="lang-toggle" aria-label="Dili değiştir">
+                <span id="langIcon">TR</span>
+            </button>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Temayı değiştir">
+                <i class="fas fa-moon" id="theme-icon"></i>
+            </button>
+            
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="img/icon.png" alt=" Logo">
+                </div>
+            </div>
+            <h1 data-tr="ShiftFlow" data-en="ShiftFlow"></h1>
+            <p class="tagline" data-tr="Vardiyalarınızı, izinlerinizi, çalışma saatlerinizi ve maaşınızı tek uygulamadan yönetin. Görevler oluşturun ve kontrol sağlayın." data-en="Manage your shifts, leaves, and working hours in a single app.
+                "></p>
+        </header>
+        <div class="platforms-container">
+            <!-- Android Platform -->
+            <div class="platform">
+                <div class="platform-header">
+                    <i class="fab fa-android platform-icon"></i>
+                    <h2 class="platform-title">Android</h2>
+                </div>
+                
+                <div class="platform-buttons">
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip_lite" target="_blank" class="platform-button free-button">
+                        <i class="fas fa-download"></i> <span data-tr="Ücretsiz İndir" data-en="Download Free"></span>
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" target="_blank" class="platform-button premium-button">
+                        <i class="fas fa-crown"></i> <span data-tr="Premium İndir" data-en="Download Premium"></span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- iOS Platform -->
+            <div class="platform">
+                <div class="platform-header">
+                    <i class="fab fa-apple platform-icon"></i>
+                    <h2 class="platform-title">iOS</h2>
+                </div>
+                
+                <div class="platform-buttons">
+                    <a href="https://apps.apple.com/us/app/vardiya-takip-lite/id6744563883" target="_blank" class="platform-button free-button">
+                        <i class="fas fa-download"></i> <span data-tr="Ücretsiz İndir" data-en="Download Free"></span>
+                    </a>
+                    <a href="https://apps.apple.com/us/app/vardiya-takip/id6744372540" target="_blank" class="platform-button premium-button">
+                        <i class="fas fa-crown"></i> <span data-tr="Premium İndir" data-en="Download Premium"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Comparison Section -->
+        <div class="comparison-section">
+            <h2 class="comparison-title" data-tr="Ücretli ve Ücretsiz Sürüm Karşılaştırması" data-en="Free vs Premium Version Comparison"></h2>
+            
+            <div class="comparison-container">
+                <div class="comparison-card free-card">
+                    <div class="comparison-card-header">
+                        <div class="comparison-card-icon free-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <h3 class="comparison-card-title free-title" data-tr="Ücretsiz Sürüm" data-en="Free Version"></h3>
+                    </div>
+                    
+                    <ul class="comparison-feature-list">
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Çalışma saati takibi" data-en="Work hour tracking"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Vardiya planlama" data-en="Shift planning"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Takvim görünümü" data-en="Calendar view"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="İzin takibi" data-en="Leave tracking"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Günlük görev yönetimi" data-en="Daily task management"></span></li>
+                        <li><i class="fas fa-times feature-unavailable"></i> <span data-tr="Görev şablonları" data-en="Task templates"></span></li>
+                        <li><i class="fas fa-times feature-unavailable"></i> <span data-tr="Detaylı istatistikler" data-en="Detailed statistics"></span></li>
+                        <li><i class="fas fa-times feature-unavailable"></i> <span data-tr="PDF çıktısı" data-en="PDF export"></span></li>
+                        <li><i class="fas fa-times feature-unavailable"></i> <span data-tr="Maaş takibi" data-en="Salary tracking"></span></li>
+                    </ul>
+                </div>
+                
+                <div class="comparison-card premium-card">
+                    <div class="comparison-card-header">
+                        <div class="comparison-card-icon premium-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3 class="comparison-card-title premium-title" data-tr="Premium Sürüm" data-en="Premium Version"></h3>
+                    </div>
+                    
+                    <ul class="comparison-feature-list">
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Çalışma saati takibi" data-en="Work hour tracking"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Vardiya planlama" data-en="Shift planning"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Takvim görünümü" data-en="Calendar view"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="İzin takibi" data-en="Leave tracking"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Günlük görev yönetimi" data-en="Daily task management"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Görev şablonları" data-en="Task templates"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Detaylı istatistikler" data-en="Detailed statistics"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="PDF çıktısı" data-en="PDF export"></span></li>
+                        <li><i class="fas fa-check feature-available"></i> <span data-tr="Maaş takibi" data-en="Salary tracking"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <footer>
+            <p>&copy; 2025 <span data-tr="ShiftFlow" data-en="ShiftFlow"></span>. <span data-tr="Tüm hakları saklıdır." data-en="All rights reserved."></span></p>
+            <p class="footer-links"><a href="privacy-policy.html" class="privacy-link" data-tr="Gizlilik Politikası" data-en="Privacy Policy"></a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const appBarThemeToggle = document.getElementById('appBarThemeToggle');
+        const appBarThemeIcon = document.getElementById('appBarThemeIcon');
+        const appBar = document.getElementById('appBar');
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        
+        // Apply saved theme or default to light
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            appBarThemeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+        
+        // Language toggle functionality
+        const langToggle = document.getElementById('lang-toggle');
+        const langIcon = document.getElementById('langIcon');
+        const appBarLangToggle = document.getElementById('appBarLangToggle');
+        const appBarLangIcon = document.getElementById('appBarLangIcon');
+        
+        // Current language state (default is Turkish)
+        let currentLang = localStorage.getItem('lang') || 'tr';
+        
+        // Apply saved language
+        updateLanguage(currentLang);
+        updateLangButtons(currentLang);
+        
+        // Toggle theme when button is clicked (main toggle)
+        themeToggle.addEventListener('click', toggleTheme);
+        
+        // Toggle theme when app bar button is clicked
+        appBarThemeToggle.addEventListener('click', toggleTheme);
+        
+        // Toggle language when buttons are clicked
+        langToggle.addEventListener('click', toggleLanguage);
+        appBarLangToggle.addEventListener('click', toggleLanguage);
+        
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Update icons and save preference
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                appBarThemeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+                appBarThemeIcon.classList.replace('fa-sun', 'fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        function toggleLanguage() {
+            // Toggle between TR and EN
+            currentLang = currentLang === 'tr' ? 'en' : 'tr';
+            
+            // Update language in UI
+            updateLanguage(currentLang);
+            updateLangButtons(currentLang);
+            
+            // Save preference
+            localStorage.setItem('lang', currentLang);
+        }
+        
+        function updateLangButtons(lang) {
+            // Update language toggle button text to show which language user WILL GO TO
+            // If current is TR, button shows EN (and vice versa)
+            langIcon.textContent = lang.toUpperCase() === 'TR' ? 'TR' : 'EN';
+            appBarLangIcon.textContent = lang.toUpperCase() === 'TR' ? 'TR' : 'EN';
+            
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+        }
+        
+        function updateLanguage(lang) {
+            // Get all elements with data-tr and data-en attributes
+            const elements = document.querySelectorAll('[data-tr][data-en]');
+            
+            // Update text based on selected language
+            elements.forEach(element => {
+                if (lang === 'tr') {
+                    element.textContent = element.getAttribute('data-tr');
+                } else {
+                    element.textContent = element.getAttribute('data-en');
+                }
+            });
+        }
+        
+        // Dokunmatik cihazlar için daha iyi etkileşim
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
+        if (isTouchDevice) {
+            document.body.classList.add('touch-device');
+            
+            // Dokunmatik cihazlarda butonlar için aktif durumu iyileştirme
+            const allButtons = document.querySelectorAll('button, .platform-button');
+            allButtons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.classList.add('touch-active');
+                }, {passive: true});
+                
+                button.addEventListener('touchend', function() {
+                    this.classList.remove('touch-active');
+                }, {passive: true});
+            });
+        }
+        
+        // Sayfa yükleme performansı için
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sayfanın tüm içeriği yüklendiğinde
+            document.body.classList.add('page-loaded');
+        });
+        
+        // App bar show/hide on scroll - mobil cihazlar için iyileştirildi
+        let lastScrollTop = 0;
+        const scrollThreshold = 50; // Mobil cihazlar için eşiği düşürdük
+        
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Show app bar when scrolled down enough
+            if (scrollTop > scrollThreshold) {
+                appBar.classList.add('visible');
+                
+                // Scroll yönüne göre davranış ekleyelim
+                if (scrollTop > lastScrollTop) {
+                    // Aşağı kaydırma - app bar'ı gizle
+                    appBar.classList.add('hiding');
+                } else {
+                    // Yukarı kaydırma - app bar'ı göster
+                    appBar.classList.remove('hiding');
+                }
+            } else {
+                appBar.classList.remove('visible');
+                appBar.classList.remove('hiding');
+            }
+            
+            lastScrollTop = scrollTop;
+        }, {passive: true}); // passive: true performansı artırır
+    </script>
+</body>
+</html>
