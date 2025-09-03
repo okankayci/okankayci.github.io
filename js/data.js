@@ -65,7 +65,7 @@ const applications = [
       "Veri yedekleme"
     ],
     status: "available",
-    app_store_url: "#",
+    app_store_url: "https://apps.apple.com/us/app/baby-plus/id6747646706",
     google_play_url: "#"
   },
   {
