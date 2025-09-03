@@ -69,10 +69,10 @@ const applications = [
     google_play_url: "#"
   },
   {
-    name: "BabyPlus Lite",
+    name: "Baby Lite",
     description: "BabyPlus'ın temel özelliklerini içeren, daha hafif ve hızlı bir bebek takip uygulaması.",
     detailedDescription: "BabyPlus Lite, temel bebek takibi ihtiyaçlarınız için optimize edilmiş basit ve kullanıcı dostu bir uygulamadır.",
-    icon: "assets/apps/babyplus.png",
+    icon: "assets/apps/babylite.png",
     screenshots: [
       "assets/apps/babyplus/1.png",
       "assets/apps/babyplus/2.png",
