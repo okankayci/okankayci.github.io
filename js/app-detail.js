@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <li><a href="shiftflow.html">ShiftFlow</a></li>
                     <li><a href="shiftflow_lite.html">ShiftFlow Lite</a></li>
                     <li><a href="babyplus.html">BabyPlus</a></li>
-                    <li><a href="babyplus_lite.html">BabyPlus Lite</a></li>
+                    <li><a href="baby_lite.html">BabyLite</a></li>
                     <li><a href="pawsy.html">Pawsy</a></li>
                 </ul>
             </div>
