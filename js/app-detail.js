@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         statusHtml = `
             <div class="app-store-buttons">
-                <a href="${app.google_play_url}" class="google-play" target="_blank"><i class="fab fa-google-play"></i> Google Play'den İndir</a>
-                <a href="${app.app_store_url}" class="app-store" target="_blank"><i class="fab fa-apple"></i> App Store'dan İndir</a>
+                <a href="${app.google_play_url}" class="google-play" target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
+                <a href="${app.app_store_url}" class="app-store" target="_blank"><i class="fab fa-apple"></i> App Store</a>
             </div>`;
     }
 
