@@ -66,7 +66,7 @@ const applications = [
     ],
     status: "available",
     app_store_url: "https://apps.apple.com/us/app/baby-plus/id6747646706",
-    google_play_url: "#"
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.baby_plus"
   },
   {
     name: "Baby Lite",
