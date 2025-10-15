@@ -26,14 +26,16 @@ document.addEventListener('DOMContentLoaded', () => {
                         <li><a href="index.html#contact">İletişim</a></li>
                     </ul>
                 </nav>
-                <div class="theme-switcher">
-                    <button id="theme-toggle">
-                        <i class="fas fa-sun"></i>
-                        <i class="fas fa-moon"></i>
-                    </button>
-                </div>
-                <div class="hamburger">
-                    <i class="fas fa-bars"></i>
+                <div class="header-right">
+                    <div class="theme-switcher">
+                        <button id="theme-toggle">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                    <div class="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </div>
                 </div>
             </div>
         </header>
@@ -61,11 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="footer-links">
                     <h4>Uygulamalarımız</h4>
                     <ul>
-                        <li><a href="shiftflow.html">ShiftFlow</a></li>
-                        <li><a href="shiftflow_lite.html">ShiftFlow Lite</a></li>
+                        <li><a href="shiflabs.html">ShifLabs</a></li>
+                        <li><a href="shiflabs_lite.html">ShifLabs Lite</a></li>
                         <li><a href="babyplus.html">BabyPlus</a></li>
-                        <li><a href="babyplus_lite.html">BabyPlus Lite</a></li>
                         <li><a href="pawsy.html">Pawsy</a></li>
+                        <li><a href="studygo.html">StudyGo</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">

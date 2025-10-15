@@ -245,6 +245,12 @@ section {
     -webkit-backdrop-filter: blur(10px);
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .dark-theme .hamburger {
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid rgba(255, 255, 255, 0.2);
