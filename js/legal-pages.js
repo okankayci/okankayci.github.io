@@ -64,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h4>Uygulamalarımız</h4>
                     <ul>
                         <li><a href="shiflabs.html">ShifLabs</a></li>
-                        <li><a href="shiflabs_lite.html">ShifLabs Lite</a></li>
                         <li><a href="babyplus.html">BabyPlus</a></li>
                         <li><a href="pawsy.html">Pawsy</a></li>
                         <li><a href="studygo.html">StudyGo</a></li>

@@ -26,25 +26,6 @@ const applications = [
     google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip"
   },
   {
-    name: "ShifLabs Lite",
-    description: "ShifLabs'un temel özelliklerini içeren, daha hafif ve hızlı bir vardiya planlama uygulaması.",
-    detailedDescription: "ShifLabs Lite, temel vardiya takibi ihtiyaçlarınız için optimize edilmiş hafif bir uygulamadır. Basit ve kullanıcı dostu arayüzü ile hızlı vardiya yönetimi sağlar.",
-    icon: "assets/apps/shiflabs_lite.png",
-    screenshots: [
-      "assets/apps/shiflabs_lite/1.png",
-      "assets/apps/shiflabs_lite/2.png",
-      "assets/apps/shiflabs_lite/3.png"
-    ],
-    features: [
-      "Vardiya ve izinleri takip edin",
-      "Günlük görevler ekleyin",
-      "Şablonlar oluşturun"
-    ],
-    status: "available",
-    app_store_url: "https://apps.apple.com/tr/app/vardiya-takip-lite/id6744563883?l=tr",
-    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip_lite"
-  },
-  {
     name: "BabyPlus",
     description: "Bebeğinizin gelişimini takip edin, özel anları kaydedin ve ebeveynlik yolculuğunuzda size rehberlik edecek ipuçları alın.",
     detailedDescription: "BabyPlus, ebeveynlerin bebeklerinin gelişimini kapsamlı bir şekilde takip edebilmeleri için tasarlanmış bir uygulamadır. Büyüme, beslenme ve sağlık takibi ile ebeveynlik yolculuğunuzu destekler.",
