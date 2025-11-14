@@ -89,9 +89,9 @@ const applications = [
       "İlaç doz hesaplayıcı",
       
     ],
-    status: "available",
-    app_store_url: "https://apps.apple.com/us/app/studygo/id6753089430",
-    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.studygo"
+    status: "coming_soon",
+    app_store_url: null,
+    google_play_url: null
   },
   {
     name: "Pawsy",
