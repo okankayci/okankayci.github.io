@@ -90,8 +90,8 @@ const applications = [
 
     ],
     status: "available",
-    app_store_url: null,
-    google_play_url: null
+    app_store_url: "https://apps.apple.com/tr/app/sakura-vardiya-takvimi/id6755043441?l=tr",
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.sakura"
   },
   {
     name: "Pawsy",
@@ -117,5 +117,70 @@ const applications = [
     app_store_url: null,
     google_play_url: null
   },
-
+  {
+    name: "JsonTools",
+    description: "JSON verilerini formatlamak, doğrulamak ve dönüştürmek için hızlı ve güvenli araçlar.",
+    detailedDescription: "JsonTools, geliştiriciler için oluşturulmuş, JSON verilerini analiz etmeyi, formatlamayı ve sıkıştırmayı kolaylaştıran güçlü bir araç setidir. Çevrimdışı çalışarak veri güvenliğinizi korur.",
+    icon: "assets/apps/jsontools.png",
+    screenshots: [
+      "assets/apps/jsontools/1.png",
+      "assets/apps/jsontools/2.png",
+      "assets/apps/jsontools/3.png"
+    ],
+    features: [
+      "JSON Formatlama ve Doğrulama",
+      "JSON Minifier (Sıkıştırma)",
+      "JSON to XML/YAML Dönüştürücü",
+      "Çevrimdışı Çalışma Modu",
+      "Koyu Mod Desteği",
+      "Hata Ayıklama Yardımı"
+    ],
+    status: "available",
+    app_store_url: "https://apps.apple.com/tr/app/json-tools-view-edit/id6756753329?l=tr",
+    google_play_url: "#"
+  },
+  {
+    name: "LinguaGo",
+    description: "Yeni bir dil öğrenmeyi eğlenceli ve etkileşimli hale getiren mobil uygulama.",
+    detailedDescription: "LinguaGo, dil öğrenme sürecini oyunlaştırarak hızlandıran bir eğitim platformudur. Kelime kartları, pratik diyaloglar ve gelişim takibi ile yeni bir dilde ustalaşmanıza yardımcı olur.",
+    icon: "assets/apps/linguago.png",
+    screenshots: [
+      "assets/apps/linguago/1.png",
+      "assets/apps/linguago/2.png",
+      "assets/apps/linguago/3.png"
+    ],
+    features: [
+      "Oyunlaştırılmış Dersler",
+      "Kelime Kartları (Flashcards)",
+      "Günlük Hedefler ve Seriler",
+      "Sesli Pratik Modu",
+      "Gelişim İstatistikleri",
+      "Çevrimdışı Erişim"
+    ],
+    status: "available",
+    app_store_url: "https://apps.apple.com/tr/app/linguago-learn-words-faster/id6756240533?l=tr",
+    google_play_url: "#"
+  },
+  {
+    name: "Toolbox",
+    description: "Günlük dijital ihtiyaçlarınız için hepsi bir arada araç seti.",
+    detailedDescription: "Toolbox; birim çevirici, renk seçici, QR kod oluşturucu ve daha birçok faydalı aracı tek bir çatı altında toplar. Sade arayüzü ile ihtiyacınız olan araca saniyeler içinde ulaşın.",
+    icon: "assets/apps/toolbox.png",
+    screenshots: [
+      "assets/apps/toolbox/1.png",
+      "assets/apps/toolbox/2.png",
+      "assets/apps/toolbox/3.png"
+    ],
+    features: [
+      "Birim Dönüştürücü",
+      "QR Kod Oluşturucu ve Okuyucu",
+      "Renk Seçici ve Palet Üretici",
+      "Şifre Oluşturucu",
+      "Sayaç ve Kronometre",
+      "Not Defteri"
+    ],
+    status: "available",
+    app_store_url: "#",
+    google_play_url: "#"
+  },
 ];
