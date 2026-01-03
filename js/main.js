@@ -1,64 +1,48 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Theme Switcher with Local Storage Persistence
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-
-    // Check for saved theme preference or default to light theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-theme');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        // Save theme preference
-        const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
-        localStorage.setItem('theme', currentTheme);
-    });
-
-    // Dynamic App Cards on Main Page
+    // --- Dynamic App Grid Renderer ---
     const appsContainer = document.getElementById('apps-container');
+
     if (appsContainer && typeof applications !== 'undefined') {
-        appsContainer.className = 'apps-grid-main';
-        applications.forEach(app => {
-            const appCard = document.createElement('div');
-            appCard.className = 'app-card-main';
+        appsContainer.innerHTML = ''; // Clear existing content
 
-            let statusHtml;
-            if (app.status === 'coming_soon') {
-                statusHtml = `<span class="status-badge">Çok Yakında</span>`;
-            } else {
-                statusHtml = `
-                    <div class="app-store-buttons-main">
-                        <a href="${app.google_play_url}" class="google-play" target="_blank"><i class="fab fa-google-play"></i> İndir</a>
-                        <a href="${app.app_store_url}" class="app-store" target="_blank"><i class="fab fa-apple"></i> İndir</a>
-                    </div>`;
-            }
+        applications.forEach((app, index) => {
+            const card = document.createElement('div');
+            card.className = 'app-card-main';
 
-            appCard.innerHTML = `
-                <a href="${app.name.toLowerCase().replace(/ /g, '_')}.html" class="app-card-main-link">
-                    <img src="${app.icon}" alt="${app.name}" class="icon">
-                    <div class="app-card-main-info">
-                        <h3>${app.name}</h3>
-                        <p>${app.description.substring(0, 100)}...</p>
+            // Animation Stagger
+            card.style.opacity = '0';
+            card.style.animation = `fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards ${index * 0.15}s`;
+
+            // Status Badge Logic
+            const isAvailable = app.status === 'available';
+            let statusBadgeHtml = isAvailable ? '' : `<span class="status-indicator coming-soon">Yakında</span>`;
+
+            // Link Logic
+            let linkHref = isAvailable ? `${app.name.toLowerCase().replace(/ /g, '_')}.html` : '#';
+
+            card.innerHTML = `
+                <a href="${linkHref}" style="display: block; height: 100%; text-decoration: none; color: inherit;">
+                    <div class="card-header">
+                        <img src="${app.icon}" alt="${app.name}" class="app-icon-display">
+                        ${statusBadgeHtml}
                     </div>
+                    <h3>${app.name}</h3>
+                    <p>${app.description}</p>
                 </a>
-                ${statusHtml}
             `;
-            appsContainer.appendChild(appCard);
+
+            appsContainer.appendChild(card);
         });
     }
 
-    // Enhanced Mobile Menu
+    // --- Mobile Menu Logic ---
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
-    
+
     if (hamburger && nav) {
         hamburger.addEventListener('click', () => {
             nav.classList.toggle('active');
-            // Change hamburger icon
             const icon = hamburger.querySelector('i');
             if (nav.classList.contains('active')) {
                 icon.className = 'fas fa-times';
@@ -67,108 +51,52 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Close mobile menu when clicking on a link
-        const navLinks = nav.querySelectorAll('a');
-        navLinks.forEach(link => {
+        // Close on link click
+        nav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 nav.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.className = 'fas fa-bars';
+                hamburger.querySelector('i').className = 'fas fa-bars';
             });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
-                nav.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.className = 'fas fa-bars';
-            }
         });
     }
 
-    // Contact form removed - using direct email contact
-
-    // Enhanced Scroll Animations
-    const sections = document.querySelectorAll('section');
-    const options = {
-        root: null,
-        threshold: 0.1,
-        rootMargin: "0px"
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, options);
-
-    sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
-    });
-
-    // Smooth scrolling for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
-    anchorLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+    // --- Smooth Scroll ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const headerHeight = document.querySelector('.header').offsetHeight;
-                const targetPosition = targetSection.offsetTop - headerHeight;
-                
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerOffset = 100;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
                 window.scrollTo({
-                    top: targetPosition,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
         });
     });
 
-    // Add loading animation for app cards
-    const appCards = document.querySelectorAll('.app-card-main');
-    appCards.forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-        card.style.animation = 'fadeInUp 0.6s ease-out forwards';
+    // --- Header Scroll Effect ---
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.background = 'rgba(5, 5, 5, 0.9)';
+            header.style.padding = '1rem 0';
+        } else {
+            header.style.background = 'rgba(5, 5, 5, 0.7)';
+            header.style.padding = '1.5rem 0';
+        }
     });
 
-    // Add CSS animation for fadeInUp
-    if (!document.querySelector('#animation-styles')) {
-        const style = document.createElement('style');
-        style.id = 'animation-styles';
-        style.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    }
-
-    // Header scroll effect
-    const header = document.querySelector('.header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    }
-
+    // --- Add Keyframes if not present ---
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    `;
+    document.head.appendChild(styleSheet);
 });

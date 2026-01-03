@@ -72,7 +72,7 @@ const applications = [
     app_store_url: "https://apps.apple.com/us/app/studygo/id6753089430",
     google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.studygo"
   },
-   {
+  {
     name: "Sakura",
     description: "Çam ve Sakura Şehir Hastanesi çalışanları için özel olarak tasarlanmış, vardiya takibi ve yönetimi uygulaması.",
     detailedDescription: "Sakura, Çam ve Sakura Şehir Hastanesi personelinin vardiya programlarını kolayca takip etmeleri ve yönetmeleri için geliştirilmiş özel bir uygulamadır. Kullanıcı dostu arayüzü ve kapsamlı özellikleri ile vardiya yönetimini basitleştirir.",
@@ -87,9 +87,9 @@ const applications = [
       "Vardiya değişimi",
       "İlaç rehberi",
       "İlaç doz hesaplayıcı",
-      
+
     ],
-    status: "coming_soon",
+    status: "available",
     app_store_url: null,
     google_play_url: null
   },
@@ -117,5 +117,5 @@ const applications = [
     app_store_url: null,
     google_play_url: null
   },
- 
+
 ];

@@ -3,182 +3,163 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('app-detail-container');
     if (!container) return;
 
-    // Get app name from the HTML file name (e.g., "shiftflow.html" -> "ShiftFlow")
+    // --- Resolve App Data ---
     const path = window.location.pathname;
     const pageName = path.split('/').pop().replace('.html', '');
     const appName = pageName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-
     const app = applications.find(a => a.name.toLowerCase() === appName.toLowerCase());
 
     if (!app) {
-        container.innerHTML = '<p>Uygulama bulunamadı.</p>';
+        container.innerHTML = `<div class="container" style="padding-top: 10rem;"><h1>PROJE BULUNAMADI</h1><a href="index.html" class="btn">Geri Dön</a></div>`;
         return;
     }
 
-    // Set the page title
-    document.title = `${app.name} - PixelFlow`;
+    document.title = `${app.name} | PixelFlow Project`;
 
-    let headerHtml = `
-        <header class="header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html" style="text-decoration: none; color: inherit;">
-                        <h1>Pixel<span class="pink-text">Flow</span></h1>
-                    </a>
-                </div>
-                <nav class="nav">
-                    <ul>
-                        <li><a href="index.html">Ana Sayfa</a></li>
-                        <li><a href="index.html#apps">Uygulamalarımız</a></li>
-                        <li><a href="index.html#about">Hakkımızda</a></li>
-                        <li><a href="index.html#contact">İletişim</a></li>
-                    </ul>
-                </nav>
-                <div class="header-right">
-                    <div class="theme-switcher">
-                        <button id="theme-toggle">
-                            <i class="fas fa-sun"></i>
-                            <i class="fas fa-moon"></i>
-                        </button>
-                    </div>
-                    <div class="hamburger">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </div>
+    // --- Shared Components ---
+    const headerHtml = `
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none;">
+                    <h3>Pixel<span>Flow</span></h3>
+                </a>
             </div>
-        </header>
-    `;
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html#hero">01. Giriş</a></li>
+                    <li><a href="index.html#apps">02. Projeler</a></li>
+                    <li><a href="index.html#about">03. Hakkımda</a></li>
+                    <li><a href="index.html#contact">04. İletişim</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>`;
 
-    let statusHtml;
-    let galleryClass = '';
-    if (app.status === 'coming_soon') {
-        statusHtml = `
-            <div class="app-status coming-soon">
-                <i class="fas fa-clock"></i>
-                <span>Çok Yakında</span>
-            </div>`;
-        galleryClass = 'blur';
-    } else {
-        statusHtml = `
-            <div class="app-store-buttons">
-                <a href="${app.google_play_url}" class="google-play" target="_blank"><i class="fab fa-google-play"></i> Google Play</a>
-                <a href="${app.app_store_url}" class="app-store" target="_blank"><i class="fab fa-apple"></i> App Store</a>
-            </div>`;
-    }
-
-    let appDetailHtml = `
-        <main>
-            <section class="app-hero-section">
-                <div class="container">
-                    <img src="${app.icon}" alt="${app.name} Logo" class="app-icon-large">
-                    <h1>${app.name}</h1>
-                    <p class="tagline">${app.description}</p>
-                    ${statusHtml}
-                </div>
-            </section>
-
-            <section class="app-gallery-section">
-                <div class="container">
-                    <div class="gallery-grid">
-                        <img src="${app.screenshots[0]}" alt="${app.name} Screenshot 1" class="${galleryClass}">
-                        <img src="${app.screenshots[1]}" alt="${app.name} Screenshot 2" class="${galleryClass}">
-                        <img src="${app.screenshots[2]}" alt="${app.name} Screenshot 3" class="${galleryClass}">
-                    </div>
-                </div>
-            </section>
-
-            <section class="app-features-section">
-                <div class="container">
-                    <h2>Özellikler</h2>
-                    <div class="features-grid">
-                        ${app.features ? app.features.map(feature => `
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>${feature}</span>
-                            </div>
-                        `).join('') : '<p>Özellikler yakında eklenecektir.</p>'}
-                    </div>
-                </div>
-            </section>
-
-            <section class="app-description-section">
-                <div class="container">
-                    <h2>Uygulama Hakkında</h2>
-                    <p>${app.detailedDescription || app.description}</p>
-                </div>
-            </section>
-        </main>
-    `;
-
-    let footerHtml = `
+    const footerHtml = `
     <footer class="footer">
         <div class="container">
-            <div class="footer-about">
-                <div class="logo">
-                    <h3>Pixel<span class="pink-text">Flow</span></h3>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Pixel<span>Flow</span></h3>
+                    <p style="font-size: 0.9rem; margin-top: 1rem;">Code crafted with care.</p>
                 </div>
-                <p>Yenilikçi mobil uygulamalar.</p>
+                <div>
+                    <h4>Sayfalar</h4>
+                    <ul>
+                        <li><a href="index.html#hero">Giriş</a></li>
+                        <li><a href="index.html#apps">Projeler</a></li>
+                        <li><a href="index.html#about">Hakkımda</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Projeler</h4>
+                    <ul>
+                        <li><a href="shiflabs.html">ShifLabs</a></li>
+                        <li><a href="babyplus.html">BabyPlus</a></li>
+                        <li><a href="pawsy.html">Pawsy</a></li>
+                        <li><a href="studygo.html">StudyGo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Yasal</h4>
+                    <ul>
+                        <li><a href="gizlilik-politikasi.html">Gizlilik</a></li>
+                        <li><a href="kullanim-kosullari.html">Kullanım</a></li>
+                        <li><a href="kvkk.html">KVKK</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Hızlı Erişim</h4>
-                <ul>
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="index.html#apps">Uygulamalarımız</a></li>
-                    <li><a href="index.html#about">Hakkımızda</a></li>
-                    <li><a href="index.html#contact">İletişim</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Uygulamalarımız</h4>
-                <ul>
-                    <li><a href="shiflabs.html">ShifLabs</a></li>
-                    <li><a href="babyplus.html">BabyPlus</a></li>
-                    <li><a href="pawsy.html">Pawsy</a></li>
-                    <li><a href="studygo.html">StudyGo</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Yasal</h4>
-                <ul>
-                    <li><a href="gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-                    <li><a href="kullanim-kosullari.html">Kullanım Koşulları</a></li>
-                    <li><a href="kvkk.html">KVKK</a></li>
-                </ul>
+            <div class="footer-bottom" style="border-top: 1px solid var(--border-color); padding-top: 2rem; font-size: 0.8rem; color: var(--text-secondary);">
+                &copy; 2026 PixelFlow. İstanbul.
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Pixel<span class="pink-text">Flow</span>. Tüm hakları saklıdır.</p>
+    </footer>`;
+
+    // --- App Detail Content ---
+
+    // Status Logic
+    const isLive = app.status !== 'coming_soon';
+    const storesHtml = isLive ? `
+        <div style="margin-top: 3rem;">
+            ${app.app_store_url ? `<a href="${app.app_store_url}" class="store-badge" target="_blank"><i class="fab fa-apple"></i> App Store</a>` : ''}
+            ${app.google_play_url ? `<a href="${app.google_play_url}" class="store-badge secondary" target="_blank"><i class="fab fa-google-play"></i> Google Play</a>` : ''}
         </div>
-    </footer>
+    ` : `<div style="margin-top: 2rem; padding: 1rem 2rem; border: 1px solid var(--border-color); display: inline-block;">🚧 GELİŞTİRME AŞAMASINDA</div>`;
+
+    // Screenshots Logic
+    const screenshotsHtml = app.screenshots && app.screenshots.length > 0 ? `
+        <section style="padding: 5rem 0; border-bottom: 1px solid var(--border-color);">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">> VISUAL_DATA</span>
+                    <h2>Arayüz Galerisi</h2>
+                </div>
+                <div class="app-screenshots-scroll">
+                    ${app.screenshots.map(src => `
+                        <div class="screenshot-item">
+                            <img src="${src}" alt="Screenshot">
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </section>
+    ` : '';
+
+    // Features Logic
+    const featuresHtml = app.features ? `
+        <ul class="feature-list-check">
+            ${app.features.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+    ` : '';
+
+
+    const mainContent = `
+    <main>
+        <section class="app-detail-hero">
+            <div class="container">
+                <div class="app-detail-grid">
+                    <div>
+                        <div class="app-meta-tag">PROJECT_ID: ${app.name.toUpperCase()}</div>
+                        <h1>${app.name}</h1>
+                        <p style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 2rem;">${app.description}</p>
+                        <p>${app.detailedDescription}</p>
+                        ${storesHtml}
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="${app.icon}" alt="${app.name} Icon" style="width: 200px; height: 200px; border-radius: 40px; box-shadow: 0 20px 50px -10px var(--accent-glow);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        ${screenshotsHtml}
+
+        <section style="padding: 5rem 0;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">> SYSTEM_MODULES</span>
+                    <h2>Teknik Özellikler</h2>
+                </div>
+                ${featuresHtml}
+            </div>
+        </section>
+    </main>
     `;
 
-    container.innerHTML = headerHtml + appDetailHtml + footerHtml;
+    // --- Inject ---
+    container.innerHTML = headerHtml + mainContent + footerHtml;
 
-    // Initialize theme switcher with Local Storage Persistence
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-theme');
-    }
-
-    themeToggle.addEventListener('click', () => {
-        body.classList.toggle('dark-theme');
-        // Save theme preference
-        const currentTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
-        localStorage.setItem('theme', currentTheme);
-    });
-
-    // Initialize mobile navigation
+    // --- Mobile Menu Re-init ---
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
-    
+
     if (hamburger && nav) {
         hamburger.addEventListener('click', () => {
             nav.classList.toggle('active');
-            // Change hamburger icon
             const icon = hamburger.querySelector('i');
             if (nav.classList.contains('active')) {
                 icon.className = 'fas fa-times';
@@ -186,74 +167,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 icon.className = 'fas fa-bars';
             }
         });
-
-        // Close mobile menu when clicking on a link
-        const navLinks = nav.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.className = 'fas fa-bars';
-            });
-        });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !nav.contains(e.target)) {
-                nav.classList.remove('active');
-                const icon = hamburger.querySelector('i');
-                icon.className = 'fas fa-bars';
-            }
-        });
     }
 
-    // Add scroll animations for sections
-    const sections = document.querySelectorAll('section');
-    const options = {
-        root: null,
-        threshold: 0.1,
-        rootMargin: "0px"
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, options);
-
-    sections.forEach(section => {
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
-    });
-
-    // Header scroll effect
+    // Scroll Effect
     const header = document.querySelector('.header');
-    if (header) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-    }
-
-    // Add smooth scrolling for footer links
-    const footerLinks = document.querySelectorAll('.footer-links a[href^="index.html#"]');
-    footerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const href = link.getAttribute('href');
-            const targetId = href.split('#')[1];
-            
-            if (targetId) {
-                window.location.href = `index.html#${targetId}`;
-            }
-        });
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.background = 'rgba(5, 5, 5, 0.9)';
+            header.style.padding = '1rem 0';
+        } else {
+            header.style.background = 'rgba(5, 5, 5, 0.7)';
+            header.style.padding = '1.5rem 0';
+        }
     });
 });
