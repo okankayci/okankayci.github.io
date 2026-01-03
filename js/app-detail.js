@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="index.html#hero">01. Giriş</a></li>
-                    <li><a href="index.html#apps">02. Projeler</a></li>
-                    <li><a href="index.html#about">03. Hakkımda</a></li>
-                    <li><a href="index.html#contact">04. İletişim</a></li>
+                    <li><a href="index.html#hero">Giriş</a></li>
+                    <li><a href="index.html#apps">Projeler</a></li>
+                    <li><a href="index.html#about">Hakkımda</a></li>
+                    <li><a href="index.html#contact">İletişim</a></li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -172,12 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Scroll Effect
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(5, 5, 5, 0.9)';
-            header.style.padding = '1rem 0';
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'rgba(5, 5, 5, 0.7)';
-            header.style.padding = '1.5rem 0';
+            header.classList.remove('scrolled');
         }
     });
 });

@@ -137,18 +137,38 @@ a {
     transform-origin: left;
 }
 
-/* PRO HEADER */
+/* PRO HEADER - Floating Island Style */
 .header {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 1.5rem 0;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    padding: 1rem 0;
     z-index: 1000;
-    background: rgba(5, 5, 5, 0.7);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-color);
-    transition: transform var(--transition-slow);
+    background: rgba(15, 15, 17, 0.6);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.header.scrolled {
+    top: 1rem;
+    background: rgba(15, 15, 17, 0.85);
+    padding: 0.75rem 0;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Reset container inside header */
+.header .container {
+    padding: 0 2rem;
+    width: 100%;
+    max-width: none;
+    margin: 0;
 }
 
 .header-content {
@@ -222,7 +242,6 @@ a {
     position: relative;
     height: 600px;
     background: radial-gradient(circle at center, var(--surface-color), transparent 70%);
-    border: 1px solid var(--border-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -230,14 +249,50 @@ a {
 }
 
 .code-block {
-    font-family: monospace;
-    color: var(--accent-color);
-    font-size: 0.8rem;
-    opacity: 0.5;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #e4e4e7;
+    font-size: 0.95rem;
+    line-height: 1.6;
     position: absolute;
-    width: 100%;
+    width: 90%;
     padding: 2rem;
+    background: rgba(15, 15, 17, 0.6);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: var(--transition-fast);
 }
+
+.code-block:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
+}
+
+.code-keyword {
+    color: #c678dd;
+}
+
+.code-class {
+    color: #e5c07b;
+}
+
+.code-function {
+    color: #61afef;
+}
+
+.code-return {
+    color: #c678dd;
+}
+
+.code-bool {
+    color: #d19a66;
+}
+
+.code-operator {
+    color: #56b6c2;
+}
+
 
 /* APPS GRID (Minimal Version) */
 .section-header {
@@ -261,6 +316,7 @@ a {
 .app-card-main {
     background: var(--surface-color);
     border: 1px solid var(--border-color);
+    border-radius: 12px;
     padding: 2rem;
     transition: var(--transition-fast);
     display: flex;
@@ -269,7 +325,8 @@ a {
 }
 
 .app-card-main:hover {
-    border-color: var(--text-primary);
+    border-color: var(--accent-color);
+    box-shadow: 0 20px 40px rgba(236, 72, 153, 0.15);
     transform: translateY(-5px);
 }
 
@@ -513,7 +570,7 @@ a {
     }
 
     .hero-section {
-        padding-top: 6rem;
+        padding-top: 8.5rem;
         text-align: center;
     }
 
@@ -563,17 +620,20 @@ a {
         top: 0;
         right: -100%;
         width: 100%;
-        /* Tam ekran yapalım daha modern dursun */
         height: 100vh;
-        background: rgba(5, 5, 5, 0.95);
-        backdrop-filter: blur(10px);
-        padding: 6rem 2rem;
+        background: rgba(5, 5, 5, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 8rem 2rem;
+        /* Increased top padding to clear the header */
         transition: var(--transition-slow);
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
+        /* Changed from center to allow scrolling if needed */
         align-items: center;
         text-align: center;
+        z-index: 999;
+        /* Behind the header */
     }
 
     .nav.active {

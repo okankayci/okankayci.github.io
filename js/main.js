@@ -81,12 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Header Scroll Effect ---
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(5, 5, 5, 0.9)';
-            header.style.padding = '1rem 0';
+        if (window.scrollY > 20) {
+            header.classList.add('scrolled');
         } else {
-            header.style.background = 'rgba(5, 5, 5, 0.7)';
-            header.style.padding = '1.5rem 0';
+            header.classList.remove('scrolled');
         }
     });
 
