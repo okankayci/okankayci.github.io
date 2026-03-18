@@ -8,65 +8,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Shared Components (Matches index.html) ---
     const headerHtml = `
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none;">
-                    <h3>Pixel<span>Flow</span></h3>
-                </a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html#hero">Giriş</a></li>
-                    <li><a href="index.html#apps">Projeler</a></li>
-                    <li><a href="index.html#about">Hakkımda</a></li>
-                    <li><a href="index.html#contact">İletişim</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menü">
+                <button class="nav-close" type="button" aria-label="Menüyü kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkımda</a>
+                <a href="index.html#contact">İletişim</a>
             </nav>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema değiştir">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" type="button" aria-label="Menüyü aç">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>`;
 
     const footerHtml = `
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Pixel<span>Flow</span></h3>
-                    <p style="font-size: 0.9rem; margin-top: 1rem;">Code crafted with care.</p>
-                </div>
-                <div>
-                    <h4>Sayfalar</h4>
-                    <ul>
-                        <li><a href="index.html#hero">Giriş</a></li>
-                        <li><a href="index.html#apps">Projeler</a></li>
-                        <li><a href="index.html#about">Hakkımda</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Projeler</h4>
-                    <ul>
-                        <li><a href="shiflabs.html">ShifLabs</a></li>
-                        <li><a href="babyplus.html">BabyPlus</a></li>
-                        <li><a href="pawsy.html">Pawsy</a></li>
-                        <li><a href="studygo.html">StudyGo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Yasal</h4>
-                    <ul>
-                        <li><a href="gizlilik-politikasi.html">Gizlilik</a></li>
-                        <li><a href="kullanim-kosullari.html">Kullanım</a></li>
-                        <li><a href="kvkk.html">KVKK</a></li>
-                    </ul>
-                </div>
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
             </div>
-            <div class="footer-bottom" style="border-top: 1px solid var(--border-color); padding-top: 2rem; font-size: 0.8rem; color: var(--text-secondary);">
-                &copy; 2026 PixelFlow. İstanbul.
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkımda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanım</a>
+                <a href="kvkk.html">KVKK</a>
             </div>
         </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
     </footer>`;
 
     // --- Content Mapping ---
@@ -75,16 +67,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Common styling wrapper for legal text
     const wrapContent = (title, content) => `
-        <section style="padding: 10rem 0 5rem;">
+        <section class="legal-hero">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> LEGAL_PROTOCOL</span>
-                    <h1>${title}</h1>
-                    <p style="opacity: 0.6; margin-top: 1rem;">Son Güncelleme: ${lastUpdate}</p>
-                </div>
-                <div style="margin-top: 4rem; border-left: 1px solid var(--border-color); padding-left: 2rem;">
-                    ${content}
-                </div>
+                <div class="eyebrow">Legal Protocol</div>
+                <h1>${title}</h1>
+                <p class="legal-updated">Son Güncelleme: ${lastUpdate}</p>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container legal-content">
+                ${content}
             </div>
         </section>
     `;
@@ -104,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 <h2 style="margin-top: 3rem;">4. Üçüncü Taraf Servisleri</h2>
                 <p>Uygulamalarımızda kullanılan üçüncü taraf servislerin (Google AdMob) kendi gizlilik politikaları bulunmaktadır:</p>
-                <ul style="color: var(--text-secondary); margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <ul class="legal-list">
                     <li><a href="https://policies.google.com/privacy" target="_blank" style="text-decoration: underline;">Google Gizlilik Politikası</a></li>
                     <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" style="text-decoration: underline;">Google AdMob Gizlilik Politikası</a></li>
                 </ul>
                 
                 <h2 style="margin-top: 3rem;">5. İletişim</h2>
-                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" style="color: var(--accent-color);">pixelflowsoftware@gmail.com</a></p>
+                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
             `);
             break;
 
@@ -127,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Uygulamalarımız "olduğu gibi" sunulmaktadır. Uygulamaların kesintisiz veya hatasız çalışacağına dair garanti verilmez. Kullanımdan doğabilecek zararlardan PixelFlow sorumlu değildir.</p>
                 
                 <h2 style="margin-top: 3rem;">4. İletişim</h2>
-                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" style="color: var(--accent-color);">pixelflowsoftware@gmail.com</a></p>
+                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
             `);
             break;
 
@@ -144,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>KVKK'nın 11. maddesi uyarınca sahip olduğunuz tüm haklara saygı duyuyoruz. Ancak herhangi bir kişisel veri işlemediğimiz için, bu verilerin silinmesi veya düzeltilmesi gibi işlemler teknik olarak uygulanamamaktadır.</p>
                 
                 <h2 style="margin-top: 3rem;">4. İletişim</h2>
-                <p>KVKK kapsamındaki sorularınız için: <a href="mailto:pixelflowsoftware@gmail.com" style="color: var(--accent-color);">pixelflowsoftware@gmail.com</a></p>
+                <p>KVKK kapsamındaki sorularınız için: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
             `);
             break;
 
@@ -161,32 +153,61 @@ document.addEventListener('DOMContentLoaded', () => {
         ${footerHtml}
     `;
 
-    // --- Re-initialize Logic (Mobile Menu & Scroll) ---
-    // (We duplicate this logic because the elements are freshly injected)
-
-    // Header Scroll Effect
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-
-    // Mobile Menu
+    // --- Re-initialize Logic (Mobile Menu & Theme) ---
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
+    const navClose = document.querySelector('.nav-close');
 
     if (hamburger && nav) {
         hamburger.addEventListener('click', () => {
             nav.classList.toggle('active');
             const icon = hamburger.querySelector('i');
-            if (nav.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
+            icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        });
+
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.querySelector('i').className = 'fas fa-bars';
+            });
+        }
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.querySelector('i').className = 'fas fa-bars';
+            });
+        });
+    }
+
+    const themeToggle = document.querySelector('.theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+        } else if (theme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
+        } else {
+            document.body.removeAttribute('data-theme');
+        }
+
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('i');
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    };
+
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            setTheme(next);
         });
     }
 });

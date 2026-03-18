@@ -18,65 +18,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Shared Components ---
     const headerHtml = `
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <a href="index.html" style="text-decoration: none;">
-                    <h3>Pixel<span>Flow</span></h3>
-                </a>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="index.html#hero">Giriş</a></li>
-                    <li><a href="index.html#apps">Projeler</a></li>
-                    <li><a href="index.html#about">Hakkımda</a></li>
-                    <li><a href="index.html#contact">İletişim</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menü">
+                <button class="nav-close" type="button" aria-label="Menüyü kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkımda</a>
+                <a href="index.html#contact">İletişim</a>
             </nav>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema değiştir">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" type="button" aria-label="Menüyü aç">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>`;
 
     const footerHtml = `
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Pixel<span>Flow</span></h3>
-                    <p style="font-size: 0.9rem; margin-top: 1rem;">Code crafted with care.</p>
-                </div>
-                <div>
-                    <h4>Sayfalar</h4>
-                    <ul>
-                        <li><a href="index.html#hero">Giriş</a></li>
-                        <li><a href="index.html#apps">Projeler</a></li>
-                        <li><a href="index.html#about">Hakkımda</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Projeler</h4>
-                    <ul>
-                        <li><a href="shiflabs.html">ShifLabs</a></li>
-                        <li><a href="babyplus.html">BabyPlus</a></li>
-                        <li><a href="pawsy.html">Pawsy</a></li>
-                        <li><a href="studygo.html">StudyGo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Yasal</h4>
-                    <ul>
-                        <li><a href="gizlilik-politikasi.html">Gizlilik</a></li>
-                        <li><a href="kullanim-kosullari.html">Kullanım</a></li>
-                        <li><a href="kvkk.html">KVKK</a></li>
-                    </ul>
-                </div>
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
             </div>
-            <div class="footer-bottom" style="border-top: 1px solid var(--border-color); padding-top: 2rem; font-size: 0.8rem; color: var(--text-secondary);">
-                &copy; 2026 PixelFlow. İstanbul.
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkımda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanım</a>
+                <a href="kvkk.html">KVKK</a>
             </div>
         </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
     </footer>`;
 
     // --- App Detail Content ---
@@ -84,21 +76,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Status Logic
     const isLive = app.status !== 'coming_soon';
     const storesHtml = isLive ? `
-        <div style="margin-top: 3rem;">
-            ${app.app_store_url ? `<a href="${app.app_store_url}" class="store-badge" target="_blank"><i class="fab fa-apple"></i> App Store</a>` : ''}
-            ${app.google_play_url ? `<a href="${app.google_play_url}" class="store-badge secondary" target="_blank"><i class="fab fa-google-play"></i> Google Play</a>` : ''}
+        <div class="store-badges">
+            ${app.app_store_url ? `<a href="${app.app_store_url}" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>` : ''}
+            ${app.google_play_url ? `<a href="${app.google_play_url}" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>` : ''}
         </div>
-    ` : `<div style="margin-top: 2rem; padding: 1rem 2rem; border: 1px solid var(--border-color); display: inline-block;">🚧 GELİŞTİRME AŞAMASINDA</div>`;
+    ` : `<div class="status-banner">🚧 GELİŞTİRME AŞAMASINDA</div>`;
 
     // Screenshots Logic
     const screenshotsHtml = app.screenshots && app.screenshots.length > 0 ? `
-        <section style="padding: 5rem 0; border-bottom: 1px solid var(--border-color);">
+        <section class="section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> VISUAL_DATA</span>
+                <div class="section-head">
+                    <div class="eyebrow">Visual Data</div>
                     <h2>Arayüz Galerisi</h2>
                 </div>
-                <div class="app-screenshots-scroll">
+                <div class="screenshots">
                     ${app.screenshots.map(src => `
                         <div class="screenshot-item">
                             <img src="${src}" alt="Screenshot">
@@ -111,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Features Logic
     const featuresHtml = app.features ? `
-        <ul class="feature-list-check">
+        <ul class="feature-list">
             ${app.features.map(f => `<li>${f}</li>`).join('')}
         </ul>
     ` : '';
@@ -119,18 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mainContent = `
     <main>
-        <section class="app-detail-hero">
-            <div class="container">
-                <div class="app-detail-grid">
-                    <div>
-                        <div class="app-meta-tag">PROJECT_ID: ${app.name.toUpperCase()}</div>
-                        <h1>${app.name}</h1>
-                        <p style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 2rem;">${app.description}</p>
-                        <p>${app.detailedDescription}</p>
-                        ${storesHtml}
-                    </div>
-                    <div style="display: flex; justify-content: center;">
-                        <img src="${app.icon}" alt="${app.name} Icon" style="width: 200px; height: 200px; border-radius: 40px; box-shadow: 0 20px 50px -10px var(--accent-glow);">
+        <section class="detail-hero">
+            <div class="container detail-grid">
+                <div class="detail-copy">
+                    <div class="eyebrow">Project Id</div>
+                    <h1>${app.name}</h1>
+                    <p class="detail-lead">${app.description}</p>
+                    <p>${app.detailedDescription}</p>
+                    ${storesHtml}
+                </div>
+                <div class="detail-visual">
+                    <div class="detail-card">
+                        <img src="${app.icon}" alt="${app.name} Icon" class="detail-icon">
+                        <div class="detail-meta">
+                            <span>${isLive ? 'Aktif' : 'Yakında'}</span>
+                            <strong>${app.name}</strong>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,10 +134,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ${screenshotsHtml}
 
-        <section style="padding: 5rem 0;">
+        <section class="section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> SYSTEM_MODULES</span>
+                <div class="section-head">
+                    <div class="eyebrow">System Modules</div>
                     <h2>Teknik Özellikler</h2>
                 </div>
                 ${featuresHtml}
@@ -156,26 +152,59 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Mobile Menu Re-init ---
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
+    const navClose = document.querySelector('.nav-close');
 
     if (hamburger && nav) {
         hamburger.addEventListener('click', () => {
             nav.classList.toggle('active');
             const icon = hamburger.querySelector('i');
-            if (nav.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
+            icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+        });
+
+        if (navClose) {
+            navClose.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.querySelector('i').className = 'fas fa-bars';
+            });
+        }
+
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                hamburger.querySelector('i').className = 'fas fa-bars';
+            });
         });
     }
 
-    // Scroll Effect
-    const header = document.querySelector('.header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 20) {
-            header.classList.add('scrolled');
+    // Theme Toggle
+    const themeToggle = document.querySelector('.theme-toggle');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const setTheme = (theme) => {
+        if (theme === 'dark') {
+            document.body.setAttribute('data-theme', 'dark');
+        } else if (theme === 'light') {
+            document.body.setAttribute('data-theme', 'light');
         } else {
-            header.classList.remove('scrolled');
+            document.body.removeAttribute('data-theme');
         }
-    });
+
+        if (themeToggle) {
+            const icon = themeToggle.querySelector('i');
+            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    };
+
+    const savedTheme = localStorage.getItem('theme');
+    const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
+    setTheme(initialTheme);
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
+            const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('theme', next);
+            setTheme(next);
+        });
+    }
 });

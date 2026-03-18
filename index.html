@@ -7,121 +7,131 @@
     <title>PixelFlow | Okan Kaycı</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Meta tags for SEO/Sharing -->
     <meta name="description" content="Hayatı kolaylaştıran mobil uygulamalar. Okan Kaycı - Flutter Developer & Nurse.">
 </head>
 
 <body>
-
-    <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <h3>Pixel<span>Flow</span></h3>
-            </div>
-            <nav class="nav">
-                <ul>
-                    <li><a href="#hero">Giriş</a></li>
-                    <li><a href="#apps">Projeler</a></li>
-                    <li><a href="#about">Hakkımda</a></li>
-                    <li><a href="#contact">İletişim</a></li>
-                </ul>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menü">
+                <button class="nav-close" type="button" aria-label="Menüyü kapat">
+                    <i class="fas fa-times"></i>
+                </button>
+                <a href="#hero">Giriş</a>
+                <a href="#apps">Projeler</a>
+                <a href="#about">Hakkımda</a>
+                <a href="#contact">İletişim</a>
             </nav>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema değiştir">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" type="button" aria-label="Menüyü aç">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-text">
-                        <span class="section-label">> SYSTEM_READY</span>
-                        <h1>Engineering<br>Digital<br>Artistry</h1>
-                        <p>Hayatı kolaylaştıran, estetik ve kullanıcı odaklı mobil deneyimler tasarlıyorum. Modern
-                            teknolojileri sanatla buluşturarak, dijital dünyada iz bırakan çözümler üretiyorum.</p>
-
-                        <div class="hero-stats">
-                            <div class="stat-item">
-                                <h3>4+</h3>
-                                <p>Canlı App</p>
+        <section id="hero" class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <div class="eyebrow">PixelFlow Studio</div>
+                    <h1>Hayatı kolaylaştıran, estetik ve kullanıcı odaklı mobil deneyimler.</h1>
+                    <p>Modern teknolojileri sanatla buluşturuyor, dijital dünyada iz bırakan çözümler geliştiriyorum.
+                        Flutter, UI/UX ve temiz mimariyle ürünleri güvenilir ve sürdürülebilir hale getiriyorum.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#apps">Projeleri Gör</a>
+                        <a class="btn ghost" href="#contact">İletişime Geç</a>
+                    </div>
+                    <div class="hero-metrics">
+                        <div>
+                            <strong>4+</strong>
+                            <span>Canlı App</span>
+                        </div>
+                        <div>
+                            <strong>2+</strong>
+                            <span>Yıl Deneyim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="card-top">
+                            <span class="pill">Flutter</span>
+                            <span class="pill">UI/UX</span>
+                        </div>
+                        <h3>Engineering Digital Artistry</h3>
+                        <p>İnsan odaklı ürünler, ölçülebilir etki ve sade akış.</p>
+                        <div class="card-stats">
+                            <div>
+                                <strong>12K+</strong>
+                                <span>Kullanıcı</span>
                             </div>
-                            <div class="stat-item">
-                                <h3>2+</h3>
-                                <p>Yıl Deneyim</p>
+                            <div>
+                                <strong>4.8</strong>
+                                <span>Rating</span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="hero-visual">
-                        <div class="code-block">
-                            <span class="code-keyword">class</span> <span class="code-class">Developer</span> {<br>
-                            &nbsp;&nbsp;<span class="code-function">design</span>() { <span
-                                class="code-return">return</span> <span class="code-bool">true</span>; }<br>
-                            &nbsp;&nbsp;<span class="code-function">code</span>() { <span
-                                class="code-return">return</span> <span class="code-bool">true</span>; }<br>
-                            &nbsp;&nbsp;<span class="code-function">solve</span>() {<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">while</span>(alive) <span
-                                class="code-keyword">try</span>;<br>
-                            &nbsp;&nbsp;}<br>
-                            }
-                        </div>
+                    <div class="hero-code">
+                        <div class="code-line"><span class="accent">class</span> Developer {</div>
+                        <div class="code-line">&nbsp;&nbsp;design() =&gt; <span class="accent">true</span>;</div>
+                        <div class="code-line">&nbsp;&nbsp;code() =&gt; <span class="accent">true</span>;</div>
+                        <div class="code-line">&nbsp;&nbsp;solve() =&gt; <span class="accent">always</span>;</div>
+                        <div class="code-line">}</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="apps" class="apps-section" style="padding: 5rem 0;">
+        <section id="apps" class="section">
             <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> DEPLOYMENTS</span>
+                <div class="section-head">
+                    <div class="eyebrow">Deployments</div>
                     <h2>Projeler</h2>
                 </div>
-                <!-- Dynamic Grid by JS -->
-                <div id="apps-container" class="apps-grid-main"></div>
+                <div id="apps-container" class="apps-grid"></div>
             </div>
         </section>
 
-        <section id="about" class="about-section" style="padding: 5rem 0;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> ARCHITECT</span>
+        <section id="about" class="section alt">
+            <div class="container about-grid">
+                <div>
+                    <div class="eyebrow">Architect</div>
                     <h2>Geliştirici Hakkında</h2>
+                    <p>Karmaşık problemleri basit ve etkileyici arayüzlere dönüştürmeyi seviyorum. Benim için kod,
+                        sadece syntax değil; insanların hayatına dokunan ve kolaylaştıran bir araçtır.</p>
+                    <p>PixelFlow çatısı altında, ShifLabs ve BabyPlus gibi kendi ihtiyaçlarımdan doğan ve büyüyen
+                        çözümler üretiyorum.</p>
+                    <a class="btn ghost" href="#contact">İletişime Geç</a>
                 </div>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p>Karmaşık problemleri basit ve etkileyici arayüzlere dönüştürmeyi seviyorum. Benim için kod,
-                            sadece syntax değil; insanların hayatına dokunan ve kolaylaştıran bir araçtır.</p>
-                        <p>PixelFlow çatısı altında, ShifLabs ve BabyPlus gibi kendi ihtiyaçlarımdan doğan ve büyüyen
-                            çözümler üretiyorum.</p>
-                        <a href="#contact" class="btn">İletişime Geç</a>
-                    </div>
-                    <div class="about-tech">
-                        <h4>Tech Stack</h4>
-                        <div class="tech-stack">
-                            <div class="tech-pill">Flutter</div>
-                            <div class="tech-pill">Dart</div>
-                            <div class="tech-pill">Firebase</div>
-                            <div class="tech-pill">UI/UX Design</div>
-                            <div class="tech-pill">State Management</div>
-                            <div class="tech-pill">Clean Architecture</div>
-                        </div>
+                <div class="about-panel">
+                    <h3>Tech Stack</h3>
+                    <div class="tech-stack">
+                        <span>Flutter</span>
+                        <span>Dart</span>
+                        <span>Firebase</span>
+                        <span>UI/UX Design</span>
+                        <span>State Management</span>
+                        <span>Clean Architecture</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" style="padding: 5rem 0;">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-label">> TRANSMISSION</span>
+        <section id="contact" class="section">
+            <div class="container contact-panel">
+                <div>
+                    <div class="eyebrow">Transmission</div>
                     <h2>Bağlantı Kur</h2>
-                </div>
-                <div style="border: 1px solid var(--border-color); padding: 3rem; background: var(--surface-color);">
-                    <h3 style="margin-bottom: 1rem;">Okan Kaycı</h3>
                     <p>Proje fikirleri veya tanışmak için mail atabilirsiniz.</p>
-                    <a href="mailto:pixelflowsoftware@gmail.com" class="btn">
+                </div>
+                <div class="contact-card">
+                    <h3>Okan Kaycı</h3>
+                    <a href="mailto:pixelflowsoftware@gmail.com" class="btn primary">
                         <i class="fas fa-envelope"></i> pixelflowsoftware@gmail.com
                     </a>
                 </div>
@@ -130,43 +140,32 @@
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Pixel<span>Flow</span></h3>
-                    <p style="font-size: 0.9rem; margin-top: 1rem;">Code crafted with care.</p>
-                </div>
-                <div>
-                    <h4>Sayfalar</h4>
-                    <ul>
-                        <li><a href="#hero">Giriş</a></li>
-                        <li><a href="#apps">Projeler</a></li>
-                        <li><a href="#about">Hakkımda</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Projeler</h4>
-                    <ul>
-                        <li><a href="shiflabs.html">ShifLabs</a></li>
-                        <li><a href="babyplus.html">BabyPlus</a></li>
-                        <li><a href="pawsy.html">Pawsy</a></li>
-                        <li><a href="studygo.html">StudyGo</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Yasal</h4>
-                    <ul>
-                        <li><a href="gizlilik-politikasi.html">Gizlilik</a></li>
-                        <li><a href="kullanim-kosullari.html">Kullanım</a></li>
-                        <li><a href="kvkk.html">KVKK</a></li>
-                    </ul>
-                </div>
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
             </div>
-            <div class="footer-bottom"
-                style="border-top: 1px solid var(--border-color); padding-top: 2rem; font-size: 0.8rem; color: var(--text-secondary);">
-                &copy; 2026 PixelFlow. İstanbul.
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="#hero">Giriş</a>
+                <a href="#apps">Projeler</a>
+                <a href="#about">Hakkımda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanım</a>
+                <a href="kvkk.html">KVKK</a>
             </div>
         </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
     </footer>
 
     <script src="js/data.js"></script>
