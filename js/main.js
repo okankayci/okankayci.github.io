@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('a');
             const isAvailable = app.status === 'available';
             card.className = 'app-card';
-            card.href = isAvailable ? `${app.name.toLowerCase().replace(/ /g, '_')}.html` : '#';
+            card.href = `${app.name.toLowerCase().replace(/ /g, '_')}.html`;
             card.innerHTML = `
                 <img src="${app.icon}" alt="${app.name}">
                 <div class="status ${isAvailable ? 'available' : ''}">${isAvailable ? 'Aktif' : 'Yakında'}</div>
