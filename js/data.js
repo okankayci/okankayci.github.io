@@ -183,4 +183,51 @@ const applications = [
     app_store_url: "#",
     google_play_url: "#"
   },
+  {
+    name: "Routly",
+    description: "Günlük rutinlerinizi takip edin, alışkanlıkları geliştirin ve hedeflerinize ulaşın.",
+    detailedDescription: "Routly, kullanıcıların günlük rutinlerini takip etmelerini, alışkanlık oluşturmalarını ve hedeflerine ulaşmalarını sağlayan kapsamlı bir rutin yönetimi uygulamasıdır. Tutarlı ilerleme yapmanız için hergün sizi teşvik eder.",
+    icon: "assets/apps/routly.png",
+    screenshots: [
+      "assets/apps/routly/1.png",
+      "assets/apps/routly/2.png",
+      "assets/apps/routly/3.png"
+    ],
+    features: [
+      "Günlük rutin oluşturma ve takip",
+      "Alışkanlık izleme ve streak takibi",
+      "Renkli görev kontrol listesi",
+      "İlerleme istatistikleri ve raporlar",
+      "Hatırlatıcı ve bildirimler",
+      "Hedef yönetimi",
+      "Verilerinizi yedekleyin"
+    ],
+    status: "coming_soon",
+    app_store_url: null,
+    google_play_url: null
+  },
+  {
+    name: "Picnic",
+    description: "Piknik ve açık hava etkinliklerini kolayca planlayın ve organize edin.",
+    detailedDescription: "Picnic, piknik ve açık hava etkinliklerinin planlaması, düzenlenmesi ve yönetimi için tasarlanmış kullanıcı dostu bir uygulamadır. Konuk listesi, malzeme kontrol listesi, bütçe ve zaman planlaması ile etkinlik düzenlemeyi basitleştirir.",
+    icon: "assets/apps/picnic.png",
+    screenshots: [
+      "assets/apps/picnic/1.png",
+      "assets/apps/picnic/2.png",
+      "assets/apps/picnic/3.png"
+    ],
+    features: [
+      "Piknik planı oluşturma ve düzenleme",
+      "Konuk listesi yönetimi",
+      "Malzeme ve yemek kontrol listesi",
+      "Bütçe ve harcama takibi",
+      "Harita entegrasyonu ve konum seçimi",
+      "Hava durumu uyarıları",
+      "Davetiye gönderimi",
+      "Fotoğraf galerisi ve anı paylaşımı"
+    ],
+    status: "coming_soon",
+    app_store_url: null,
+    google_play_url: null
+  },
 ];

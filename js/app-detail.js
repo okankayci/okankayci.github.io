@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="babyplus.html">BabyPlus</a>
                 <a href="pawsy.html">Pawsy</a>
                 <a href="studygo.html">StudyGo</a>
+                <a href="routly.html">Routly</a>
+                <a href="picnic.html">Picnic</a>
             </div>
             <div>
                 <h4>Yasal</h4>
