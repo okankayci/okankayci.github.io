@@ -40,31 +40,24 @@
         <section id="hero" class="hero">
             <div class="container hero-grid">
                 <div class="hero-copy">
-                    <div class="eyebrow">PixelFlow Studio</div>
-                    <h1>Hayati kolaylastiran, estetik ve kullanici odakli mobil deneyimler.</h1>
-                    <p>Modern teknolojileri sanatla bulusturuyor, dijital dunyada iz birakan cozumler gelistiriyorum.
+                    <div class="eyebrow reveal-fade">PixelFlow Studio</div>
+                    <h1 class="reveal">Hayati kolaylastiran, estetik ve kullanici odakli mobil deneyimler.</h1>
+                    <p class="reveal reveal-delay-1">Modern teknolojileri sanatla bulusturuyor, dijital dunyada iz birakan cozumler gelistiriyorum.
                         Flutter, UI/UX ve temiz mimariyle urunleri guvenilir ve surdurulebilir hale getiriyorum.</p>
-                    <div class="hero-actions">
-                        <a class="btn primary" href="#apps">Projeleri Gor</a>
-                        <a class="btn ghost" href="#contact">Iletisime Gec</a>
-                    </div>
-                    <div class="hero-metrics">
+                    <div class="hero-metrics reveal reveal-delay-2">
                         <div>
-                            <strong>7+</strong>
-                            <span>Canli App</span>
+                            <strong class="count-up" data-target="7">0</strong><span>Canli App</span>
                         </div>
                         <div>
-                            <strong>2+</strong>
-                            <span>Yil Deneyim</span>
+                            <strong class="count-up" data-target="2">0</strong><span>Yil Deneyim</span>
                         </div>
                         <div>
-                            <strong>12K+</strong>
-                            <span>Kullanici</span>
+                            <strong class="count-up" data-target="12" data-suffix="K+">0</strong><span>Kullanici</span>
                         </div>
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="hero-card reveal">
+                    <div class="hero-card reveal-right">
                         <div class="card-top">
                             <span class="pill">Flutter</span>
                             <span class="pill">UI/UX</span>
@@ -73,7 +66,7 @@
                         <p>Insan odakli urunler, olculebilir etki ve sade akis.</p>
                         <div class="card-stats">
                             <div>
-                                <strong>12K+</strong>
+                                <strong class="count-up" data-target="12" data-suffix="K+">0</strong>
                                 <span>Kullanici</span>
                             </div>
                             <div>
@@ -82,7 +75,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-code reveal reveal-delay-1">
+                    <div class="hero-code reveal-right reveal-delay-1">
                         <div class="code-line"><span class="accent">class</span> Developer {</div>
                         <div class="code-line">&nbsp;&nbsp;design() =&gt; <span class="accent">true</span>;</div>
                         <div class="code-line">&nbsp;&nbsp;code() =&gt; <span class="accent">true</span>;</div>
@@ -100,13 +93,13 @@
                     <h2>Projeler</h2>
                     <p>Gelistirdigim mobil uygulamalar ve projeler.</p>
                 </div>
-                <div id="apps-container" class="apps-grid"></div>
+                <div id="apps-container" class="apps-grid stagger-grid"></div>
             </div>
         </section>
 
         <section id="about" class="section alt">
             <div class="container about-grid">
-                <div class="reveal">
+                <div class="reveal-left">
                     <div class="eyebrow">Architect</div>
                     <h2>Gelistirici Hakkimda</h2>
                     <p style="margin-top:1rem;">Karmasik problemleri basit ve etkileyici arayuzlere donusturmeyi seviyorum.
@@ -117,7 +110,7 @@
                         <a class="btn ghost" href="#contact">Iletisime Gec</a>
                     </div>
                 </div>
-                <div class="about-panel reveal reveal-delay-1">
+                <div class="about-panel reveal-right">
                     <h3>Tech Stack</h3>
                     <div class="tech-stack">
                         <span>Flutter</span>
@@ -135,8 +128,8 @@
 
         <section id="contact" class="section">
             <div class="container">
-                <div class="contact-layout reveal">
-                    <div class="contact-info">
+                <div class="contact-layout">
+                    <div class="contact-info reveal-left">
                         <div class="eyebrow">Transmission</div>
                         <h2>Baglanti Kur</h2>
                         <p style="margin-top:0.5rem;">Proje fikirleri veya tanismak icin formu doldurun, en kisa surede donos yaparim.</p>
@@ -151,7 +144,7 @@
                             </div>
                         </div>
                     </div>
-                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/xbdvbagl" method="POST">
+                    <form class="contact-form reveal-right" id="contact-form" action="https://formspree.io/f/xbdvbagl" method="POST">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Isim</label>
