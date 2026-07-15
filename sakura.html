@@ -4,20 +4,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow | Sakura</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Sakura | Cam & Sakura Hastanesi Vardiya Takvimi</title>
+    <meta name="description" content="Sakura: Cam ve Sakura Sehir Hastanesi calisanlari icin ozel vardiya takvimi, vardiya degisimi, ilac rehberi ve doz hesaplayici uygulamasi.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#e8899b" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── Sakura · sakura pembesi, zarif/medikal ── */
+        body.proj-sakura {
+            --accent: #e8899b;
+            --accent-hover: #d9748a;
+            --accent-warm: #f2aab8;
+            --accent-light: rgba(232, 137, 155, 0.12);
+            --gradient: linear-gradient(135deg, #f2aab8 0%, #e8899b 55%, #8ec6a8 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(242,170,184,0.1) 0%, rgba(142,198,168,0.05) 100%);
+            --ring: rgba(232, 137, 155, 0.25);
+            --shadow-glow: 0 0 40px rgba(232, 137, 155, 0.2);
+        }
+        body.proj-sakura[data-theme="dark"],
+        body.proj-sakura:not([data-theme="light"]) {
+            --accent: #f2aab8;
+            --accent-hover: #f7c4ce;
+            --accent-warm: #f7c4ce;
+            --accent-light: rgba(242, 170, 184, 0.14);
+            --gradient: linear-gradient(135deg, #f7c4ce 0%, #f2aab8 55%, #8ec6a8 100%);
+            --ring: rgba(242, 170, 184, 0.3);
+            --shadow-glow: 0 0 40px rgba(242, 170, 184, 0.22);
+        }
+
+        /* Falling petal motif */
+        .proj-sakura .proj-hero::after {
+            content: '\f06c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; top: 12%; left: 6%; font-size: 2rem; color: var(--accent);
+            opacity: 0.16; transform: rotate(-18deg); pointer-events: none;
+        }
+
+        /* Hospital badge note */
+        .hosp-note {
+            display: flex; align-items: center; gap: 0.85rem; margin-top: 1.5rem;
+            padding: 0.9rem 1.2rem; border-radius: var(--radius-lg);
+            background: var(--gradient-subtle); border: 1px solid var(--border);
+        }
+        .hosp-note i { color: var(--accent); font-size: 1.15rem; }
+        .hosp-note span { font-size: 0.88rem; color: var(--text-secondary); }
+        .hosp-note b { color: var(--text); }
+
+        /* Dose calculator mockup */
+        .dose { display: grid; gap: 0.7rem; }
+        .dose-field {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.7rem 0.95rem; border-radius: var(--radius); background: var(--bg-subtle);
+            border: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);
+        }
+        .dose-field strong { font-family: var(--font-mono); color: var(--text); }
+        .dose-result {
+            padding: 1rem 1.1rem; border-radius: var(--radius); text-align: center;
+            background: var(--accent-light); border: 1px solid var(--accent);
+        }
+        .dose-result span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-family: var(--font-mono); }
+        .dose-result strong { display: block; font-family: var(--font-display); font-size: 1.6rem; color: var(--accent); margin-top: 0.15rem; }
+    </style>
 </head>
 
-<body>
+<body class="proj proj-sakura">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <div id="app-detail-container"></div>
+    <main>
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-hospital"></i> Hastane Vardiya Takibi</div>
+                    <h1>Saglik calisaninin<br>vardiya asistani.</h1>
+                    <p class="proj-lead">Cam ve Sakura Sehir Hastanesi calisanlari icin ozel olarak tasarlanmis vardiya takibi ve yonetimi uygulamasi.</p>
+                    <p>Sakura, hastane personelinin vardiya programlarini kolayca takip etmeleri ve yonetmeleri icin gelistirildi. Kullanici dostu arayuzu ve klinik araclariyla vardiya yonetimini basitlestirir.</p>
+                    <div class="hosp-note">
+                        <i class="fas fa-certificate"></i>
+                        <span><b>Cam ve Sakura Sehir Hastanesi</b> personeline ozel olarak hazirlanmistir.</span>
+                    </div>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/tr/app/sakura-vardiya-takvimi/id6755043441?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.pixelflow.sakura" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="device">
+                        <div class="device-screen">
+                            <div style="font-family:var(--font-display);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.75rem;">Doz Hesaplayici</div>
+                            <div class="dose">
+                                <div class="dose-field"><span>Ilac</span><strong>Parasetamol</strong></div>
+                                <div class="dose-field"><span>Hasta kilosu</span><strong>18 kg</strong></div>
+                                <div class="dose-field"><span>Doz</span><strong>15 mg/kg</strong></div>
+                                <div class="dose-result"><span>Onerilen doz</span><strong>270 mg</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>Vardiya ve klinik, tek uygulamada</h2>
+                    <p>Vardiyalarini yonet, degisim yap ve klinik araclara aninda eris.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-calendar-days"></i></div><h3>Vardiya Takibi</h3><p>Vardiya takvimini kolayca gor, planla ve yonet.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-right-left"></i></div><h3>Vardiya Degisimi</h3><p>Meslektaslarinla vardiya degisimini pratik sekilde yap.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-pills"></i></div><h3>Ilac Rehberi</h3><p>Sik kullanilan ilaclara ve bilgilerine hizlica ulas.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-calculator"></i></div><h3>Doz Hesaplayici</h3><p>Kilo ve doza gore ilac miktarini guvenle hesapla.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/sakura/1.png" alt="Sakura ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/sakura/2.png" alt="Sakura ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/sakura/3.png" alt="Sakura ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/sakura.png" alt="Sakura" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Vardiyan artik cok daha kolay</h2>
+                <p>Sakura'yi indir, hastane vardiyalarini eline al.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/tr/app/sakura-vardiya-takvimi/id6755043441?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.sakura" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

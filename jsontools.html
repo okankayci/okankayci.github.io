@@ -4,20 +4,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow | JsonTools</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>JsonTools | JSON Formatla, Dogrula, Donustur</title>
+    <meta name="description" content="JsonTools: JSON verilerini formatlayin, dogrulayin, sikistirin ve XML/YAML'e donusturun. Cevrimdisi calisan, gelistiriciler icin hizli ve guvenli JSON araci.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── JsonTools · koyu terminal, neon yesil ── */
+        body.proj-jsontools {
+            --accent: #16a34a;
+            --accent-hover: #15803d;
+            --accent-warm: #22c55e;
+            --accent-light: rgba(22, 163, 74, 0.12);
+            --gradient: linear-gradient(135deg, #4ade80 0%, #22c55e 55%, #16a34a 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(74,222,128,0.1) 0%, rgba(22,163,74,0.05) 100%);
+            --ring: rgba(34, 197, 94, 0.25);
+            --shadow-glow: 0 0 40px rgba(34, 197, 94, 0.18);
+        }
+        body.proj-jsontools[data-theme="dark"],
+        body.proj-jsontools:not([data-theme="light"]) {
+            --accent: #4ade80;
+            --accent-hover: #86efac;
+            --accent-warm: #86efac;
+            --accent-light: rgba(74, 222, 128, 0.14);
+            --gradient: linear-gradient(135deg, #86efac 0%, #4ade80 55%, #22c55e 100%);
+            --ring: rgba(74, 222, 128, 0.3);
+            --shadow-glow: 0 0 40px rgba(74, 222, 128, 0.22);
+        }
+        .proj-jsontools .eyebrow, .proj-jsontools .back-link:hover { color: var(--accent); }
+
+        /* Terminal window (always dark, IDE-like) */
+        .terminal {
+            background: #0d1117; border: 1px solid #1f2630; border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl), var(--shadow-glow); overflow: hidden;
+            font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.7;
+        }
+        .term-bar {
+            display: flex; align-items: center; gap: 0.45rem; padding: 0.7rem 0.9rem;
+            background: #161b22; border-bottom: 1px solid #1f2630;
+        }
+        .term-bar b { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+        .term-bar .r { background: #ff5f56; } .term-bar .y { background: #ffbd2e; } .term-bar .g { background: #27c93f; }
+        .term-bar span { margin-left: 0.6rem; font-size: 0.68rem; color: #6e7681; }
+        .term-body { padding: 1rem 1.15rem; color: #adbac7; white-space: pre; overflow-x: auto; }
+        .term-body .k { color: #79c0ff; }   /* key */
+        .term-body .s { color: #a5d6ff; }   /* string */
+        .term-body .n { color: #f0883e; }   /* number */
+        .term-body .b { color: #ff7b72; }   /* bool */
+        .term-body .p { color: #6e7681; }   /* punctuation */
+        .term-tabs { display: flex; gap: 0; border-bottom: 1px solid #1f2630; background: #0d1117; }
+        .term-tabs span { padding: 0.5rem 0.9rem; font-size: 0.68rem; color: #6e7681; border-right: 1px solid #1f2630; }
+        .term-tabs span.on { color: var(--accent); background: #161b22; }
+
+        /* Convert chips */
+        .fmt-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+        .fmt-chip {
+            font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600;
+            padding: 0.5rem 0.95rem; border-radius: var(--radius-full);
+            border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+            transition: all 0.2s var(--ease);
+        }
+        .fmt-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); transform: translateY(-2px); }
+        .fmt-chip i { color: var(--accent); margin-right: 0.35rem; }
+    </style>
 </head>
 
-<body>
+<body class="proj proj-jsontools">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <div id="app-detail-container"></div>
+    <main>
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-code"></i> Gelistirici Araci</div>
+                    <h1>JSON'la calismanin<br>en hizli yolu.</h1>
+                    <p class="proj-lead">JSON verilerini formatlamak, dogrulamak ve donusturmek icin hizli ve guvenli araclar.</p>
+                    <p>JsonTools, gelistiriciler icin olusturulmus, JSON verilerini analiz etmeyi, formatlamayi ve sikistirmayi kolaylastiran guclu bir arac setidir. Cevrimdisi calisarak veri guvenligini korur.</p>
+                    <div class="fmt-row">
+                        <span class="fmt-chip"><i class="fas fa-shield-halved"></i> Cevrimdisi & Guvenli</span>
+                        <span class="fmt-chip"><i class="fas fa-moon"></i> Koyu Mod</span>
+                    </div>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/tr/app/json-tools-view-edit/id6756753329?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="terminal">
+                        <div class="term-bar"><b class="r"></b><b class="y"></b><b class="g"></b><span>data.json</span></div>
+                        <div class="term-tabs"><span class="on">Format</span><span>Minify</span><span>Validate</span></div>
+<div class="term-body"><span class="p">{</span>
+  <span class="k">"app"</span><span class="p">:</span> <span class="s">"JsonTools"</span><span class="p">,</span>
+  <span class="k">"version"</span><span class="p">:</span> <span class="n">2.4</span><span class="p">,</span>
+  <span class="k">"offline"</span><span class="p">:</span> <span class="b">true</span><span class="p">,</span>
+  <span class="k">"formats"</span><span class="p">:</span> <span class="p">[</span><span class="s">"xml"</span><span class="p">,</span> <span class="s">"yaml"</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="p">✓ valid · 4 keys · 68 bytes</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>JSON icin ihtiyacin olan her sey</h2>
+                    <p>Formatlamadan donusturmeye, hata ayiklamadan cevrimdisi calismaya kadar.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-align-left"></i></div><h3>Formatla & Dogrula</h3><p>Dagilmis JSON'u okunabilir hale getir, hatalari aninda yakala.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-compress"></i></div><h3>Minify</h3><p>JSON'u tek satira sikistir, gereksiz bosluklardan kurtul.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-right-left"></i></div><h3>XML / YAML Donustur</h3><p>JSON'u XML veya YAML'e tek dokunusla donustur.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-wifi"></i></div><h3>Cevrimdisi Mod</h3><p>Internet olmadan calis; verin cihazindan cikmaz.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-moon"></i></div><h3>Koyu Mod</h3><p>Goze rahat, gelistirici dostu koyu tema.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-bug"></i></div><h3>Hata Ayiklama</h3><p>Satir bazli hata bildirimi ile sorunu hizlica bul.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/jsontools/1.png" alt="JsonTools ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/jsontools/2.png" alt="JsonTools ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/jsontools/3.png" alt="JsonTools ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/jsontools.png" alt="JsonTools" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>JSON'u eline al</h2>
+                <p>JsonTools'u indir, ilk verini formatla ve farki gor.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/tr/app/json-tools-view-edit/id6756753329?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

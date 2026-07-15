@@ -4,20 +4,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>StudyGo | Ders Programi, Sinav & Pomodoro</title>
+    <meta name="description" content="StudyGo: Ders programini olustur, sinavlarini takip et, pomodoro ile odaklan ve calisma planlarini yonet. Ogrenciler icin hepsi bir arada egitim uygulamasi.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#6366f1" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── StudyGo · indigo, akademik odak ── */
+        body.proj-studygo {
+            --accent: #6366f1;
+            --accent-hover: #4f46e5;
+            --accent-warm: #818cf8;
+            --accent-light: rgba(99, 102, 241, 0.11);
+            --gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 50%, #4f46e5 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(129,140,248,0.09) 0%, rgba(99,102,241,0.04) 100%);
+            --ring: rgba(99, 102, 241, 0.25);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.2);
+        }
+        body.proj-studygo[data-theme="dark"],
+        body.proj-studygo:not([data-theme="light"]) {
+            --accent: #a5b4fc;
+            --accent-hover: #c7d2fe;
+            --accent-warm: #c7d2fe;
+            --accent-light: rgba(165, 180, 252, 0.14);
+            --gradient: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 50%, #818cf8 100%);
+            --ring: rgba(165, 180, 252, 0.3);
+            --shadow-glow: 0 0 40px rgba(165, 180, 252, 0.22);
+        }
+
+        /* Pomodoro ring */
+        .pomo { display: grid; place-items: center; padding: 0.5rem 0 0.75rem; }
+        .pomo-ring {
+            width: 172px; height: 172px; border-radius: 50%; display: grid; place-items: center;
+            background:
+              radial-gradient(closest-side, var(--surface) 79%, transparent 80% 100%),
+              conic-gradient(var(--accent) 68%, var(--border) 0);
+        }
+        .pomo-ring b { font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; color: var(--text); line-height: 1; }
+        .pomo-ring span { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 0.35rem; }
+        .pomo-dots { display: flex; gap: 6px; justify-content: center; margin-top: 0.9rem; }
+        .pomo-dots i { width: 9px; height: 9px; border-radius: 50%; background: var(--border); }
+        .pomo-dots i.on { background: var(--accent); }
+
+        /* Weekly schedule grid */
+        .sched { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 0.25rem; }
+        .sched .col { display: grid; gap: 8px; }
+        .sched .dh { font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-tertiary); text-align: center; margin-bottom: 2px; }
+        .sched .cls {
+            border-radius: 10px; padding: 0.55rem 0.5rem; font-size: 0.72rem; font-weight: 600; color: #fff;
+            text-align: center; line-height: 1.2;
+        }
+        .sched .cls.empty { background: var(--bg-subtle); border: 1px dashed var(--border); }
+        .sched .c1 { background: #6366f1; } .sched .c2 { background: #0ea5e9; }
+        .sched .c3 { background: #f59e0b; } .sched .c4 { background: #ec4899; }
+        .sched .c5 { background: #10b981; }
+    </style>
 </head>
 
-<body>
+<body class="proj proj-studygo">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <div id="app-detail-container"></div>
+    <main>
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-graduation-cap"></i> Ogrenci Verimliligi</div>
+                    <h1>Odaklan, planla,<br>basar.</h1>
+                    <p class="proj-lead">Okul hayatini organize et: ders programi, sinav takibi, gorev yonetimi, pomodoro teknigi, notlar ve calisma planlari.</p>
+                    <p>StudyGo, ogrencilerin derslerini yonetmeleri, sinavlarini takip etmeleri, pomodoro ile verimli calismalari ve calisma planlari olusturmalari icin tasarlanmis kapsamli bir egitim uygulamasidir.</p>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/us/app/studygo/id6753089430" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.pixelflow.studygo" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="device">
+                        <div class="device-screen">
+                            <div class="pomo">
+                                <div class="pomo-ring"><div style="text-align:center"><b>24:18</b><br><span>Odak</span></div></div>
+                                <div class="pomo-dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>Calisma hayatin tek uygulamada</h2>
+                    <p>Programdan sinava, pomodorodan notlara kadar akademik hayati kolaylastiran araclar.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-table-cells"></i></div><h3>Ders Programi</h3><p>Haftalik ders programini olustur ve renkli grid uzerinde takip et.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-calendar-check"></i></div><h3>Sinav Takibi</h3><p>Sinav takvimini olustur, sonuclarini gir ve gelisimini gozlemle.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-clock"></i></div><h3>Pomodoro</h3><p>Odak seanslari ve molalarla verimli, surdurulebilir calis.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-list-check"></i></div><h3>Gorev Yonetimi</h3><p>Odevleri ve gorevleri hatirlaticilarla organize et.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-note-sticky"></i></div><h3>Notlar</h3><p>Ders notlarini al, duzenle ve istedigin an eris.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-chart-line"></i></div><h3>Ilerleme Raporu</h3><p>Calisma sureni ve basarini raporlarla takip et.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ders Programi</div>
+                    <h2>Haftani bir bakista gor</h2>
+                </div>
+                <div class="split reveal">
+                    <div>
+                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Renkli, net, senin duzenin</h3>
+                        <p>Her dersi rengiyle ayirt et, bos saatleri kolayca gor ve gunun planini saniyeler icinde kavra. StudyGo programini takvimine baglar; sinav ve gorevlerle butunlesik calisir.</p>
+                    </div>
+                    <div class="sched">
+                        <div class="col"><div class="dh">Pzt</div><div class="cls c1">Mat</div><div class="cls c2">Fiz</div><div class="cls empty">&nbsp;</div></div>
+                        <div class="col"><div class="dh">Sal</div><div class="cls c3">Kim</div><div class="cls c1">Mat</div><div class="cls c5">Bio</div></div>
+                        <div class="col"><div class="dh">Car</div><div class="cls c4">Edb</div><div class="cls empty">&nbsp;</div><div class="cls c2">Fiz</div></div>
+                        <div class="col"><div class="dh">Per</div><div class="cls c5">Bio</div><div class="cls c3">Kim</div><div class="cls c1">Mat</div></div>
+                        <div class="col"><div class="dh">Cum</div><div class="cls c1">Mat</div><div class="cls c4">Edb</div><div class="cls empty">&nbsp;</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/studygo/1.png" alt="StudyGo ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/studygo/2.png" alt="StudyGo ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/studygo/3.png" alt="StudyGo ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/studygo.png" alt="StudyGo" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Basari duzenle gelir</h2>
+                <p>StudyGo'yu indir, programini olustur ve ilk pomodoronu baslat.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/us/app/studygo/id6753089430" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.studygo" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

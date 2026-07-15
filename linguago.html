@@ -4,20 +4,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow | LinguaGo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>LinguaGo | Yeni Bir Dili Eglenerek Ogren</title>
+    <meta name="description" content="LinguaGo: Oyunlastirilmis dersler, kelime kartlari, gunluk seriler ve sesli pratik ile yeni bir dili eglenceli ve etkilesimli sekilde ogren.">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="theme-color" content="#22c55e" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── LinguaGo · canli yesil, oyunlastirma ── */
+        body.proj-linguago {
+            --accent: #22c55e;
+            --accent-hover: #16a34a;
+            --accent-warm: #4ade80;
+            --accent-light: rgba(34, 197, 94, 0.12);
+            --gradient: linear-gradient(135deg, #4ade80 0%, #22c55e 50%, #0ea5e9 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(74,222,128,0.1) 0%, rgba(14,165,233,0.05) 100%);
+            --ring: rgba(34, 197, 94, 0.25);
+            --shadow-glow: 0 0 40px rgba(34, 197, 94, 0.2);
+        }
+        body.proj-linguago[data-theme="dark"],
+        body.proj-linguago:not([data-theme="light"]) {
+            --accent: #4ade80;
+            --accent-hover: #86efac;
+            --accent-warm: #86efac;
+            --accent-light: rgba(74, 222, 128, 0.14);
+            --gradient: linear-gradient(135deg, #86efac 0%, #4ade80 50%, #38bdf8 100%);
+            --ring: rgba(74, 222, 128, 0.3);
+            --shadow-glow: 0 0 40px rgba(74, 222, 128, 0.22);
+        }
+
+        /* Flashcard mockup */
+        .flash {
+            background: var(--gradient); border-radius: 18px; padding: 1.6rem 1.3rem;
+            color: #fff; text-align: center; box-shadow: var(--shadow-md); position: relative;
+        }
+        .flash small { font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.85; }
+        .flash b { display: block; font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; margin: 0.5rem 0 0.2rem; }
+        .flash span { font-size: 0.85rem; opacity: 0.9; }
+        .flash i { position: absolute; top: 0.9rem; right: 1rem; opacity: 0.7; }
+        .flash-opts { display: grid; gap: 0.5rem; margin-top: 0.9rem; }
+        .flash-opt {
+            padding: 0.6rem 0.8rem; border-radius: 12px; font-size: 0.82rem; font-weight: 600;
+            background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); text-align: left;
+        }
+        .flash-opt.correct { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+        .flash-opt.correct::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; float: right; }
+
+        /* Streak + XP */
+        .gami { display: flex; gap: 1rem; margin-top: 1rem; }
+        .gami-pill {
+            flex: 1; display: flex; align-items: center; gap: 0.5rem; padding: 0.6rem 0.75rem;
+            border-radius: 12px; background: var(--surface); border: 1px solid var(--border);
+        }
+        .gami-pill i { font-size: 1.05rem; }
+        .gami-pill .fire { color: #f97316; } .gami-pill .xp { color: var(--accent); }
+        .gami-pill b { font-family: var(--font-display); font-size: 1.05rem; color: var(--text); line-height: 1; }
+        .gami-pill small { display: block; font-size: 0.6rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; }
+        .xp-bar { height: 8px; border-radius: 999px; background: var(--bg-subtle); border: 1px solid var(--border); overflow: hidden; margin-top: 0.9rem; }
+        .xp-bar > i { display: block; height: 100%; width: 72%; background: var(--gradient); }
+    </style>
 </head>
 
-<body>
+<body class="proj proj-linguago">
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <div id="app-detail-container"></div>
+    <main>
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-language"></i> Dil Ogrenme</div>
+                    <h1>Yeni bir dil,<br>oyun kadar keyifli.</h1>
+                    <p class="proj-lead">Yeni bir dil ogrenmeyi eglenceli ve etkilesimli hale getiren mobil uygulama.</p>
+                    <p>LinguaGo, dil ogrenme surecini oyunlastirarak hizlandiran bir egitim platformudur. Kelime kartlari, pratik diyaloglar ve gelisim takibi ile yeni bir dilde ustalasmani saglar.</p>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/tr/app/linguago-learn-words-faster/id6756240533?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="device">
+                        <div class="device-screen">
+                            <div class="flash">
+                                <i class="fas fa-volume-high"></i>
+                                <small>Ingilizce</small>
+                                <b>Serendipity</b>
+                                <span>Anlamini sec</span>
+                            </div>
+                            <div class="flash-opts">
+                                <div class="flash-opt correct">Sans eseri guzel kesif</div>
+                                <div class="flash-opt">Kararlilik</div>
+                            </div>
+                            <div class="gami">
+                                <div class="gami-pill"><i class="fas fa-fire fire"></i><div><b>14</b><small>Gun seri</small></div></div>
+                                <div class="gami-pill"><i class="fas fa-bolt xp"></i><div><b>1.240</b><small>XP</small></div></div>
+                            </div>
+                            <div class="xp-bar"><i></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>Ogrenmeyi oyuna cevir</h2>
+                    <p>Oyunlastirilmis derslerden sesli pratige kadar motivasyonu yuksek tutan araclar.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-gamepad"></i></div><h3>Oyunlastirilmis Dersler</h3><p>Eglenceli, adim adim derslerle ilerledikce ogren.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-clone"></i></div><h3>Kelime Kartlari</h3><p>Flashcard'larla yeni kelimeleri kalici sekilde ogren.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-fire"></i></div><h3>Gunluk Seriler</h3><p>Hedefler ve serilerle her gun motive kal.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-microphone"></i></div><h3>Sesli Pratik</h3><p>Telaffuzunu sesli pratik moduyla gelistir.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-chart-simple"></i></div><h3>Gelisim Istatistikleri</h3><p>Ilerlemeni ayrintili istatistiklerle takip et.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-wifi"></i></div><h3>Cevrimdisi Erisim</h3><p>Internet olmadan da derslerine devam et.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/linguago/1.png" alt="LinguaGo ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/linguago/2.png" alt="LinguaGo ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/linguago/3.png" alt="LinguaGo ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/linguago.png" alt="LinguaGo" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Ilk seriye bugun basla</h2>
+                <p>LinguaGo'yu indir, ilk kelimeni ogren ve serini buyut.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/tr/app/linguago-learn-words-faster/id6756240533?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="studygo.html">StudyGo</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

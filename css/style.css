@@ -1631,3 +1631,95 @@ body:not([data-theme="light"]) .form-status.error {
   .feature-list { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
 }
+
+/* ══ BESPOKE PROJECT PAGES ════════════════════
+   Shared building blocks for the per-project pages.
+   Each page overrides --accent / --gradient in its own
+   scoped <style>, so these components pick up that
+   project's palette automatically. */
+.proj-hero { padding: 4.5rem 0 3rem; position: relative; overflow: hidden; }
+.proj-hero::before {
+  content: ''; position: absolute; top: -40%; right: -15%;
+  width: 620px; height: 620px; z-index: 0; pointer-events: none;
+  background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+}
+.proj-hero-grid {
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3.5rem;
+  align-items: center; position: relative; z-index: 1;
+}
+.proj-hero h1 { margin-bottom: 1.1rem; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1.5rem;
+  transition: color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.back-link:hover { color: var(--accent); transform: translateX(-3px); }
+
+.proj-lead {
+  font-size: 1.15rem; color: var(--text-secondary); line-height: 1.7;
+  padding-left: 1rem; border-left: 2px solid var(--accent); margin-bottom: 1.5rem;
+}
+
+/* Phone-style device mockup */
+.device {
+  width: min(290px, 78%); margin: 0 auto; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 34px; padding: 0.85rem;
+  box-shadow: var(--shadow-xl), var(--shadow-glow); position: relative;
+}
+.device::before {
+  content: ''; position: absolute; top: 0.85rem; left: 50%; transform: translateX(-50%);
+  width: 90px; height: 6px; border-radius: 999px; background: var(--border);
+}
+.device-screen {
+  background: var(--bg-subtle); border-radius: 26px; padding: 1.6rem 1.1rem 1.2rem;
+  overflow: hidden;
+}
+.device-badges { justify-content: flex-start; }
+
+/* Icon feature cards */
+.icon-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.1rem; }
+.icon-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.6rem; transition: all 0.3s var(--ease); position: relative; overflow: hidden;
+}
+.icon-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: var(--shadow-lg); }
+.icon-card .ic {
+  width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center;
+  background: var(--accent-light); color: var(--accent); font-size: 1.15rem; margin-bottom: 1rem;
+}
+.icon-card h3 { margin-bottom: 0.45rem; }
+.icon-card p { font-size: 0.9rem; margin: 0; }
+
+/* Split highlight card */
+.split {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-xl);
+  padding: 2.5rem; box-shadow: var(--shadow); position: relative; overflow: hidden;
+}
+.split::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gradient); }
+
+/* Coming-soon banner */
+.soon-banner {
+  display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 1.5rem;
+  padding: 0.7rem 1.3rem; border-radius: var(--radius-full);
+  background: var(--accent-light); border: 1px solid var(--accent);
+  color: var(--accent); font-family: var(--font-mono); font-size: 0.75rem;
+  font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.soon-banner i { animation: pulse-dot 2s infinite; }
+
+/* CTA footer band */
+.proj-cta {
+  text-align: center; background: var(--bg-subtle); border-top: 1px solid var(--border);
+  padding: 4.5rem 0;
+}
+.proj-cta .device-badges { justify-content: center; }
+.proj-cta h2 { margin-bottom: 0.75rem; }
+.proj-cta p { margin: 0 auto 1.75rem; }
+
+@media (max-width: 900px) {
+  .proj-hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .split { grid-template-columns: 1fr; gap: 1.75rem; padding: 1.75rem; }
+}
