@@ -73,10 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Scroll-triggered Reveals ───────────────
     const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade');
     const staggerEls = document.querySelectorAll('.stagger-grid');
+    const backToTop = document.querySelector('.back-to-top');
 
     if (prefersReducedMotion) {
         revealEls.forEach(el => el.classList.add('visible'));
         staggerEls.forEach(el => el.classList.add('animate'));
+        if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         return;
     }
 
@@ -99,4 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
     staggerEls.forEach(el => staggerObserver.observe(el));
+
+    // ── Back to Top ─────────────────────────────
+    if (backToTop) {
+        const handleBackToTop = () => backToTop.classList.toggle('visible', window.scrollY > 400);
+        window.addEventListener('scroll', handleBackToTop, { passive: true });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 });

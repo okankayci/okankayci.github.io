@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Shared Components (Matches index.html) ---
     const headerHtml = `
+    <a class="skip-link" href="#legal-main">İçeriğe geç</a>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
@@ -48,8 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Projeler</h4>
                 <a href="shiflabs.html">ShifLabs</a>
                 <a href="babyplus.html">BabyPlus</a>
-                <a href="pawsy.html">Pawsy</a>
                 <a href="studygo.html">StudyGo</a>
+                <a href="sakura.html">Sakura</a>
+                <a href="jsontools.html">JsonTools</a>
+                <a href="linguago.html">LinguaGo</a>
+                <a href="toolbox.html">Toolbox</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="routly.html">Routly</a>
+                <a href="picnic.html">Picnic</a>
             </div>
             <div>
                 <h4>Yasal</h4>
@@ -59,7 +66,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
-    </footer>`;
+    </footer>
+    <button class="back-to-top" type="button" aria-label="Yukarı çık">
+        <i class="fas fa-arrow-up"></i>
+    </button>`;
 
     // --- Content Mapping ---
     let pageContent = '';
@@ -147,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Inject Everything ---
     container.innerHTML = `
         ${headerHtml}
-        <main>
+        <main id="legal-main">
             ${pageContent}
         </main>
         ${footerHtml}
@@ -209,5 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', next);
             setTheme(next);
         });
+    }
+
+    // ── Back to Top ─────────────────────────────
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        const handleBackToTop = () => backToTop.classList.toggle('visible', window.scrollY > 400);
+        window.addEventListener('scroll', handleBackToTop, { passive: true });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 });

@@ -36,6 +36,7 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
   --radius-full: 9999px;
+  --destructive: #dc2626;
 }
 
 body[data-theme="dark"] {
@@ -61,6 +62,7 @@ body[data-theme="dark"] {
   --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.15);
   --shadow-xl: 0 20px 40px -10px rgba(0,0,0,0.4);
   --shadow-glow: 0 0 40px rgba(232, 149, 110, 0.2);
+  --destructive: #f87171;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -87,6 +89,7 @@ body[data-theme="dark"] {
     --shadow-lg: 0 10px 25px -5px rgba(0,0,0,0.3), 0 8px 10px -6px rgba(0,0,0,0.15);
     --shadow-xl: 0 20px 40px -10px rgba(0,0,0,0.4);
     --shadow-glow: 0 0 40px rgba(232, 149, 110, 0.2);
+    --destructive: #f87171;
   }
 }
 
@@ -104,12 +107,91 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   position: relative;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 
 img { max-width: 100%; display: block; }
 a { text-decoration: none; color: inherit; cursor: pointer; }
 button { cursor: pointer; font-family: inherit; }
 ::selection { background: var(--accent); color: #fff; }
+
+/* ── SKIP TO CONTENT ─────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.2s var(--ease);
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+.skip-link:not(:focus) {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* ── FOCUS VISIBLE ──────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Remove default focus styles when not using keyboard */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ── BACK TO TOP ─────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 900;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+.back-to-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
 
 .container { width: min(1120px, 92%); margin: 0 auto; position: relative; }
 
@@ -910,6 +992,20 @@ body:not([data-theme="light"]) .status.available::before {
   min-height: 120px;
 }
 
+.field-error {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--destructive, #dc2626);
+  margin-top: 0.25rem;
+  animation: fadeInUp 0.2s var(--ease-out);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .btn-submit {
   width: 100%;
   padding: 0.8rem 1.5rem;
@@ -1319,6 +1415,12 @@ body:not([data-theme="light"]) .form-status.error {
   overflow: hidden;
   box-shadow: var(--shadow);
   transition: all 0.3s var(--ease);
+  position: relative;
+}
+.screenshot-item img {
+  width: 100%;
+  aspect-ratio: 9/19;
+  object-fit: cover;
 }
 
 .screenshot-item:hover {
@@ -1488,6 +1590,7 @@ body:not([data-theme="light"]) .form-status.error {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade {
     opacity: 1;
     transform: none;
@@ -1498,6 +1601,8 @@ body:not([data-theme="light"]) .form-status.error {
     transform: none;
     transition: none;
   }
+  body { transition: none !important; }
+  .back-to-top { display: none; }
 }
 
 /* ── RESPONSIVE ────────────────────────────── */

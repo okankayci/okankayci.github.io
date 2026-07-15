@@ -89,16 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Header Scroll State ────────────────────
     const header = document.querySelector('.site-header');
-    let lastScroll = 0;
+    const backToTop = document.querySelector('.back-to-top');
 
     const handleHeaderScroll = () => {
         const scrollY = window.scrollY;
-        if (scrollY > 20) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        lastScroll = scrollY;
+        header.classList.toggle('scrolled', scrollY > 20);
+        if (backToTop) backToTop.classList.toggle('visible', scrollY > 400);
     };
 
     // ── Active Nav on Scroll ───────────────────
@@ -227,9 +223,51 @@ document.addEventListener('DOMContentLoaded', () => {
     handleHeaderScroll();
     updateActiveNav();
 
+    // ── Back to Top Click Handler ───────────────
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
     // ── Contact Form ───────────────────────────
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
+        // ── Inline validation on blur ──────────────
+        const formInputs = contactForm.querySelectorAll('input[required], textarea[required]');
+        const showFieldError = (field, message) => {
+            const existing = field.parentElement.querySelector('.field-error');
+            if (existing) existing.remove();
+            field.style.borderColor = 'var(--destructive, #dc2626)';
+            const err = document.createElement('span');
+            err.className = 'field-error';
+            err.textContent = message;
+            err.style.cssText = 'display:block;font-size:0.75rem;color:var(--destructive, #dc2626);margin-top:0.25rem;';
+            field.parentElement.appendChild(err);
+        };
+        const clearFieldError = (field) => {
+            const existing = field.parentElement.querySelector('.field-error');
+            if (existing) existing.remove();
+            field.style.borderColor = '';
+        };
+        formInputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.value.trim() === '') {
+                    const label = input.closest('.form-group')?.querySelector('label')?.textContent || 'Bu alan';
+                    showFieldError(input, `${label} zorunludur.`);
+                } else if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+                    showFieldError(input, 'Geçerli bir e-posta adresi girin.');
+                } else {
+                    clearFieldError(input);
+                }
+            });
+            input.addEventListener('input', () => {
+                if (input.value.trim() !== '' && (!input.type === 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value))) {
+                    clearFieldError(input);
+                }
+            });
+        });
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
