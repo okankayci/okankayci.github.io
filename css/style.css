@@ -1353,32 +1353,18 @@ body:not([data-theme="light"]) .form-status.error {
   font-size: 0.85rem;
   transition: all 0.25s var(--ease);
   position: relative;
-  overflow: hidden;
-}
-
-.store-badge::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--gradient);
-  opacity: 0;
-  transition: opacity 0.25s var(--ease);
 }
 
 .store-badge:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
   border-color: var(--accent);
-  color: #fff;
-}
-
-.store-badge:hover::before {
-  opacity: 1;
+  background: var(--gradient);
+  color: var(--surface);
 }
 
 .store-badge > * {
   position: relative;
-  z-index: 1;
 }
 
 .status-banner {
