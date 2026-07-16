@@ -1,20 +1,221 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>BabyPlus | Bebek Gelisim Takibi</title>
+    <meta name="description" content="BabyPlus: Bebeginizin gelisimini takip edin, beslenme ve uyku kaydedin, asi takvimini kacirmayin. Ebeveynler icin sicak ve kapsamli bebek takip uygulamasi.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta name="theme-color" content="#ec6f9e" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── BabyPlus · pastel pembe/mavi, sicak ── */
+        body.proj-babyplus {
+            --accent: #ec6f9e;
+            --accent-hover: #d95a8b;
+            --accent-warm: #f4a6c0;
+            --accent-light: rgba(236, 111, 158, 0.12);
+            --gradient: linear-gradient(135deg, #f4a6c0 0%, #ec6f9e 50%, #a5c8f0 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(244,166,192,0.1) 0%, rgba(165,200,240,0.06) 100%);
+            --ring: rgba(236, 111, 158, 0.25);
+            --shadow-glow: 0 0 40px rgba(236, 111, 158, 0.2);
+            --radius-lg: 22px;
+            --radius-xl: 30px;
+        }
+        body.proj-babyplus[data-theme="dark"],
+        body.proj-babyplus:not([data-theme="light"]) {
+            --accent: #f4a6c0;
+            --accent-hover: #f8c1d5;
+            --accent-warm: #f8c1d5;
+            --accent-light: rgba(244, 166, 192, 0.14);
+            --gradient: linear-gradient(135deg, #f8c1d5 0%, #f4a6c0 50%, #a5c8f0 100%);
+            --ring: rgba(244, 166, 192, 0.3);
+            --shadow-glow: 0 0 40px rgba(244, 166, 192, 0.22);
+        }
+
+        /* Soft cloud backdrop */
+        .proj-babyplus .proj-hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -10%;
+            width: 460px; height: 460px; z-index: 0; pointer-events: none;
+            background: radial-gradient(circle, rgba(165,200,240,0.14) 0%, transparent 70%);
+        }
+
+        /* Growth chart mockup */
+        .growth { display: flex; align-items: flex-end; gap: 8px; height: 130px; padding: 0.4rem 0 0; margin-top: 0.4rem; }
+        .growth span { flex: 1; border-radius: 8px 8px 4px 4px; background: linear-gradient(180deg, var(--accent-warm), var(--accent)); opacity: 0.9; }
+        .growth-title { display: flex; align-items: center; justify-content: space-between; font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; color: var(--text); }
+        .growth-title small { font-size: 0.7rem; color: var(--accent); font-family: var(--font-mono); }
+        .growth-axis { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.6rem; color: var(--text-tertiary); }
+
+        /* Vaccine timeline */
+        .timeline { position: relative; margin-top: 0.25rem; padding-left: 1.75rem; }
+        .timeline::before { content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--border)); }
+        .tl-item { position: relative; padding-bottom: 1.4rem; }
+        .tl-item:last-child { padding-bottom: 0; }
+        .tl-item::before { content: ''; position: absolute; left: -1.75rem; top: 3px; width: 16px; height: 16px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+        .tl-item.done::before { background: var(--accent); }
+        .tl-item h4 { font-family: var(--font-display); font-size: 0.98rem; color: var(--text); margin-bottom: 0.2rem; }
+        .tl-item p { font-size: 0.85rem; margin: 0; }
+        .tl-item .when { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+    </style>
 </head>
-<body>
 
-    <div id="app-detail-container"></div>
+<body class="proj proj-babyplus">
+    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+    <main id="proj-main">
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-baby"></i> Bebek Gelisimi</div>
+                    <h1>Her ilki kaydet,<br>hicbir ani kacirma.</h1>
+                    <p class="proj-lead">Bebeginin gelisimini takip et, ozel anlari kaydet ve ebeveynlik yolculugunda sana rehberlik edecek ipuclari al.</p>
+                    <p>BabyPlus, ebeveynlerin bebeklerinin gelisimini kapsamli sekilde takip edebilmeleri icin tasarlandi. Buyume, beslenme ve saglik takibi ile yolculuguna eslik eder.</p>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/us/app/baby-plus/id6747646706" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.pixelflow.baby_plus" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="device">
+                        <div class="device-screen">
+                            <div class="growth-title"><span>Buyume</span><small>+2.1 kg</small></div>
+                            <div class="growth">
+                                <span style="height:38%"></span><span style="height:46%"></span><span style="height:52%"></span>
+                                <span style="height:61%"></span><span style="height:70%"></span><span style="height:78%"></span>
+                                <span style="height:88%"></span><span style="height:100%"></span>
+                            </div>
+                            <div class="growth-axis"><span>1a</span><span>3a</span><span>6a</span><span>9a</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>Bebeginin ihtiyaci olan her sey</h2>
+                    <p>Buyumeden uykuya, asilardan doktor randevularina kadar ebeveynligi kolaylastiran araclar.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-ruler-vertical"></i></div><h3>Gelisim Takibi</h3><p>Boy, kilo ve bas cevresi ile bebeginin buyumesini grafiklerle izle.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-bottle-water"></i></div><h3>Beslenme & Uyku</h3><p>Emzirme, mama ve uyku kayitlarini tut, duzeni kolayca gor.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-syringe"></i></div><h3>Asi Takvimi</h3><p>Asi zamanlarini hatirlaticilarla kacirmadan takip et.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-image"></i></div><h3>Fotograf Albumu</h3><p>Ilk gulusten ilk adima, ozel anlari albumunde sakla.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-stethoscope"></i></div><h3>Doktor Randevu</h3><p>Kontrol randevularini planla ve hatirlaticilar al.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-cloud-arrow-up"></i></div><h3>Veri Yedekleme</h3><p>Tum kayitlarini guvenle yedekle, hicbir aniyi kaybetme.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Asi Takvimi</div>
+                    <h2>Dogru zamanda dogru asi</h2>
+                </div>
+                <div class="split reveal">
+                    <div>
+                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Adim adim asi yolculugu</h3>
+                        <p>BabyPlus asi takvimini bebeginin dogum tarihine gore olusturur; yaklasan asilar icin zamaninda hatirlatir, tamamlananlari isaretler. Boylece tek bir asiyi bile kacirmazsin.</p>
+                    </div>
+                    <div class="timeline">
+                        <div class="tl-item done"><span class="when">Dogumda</span><h4>Hepatit B (1. doz)</h4><p>Tamamlandi</p></div>
+                        <div class="tl-item done"><span class="when">2. Ay</span><h4>5'li Karma + KPA</h4><p>Tamamlandi</p></div>
+                        <div class="tl-item"><span class="when">4. Ay</span><h4>5'li Karma (2. doz)</h4><p>Yaklasiyor</p></div>
+                        <div class="tl-item"><span class="when">6. Ay</span><h4>OPA + Hepatit B</h4><p>Planlandi</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/babyplus/1.png" alt="BabyPlus ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/babyplus/2.png" alt="BabyPlus ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/babyplus/3.png" alt="BabyPlus ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/babyplus.png" alt="BabyPlus" width="72" height="72" style="border-radius:20px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Bebeginin hikayesi BabyPlus'ta baslasin</h2>
+                <p>Hemen indir, ilk kaydini olustur ve o kucuk anlari sakla.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/us/app/baby-plus/id6747646706" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.baby_plus" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="studygo.html">StudyGo</a>
+                <a href="sakura.html">Sakura</a>
+                <a href="jsontools.html">JsonTools</a>
+                <a href="linguago.html">LinguaGo</a>
+                <a href="toolbox.html">Toolbox</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="routly.html">Routly</a>
+                <a href="picnic.html">Picnic</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
+    <button class="back-to-top" type="button" aria-label="Yukari cik">
+    <i class="fas fa-arrow-up"></i>
+</button>
 </body>
+
 </html>

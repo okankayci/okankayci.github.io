@@ -4,20 +4,224 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>ShifLabs | Vardiya Takip & Yonetim</title>
+    <meta name="description" content="ShifLabs: Vardiyalarinizi planlayin, maas ve mesainizi hesaplayin, PDF rapor alin. Vardiyali calisanlar icin akilli vardiya takip uygulamasi.">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── ShifLabs · teal / vardiya kimligi ── */
+        body.proj-shiflabs {
+            --accent: #0d9488;
+            --accent-hover: #0f766e;
+            --accent-warm: #14b8a6;
+            --accent-light: rgba(13, 148, 136, 0.1);
+            --gradient: linear-gradient(135deg, #14b8a6 0%, #0d9488 55%, #0f766e 100%);
+            --gradient-subtle: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.04) 100%);
+            --ring: rgba(13, 148, 136, 0.25);
+            --shadow-glow: 0 0 40px rgba(13, 148, 136, 0.18);
+        }
+        body.proj-shiflabs[data-theme="dark"],
+        body.proj-shiflabs:not([data-theme="light"]) {
+            --accent: #2dd4bf;
+            --accent-hover: #5eead4;
+            --accent-warm: #5eead4;
+            --accent-light: rgba(45, 212, 191, 0.12);
+            --gradient: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 55%, #0d9488 100%);
+            --ring: rgba(45, 212, 191, 0.3);
+            --shadow-glow: 0 0 40px rgba(45, 212, 191, 0.2);
+        }
+
+        /* Calendar mockup */
+        .cal-head {
+            display: flex; align-items: center; justify-content: space-between;
+            font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
+            margin-bottom: 0.9rem; color: var(--text);
+        }
+        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .cal-grid span {
+            aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px;
+            font-size: 0.62rem; font-weight: 600; color: var(--text-tertiary);
+            background: var(--surface); border: 1px solid var(--border);
+        }
+        .cal-grid span.day-off { color: var(--text-secondary); }
+        .cal-grid span.shift-d { background: rgba(20,184,166,0.16); color: var(--accent); border-color: transparent; }
+        .cal-grid span.shift-n { background: rgba(99,102,241,0.18); color: #6366f1; border-color: transparent; }
+        .cal-legend { display: flex; gap: 1rem; margin-top: 0.9rem; font-size: 0.62rem; color: var(--text-tertiary); }
+        .cal-legend b { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+
+        /* Salary calculation rows (shiflabs-specific) */
+        .calc-rows { display: grid; gap: 0.7rem; }
+        .calc-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.75rem 1rem; border-radius: var(--radius); background: var(--bg-subtle);
+            border: 1px solid var(--border); font-size: 0.9rem; color: var(--text-secondary);
+        }
+        .calc-row strong { color: var(--text); font-family: var(--font-mono); }
+        .calc-row.total { background: var(--accent-light); border-color: transparent; color: var(--accent); }
+        .calc-row.total strong { color: var(--accent); font-size: 1.05rem; }
+    </style>
 </head>
 
-<body>
+<body class="proj proj-shiflabs">
+    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <nav class="nav" aria-label="Ana menu">
+                <button class="nav-close" type="button" aria-label="Menuyu kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+                <a href="index.html#contact">Iletisim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Tema degistir"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menuyu ac"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
-    <div id="app-detail-container"></div>
+    <main id="proj-main">
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Projeler</a>
+                    <div class="eyebrow"><i class="fas fa-calendar-check"></i> Vardiya Yonetimi</div>
+                    <h1>Vardiyani planla,<br>hayatini organize et.</h1>
+                    <p class="proj-lead">Vardiyali calisma duzenini kolayca planla, arkadaslarinla paylas ve sosyal hayatini organize et.</p>
+                    <p>ShifLabs, vardiyali calisanlar icin tasarlanmis kapsamli bir vardiya yonetim uygulamasidir. Vardiyalarini takip et, notlar ekle ve detayli raporlar al.</p>
+                    <div class="store-badges device-badges">
+                        <a href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="device">
+                        <div class="device-screen">
+                            <div class="cal-head"><span>Mart 2026</span><i class="fas fa-chevron-right" style="font-size:0.7rem;color:var(--text-tertiary)"></i></div>
+                            <div class="cal-grid">
+                                <span class="day-off">P</span><span class="shift-d">1</span><span class="shift-d">2</span><span class="shift-n">3</span><span>4</span><span class="day-off">5</span><span class="day-off">6</span>
+                                <span class="shift-d">7</span><span class="shift-n">8</span><span>9</span><span class="day-off">10</span><span class="shift-d">11</span><span class="shift-d">12</span><span class="shift-n">13</span>
+                                <span>14</span><span class="day-off">15</span><span class="shift-d">16</span><span class="shift-n">17</span><span class="shift-n">18</span><span>19</span><span class="day-off">20</span>
+                            </div>
+                            <div class="cal-legend">
+                                <span><b style="background:#14b8a6"></b>Gunduz</span>
+                                <span><b style="background:#6366f1"></b>Gece</span>
+                                <span><b style="background:var(--border)"></b>Izin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <script src="js/data.js"></script>
-    <script src="js/app-detail.js"></script>
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Ozellikler</div>
+                    <h2>Vardiyan icin her sey tek yerde</h2>
+                    <p>Takvimden maasa, gorevlerden raporlara kadar vardiyali hayati kolaylastiran araclar.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-calendar-days"></i></div><h3>Vardiya & Izin Takibi</h3><p>Vardiyalarini ve izinlerini renkli takvimde takip et, notlar ekle.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-file-pdf"></i></div><h3>PDF Rapor</h3><p>Aylik vardiya ve mesai dokumunu tek dokunusla PDF olarak disari aktar.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-list-check"></i></div><h3>Gorev & Sablonlar</h3><p>Gunluk gorevler ekle, tekrar eden isler icin sablonlar olustur.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-chart-pie"></i></div><h3>Detayli Istatistik</h3><p>Calisma saatlerini ve duzenini ayrintili istatistiklerle izle.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-cloud-arrow-up"></i></div><h3>Yedekle & Geri Yukle</h3><p>Verilerini guvenle yedekle, cihaz degistirsen bile kaybetme.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-ban"></i></div><h3>Reklamsiz Erisim</h3><p>Dikkat dagitan reklamlar olmadan tam ve akici bir deneyim.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section alt">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Maas & Mesai</div>
+                    <h2>Kazancini otomatik hesapla</h2>
+                </div>
+                <div class="split reveal">
+                    <div>
+                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Her kurusu hesaba kat</h3>
+                        <p>Saat ucreti, gece zammi, fazla mesai ve ek odemeleri gir; ShifLabs vardiya takvimine gore aylik kazancini otomatik hesaplasin. Tahmin yapmayi birak, net rakami gor.</p>
+                    </div>
+                    <div class="calc-rows">
+                        <div class="calc-row"><span>Normal mesai</span><strong>₺18.400</strong></div>
+                        <div class="calc-row"><span>Gece zammi</span><strong>₺2.150</strong></div>
+                        <div class="calc-row"><span>Fazla mesai</span><strong>₺3.720</strong></div>
+                        <div class="calc-row total"><span>Toplam</span><strong>₺24.270</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <div class="eyebrow">Arayuz</div>
+                    <h2>Uygulamadan gorunumler</h2>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/shiflabs/1.png" alt="ShifLabs ekran goruntusu 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/shiflabs/2.png" alt="ShifLabs ekran goruntusu 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/shiflabs/3.png" alt="ShifLabs ekran goruntusu 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/shiflabs.png" alt="ShifLabs" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Vardiyani ShifLabs'e birak</h2>
+                <p>Hemen indir, ilk vardiyani ekle ve duzenini eline al.</p>
+                <div class="store-badges device-badges">
+                    <a href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand">Pixel<span>Flow</span></div>
+                <p>Code crafted with care.</p>
+            </div>
+            <div>
+                <h4>Sayfalar</h4>
+                <a href="index.html#hero">Giris</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#about">Hakkimda</a>
+            </div>
+            <div>
+                <h4>Projeler</h4>
+                <a href="shiflabs.html">ShifLabs</a>
+                <a href="babyplus.html">BabyPlus</a>
+                <a href="studygo.html">StudyGo</a>
+                <a href="sakura.html">Sakura</a>
+                <a href="jsontools.html">JsonTools</a>
+                <a href="linguago.html">LinguaGo</a>
+                <a href="toolbox.html">Toolbox</a>
+                <a href="pawsy.html">Pawsy</a>
+                <a href="routly.html">Routly</a>
+                <a href="picnic.html">Picnic</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik</a>
+                <a href="kullanim-kosullari.html">Kullanim</a>
+                <a href="kvkk.html">KVKK</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">&copy; 2026 PixelFlow. Istanbul.</div>
+    </footer>
+
+    <script src="js/page.js"></script>
+    <button class="back-to-top" type="button" aria-label="Yukari cik">
+    <i class="fas fa-arrow-up"></i>
+</button>
 </body>
 
 </html>

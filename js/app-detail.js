@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Shared Components ---
     const headerHtml = `
+    <a class="skip-link" href="#app-detail-main">İçeriğe geç</a>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
@@ -58,8 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h4>Projeler</h4>
                 <a href="shiflabs.html">ShifLabs</a>
                 <a href="babyplus.html">BabyPlus</a>
-                <a href="pawsy.html">Pawsy</a>
                 <a href="studygo.html">StudyGo</a>
+                <a href="sakura.html">Sakura</a>
+                <a href="jsontools.html">JsonTools</a>
+                <a href="linguago.html">LinguaGo</a>
+                <a href="toolbox.html">Toolbox</a>
+                <a href="pawsy.html">Pawsy</a>
                 <a href="routly.html">Routly</a>
                 <a href="picnic.html">Picnic</a>
             </div>
@@ -71,7 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
-    </footer>`;
+    </footer>
+    <button class="back-to-top" type="button" aria-label="Yukarı çık">
+        <i class="fas fa-arrow-up"></i>
+    </button>`;
 
     // --- App Detail Content ---
 
@@ -82,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ${app.app_store_url ? `<a href="${app.app_store_url}" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>` : ''}
             ${app.google_play_url ? `<a href="${app.google_play_url}" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>` : ''}
         </div>
-    ` : `<div class="status-banner">🚧 GELİŞTİRME AŞAMASINDA</div>`;
+    ` : `<div class="status-banner"><i class="fas fa-hammer" style="margin-right:0.4rem;"></i>GELİŞTİRME AŞAMASINDA</div>`;
 
     // Screenshots Logic
     const screenshotsHtml = app.screenshots && app.screenshots.length > 0 ? `
@@ -112,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const mainContent = `
-    <main>
+    <main id="app-detail-main">
         <section class="detail-hero">
             <div class="container detail-grid">
                 <div class="detail-copy">
@@ -208,5 +216,13 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', next);
             setTheme(next);
         });
+    }
+
+    // ── Back to Top ─────────────────────────────
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        const handleBackToTop = () => backToTop.classList.toggle('visible', window.scrollY > 400);
+        window.addEventListener('scroll', handleBackToTop, { passive: true });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     }
 });
