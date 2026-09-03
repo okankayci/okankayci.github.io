@@ -11,18 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
     <a class="skip-link" href="#legal-main">İçeriğe geç</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero">Pixel<span>Flow</span></a>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
+                <span class="brand-mark">P</span>
+                <span>PixelFlow</span>
+                <span class="brand-studio">Studio</span>
+            </a>
             <nav class="nav" aria-label="Ana menü">
                 <button class="nav-close" type="button" aria-label="Menüyü kapat">
                     <i class="fas fa-times"></i>
                 </button>
                 <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Projeler</a>
-                <a href="index.html#about">Hakkımda</a>
+                <a href="index.html#apps">Uygulamalar</a>
+                <a href="index.html#craft">Zanaat & Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Tema değiştir">
+                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)">
                     <i class="fas fa-moon"></i>
                 </button>
                 <button class="hamburger" type="button" aria-label="Menüyü aç">
@@ -36,36 +40,39 @@ document.addEventListener('DOMContentLoaded', () => {
     <footer class="footer">
         <div class="container footer-grid">
             <div>
-                <div class="brand">Pixel<span>Flow</span></div>
-                <p>Code crafted with care.</p>
+                <a class="brand" href="index.html#hero">
+                    <span class="brand-mark">P</span>
+                    <span>PixelFlow</span>
+                </a>
+                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
             </div>
             <div>
-                <h4>Sayfalar</h4>
+                <h4>Navigasyon</h4>
                 <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Projeler</a>
-                <a href="index.html#about">Hakkımda</a>
+                <a href="index.html#apps">Uygulamalar</a>
+                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#contact">İletişim</a>
             </div>
             <div>
-                <h4>Projeler</h4>
-                <a href="shiflabs.html">ShifLabs</a>
-                <a href="babyplus.html">BabyPlus</a>
-                <a href="studygo.html">StudyGo</a>
-                <a href="sakura.html">Sakura</a>
-                <a href="jsontools.html">JsonTools</a>
-                <a href="linguago.html">LinguaGo</a>
-                <a href="toolbox.html">Toolbox</a>
-                <a href="pawsy.html">Pawsy</a>
-                <a href="routly.html">Routly</a>
-                <a href="picnic.html">Picnic</a>
+                <h4>Öne Çıkanlar</h4>
+                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
+                <a href="babyplus.html">BabyPlus (Bebek)</a>
+                <a href="studygo.html">StudyGo (Eğitim)</a>
+                <a href="sakura.html">Sakura (Hastane)</a>
+                <a href="jsontools.html">JsonTools (Geliştirici)</a>
+                <a href="linguago.html">LinguaGo (Dil)</a>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik</a>
-                <a href="kullanim-kosullari.html">Kullanım</a>
-                <a href="kvkk.html">KVKK</a>
+                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
             </div>
         </div>
-        <div class="container footer-bottom">&copy; 2026 PixelFlow. İstanbul.</div>
+        <div class="container footer-bottom">
+            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
+            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+        </div>
     </footer>
     <button class="back-to-top" type="button" aria-label="Yukarı çık">
         <i class="fas fa-arrow-up"></i>
@@ -79,9 +86,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const wrapContent = (title, content) => `
         <section class="legal-hero">
             <div class="container">
-                <div class="eyebrow">Legal Protocol</div>
+                <span class="category-badge" style="margin-bottom: 0.75rem; display: inline-block;">Yasal Bildirim</span>
                 <h1>${title}</h1>
-                <p class="legal-updated">Son Güncelleme: ${lastUpdate}</p>
+                <p class="legal-updated" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">Son Güncelleme: ${lastUpdate}</p>
             </div>
         </section>
         <section class="section">

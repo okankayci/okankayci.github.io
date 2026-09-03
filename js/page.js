@@ -45,18 +45,27 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.removeAttribute('data-theme');
         }
 
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        if (metaTheme) {
+            metaTheme.content = theme === 'dark' ? '#000000' : '#f5f5f7';
+        }
+
         if (themeToggle) {
-            themeToggle.querySelector('i').className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            const icon = themeToggle.querySelector('i');
+            if (icon) {
+                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
         }
     };
 
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('pf-theme') || localStorage.getItem('theme');
     setTheme(savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light'));
 
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
             const next = current === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('pf-theme', next);
             localStorage.setItem('theme', next);
             setTheme(next);
         });
