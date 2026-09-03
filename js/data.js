@@ -132,6 +132,32 @@ const applications = [
     google_play_url: "#"
   },
   {
+    name: "Markdown",
+    category: "tools",
+    categoryLabel: "Eğitim & Araçlar",
+    flagship: true,
+    tag: "Geliştirici",
+    description: "Gelişmiş Markdown düzenleme, canlı anlık önizleme, sözdizimi vurgulama ve PDF dışa aktarımı.",
+    detailedDescription: "Markdown Editor, geliştiriciler ve içerik üreticileri için tasarlanmış modern bir Markdown editörüdür. Canlı iki panelli önizleme, çoklu dil sözdizimi vurgulama ve temiz dışa aktarım seçenekleri sunar.",
+    icon: "assets/apps/markdown.png",
+    screenshots: [
+      "assets/apps/markdown/1.png",
+      "assets/apps/markdown/2.png",
+      "assets/apps/markdown/3.png"
+    ],
+    features: [
+      "Canlı iki panelli Markdown önizleme",
+      "Çoklu dil sözdizimi ve kod renklendirme",
+      "Tek dokunuşla PDF ve HTML dışa aktarma",
+      "Gelişmiş tablo, formül ve LaTeX desteği",
+      "Yerel ve güvenli çevrimdışı dosya yönetimi"
+    ],
+    status: "available",
+    platforms: ["iOS", "Android"],
+    app_store_url: null,
+    google_play_url: null
+  },
+  {
     name: "LinguaGo",
     category: "tools",
     categoryLabel: "Eğitim & Araçlar",

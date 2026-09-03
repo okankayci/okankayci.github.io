@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Editor | Hızlı, Güçlü ve Canlı Önizlemeli</title>
+    <meta name="description" content="Markdown Editor: Canlı iki panelli önizleme, sözdizimi vurgulama, LaTeX formül desteği ve PDF dışa aktarımı. Geliştiriciler ve yazarlar için çevrimdışı Markdown aracı.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <style>
+        /* ── Markdown Editor · Apple HIG Native ── */
+        .md-editor-mock {
+            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl); overflow: hidden;
+            font-family: var(--font-mono); font-size: 0.8rem; line-height: 1.6;
+        }
+        .md-bar {
+            display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.95rem;
+            background: var(--bg-subtle); border-bottom: 1px solid var(--border);
+        }
+        .md-dots { display: flex; gap: 6px; }
+        .md-dots span { width: 10px; height: 10px; border-radius: 50%; background: var(--text-tertiary); opacity: 0.6; }
+        .md-title { font-size: 0.72rem; color: var(--text-tertiary); }
+        .md-panes { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+        .md-pane { padding: 1rem; }
+        .md-pane.code { border-right: 1px solid var(--border); background: var(--bg-canvas); color: var(--text-secondary); }
+        .md-pane.preview { font-family: var(--font-sans); background: var(--surface); color: var(--text); }
+        .md-pane.preview h4 { font-size: 0.95rem; margin-bottom: 0.5rem; color: var(--text); }
+        .md-pane.preview p { font-size: 0.78rem; line-height: 1.45; margin-bottom: 0.5rem; }
+        .md-tag-row { display: flex; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--bg-subtle); font-size: 0.72rem; }
+        .md-tag { background: var(--surface); padding: 0.2rem 0.6rem; border-radius: 6px; border: 1px solid var(--border); color: var(--accent); }
+    </style>
+</head>
+
+<body class="proj proj-markdown">
+    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
+                <span class="brand-mark">P</span>
+                <span>PixelFlow</span>
+                <span class="brand-studio">Studio</span>
+            </a>
+            <nav class="nav" aria-label="Ana menü">
+                <button class="nav-close" type="button" aria-label="Menüyü kapat"><i class="fas fa-times"></i></button>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Uygulamalar</a>
+                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#contact">İletişim</a>
+            </nav>
+            <div class="header-actions">
+                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)"><i class="fas fa-moon"></i></button>
+                <button class="hamburger" type="button" aria-label="Menüyü aç"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main id="proj-main">
+        <section class="proj-hero">
+            <div class="container proj-hero-grid">
+                <div class="reveal-left">
+                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Tüm Uygulamalar</a>
+                    <div class="eyebrow"><i class="fab fa-markdown"></i> Geliştirici & Yazarlık</div>
+                    <h1>Yaz, önizle,<br>özgürce dışa aktar.</h1>
+                    <p class="proj-lead">Gelişmiş Markdown düzenleme, anlık canlı önizleme, zengin kod renklendirme ve resmi PDF/HTML çıktısı.</p>
+                    <p>Markdown Editor; geliştiriciler, teknik yazarlar ve not tutkunları için optimize edilmiştir. Tamamen çevrimdışı çalışarak verilerinizi cihazınızda güvende tutar.</p>
+                    <div class="store-badges device-badges">
+                        <span class="category-badge" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;"><i class="fas fa-laptop-code"></i> Bağımsız PixelFlow Ürünü</span>
+                    </div>
+                </div>
+                <div class="reveal-right">
+                    <div class="md-editor-mock">
+                        <div class="md-bar">
+                            <div class="md-dots"><span></span><span></span><span></span></div>
+                            <span class="md-title">readme.md — Canlı Önizleme</span>
+                            <span style="font-size:0.68rem;color:var(--accent)"><i class="fas fa-check"></i> Senkronize</span>
+                        </div>
+                        <div class="md-panes">
+                            <div class="md-pane code">
+                                <div><span style="color:var(--accent)">#</span> PixelFlow Proje</div>
+                                <div style="color:var(--text-tertiary)">- [x] Temiz Mimari</div>
+                                <div style="color:var(--text-tertiary)">- [x] Yüksek Performans</div>
+                                <div><span style="color:var(--accent)">```dart</span></div>
+                                <div>final app = PixelFlow();</div>
+                                <div><span style="color:var(--accent)">```</span></div>
+                            </div>
+                            <div class="md-pane preview">
+                                <h4>PixelFlow Proje</h4>
+                                <p style="color:var(--text-secondary);margin:0;">✅ Temiz Mimari<br>✅ Yüksek Performans</p>
+                                <div style="background:var(--bg-subtle);padding:0.35rem 0.5rem;border-radius:4px;font-family:var(--font-mono);font-size:0.7rem;margin-top:0.4rem;">final app = PixelFlow();</div>
+                            </div>
+                        </div>
+                        <div class="md-tag-row">
+                            <span class="md-tag"><i class="fas fa-bolt"></i> Anlık Render</span>
+                            <span class="md-tag"><i class="fas fa-code"></i> Çoklu Dil Syntax</span>
+                            <span class="md-tag"><i class="fas fa-file-pdf"></i> PDF Dışa Aktar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Kusursuz Markdown yazma deneyimi</h2>
+                    <p>Minimalist ve dikkat dağıtmayan arayüzle metinlerinizi biçimlendirin.</p>
+                </div>
+                <div class="icon-cards stagger-grid">
+                    <div class="icon-card"><div class="ic"><i class="fas fa-columns"></i></div><h3>Canlı İki Panel</h3><p>Sol panelde kodunuzu yazarken sağ panelde eşzamanlı render çıktısını izleyin.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-code"></i></div><h3>Sözdizimi Vurgulama</h3><p>Dart, JavaScript, Python, JSON ve 40+ dil için entegre syntax highlighting.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-file-pdf"></i></div><h3>PDF & HTML Çıktı</h3><p>Notlarınızı temiz tipografik şablonlarla resmi PDF ve web HTML dosyası olarak kaydedin.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-square-root-variable"></i></div><h3>LaTeX & Formüller</h3><p>Akademik formüller ve matematiksel denklemler için yerel KaTeX desteği.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-shield-halved"></i></div><h3>%100 Çevrimdışı</h3><p>Verileriniz asla harici sunuculara gitmez; dosyalarınız yalnızca cihazınızda yaşar.</p></div>
+                    <div class="icon-card"><div class="ic"><i class="fas fa-ban"></i></div><h3>Sıfır Reklam</h3><p>Yazma sürecinizi bölen hiçbir banner veya reklam olmadan kesintisiz odaklanın.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="section-head reveal">
+                    <h2>Uygulamadan görünümler</h2>
+                    <p>Özenle tasarlanmış mobil ve masaüstü uyumlu editör görünümü.</p>
+                </div>
+                <div class="screenshots stagger-grid">
+                    <div class="screenshot-item"><img src="assets/apps/markdown/1.png" alt="Markdown Editor ekran görüntüsü 1" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/markdown/2.png" alt="Markdown Editor ekran görüntüsü 2" loading="lazy"></div>
+                    <div class="screenshot-item"><img src="assets/apps/markdown/3.png" alt="Markdown Editor ekran görüntüsü 3" loading="lazy"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="proj-cta">
+            <div class="container reveal">
+                <img src="assets/apps/markdown.png" alt="Markdown Editor" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
+                <h2>Markdown Editor ile üretime başlayın</h2>
+                <p>Güçlü, hafif ve çevrimdışı editörünüz elinizin altında.</p>
+                <div class="store-badges device-badges" style="justify-content:center;">
+                    <a href="index.html#apps" class="btn primary"><i class="fas fa-arrow-left"></i> Kataloğa Dön</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <a class="brand" href="index.html#hero">
+                    <span class="brand-mark">P</span>
+                    <span>PixelFlow</span>
+                </a>
+                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            </div>
+            <div>
+                <h4>Navigasyon</h4>
+                <a href="index.html#hero">Giriş</a>
+                <a href="index.html#apps">Uygulamalar</a>
+                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#contact">İletişim</a>
+            </div>
+            <div>
+                <h4>Öne Çıkanlar</h4>
+                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
+                <a href="babyplus.html">BabyPlus (Bebek)</a>
+                <a href="studygo.html">StudyGo (Eğitim)</a>
+                <a href="sakura.html">Sakura (Hastane)</a>
+                <a href="jsontools.html">JsonTools (Geliştirici)</a>
+                <a href="markdown.html">Markdown (Editör)</a>
+            </div>
+            <div>
+                <h4>Yasal</h4>
+                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
+            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+        </div>
+    </footer>
+
+    <script src="js/page.js"></script>
+    <button class="back-to-top" type="button" aria-label="Yukarı çık">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+</body>
+
+</html>

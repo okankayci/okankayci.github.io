@@ -118,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (typeof applications !== 'undefined') {
     const showcaseApps = {
-      shiflabs: applications.find(a => a.name === 'ShifLabs'),
-      babyplus: applications.find(a => a.name === 'BabyPlus'),
-      studygo: applications.find(a => a.name === 'StudyGo'),
-      sakura: applications.find(a => a.name === 'Sakura')
+      routly: applications.find(a => a.name.toLowerCase() === 'routly'),
+      jsontools: applications.find(a => a.name.toLowerCase() === 'jsontools'),
+      markdown: applications.find(a => a.name.toLowerCase() === 'markdown'),
+      shiflabs: applications.find(a => a.name.toLowerCase() === 'shiflabs')
     };
 
     const updateShowcase = (appKey) => {
