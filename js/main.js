@@ -1,18 +1,17 @@
+/**
+ * PixelFlow Studio - Apple HIG Client Logic
+ * Handles dynamic rendering, segmented tabs, Apple hardware showcase,
+ * smooth scrolling, copy actions, and theme switching.
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ── THEME TOGGLE ─────────────────────────────────────────────
+  // ── THEME MANAGEMENT ─────────────────────────────────────────
   const themeToggle = document.querySelector('.theme-toggle');
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-  const setTheme = (theme) => {
-    if (theme === 'dark') {
-      document.body.setAttribute('data-theme', 'dark');
-    } else if (theme === 'light') {
-      document.body.setAttribute('data-theme', 'light');
-    } else {
-      document.body.removeAttribute('data-theme');
-    }
+  const applyTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('pf-theme', theme);
 
     if (themeToggle) {
       const icon = themeToggle.querySelector('i');
@@ -27,294 +26,327 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const savedTheme = localStorage.getItem('theme');
-  const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
-  setTheme(initialTheme);
+  const storedTheme = localStorage.getItem('pf-theme');
+  if (storedTheme) {
+    applyTheme(storedTheme);
+  } else if (prefersDark.matches) {
+    applyTheme('dark');
+  } else {
+    applyTheme('light');
+  }
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
-      const next = current === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('theme', next);
-      setTheme(next);
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
     });
   }
 
-  // ── MOBILE NAVIGATION ────────────────────────────────────────
+  prefersDark.addEventListener('change', (e) => {
+    if (!localStorage.getItem('pf-theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
+  // ── NAVIGATION & MOBILE DRAWER ───────────────────────────────
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('.nav');
   const navClose = document.querySelector('.nav-close');
 
   if (hamburger && nav) {
-    const toggleNav = () => {
-      const isActive = nav.classList.toggle('active');
-      const icon = hamburger.querySelector('i');
-      if (icon) {
-        icon.className = isActive ? 'fas fa-times' : 'fas fa-bars';
-      }
-      document.body.style.overflow = isActive ? 'hidden' : '';
-    };
-
-    hamburger.addEventListener('click', toggleNav);
-
-    if (navClose) {
-      navClose.addEventListener('click', () => {
-        nav.classList.remove('active');
-        const icon = hamburger.querySelector('i');
-        if (icon) icon.className = 'fas fa-bars';
-        document.body.style.overflow = '';
-      });
-    }
-
-    nav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        nav.classList.remove('active');
-        const icon = hamburger.querySelector('i');
-        if (icon) icon.className = 'fas fa-bars';
-        document.body.style.overflow = '';
-      });
+    hamburger.addEventListener('click', () => {
+      nav.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   }
 
-  // ── HEADER SCROLL & BACK TO TOP ──────────────────────────────
-  const header = document.querySelector('.site-header');
-  const backToTop = document.querySelector('.back-to-top');
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    if (header) {
-      header.classList.toggle('scrolled', scrollY > 20);
+  const closeNav = () => {
+    if (nav) {
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
     }
-    if (backToTop) {
-      backToTop.classList.toggle('visible', scrollY > 400);
-    }
-  }, { passive: true });
+  };
 
-  if (backToTop) {
-    backToTop.addEventListener('click', () => {
+  if (navClose) navClose.addEventListener('click', closeNav);
+
+  document.querySelectorAll('.nav a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+  // ── ACTIVE NAVIGATION HIGHLIGHTING ───────────────────────────
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+
+  const highlightNav = () => {
+    const scrollY = window.scrollY + 100;
+    sections.forEach(section => {
+      const top = section.offsetTop;
+      const height = section.offsetHeight;
+      const id = section.getAttribute('id');
+      if (scrollY >= top && scrollY < top + height) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  };
+  window.addEventListener('scroll', highlightNav, { passive: true });
+
+  // ── BACK TO TOP BUTTON ───────────────────────────────────────
+  const backToTopBtn = document.querySelector('.back-to-top');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      backToTopBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
-  // ── HERO FEATURED SHOWCASE (Nordic Vitrin) ───────────────────
+  // ── APPLE HARDWARE SHOWCASE (Hero Vitrin) ───────────────────
   const showcaseTabs = document.querySelectorAll('.showcase-tab-btn');
   const showcaseIcon = document.getElementById('showcase-icon');
+  const showcaseCategory = document.getElementById('showcase-category');
   const showcaseTitle = document.getElementById('showcase-title');
   const showcaseDesc = document.getElementById('showcase-desc');
-  const showcaseImg = document.getElementById('showcase-img');
-  const showcaseCategory = document.getElementById('showcase-category');
+  const showcaseFeatures = document.getElementById('showcase-features');
   const showcaseStoreBtn = document.getElementById('showcase-store-btn');
+  const showcasePlayBtn = document.getElementById('showcase-play-btn');
   const showcaseDetailLink = document.getElementById('showcase-detail-link');
+  const showcaseImg = document.getElementById('showcase-img');
 
-  if (typeof applications !== 'undefined' && showcaseTabs.length > 0) {
+  if (typeof applications !== 'undefined') {
     const showcaseApps = {
       shiflabs: applications.find(a => a.name === 'ShifLabs'),
       babyplus: applications.find(a => a.name === 'BabyPlus'),
-      studygo: applications.find(a => a.name === 'StudyGo')
+      studygo: applications.find(a => a.name === 'StudyGo'),
+      sakura: applications.find(a => a.name === 'Sakura')
     };
 
-    const updateShowcase = (key) => {
-      const app = showcaseApps[key];
+    const updateShowcase = (appKey) => {
+      const app = showcaseApps[appKey];
       if (!app) return;
 
-      showcaseTabs.forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.app === key);
-      });
-
-      if (showcaseIcon) showcaseIcon.src = app.icon;
-      if (showcaseTitle) showcaseTitle.textContent = app.name;
-      if (showcaseDesc) showcaseDesc.textContent = app.description;
-      if (showcaseImg && app.screenshots && app.screenshots[0]) {
-        showcaseImg.src = app.screenshots[0];
-        showcaseImg.alt = `${app.name} Ekran Görüntüsü`;
+      if (showcaseIcon) {
+        showcaseIcon.src = app.icon;
+        showcaseIcon.alt = `${app.name} İkonu`;
       }
-      if (showcaseCategory) showcaseCategory.textContent = app.categoryLabel || 'Mobil Uygulama';
-
-      if (showcaseDetailLink) {
-        showcaseDetailLink.href = `${app.name.toLowerCase().replace(/ /g, '_')}.html`;
+      if (showcaseCategory) {
+        showcaseCategory.textContent = app.categoryLabel || app.category;
+      }
+      if (showcaseTitle) {
+        showcaseTitle.textContent = app.name;
+      }
+      if (showcaseDesc) {
+        showcaseDesc.textContent = app.description;
+      }
+      if (showcaseFeatures && app.features) {
+        showcaseFeatures.innerHTML = app.features.slice(0, 4).map(f => `<li>${f}</li>`).join('');
       }
 
       if (showcaseStoreBtn) {
-        if (app.app_store_url && app.app_store_url !== '#') {
+        if (app.app_store_url) {
           showcaseStoreBtn.href = app.app_store_url;
           showcaseStoreBtn.style.display = 'inline-flex';
-          showcaseStoreBtn.innerHTML = '<i class="fab fa-apple"></i> App Store';
-        } else if (app.google_play_url && app.google_play_url !== '#') {
-          showcaseStoreBtn.href = app.google_play_url;
-          showcaseStoreBtn.style.display = 'inline-flex';
-          showcaseStoreBtn.innerHTML = '<i class="fab fa-google-play"></i> Google Play';
         } else {
           showcaseStoreBtn.style.display = 'none';
         }
       }
+
+      if (showcasePlayBtn) {
+        if (app.google_play_url) {
+          showcasePlayBtn.href = app.google_play_url;
+          showcasePlayBtn.style.display = 'inline-flex';
+        } else {
+          showcasePlayBtn.style.display = 'none';
+        }
+      }
+
+      if (showcaseDetailLink) {
+        showcaseDetailLink.href = `${app.name.toLowerCase()}.html`;
+      }
+
+      if (showcaseImg) {
+        showcaseImg.style.opacity = '0';
+        setTimeout(() => {
+          showcaseImg.src = app.screenshots && app.screenshots[0] ? app.screenshots[0] : '';
+          showcaseImg.alt = `${app.name} Ekran Görüntüsü`;
+          showcaseImg.style.opacity = '1';
+        }, 150);
+      }
     };
 
-    showcaseTabs.forEach(btn => {
-      btn.addEventListener('click', () => {
-        updateShowcase(btn.dataset.app);
+    showcaseTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        showcaseTabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        updateShowcase(tab.dataset.app);
       });
     });
-
-    // Initialize with first app (ShifLabs)
-    updateShowcase('shiflabs');
   }
 
-  // ── APP CATALOG & FILTERING ──────────────────────────────────
-  const appsContainer = document.getElementById('apps-container');
-  const filterBtns = document.querySelectorAll('.filter-btn');
+  // ── APP CATALOG RENDERING ────────────────────────────────────
+  const renderApps = (filter = 'all') => {
+    const container = document.getElementById('apps-container');
+    if (!container || typeof applications === 'undefined') return;
 
-  if (appsContainer && typeof applications !== 'undefined') {
-    const renderApps = (category = 'all') => {
-      appsContainer.innerHTML = '';
-      const filtered = category === 'all'
-        ? applications
-        : applications.filter(app => app.category === category);
+    const filtered = filter === 'all'
+      ? applications
+      : applications.filter(app => app.category === filter);
 
-      filtered.forEach(app => {
-        const isAvailable = app.status === 'available';
-        const detailHref = `${app.name.toLowerCase().replace(/ /g, '_')}.html`;
-        const card = document.createElement('article');
-        card.className = 'app-card reveal visible';
+    container.innerHTML = filtered.map(app => {
+      const isAvailable = app.status === 'available';
+      const statusText = isAvailable ? 'Yayında' : 'Geliştiriliyor';
+      const statusClass = isAvailable ? 'available' : 'coming-soon';
+      const detailHref = `${app.name.toLowerCase()}.html`;
 
-        const featuresHtml = app.features && app.features.length > 0
-          ? `<ul class="app-card-features">
-              ${app.features.slice(0, 3).map(f => `<li>${f}</li>`).join('')}
-             </ul>`
-          : '';
+      const featuresHtml = app.features && app.features.length > 0
+        ? `<ul class="app-card-features">
+            ${app.features.slice(0, 2).map(f => `<li>${f}</li>`).join('')}
+           </ul>`
+        : '';
 
-        const platformsHtml = app.platforms && app.platforms.length > 0
-          ? `<div class="app-platforms">
-              ${app.platforms.map(p => `<span class="platform-pill">${p}</span>`).join('')}
-             </div>`
-          : '<div class="app-platforms"><span class="platform-pill">iOS</span><span class="platform-pill">Android</span></div>';
+      const platformsHtml = app.platforms && app.platforms.length > 0
+        ? `<div class="app-platforms">
+            ${app.platforms.map(p => `<span class="platform-pill">${p}</span>`).join('')}
+           </div>`
+        : '';
 
-        card.innerHTML = `
-          <div class="app-card-top">
-            <img class="app-card-icon" src="${app.icon}" alt="${app.name}" width="52" height="52" loading="lazy">
-            <div class="app-card-badges">
-              <span class="category-badge">${app.categoryLabel || 'Araç'}</span>
-              <span class="status-badge ${isAvailable ? 'available' : 'coming-soon'}">
-                ${isAvailable ? 'Yayında' : 'Geliştiriliyor'}
-              </span>
+      const directStoreBtn = app.app_store_url
+        ? `<a class="btn primary btn-xs" href="${app.app_store_url}" target="_blank" rel="noopener" aria-label="${app.name} App Store'da indir">
+            <i class="fab fa-apple"></i> İndir
+           </a>`
+        : '';
+
+      return `
+        <article class="app-card" data-category="${app.category}">
+          <div>
+            <div class="app-card-top">
+              <img class="app-card-icon" src="${app.icon}" alt="${app.name} İkonu" width="56" height="56" loading="lazy">
+              <div class="app-card-badges">
+                <span class="category-badge">${app.categoryLabel || app.category}</span>
+                <span class="status-badge ${statusClass}">● ${statusText}</span>
+              </div>
             </div>
-          </div>
-          <div class="app-card-body">
-            <h3>${app.name}</h3>
-            <p>${app.description}</p>
-            ${featuresHtml}
+            <div class="app-card-body">
+              <h3>${app.name}</h3>
+              <p>${app.description}</p>
+              ${featuresHtml}
+            </div>
           </div>
           <div class="app-card-footer">
             ${platformsHtml}
-            <a class="app-card-link" href="${detailHref}">
-              Detayları İncele <i class="fas fa-arrow-right"></i>
-            </a>
+            <div class="app-card-action-group">
+              ${directStoreBtn}
+              <a class="app-card-link" href="${detailHref}" aria-label="${app.name} detaylarını gör">
+                Detaylar <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+              </a>
+            </div>
           </div>
-        `;
-        appsContainer.appendChild(card);
-      });
-    };
+        </article>
+      `;
+    }).join('');
+  };
 
-    renderApps('all');
+  renderApps('all');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        renderApps(btn.dataset.category || 'all');
-      });
+  // Filter Buttons
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderApps(btn.dataset.category);
     });
-  }
+  });
 
-  // ── CLICK TO COPY EMAIL ──────────────────────────────────────
+  // ── SINGLE-CLICK COPY EMAIL ──────────────────────────────────
   const copyBtn = document.getElementById('copy-email-btn');
   if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
+    copyBtn.addEventListener('click', () => {
       const email = 'pixelflowsoftware@gmail.com';
-      try {
-        await navigator.clipboard.writeText(email);
-        const origText = copyBtn.innerHTML;
+      navigator.clipboard.writeText(email).then(() => {
+        const originalHtml = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i class="fas fa-check"></i> Kopyalandı!';
+        copyBtn.style.background = 'var(--success-light)';
         copyBtn.style.color = 'var(--success)';
         copyBtn.style.borderColor = 'var(--success)';
         setTimeout(() => {
-          copyBtn.innerHTML = origText;
+          copyBtn.innerHTML = originalHtml;
+          copyBtn.style.background = '';
           copyBtn.style.color = '';
           copyBtn.style.borderColor = '';
         }, 2200);
-      } catch (err) {
-        // Fallback prompt
-        window.prompt('E-postayı kopyalamak için Ctrl+C / Cmd+C tuşlayın:', email);
-      }
+      }).catch(() => {
+        window.location.href = `mailto:${email}`;
+      });
     });
   }
 
-  // ── CONTACT FORM SUBMISSION (Formspree AJAX) ─────────────────
-  const contactForm = document.getElementById('contact-form');
-  const formStatus = document.getElementById('form-status');
+  // ── FORMSPREE AJAX SUBMISSION ────────────────────────────────
+  const form = document.getElementById('contact-form');
+  const statusDiv = document.getElementById('form-status');
 
-  if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async (e) => {
+  if (form && statusDiv) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const submitBtn = contactForm.querySelector('.btn-submit');
+      const submitBtn = form.querySelector('.btn-submit');
       const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
       const btnLoading = submitBtn ? submitBtn.querySelector('.btn-loading') : null;
 
       if (submitBtn) submitBtn.disabled = true;
       if (btnText) btnText.style.display = 'none';
       if (btnLoading) btnLoading.style.display = 'inline-flex';
-      formStatus.style.display = 'none';
-      formStatus.className = 'form-status';
+      statusDiv.style.display = 'none';
+      statusDiv.className = 'form-status';
 
       try {
-        const formData = new FormData(contactForm);
-        const response = await fetch(contactForm.action, {
+        const formData = new FormData(form);
+        const response = await fetch(form.action, {
           method: 'POST',
           body: formData,
           headers: { 'Accept': 'application/json' }
         });
 
         if (response.ok) {
-          formStatus.className = 'form-status success';
-          formStatus.textContent = 'Mesajınız başarıyla iletildi. En kısa sürede dönüş yapacağım.';
-          contactForm.reset();
+          form.reset();
+          statusDiv.className = 'form-status success';
+          statusDiv.textContent = 'Mesajınız başarıyla iletildi. En kısa sürede dönüş yapılacaktır.';
         } else {
           const data = await response.json();
-          formStatus.className = 'form-status error';
-          formStatus.textContent = data.errors
-            ? data.errors.map(err => err.message).join(', ')
-            : 'Mesaj gönderilirken bir hata oluştu. Lütfen doğrudan e-posta gönderin.';
+          statusDiv.className = 'form-status error';
+          statusDiv.textContent = data.error || 'Mesaj iletilirken bir hata oluştu. Lütfen tekrar deneyin.';
         }
       } catch (err) {
-        formStatus.className = 'form-status error';
-        formStatus.textContent = 'Bağlantı hatası oluştu. Lütfen internet bağlantınızı kontrol edin.';
+        statusDiv.className = 'form-status error';
+        statusDiv.textContent = 'Bağlantı hatası oluştu. Lütfen doğrudan e-posta ile ulaşın.';
       } finally {
         if (submitBtn) submitBtn.disabled = false;
-        if (btnText) btnText.style.display = 'inline-block';
+        if (btnText) btnText.style.display = 'inline';
         if (btnLoading) btnLoading.style.display = 'none';
       }
     });
   }
 
-  // ── SCROLL REVEAL (IntersectionObserver) ─────────────────────
-  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
+  // ── SCROLL REVEAL OBSERVER ───────────────────────────────────
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && reveals.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-          revealObserver.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
-    }, {
-      rootMargin: '0px 0px -50px 0px',
-      threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.reveal').forEach(el => {
-      revealObserver.observe(el);
-    });
+    reveals.forEach(el => observer.observe(el));
   } else {
-    document.querySelectorAll('.reveal').forEach(el => {
-      el.classList.add('visible');
-    });
+    reveals.forEach(el => el.classList.add('visible'));
   }
 });

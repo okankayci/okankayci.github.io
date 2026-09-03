@@ -7,7 +7,7 @@
     <title>PixelFlow | Bağımsız Mobil Ürün Stüdyosu · Okan Kaycı</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="description" content="Hayati kolaylaştıran mobil deneyimler. Sağlık çalışanlarından ebeveynlere, bağımsız ve pro düzeyinde iOS ve Android uygulamaları. Okan Kaycı.">
+    <meta name="description" content="Hayatı kolaylaştıran mobil deneyimler. Sağlık çalışanlarından ebeveynlere, bağımsız ve pro düzeyinde iOS ve Android uygulamaları. Okan Kaycı.">
     <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 </head>
@@ -15,6 +15,7 @@
 <body>
     <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
+    <!-- APPLE FROSTED GLASS HEADER -->
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="#hero" aria-label="PixelFlow Ana Sayfa">
@@ -45,52 +46,69 @@
     <main id="main-content">
         <!-- APPLE KEYNOTE HERO SECTION -->
         <section id="hero" class="hero">
-            <div class="container hero-content">
-                <div class="status-pill">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>Bağımsız Ürün Stüdyosu · İstanbul</span>
-                </div>
-                <h1 class="hero-title">Hayati kolaylaştıran mobil deneyimler.</h1>
-                <p class="hero-desc">
-                    Sağlık çalışanlarından ebeveynlere. Gerçek ihtiyaçlar için tasarlanmış bağımsız, güvenilir ve pro düzeyinde uygulamalar.
-                </p>
-                <div class="hero-actions">
-                    <a class="btn primary" href="#apps">
-                        Uygulamaları Keşfet
-                    </a>
-                    <a class="btn apple-link" href="#craft">
-                        Zanaat ve Felsefe <i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i>
-                    </a>
-                </div>
-                <div class="hero-tags">
-                    <span class="hero-tag">iOS & Android</span>
-                    <span class="hero-tag">Flutter & Dart</span>
-                    <span class="hero-tag">Temiz Mimari</span>
-                    <span class="hero-tag">Cihazda Kalan Veri</span>
-                    <span class="hero-tag">Sıfır Reklam</span>
+            <div class="container">
+                <div class="hero-header">
+                    <div class="status-pill">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        <span>Bağımsız Ürün Stüdyosu · İstanbul</span>
+                    </div>
+                    <h1 class="hero-title">Hayatı kolaylaştıran mobil deneyimler.</h1>
+                    <p class="hero-desc">
+                        Sağlık çalışanlarından ebeveynlere. Gerçek saha ihtiyaçları için tasarlanmış bağımsız, güvenilir ve pro düzeyinde uygulamalar.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn primary" href="#apps">
+                            Uygulamaları Keşfet
+                        </a>
+                        <a class="btn apple-link" href="#craft">
+                            Zanaat ve Felsefe <i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i>
+                        </a>
+                    </div>
+                    <div class="hero-tags">
+                        <span class="hero-tag">iOS & Android</span>
+                        <span class="hero-tag">Flutter & Dart</span>
+                        <span class="hero-tag">Temiz Mimari</span>
+                        <span class="hero-tag">Cihazda Kalan Veri</span>
+                        <span class="hero-tag">Sıfır Reklam</span>
+                    </div>
                 </div>
 
-                <!-- APPLE HARDWARE SHOWCASE (Hero Vitrin) -->
+                <!-- APPLE HARDWARE SHOWCASE (İnteraktif iPhone Vitrini) -->
                 <div class="showcase-frame" aria-label="Öne Çıkan Uygulama Vitrini">
                     <div class="showcase-header">
-                        <span class="showcase-label">Öne Çıkan Ürün</span>
+                        <span class="showcase-label">Öne Çıkan Donanım & Ürün Vitrini</span>
                         <div class="showcase-tabs" role="tablist" aria-label="Öne çıkan uygulamalar">
                             <button class="showcase-tab-btn active" type="button" data-app="shiflabs" role="tab" aria-selected="true">ShifLabs</button>
                             <button class="showcase-tab-btn" type="button" data-app="babyplus" role="tab" aria-selected="false">BabyPlus</button>
                             <button class="showcase-tab-btn" type="button" data-app="studygo" role="tab" aria-selected="false">StudyGo</button>
+                            <button class="showcase-tab-btn" type="button" data-app="sakura" role="tab" aria-selected="false">Sakura</button>
                         </div>
                     </div>
 
-                    <div class="showcase-viewport">
+                    <div class="showcase-stage">
                         <div class="showcase-info-col">
-                            <img id="showcase-icon" class="showcase-icon" src="assets/apps/shiflabs.png" alt="ShifLabs İkonu" width="64" height="64">
-                            <div class="showcase-app-info">
-                                <h3 id="showcase-title">ShifLabs</h3>
-                                <p id="showcase-desc">Vardiyalı çalışanlar ve sağlık profesyonelleri için nöbet çizelgesi, mesai hesabı ve sosyal hayat organizatörü.</p>
+                            <div class="showcase-meta-top">
+                                <img id="showcase-icon" class="showcase-icon" src="assets/apps/shiflabs.png" alt="ShifLabs İkonu" width="64" height="64">
+                                <div>
+                                    <span id="showcase-category" class="category-badge">Sağlık & Vardiya</span>
+                                    <h3 id="showcase-title">ShifLabs</h3>
+                                </div>
                             </div>
+                            <p id="showcase-desc">Vardiyalı çalışanlar ve sağlık profesyonelleri için nöbet çizelgesi, mesai hesabı ve sosyal hayat organizatörü.</p>
+
+                            <ul id="showcase-features" class="showcase-feature-list">
+                                <li>Vardiya ve izinleri anında planlayın</li>
+                                <li>Vardiyalara özel not ve anımsatıcılar</li>
+                                <li>Resmi PDF raporu dışa aktarımı</li>
+                                <li>Maaş, mesai ve ek ödeme hesaplayıcı</li>
+                            </ul>
+
                             <div class="showcase-action-row">
                                 <a id="showcase-store-btn" class="btn primary btn-sm" href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" target="_blank" rel="noopener">
-                                    <i class="fab fa-apple"></i> App Store'da İncele
+                                    <i class="fab fa-apple"></i> App Store'da İndir
+                                </a>
+                                <a id="showcase-play-btn" class="btn ghost btn-sm" href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" target="_blank" rel="noopener">
+                                    <i class="fab fa-google-play"></i> Google Play
                                 </a>
                                 <a id="showcase-detail-link" class="btn apple-link" href="shiflabs.html">
                                     Detayları Gör <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
@@ -98,8 +116,13 @@
                             </div>
                         </div>
 
-                        <div class="showcase-preview-area">
-                            <img id="showcase-img" class="showcase-preview-img" src="assets/apps/shiflabs/1.png" alt="ShifLabs Ekran Görüntüsü">
+                        <div class="iphone-device-wrap">
+                            <div class="iphone-device">
+                                <div class="iphone-island"></div>
+                                <div class="iphone-screen">
+                                    <img id="showcase-img" src="assets/apps/shiflabs/1.png" alt="ShifLabs Ekran Görüntüsü">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,7 +134,7 @@
             <div class="container">
                 <div class="section-head reveal">
                     <h2>Canlı Uygulamalar ve Araçlar</h2>
-                    <p>App Store ve Google Play üzerinde yayında olan, her pikseli ve kodu özenle işlenmiş PixelFlow ürünleri.</p>
+                    <p>App Store ve Google Play üzerinde yayında olan, her detayı titizlikle geliştirilmiş PixelFlow ürünleri.</p>
                 </div>
 
                 <div class="catalog-filters reveal reveal-delay-1" role="tablist" aria-label="Kategori Filtreleri">
@@ -145,27 +168,30 @@
 
                 <div class="craft-bento-grid">
                     <div class="bento-card reveal">
-                        <div>
-                            <div class="bento-eyebrow">01. HASSASİYET</div>
-                            <h3>Klinik Ciddiyet.</h3>
-                            <p>Yoğun bakımda ve nöbette hata payı sıfırdır. Bu disiplin, PixelFlow'un her uygulamasındaki hatasız kullanıcı akışlarına ve sarsılmaz arayüz sadeliğine doğrudan yansır.</p>
+                        <div class="bento-icon-box blue">
+                            <i class="fas fa-heart-pulse"></i>
                         </div>
+                        <div class="bento-eyebrow">01. HASSASİYET</div>
+                        <h3>Klinik Ciddiyet.</h3>
+                        <p>Yoğun bakımda ve nöbette hata payı sıfırdır. Bu disiplin, PixelFlow'un her uygulamasındaki hatasız kullanıcı akışlarına ve sarsılmaz arayüz sadeliğine doğrudan yansır.</p>
                     </div>
 
                     <div class="bento-card reveal reveal-delay-1">
-                        <div>
-                            <div class="bento-eyebrow">02. GİZLİLİK</div>
-                            <h3>Cihazda Kalan Veri.</h3>
-                            <p>Vardiyalarınız, bebeğinizin gelişim basamakları veya günlük notlarınız sadece sizin cihazınızda yaşar. Çevrimdışı çalışır, verinizi asla toplamaz veya satmaz.</p>
+                        <div class="bento-icon-box green">
+                            <i class="fas fa-shield-halved"></i>
                         </div>
+                        <div class="bento-eyebrow">02. GİZLİLİK</div>
+                        <h3>Cihazda Kalan Veri.</h3>
+                        <p>Vardiyalarınız, bebeğinizin gelişim basamakları veya günlük notlarınız sadece sizin cihazınızda yaşar. Çevrimdışı çalışır, verinizi asla toplamaz veya satmaz.</p>
                     </div>
 
                     <div class="bento-card reveal reveal-delay-2">
-                        <div>
-                            <div class="bento-eyebrow">03. PERFORMANS</div>
-                            <h3>Sıfır Reklam. Saf Hız.</h3>
-                            <p>Gereksiz üçüncü parti takipçiler veya hantal kütüphaneler yok. Flutter ve Dart ile en yüksek yerel performansa kilitlenmiş hafif ve sürdürülebilir mimari.</p>
+                        <div class="bento-icon-box purple">
+                            <i class="fas fa-bolt"></i>
                         </div>
+                        <div class="bento-eyebrow">03. PERFORMANS</div>
+                        <h3>Sıfır Reklam. Saf Hız.</h3>
+                        <p>Gereksiz üçüncü parti takipçiler veya hantal kütüphaneler yok. Flutter ve Dart ile en yüksek yerel performansa kilitlenmiş hafif ve sürdürülebilir mimari.</p>
                     </div>
 
                     <div class="bento-card wide reveal">
@@ -271,6 +297,7 @@
         </section>
     </main>
 
+    <!-- APPLE MINIMALIST FOOTER -->
     <footer class="footer">
         <div class="container footer-grid">
             <div>

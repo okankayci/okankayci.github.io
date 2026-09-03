@@ -23,6 +23,8 @@ colors:
   success-glow: "rgba(52, 199, 89, 0.25)"
   destructive: "#ff3b30"
   destructive-dark: "#ff453a"
+  purple: "#af52de"
+  purple-light: "rgba(175, 82, 222, 0.12)"
 typography:
   display:
     fontFamily: "-apple-system, BlinkMacSystemFont, SF Pro Display, Helvetica Neue, sans-serif"
@@ -114,9 +116,12 @@ rounded:
   icon: "13px"
   device: "14px"
   card: "18px"
+  island: "20px"
   lg: "22px"
   xl: "28px"
   icon-lg: "32px"
+  screen: "38px"
+  device-frame: "48px"
   full: "9999px"
 spacing:
   xs: "4px"
