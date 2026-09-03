@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const metaTheme = document.querySelector('meta[name="theme-color"]');
     if (metaTheme) {
-      metaTheme.content = theme === 'dark' ? '#111215' : '#f6f6f3';
+      metaTheme.content = theme === 'dark' ? '#000000' : '#f5f5f7';
     }
   };
 
