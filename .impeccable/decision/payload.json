@@ -1,0 +1,125 @@
+{
+  "title": "Görsel Tasarım Dünyasını Seçin",
+  "question": "Yapay zeka şablonlarından (bej zemin, turuncu vurgu, jenerik kartlar) tamamen arınmış özgün bir dünya seçin:",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Cassette Futurist Donanım Fasyası (Hardware Rack)",
+      "kicker": "THE ROLL",
+      "lineage": "Fırçalanmış alüminyum paneller, mekanik toggle anahtarları, kehribar LED sayaçlar",
+      "thesis": "Yazılımı uçucu SaaS kartları yerine ağır, dayanıklı ve fiziksel bir donanım konsolu gibi işleyen tasarım.",
+      "palette": [
+        "#1c1e22",
+        "#d4d8dd",
+        "#ff9800",
+        "#0f1012"
+      ],
+      "materials": [
+        "fırçalanmış alüminyum",
+        "kehribar LED segment",
+        "krom toggle anahtarlar"
+      ],
+      "viewport": "Her uygulamanın (ShifLabs, BabyPlus vb.) birer raf modülü (rack-mount) olarak konumlandığı, ses/ölçüm seviyeleri ve gerçek tıklama hissi veren bir ana konsol.",
+      "risk": "Tipografi ve mekanik ızgara gevşek tutulursa retro nostalji parodisine dönüşebilir.",
+      "raised": [
+        {
+          "from": "challenger-riley-moire",
+          "raise": "Aktif kanal durumları ve geçişlerde yüksek kontrastlı optik çizgi frekansları."
+        },
+        {
+          "from": "challenger-j-card",
+          "raise": "Side A (Sağlık & Günlük Yaşam) ve Side B (Üretkenlik & Geliştirici Araçları) çift yüzlü yapı."
+        }
+      ],
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-cassette-futurism-deck-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/pop-culture-shelf-cassette-futurism-deck.webp"
+    },
+    {
+      "id": "model-pick",
+      "label": "Taktil Cep Cihazı (Tactile Pocket Instrument)",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Teenage Engineering & Dieter Rams cep konsolları",
+      "thesis": "Her mobil uygulamayı tek bir amaca kilitlenmiş, hafif, ultra-hassas bir cep donanım aracı olarak sergileme.",
+      "palette": [
+        "#121417",
+        "#e8e5de",
+        "#2554d7",
+        "#f59f00"
+      ],
+      "materials": [
+        "mat antrasit şasi",
+        "yüksek kontrastlı monokrom LCD",
+        "taktil mekanik butonlar"
+      ],
+      "viewport": "Kusursuz bir el konsolu arayüzü; uygulamalar arasında geçiş yaptıkça anında teknik parametreler, ekran görüntüleri ve doğrudan mağaza indirme tetikleyicisi.",
+      "risk": "Minimalist donanım meraklıları dışındaki sıradan kullanıcılara fazla teknik gelebilir."
+    },
+    {
+      "id": "challenger-j-card",
+      "label": "Kaset J-Card & Editoryal Kayıt (Mixtape J-Card)",
+      "verdict": "competitive",
+      "lineage": "Özenle doldurulmuş kaset kılıfı, el yazısı parçalar ve editoryal katlama",
+      "thesis": "Kişisel bir stüdyo seçkisi: Side A ve Side B olarak derlenmiş, her saniyesi emek kokan el yapımı ürün kataloğu.",
+      "palette": [
+        "#0f172a",
+        "#f8fafc",
+        "#ef4444",
+        "#cbd5e1"
+      ],
+      "materials": [
+        "katlanmış karton dokusu",
+        "editoryal ızgara",
+        "tükenmez kalem mavi mürekkep"
+      ],
+      "viewport": "Katlanan bir kaset j-card gibi açılan, omurgasında stüdyo kimliği, iç yüzünde detaylı uygulama notları barındıran düzen.",
+      "case": "Uygulama hikayelerini ve samimiyeti çok iyi aktarıyor; ancak teknik indirme hızında hafif yavaş kalabilir.",
+      "risk": "Aşırı nostaljik bir hissiyat yaratma riski taşır.",
+      "hero": "https://impeccable.style/worlds/cards/vernacular-ephemera-cassette-j-card-hero.webp"
+    },
+    {
+      "id": "challenger-riley-moire",
+      "label": "Optik Dalga Galerisi (Riley Moiré Gallery)",
+      "verdict": "declined",
+      "lineage": "Bridget Riley siyah-beyaz optik illüzyonlar",
+      "palette": [
+        "#000000",
+        "#ffffff"
+      ],
+      "materials": [
+        "mat siyah ve beyaz boya",
+        "optik çizgi sıklığı"
+      ],
+      "case": "Ziyaretçiyi büyülüyor ancak mobil uygulamaların fonksiyonel ekran görüntülerini gölgede bırakıyor.",
+      "kept": "Geçişlerde ve vurgularda optik çizgi frekansı disiplini.",
+      "hero": "https://impeccable.style/worlds/cards/design-canon-riley-moire-gallery-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": true
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "Kategori Standardı (Clean Modern Studio)",
+    "thesis": "Sektörün alışık olduğu temiz, minimalist ajans vitrini—yapay zeka süslerinden arındırılmış, üst düzey zanaat ile icra edilmiş.",
+    "palette": [
+      "#0f172a",
+      "#f8fafc",
+      "#2563eb"
+    ],
+    "materials": [
+      "katı İsviçre ızgarası",
+      "gerçek cihaz mockupları",
+      "akıcı tipografi"
+    ],
+    "viewport": "Güçlü bir tek cümlelik başlık, doğrudan canlı uygulamaların interaktif gridi ve mağaza butonları.",
+    "risk": "Çok temiz ve hatasız olsa da diğer iyi stüdyolardan görsel olarak radikal bir şekilde ayrışmaz."
+  },
+  "steer": true
+}
