@@ -116,12 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const showcaseDetailLink = document.getElementById('showcase-detail-link');
   const showcaseImg = document.getElementById('showcase-img');
 
-  if (typeof applications !== 'undefined') {
+  const getApps = () => (typeof applications !== 'undefined' ? applications : (typeof window !== 'undefined' ? window.applications : [])) || [];
+  const appsList = getApps();
+
+  if (appsList.length > 0) {
     const showcaseApps = {
-      routly: applications.find(a => a.name.toLowerCase() === 'routly'),
-      jsontools: applications.find(a => a.name.toLowerCase() === 'jsontools'),
-      markdown: applications.find(a => a.name.toLowerCase() === 'markdown'),
-      shiflabs: applications.find(a => a.name.toLowerCase() === 'shiflabs')
+      routly: appsList.find(a => a.name.toLowerCase() === 'routly'),
+      jsontools: appsList.find(a => a.name.toLowerCase() === 'jsontools'),
+      markdown: appsList.find(a => a.name.toLowerCase() === 'markdown'),
+      shiflabs: appsList.find(a => a.name.toLowerCase() === 'shiflabs')
     };
 
     const updateShowcase = (appKey) => {
@@ -193,17 +196,23 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── APP CATALOG RENDERING ────────────────────────────────────
   const renderApps = (filter = 'all') => {
     const container = document.getElementById('apps-container');
-    if (!container || typeof applications === 'undefined') return;
+    const appsList = getApps();
+    if (!container || appsList.length === 0) return;
 
     const filtered = filter === 'all'
-      ? applications
-      : applications.filter(app => app.category === filter);
+      ? appsList
+      : appsList.filter(app => app.category === filter);
 
     container.innerHTML = filtered.map(app => {
       const isAvailable = app.status === 'available';
       const statusText = isAvailable ? 'Yayında' : 'Geliştiriliyor';
       const statusClass = isAvailable ? 'available' : 'coming-soon';
-      const detailHref = `${app.name.toLowerCase()}.html`;
+      const pageMap = {
+        'kan bağışı': 'kanbagisi.html',
+        'kan bagisi': 'kanbagisi.html'
+      };
+      const cleanName = app.name.toLowerCase().trim();
+      const detailHref = pageMap[cleanName] || `${cleanName.replace(/\s+/g, '')}.html`;
 
       const featuresHtml = app.features && app.features.length > 0
         ? `<ul class="app-card-features">
@@ -343,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
 
     reveals.forEach(el => observer.observe(el));
   } else {

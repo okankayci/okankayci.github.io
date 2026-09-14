@@ -281,5 +281,268 @@ const applications = [
     platforms: ["iOS", "Android"],
     app_store_url: null,
     google_play_url: null
+  },
+  {
+    "name": "ProjectX",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": true,
+    "tag": "Geliştirici",
+    "description": "Geliştiriciler için mobil uygulama notları, sürüm planlaması ve mağaza görev yöneticisi.",
+    "detailedDescription": "ProjectX, Apple ve Android platformları için uygulama geliştiren yazılımcılara özel not, görev ve mağaza sürüm takip aracıdır. Tüm planlarınızı tek ekrandan yönetin.",
+    "icon": "assets/apps/projectx.png",
+    "screenshots": [
+      "assets/apps/projectx/1.png",
+      "assets/apps/projectx/2.png",
+      "assets/apps/projectx/3.png"
+    ],
+    "features": [
+      "Uygulama bazlı modüler notlar ve kontrol listeleri",
+      "App Store ve Google Play sürüm hazırlık takibi",
+      "Kritik hata, test ve özellik panosu",
+      "Karanlık mod ve modern akıcı arayüz",
+      "Cihazda güvenli yerel veri saklama"
+    ],
+    "status": "available",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": "https://apps.apple.com/app/id6759188799",
+    "google_play_url": "#"
+  },
+  {
+    "name": "Appsly",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": false,
+    "tag": "Araçlar",
+    "description": "Akıllı klasörler, dinamik Material You teması ve ana ekran widget desteği ile uygulama düzenleyici.",
+    "detailedDescription": "Appsly, Android cihazınızdaki uygulamaları tematik akıllı klasörlere ayıran, ana ekran widget desteği ve OLED derin siyah teması sunan modern bir organizasyon aracıdır.",
+    "icon": "assets/apps/appsly.png",
+    "screenshots": [
+      "assets/apps/appsly/1.png",
+      "assets/apps/appsly/2.png",
+      "assets/apps/appsly/3.png"
+    ],
+    "features": [
+      "Otomatik ve akıllı kategori klasörleri",
+      "Ana ekran etkileşimli klasör widget'ları",
+      "Material 3 dinamik sistem rengi uyumu",
+      "OLED ekranlar için ultra pil tasarruflu siyah tema",
+      "Hızlı arama ve alfabetik filtreleme"
+    ],
+    "status": "available",
+    "platforms": [
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": "#"
+  },
+  {
+    "name": "Recuro",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": true,
+    "tag": "Finans",
+    "description": "Kişisel abonelik yönetim uygulaması: Aylık giderleri takip et, yenilemeleri kaçırma, harcamalarını analiz et.",
+    "detailedDescription": "Recuro, dijital servis ve fiziksel aboneliklerinizi tek merkezden takip etmenizi sağlar. Yaklaşan ödemeleri önceden bildirir ve yıllık maliyet projeksiyonlarıyla tasarruf etmenize yardımcı olur.",
+    "icon": "assets/apps/recuro.png",
+    "screenshots": [
+      "assets/apps/recuro/1.png",
+      "assets/apps/recuro/2.png",
+      "assets/apps/recuro/3.png"
+    ],
+    "features": [
+      "Yenileme tarihleri için akıllı bildirimler",
+      "Kategori bazlı aylık ve yıllık harcama grafikleri",
+      "Döviz kuru dönüştürücü ve çoklu para birimi desteği",
+      "Gereksiz abonelikleri tespit eden tasarruf analitiği",
+      "Tamamen çevrimdışı ve gizlilik odaklı mimari"
+    ],
+    "status": "available",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "Rewire",
+    "category": "family",
+    "categoryLabel": "Aile & Yaşam",
+    "flagship": false,
+    "tag": "Farkındalık",
+    "description": "Alışkanlıkları dönüştür, tetikleyicilerini anla ve zor anlarda farkındalıkla iradeni koru.",
+    "detailedDescription": "Rewire, olumsuz alışkanlıkları geride bırakmak isteyenler için tasarlanmış bilişsel farkındalık asistanıdır. Kriz anı rehberliği, tetikleyici analizi ve motive edici ilerleme takibi sunar.",
+    "icon": "assets/apps/rewire.png",
+    "screenshots": [
+      "assets/apps/rewire/1.png",
+      "assets/apps/rewire/2.png",
+      "assets/apps/rewire/3.png"
+    ],
+    "features": [
+      "Kriz anı nefes ve odaklanma paneli",
+      "Tetikleyici durum ve duygu günlüğü",
+      "Temiz gün sayacı ve kazanılan rozetler",
+      "Bilişsel davranışçı tekniklerle rehberlik"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "ClipboardAI",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": false,
+    "tag": "Yapay Zeka",
+    "description": "Yapay zeka destekli akıllı pano yöneticisi: Kopyalanan metinleri sınıflandır, özetle ve anında ara.",
+    "detailedDescription": "ClipboardAI, panonuza kopyaladığınız her türlü bağlantı, kod parçası ve metni otomatik etiketleyen, dilbilgisi düzelten ve çevrimdışı güvenli arama sunan yeni nesil pano yöneticisidir.",
+    "icon": "assets/apps/clipboardai.png",
+    "screenshots": [],
+    "features": [
+      "Otomatik metin, link ve kod sınıflandırması",
+      "Yapay zeka ile anında özet çıkarma ve çeviri",
+      "Hassas veriler için otomatik gizleme",
+      "Klavye kısayolları ve hızlı erişim çubuğu"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android",
+      "macOS"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "Manii",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": false,
+    "tag": "Finans",
+    "description": "Premium kişisel bütçe, nakit akışı ve tasarruf hedefleri yönetim uygulaması.",
+    "detailedDescription": "Manii, gelir ve giderlerinizi estetik grafiklerle takip etmenizi, tasarruf hedefleri belirlemenizi ve finansal özgürlük yolculuğunuzu planlamanızı sağlayan sade bir finans uygulamasıdır.",
+    "icon": "assets/apps/manii.png",
+    "screenshots": [],
+    "features": [
+      "Günlük gelir ve gider girişleri",
+      "Kategori bazlı bütçe limitleri ve uyarılar",
+      "Tasarruf kumbarası ve hedef izleme",
+      "Detaylı harcama dağılım grafikleri"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "Miras",
+    "category": "family",
+    "categoryLabel": "Aile & Yaşam",
+    "flagship": false,
+    "tag": "Zaman Kapsülü",
+    "description": "Dijital zaman kapsülü: Bugün bir anıyı, mektubu veya fotoğrafı kilitleyin, gelecekteki bir tarihte açın.",
+    "detailedDescription": "Miras, sevdiklerinize veya gelecekteki kendinize bırakmak istediğiniz mesajları, fotoğrafları ve ses kayıtlarını belirlediğiniz tarihe kadar güvenle saklayan dijital bir zaman kapsülüdür.",
+    "icon": "assets/apps/miras.png",
+    "screenshots": [],
+    "features": [
+      "Gelecek tarih kilitli mesaj ve medya saklama",
+      "Uçtan uca yerel cihaz şifrelemesi",
+      "Özel gün ve yıldönümü hatırlatıcıları",
+      "Zamanı geldiğinde sürpriz bildirim teslimatı"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "MyCard",
+    "category": "tools",
+    "categoryLabel": "Eğitim & Araçlar",
+    "flagship": false,
+    "tag": "Güvenlik",
+    "description": "Kredi ve banka kartlarınız için çevrimdışı, biyometrik kilitli ve şifreli dijital kasa.",
+    "detailedDescription": "MyCard, fiziksel kartlarınızı yanınızda taşımak zorunda kalmadan kart bilgilerinizi Face ID / Touch ID koruması altında ve çevrimdışı güvenle saklar.",
+    "icon": "assets/apps/mycard.png",
+    "screenshots": [],
+    "features": [
+      "Biyometrik kilit ve yerel şifreleme",
+      "Tek dokunuşla kart numarası ve son kullanma kopyalama",
+      "Kart renk ve banka özelleştirmeleri",
+      "%100 çevrimdışı çalışma garantisi"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "PharmaLens",
+    "category": "health",
+    "categoryLabel": "Sağlık & Vardiya",
+    "flagship": false,
+    "tag": "Sağlık",
+    "description": "İlaç etkileşim analizi, kullanım talimatları ve klinik güvenlik kontrol rehberi.",
+    "detailedDescription": "PharmaLens, birden fazla ilaç kullanan bireyler ve sağlık çalışanları için olası etken madde etkileşimlerini ve doğru kullanım zamanlarını analiz eden medikal güvenlik rehberidir.",
+    "icon": "assets/apps/pharmalens.png",
+    "screenshots": [],
+    "features": [
+      "Çoklu ilaç etkileşim matrisi ve risk analizi",
+      "Aç/tok ve gün içi dozaj zamanlama rehberi",
+      "Kronik hastalık uyarıları ve yan etki dökümü",
+      "Kamera ile ilaç kutusu tanıma desteği"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
+  },
+  {
+    "name": "Kan Bağışı",
+    "category": "health",
+    "categoryLabel": "Sağlık & Vardiya",
+    "flagship": false,
+    "tag": "Sağlık",
+    "description": "Acil kan ihtiyaçları, bağışçı eşleşmesi ve en yakın kan bağış merkezleri rehberi.",
+    "detailedDescription": "Kan Bağışı, acil durumlarda uygun kan grubuna sahip donörlerle hastaları buluşturan, düzenli bağış hatırlatmaları yapan bir dayanışma platformudur.",
+    "icon": "assets/apps/kanbagisi.png",
+    "screenshots": [],
+    "features": [
+      "Konum tabanlı acil kan talebi oluşturma",
+      "Kan grubu eşleşmeli anlık bildirimler",
+      "Son bağıştan bu yana geçen süre ve uygunluk sayacı",
+      "Harita üzerinde güncel mobil bağış araçları"
+    ],
+    "status": "coming_soon",
+    "platforms": [
+      "iOS",
+      "Android"
+    ],
+    "app_store_url": null,
+    "google_play_url": null
   }
 ];
+
+if (typeof window !== 'undefined') {
+  window.applications = applications;
+}
