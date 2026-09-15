@@ -77,9 +77,10 @@
     if (e.key === 'Escape') closeNav();
   });
 
-  /* ── KAYDIRMA İZLEYİCİ ─────────────────────────────────── */
+  /* ── KAYDIRMA İZLEYİCİ & İLERLEME ÇİZGİSİ ──────────────── */
   const sections = [...document.querySelectorAll('main section[id]')];
   const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
+  const progressBar = document.querySelector('.scroll-progress');
 
   const highlightNav = () => {
     const pos = window.scrollY + 120;
@@ -94,11 +95,18 @@
     });
   };
 
+  const updateProgress = () => {
+    if (!progressBar) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  };
+
   /* ── YUKARI ÇIK ────────────────────────────────────────── */
   const backToTop = document.querySelector('.back-to-top');
 
   const onScroll = () => {
     highlightNav();
+    updateProgress();
     backToTop?.classList.toggle('visible', window.scrollY > 400);
   };
 
@@ -108,6 +116,22 @@
   backToTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   });
+
+  /* ── BAŞLIK KELİME MASKELEME ───────────────────────────── */
+  const splitWords = (heading) => {
+    const text = heading.textContent.trim();
+    heading.setAttribute('aria-label', text);
+    heading.innerHTML = text.split(/\s+/).map((word, i) =>
+      `<span class="word-mask" aria-hidden="true"><span style="--wd:${i * 70}ms">${word}</span></span>`
+    ).join(' ');
+  };
+
+  document.querySelectorAll('.section-head h2').forEach(splitWords);
+
+  /* Hareket azaltma tercihinde süzülen nabız noktasını kaldır */
+  if (prefersReducedMotion) {
+    document.querySelectorAll('.ecg-dot').forEach((dot) => dot.remove());
+  }
 
   /* ── SCROLL REVEAL (paylaşımlı gözlemci) ───────────────── */
   const revealObserver = ('IntersectionObserver' in window && !prefersReducedMotion)
@@ -196,7 +220,10 @@
       }, 180);
     };
 
+    let currentIndex = 0;
+
     const selectTab = (app) => {
+      currentIndex = Math.max(featured.indexOf(app), 0);
       showcaseTabs.querySelectorAll('.showcase-tab').forEach((tab) => {
         const active = tab.dataset.app === app.name;
         tab.classList.toggle('active', active);
@@ -213,7 +240,10 @@
       tab.dataset.app = app.name;
       tab.setAttribute('role', 'tab');
       tab.setAttribute('aria-selected', String(index === 0));
-      tab.addEventListener('click', () => selectTab(app));
+      tab.addEventListener('click', () => {
+        selectTab(app);
+        startRotate();
+      });
       showcaseTabs.appendChild(tab);
     });
 
@@ -221,6 +251,40 @@
       showcaseImg.src = featured[0].screenshots[0];
       showcaseImg.alt = `${featured[0].name} ekran görüntüsü`;
     }
+
+    /* Vitrin otomatik geçişi: hover/odakta durur, ekranda değilken çalışmaz */
+    const showcaseEl = document.querySelector('.showcase');
+    let rotateTimer = null;
+
+    const stopRotate = () => {
+      if (rotateTimer) {
+        clearInterval(rotateTimer);
+        rotateTimer = null;
+      }
+    };
+
+    const startRotate = () => {
+      if (prefersReducedMotion || featured.length < 2 || !showcaseEl) return;
+      stopRotate();
+      rotateTimer = setInterval(() => {
+        if (document.visibilityState !== 'visible') return;
+        currentIndex = (currentIndex + 1) % featured.length;
+        selectTab(featured[currentIndex]);
+      }, 6000);
+    };
+
+    showcaseEl?.addEventListener('mouseenter', stopRotate);
+    showcaseEl?.addEventListener('mouseleave', startRotate);
+    showcaseEl?.addEventListener('focusin', stopRotate);
+    showcaseEl?.addEventListener('focusout', startRotate);
+
+    if ('IntersectionObserver' in window && showcaseEl) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => (entry.isIntersecting ? startRotate() : stopRotate()));
+      }).observe(showcaseEl);
+    }
+
+    startRotate();
   }
 
   /* ── KATALOG ───────────────────────────────────────────── */

@@ -10,6 +10,7 @@
 
   const headerHtml = `
     <a class="skip-link" href="#legal-main">İçeriğe geç</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">

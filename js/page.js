@@ -55,13 +55,38 @@
     if (e.key === 'Escape') closeNav();
   });
 
-  /* ── YUKARI ÇIK ────────────────────────────────────────── */
-  const backToTop = document.querySelector('.back-to-top');
-  if (backToTop) {
-    window.addEventListener('scroll', () => {
-      backToTop.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
+  /* ── BAŞLIK KELİME MASKELEME ───────────────────────────── */
+  const splitWords = (heading) => {
+    const text = heading.textContent.trim();
+    heading.setAttribute('aria-label', text);
+    heading.innerHTML = text.split(/\s+/).map((word, i) =>
+      `<span class="word-mask" aria-hidden="true"><span style="--wd:${i * 70}ms">${word}</span></span>`
+    ).join(' ');
+  };
 
+  document.querySelectorAll('.section-head h2').forEach(splitWords);
+
+  /* ── YUKARI ÇIK & İLERLEME ÇİZGİSİ ─────────────────────── */
+  const backToTop = document.querySelector('.back-to-top');
+  const progressBar = document.querySelector('.scroll-progress');
+
+  const updateProgress = () => {
+    if (!progressBar) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  };
+
+  const onScroll = () => {
+    updateProgress();
+    backToTop?.classList.toggle('visible', window.scrollY > 400);
+  };
+
+  if (backToTop || progressBar) {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  if (backToTop) {
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });

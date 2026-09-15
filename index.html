@@ -17,6 +17,8 @@
 <body>
     <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
+    <div class="scroll-progress" aria-hidden="true"></div>
+
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="#hero" aria-label="PixelFlow Studio ana sayfa">
@@ -87,9 +89,12 @@
                     </div>
                 </div>
 
-                <!-- İmza: EKG izi -->
+                <!-- İmza: EKG izi + süzülen nabız noktası -->
                 <svg class="ecg animate" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true" focusable="false">
                     <path pathLength="1000" d="M0 44 H150 l12 -12 10 10 h60 l7 -30 8 52 7 -34 6 14 h90 l14 -14 12 12 h130 l9 -22 10 38 9 -28 6 12 h160 l12 -12 10 10 h110 l7 -30 8 52 7 -34 6 14 h150 l14 -14 12 12 h150 h254"/>
+                    <circle class="ecg-dot" r="2.6">
+                        <animateMotion dur="7s" repeatCount="indefinite" path="M0 44 H150 l12 -12 10 10 h60 l7 -30 8 52 7 -34 6 14 h90 l14 -14 12 12 h130 l9 -22 10 38 9 -28 6 12 h160 l12 -12 10 10 h110 l7 -30 8 52 7 -34 6 14 h150 l14 -14 12 12 h150 h254"/>
+                    </circle>
                 </svg>
             </div>
         </section>

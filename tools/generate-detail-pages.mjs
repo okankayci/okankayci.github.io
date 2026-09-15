@@ -42,6 +42,7 @@ const HEAD = (app) => `<!DOCTYPE html>
 const HEADER = `
 <body>
     <a class="skip-link" href="#detail-main">İçeriğe geç</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <header class="site-header">
         <div class="container header-inner">
