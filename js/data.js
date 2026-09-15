@@ -19,7 +19,7 @@ const applications = [
       "Resmi PDF raporu dışa aktarımı",
       "Maaş, mesai ve ek ödeme hesaplayıcı",
       "Ayrıntılı vardiya istatistikleri",
-      "Çevrimdışı ve reklamsız tam erişim"
+      "Çevrimdışı çalışan temel özellikler ve cihazda veri saklama"
     ],
     status: "available",
     platforms: ["iOS", "Android"],

@@ -4,230 +4,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShifLabs | Vardiya Takip & Yonetim</title>
-    <meta name="description" content="ShifLabs: Vardiyalarinizi planlayin, maas ve mesainizi hesaplayin, PDF rapor alin. Vardiyali calisanlar icin akilli vardiya takip uygulamasi.">
+    <title>ShifLabs — PixelFlow Studio | Flagship</title>
+    <meta name="description" content="Vardiyalı çalışanlar ve sağlık profesyonelleri için nöbet çizelgesi, mesai hesabı ve sosyal hayat organizatörü.">
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
-    <style>
-        /* ── ShifLabs · teal / vardiya kimligi ── */
-        body.proj-shiflabs {
-            --accent: #0d9488;
-            --accent-hover: #0f766e;
-            --accent-warm: #14b8a6;
-            --accent-light: rgba(13, 148, 136, 0.1);
-            --gradient: linear-gradient(135deg, #14b8a6 0%, #0d9488 55%, #0f766e 100%);
-            --gradient-subtle: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, rgba(13, 148, 136, 0.04) 100%);
-            --ring: rgba(13, 148, 136, 0.25);
-            --shadow-glow: 0 0 40px rgba(13, 148, 136, 0.18);
-        }
-        body.proj-shiflabs[data-theme="dark"],
-        body.proj-shiflabs:not([data-theme="light"]) {
-            --accent: #2dd4bf;
-            --accent-hover: #5eead4;
-            --accent-warm: #5eead4;
-            --accent-light: rgba(45, 212, 191, 0.12);
-            --gradient: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 55%, #0d9488 100%);
-            --ring: rgba(45, 212, 191, 0.3);
-            --shadow-glow: 0 0 40px rgba(45, 212, 191, 0.2);
-        }
-
-        /* Calendar mockup */
-        .cal-head {
-            display: flex; align-items: center; justify-content: space-between;
-            font-family: var(--font-display); font-weight: 600; font-size: 0.95rem;
-            margin-bottom: 0.9rem; color: var(--text);
-        }
-        .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
-        .cal-grid span {
-            aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px;
-            font-size: 0.62rem; font-weight: 600; color: var(--text-tertiary);
-            background: var(--surface); border: 1px solid var(--border);
-        }
-        .cal-grid span.day-off { color: var(--text-secondary); }
-        .cal-grid span.shift-d { background: rgba(20,184,166,0.16); color: var(--accent); border-color: transparent; }
-        .cal-grid span.shift-n { background: rgba(99,102,241,0.18); color: #6366f1; border-color: transparent; }
-        .cal-legend { display: flex; gap: 1rem; margin-top: 0.9rem; font-size: 0.62rem; color: var(--text-tertiary); }
-        .cal-legend b { display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
-
-        /* Salary calculation rows (shiflabs-specific) */
-        .calc-rows { display: grid; gap: 0.7rem; }
-        .calc-row {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0.75rem 1rem; border-radius: var(--radius); background: var(--bg-subtle);
-            border: 1px solid var(--border); font-size: 0.9rem; color: var(--text-secondary);
-        }
-        .calc-row strong { color: var(--text); font-family: var(--font-mono); }
-        .calc-row.total { background: var(--accent-light); border-color: transparent; color: var(--accent); }
-        .calc-row.total strong { color: var(--accent); font-size: 1.05rem; }
-    </style>
 </head>
 
-<body class="proj proj-shiflabs">
-    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
+<body>
+    <a class="skip-link" href="#detail-main">İçeriğe geç</a>
+
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat"><i class="fas fa-times"></i></button>
-                <a href="index.html#hero">Giriş</a>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
                 <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#craft">Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)"><i class="fas fa-moon"></i></button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç"><i class="fas fa-bars"></i></button>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </button>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <main id="proj-main">
-        <section class="proj-hero">
-            <div class="container proj-hero-grid">
-                <div class="reveal-left">
-                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Tüm Uygulamalar</a>
-                    <div class="eyebrow"><i class="fas fa-calendar-check"></i> Vardiya Yönetimi</div>
-                    <h1>Vardiyanı planla,<br>hayatını organize et.</h1>
-                    <p class="proj-lead">Vardiyalı çalışma düzenini kolayca planla, arkadaşlarınla paylaş ve sosyal hayatını organize et.</p>
-                    <p>ShifLabs, vardiyalı çalışanlar için tasarlanmış kapsamlı bir vardiya yönetim uygulamasıdır. Vardiyalarını takip et, notlar ekle ve detaylı raporlar al.</p>
-                    <div class="store-badges device-badges">
-                        <a href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
-                    </div>
-                </div>
-                <div class="reveal-right">
-                    <div class="device">
-                        <div class="device-screen">
-                            <div class="cal-head"><span>Mart 2026</span><i class="fas fa-chevron-right" style="font-size:0.7rem;color:var(--text-tertiary)"></i></div>
-                            <div class="cal-grid">
-                                <span class="day-off">P</span><span class="shift-d">1</span><span class="shift-d">2</span><span class="shift-n">3</span><span>4</span><span class="day-off">5</span><span class="day-off">6</span>
-                                <span class="shift-d">7</span><span class="shift-n">8</span><span>9</span><span class="day-off">10</span><span class="shift-d">11</span><span class="shift-d">12</span><span class="shift-n">13</span>
-                                <span>14</span><span class="day-off">15</span><span class="shift-d">16</span><span class="shift-n">17</span><span class="shift-n">18</span><span>19</span><span class="day-off">20</span>
-                            </div>
-                            <div class="cal-legend">
-                                <span><b style="background:#14b8a6"></b>Gündüz</span>
-                                <span><b style="background:#6366f1"></b>Gece</span>
-                                <span><b style="background:var(--border)"></b>İzin</span>
-                            </div>
+    <main id="detail-main">
+        <section class="detail-hero">
+            <div class="container">
+                <a class="back-link" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tüm uygulamalar</a>
+                <div class="detail-grid">
+                    <div class="detail-copy reveal">
+                        <span class="mono">Sağlık &amp; Vardiya · Öncü ürün</span>
+                        <h1>ShifLabs</h1>
+                        <p class="detail-lead">Vardiyalı çalışanlar ve sağlık profesyonelleri için nöbet çizelgesi, mesai hesabı ve sosyal hayat organizatörü.</p>
+                        <p class="detail-body">ShifLabs, vardiyalı çalışanlar için tasarlanmış kapsamlı bir vardiya yönetim uygulamasıdır. Vardiyalarınızı kolayca takip edin, notlar ekleyin ve detaylı raporlar alın.</p>
+                        <div class="detail-status">
+                            <span class="status-tag available"><span class="dot"></span>Yayında</span>
+                            <div class="platforms"><span>iOS</span><span>Android</span></div>
                         </div>
+                <div class="store-badges">
+                    <a class="btn btn-primary" href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" target="_blank" rel="noopener">App Store'dan indir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+                    <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" target="_blank" rel="noopener">Google Play'de gör <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+                </div>
+                    </div>
+                    <div class="detail-visual reveal">
+                        <div class="phone">
+                    <div class="phone-screen">
+                        <img src="assets/apps/shiflabs/1.png" alt="ShifLabs ekran görüntüsü">
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
         </section>
-
+        <section class="section" style="padding-top: 48px;">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="mono">Neler içerir</span>
+                    <h2>Öne çıkan özellikler.</h2>
+                </div>
+                <div class="feature-grid reveal">
+                    
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Vardiya ve izinleri anında planlayın</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Vardiyalara özel not ve anımsatıcılar</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Resmi PDF raporu dışa aktarımı</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Maaş, mesai ve ek ödeme hesaplayıcı</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Ayrıntılı vardiya istatistikleri</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Çevrimdışı çalışan temel özellikler ve cihazda veri saklama</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="container">
                 <div class="section-head reveal">
-                    <h2>Vardiyan için her şey tek yerde</h2>
-                    <p>Takvimden maaşa, görevlerden raporlara kadar vardiyalı hayatı kolaylaştıran araçlar.</p>
+                    <span class="mono">Galeri</span>
+                    <h2>Uygulamadan görünümler.</h2>
                 </div>
-                <div class="icon-cards stagger-grid">
-                    <div class="icon-card"><div class="ic"><i class="fas fa-calendar-days"></i></div><h3>Vardiya & İzin Takibi</h3><p>Vardiyalarını ve izinlerini renkli takvimde takip et, özel notlar ekle.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-file-pdf"></i></div><h3>PDF Rapor</h3><p>Aylık vardiya ve mesai dökümünü tek dokunuşla resmi PDF olarak dışarı aktar.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-list-check"></i></div><h3>Görev & Şablonlar</h3><p>Günlük görevler ekle, tekrar eden nöbetler için pratik şablonlar oluştur.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-chart-pie"></i></div><h3>Detaylı İstatistik</h3><p>Çalışma saatlerini, gece mesailerini ve düzenini ayrıntılı grafiklerle izle.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-cloud-arrow-up"></i></div><h3>Yedekle & Geri Yükle</h3><p>Verilerini cihazında güvenle tut, cihaz değiştirsen bile verilerini kaybetme.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-ban"></i></div><h3>Reklamsız Erişim</h3><p>Dikkat dağıtan can sıkıcı reklamlar olmadan tam, akıcı ve güvenilir bir deneyim.</p></div>
+                <div class="shots-grid reveal">
+                    
+                    <div class="shot"><img src="assets/apps/shiflabs/1.png" alt="ShifLabs ekran görüntüsü 1" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/shiflabs/2.png" alt="ShifLabs ekran görüntüsü 2" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/shiflabs/3.png" alt="ShifLabs ekran görüntüsü 3" loading="lazy"></div>
                 </div>
             </div>
         </section>
 
-        <section class="section alt">
-            <div class="container">
-                <div class="section-head reveal">
-                    <h2>Kazancını otomatik hesapla</h2>
-                    <p>Saat ücreti, gece zammı ve fazla mesai oranlarıyla net hakediş tablosu.</p>
-                </div>
-                <div class="split reveal">
-                    <div>
-                        <h3 style="font-size:1.3rem;margin-bottom:0.75rem;">Her kuruşu hesaba kat</h3>
-                        <p>Saat ücreti, gece zammı, fazla mesai ve ek ödemeleri gir; ShifLabs vardiya takvimine göre aylık kazancını otomatik hesaplasın. Tahmin yapmayı bırak, net rakamı gör.</p>
-                    </div>
-                    <div class="calc-rows">
-                        <div class="calc-row"><span>Normal mesai</span><strong>₺18.400</strong></div>
-                        <div class="calc-row"><span>Gece zammı</span><strong>₺2.150</strong></div>
-                        <div class="calc-row"><span>Fazla mesai</span><strong>₺3.720</strong></div>
-                        <div class="calc-row total"><span>Toplam Hakediş</span><strong>₺24.270</strong></div>
-                    </div>
-                </div>
+        <div class="detail-cta">
+            <div class="container detail-cta-inner">
+                <a class="btn btn-ghost" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kataloğa dön</a>
+                <a class="next-app" href="babyplus.html">
+                    <span class="mono">Sıradaki<br>uygulama</span>
+                    <span class="next-name"><b>BabyPlus</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
             </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <div class="section-head reveal">
-                    <h2>Uygulamadan görünümler</h2>
-                    <p>Özenle tasarlanmış arayüz ve sade kullanım deneyimi.</p>
-                </div>
-                <div class="screenshots stagger-grid">
-                    <div class="screenshot-item"><img src="assets/apps/shiflabs/1.png" alt="ShifLabs ekran görüntüsü 1" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/shiflabs/2.png" alt="ShifLabs ekran görüntüsü 2" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/shiflabs/3.png" alt="ShifLabs ekran görüntüsü 3" loading="lazy"></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="proj-cta">
-            <div class="container reveal">
-                <img src="assets/apps/shiflabs.png" alt="ShifLabs" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
-                <h2>Vardiyanı ShifLabs'e bırak</h2>
-                <p>Hemen indir, ilk vardiyanı ekle ve düzenini eline al.</p>
-                <div class="store-badges device-badges" style="justify-content:center;">
-                    <a href="https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr" class="store-badge" target="_blank" rel="noreferrer"><i class="fab fa-apple"></i> App Store</a>
-                    <a href="https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip" class="store-badge secondary" target="_blank" rel="noreferrer"><i class="fab fa-google-play"></i> Google Play</a>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu. Tasarım ve kod el yapımıdır.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
-                <a href="index.html#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="index.html#apps">Uygulamalar</a>
+                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="sakura.html">Sakura (Hastane)</a>
-                <a href="jsontools.html">JsonTools (Geliştirici)</a>
-                <a href="linguago.html">LinguaGo (Dil)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                    <a href="projectx.html">ProjectX — geliştirici</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
 
-    <script src="js/page.js"></script>
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

@@ -1,94 +1,91 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const container = document.getElementById('legal-page-container');
-    if (!container) return;
+/**
+ * PixelFlow Studio — yasal sayfalar
+ * Başlık/alt bilgi kabuğunu enjekte eder ve içerik haritasını uygular.
+ */
+(() => {
+  'use strict';
 
-    // Get page type from URL
-    const path = window.location.pathname;
-    const pageName = path.split('/').pop().replace('.html', '');
+  const container = document.getElementById('legal-page-container');
+  if (!container) return;
 
-    // --- Shared Components (Matches index.html) ---
-    const headerHtml = `
+  const headerHtml = `
     <a class="skip-link" href="#legal-main">İçeriğe geç</a>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat">
-                    <i class="fas fa-times"></i>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <a href="index.html#hero">Giriş</a>
                 <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#craft">Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)">
-                    <i class="fas fa-moon"></i>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
                 </button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç">
-                    <i class="fas fa-bars"></i>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
                 </button>
             </div>
         </div>
     </header>`;
 
-    const footerHtml = `
+  const footerHtml = `
     <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
-                <a href="index.html#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="index.html#apps">Uygulamalar</a>
+                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="sakura.html">Sakura (Hastane)</a>
-                <a href="jsontools.html">JsonTools (Geliştirici)</a>
-                <a href="linguago.html">LinguaGo (Dil)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>`;
 
-    // --- Content Mapping ---
-    let pageContent = '';
-    const lastUpdate = new Date().toLocaleDateString('tr-TR');
+  const lastUpdate = new Date().toLocaleDateString('tr-TR');
 
-    // Common styling wrapper for legal text
-    const wrapContent = (title, content) => `
+  const wrapContent = (title, content) => `
+    <main id="legal-main">
         <section class="legal-hero">
             <div class="container">
-                <span class="category-badge" style="margin-bottom: 0.75rem; display: inline-block;">Yasal Bildirim</span>
+                <span class="mono">Yasal bildirim</span>
                 <h1>${title}</h1>
-                <p class="legal-updated" style="color: var(--text-secondary); font-size: 0.88rem; margin-top: 0.5rem;">Son Güncelleme: ${lastUpdate}</p>
+                <p class="legal-updated">Son güncelleme: ${lastUpdate}</p>
             </div>
         </section>
         <section class="section">
@@ -96,143 +93,63 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${content}
             </div>
         </section>
-    `;
+    </main>`;
 
-    switch (pageName) {
-        case 'gizlilik-politikasi':
-            document.title = 'Gizlilik Politikası | PixelFlow';
-            pageContent = wrapContent('Gizlilik Politikası', `
-                <h2>1. Genel Bilgiler</h2>
-                <p>PixelFlow olarak, kullanıcılarımızın gizliliğini korumayı öncelik olarak görüyoruz. Bu gizlilik politikası, mobil uygulamalarımızı kullanırken kişisel verilerinizin nasıl işlendiği hakkında bilgi vermektedir.</p>
-                
-                <h2 style="margin-top: 3rem;">2. Veri Toplama</h2>
-                <p><strong>Önemli:</strong> Uygulamalarımız herhangi bir kişisel veri toplamaz, saklamaz veya işlemez. Kullanıcı bilgileri, kişisel veriler veya kullanım alışkanlıkları hakkında hiçbir bilgi toplanmamaktadır.</p>
-                
-                <h2 style="margin-top: 3rem;">3. Reklamlar</h2>
-                <p>Uygulamalarımızda Google AdMob servisi aracılığıyla reklamlar gösterilmektedir. Google AdMob'un kendi gizlilik politikası ve veri toplama uygulamaları bulunmaktadır. Reklam gösterimi ile ilgili detaylı bilgi için Google'ın gizlilik politikasını inceleyebilirsiniz.</p>
-                
-                <h2 style="margin-top: 3rem;">4. Üçüncü Taraf Servisleri</h2>
-                <p>Uygulamalarımızda kullanılan üçüncü taraf servislerin (Google AdMob) kendi gizlilik politikaları bulunmaktadır:</p>
-                <ul class="legal-list">
-                    <li><a href="https://policies.google.com/privacy" target="_blank" style="text-decoration: underline;">Google Gizlilik Politikası</a></li>
-                    <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" style="text-decoration: underline;">Google AdMob Gizlilik Politikası</a></li>
-                </ul>
-                
-                <h2 style="margin-top: 3rem;">5. İletişim</h2>
-                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
-            `);
-            break;
+  const pageName = window.location.pathname.split('/').pop().replace('.html', '');
 
-        case 'kullanim-kosullari':
-            document.title = 'Kullanım Koşulları | PixelFlow';
-            pageContent = wrapContent('Kullanım Koşulları', `
-                <h2>1. Kabul</h2>
-                <p>PixelFlow mobil uygulamalarını indirerek ve kullanarak, bu kullanım koşullarını kabul etmiş sayılırsınız. Bu koşulları kabul etmiyorsanız, uygulamalarımızı kullanmamalısınız.</p>
-                
-                <h2 style="margin-top: 3rem;">2. Fikri Mülkiyet</h2>
-                <p>Uygulamalarımızdaki tüm içerik, tasarım, kod ve materyaller PixelFlow'un fikri mülkiyetidir ve telif hakkı yasaları ile korunmaktadır.</p>
-                
-                <h2 style="margin-top: 3rem;">3. Sorumluluk Reddi</h2>
-                <p>Uygulamalarımız "olduğu gibi" sunulmaktadır. Uygulamaların kesintisiz veya hatasız çalışacağına dair garanti verilmez. Kullanımdan doğabilecek zararlardan PixelFlow sorumlu değildir.</p>
-                
-                <h2 style="margin-top: 3rem;">4. İletişim</h2>
-                <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
-            `);
-            break;
+  let pageContent = '';
+  switch (pageName) {
+    case 'gizlilik-politikasi':
+      document.title = 'Gizlilik Politikası | PixelFlow Studio';
+      pageContent = wrapContent('Gizlilik Politikası', `
+        <h2>1. Genel Bilgiler</h2>
+        <p>PixelFlow olarak, kullanıcılarımızın gizliliğini korumayı öncelik olarak görüyoruz. Bu gizlilik politikası, mobil uygulamalarımızı kullanırken kişisel verilerinizin nasıl işlendiği hakkında bilgi vermektedir.</p>
+        <h2>2. Veri Toplama</h2>
+        <p><strong>Önemli:</strong> Uygulamalarımız herhangi bir kişisel veri toplamaz, saklamaz veya işlemez. Kullanıcı bilgileri, kişisel veriler veya kullanım alışkanlıkları hakkında hiçbir bilgi toplanmamaktadır.</p>
+        <h2>3. Reklamlar</h2>
+        <p>Uygulamalarımızda Google AdMob servisi aracılığıyla reklamlar gösterilmektedir. Google AdMob'un kendi gizlilik politikası ve veri toplama uygulamaları bulunmaktadır. Reklam gösterimi ile ilgili detaylı bilgi için Google'ın gizlilik politikasını inceleyebilirsiniz.</p>
+        <h2>4. Üçüncü Taraf Servisleri</h2>
+        <p>Uygulamalarımızda kullanılan üçüncü taraf servislerin (Google AdMob) kendi gizlilik politikaları bulunmaktadır:</p>
+        <ul class="legal-list">
+            <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Gizlilik Politikası</a></li>
+            <li><a href="https://support.google.com/admob/answer/6128543" target="_blank" rel="noopener">Google AdMob Gizlilik Politikası</a></li>
+        </ul>
+        <h2>5. İletişim</h2>
+        <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com">pixelflowsoftware@gmail.com</a></p>
+      `);
+      break;
 
-        case 'kvkk':
-            document.title = 'KVKK Aydınlatma | PixelFlow';
-            pageContent = wrapContent('KVKK Aydınlatma Metni', `
-                <h2>1. Veri Sorumlusu</h2>
-                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, PixelFlow olarak kişisel verilerinizin korunması konusundaki yaklaşımımızı açıklamaktayız.</p>
-                
-                <h2 style="margin-top: 3rem;">2. Kişisel Veri Toplama</h2>
-                <p><strong>Önemli Bilgilendirme:</strong> PixelFlow mobil uygulamaları herhangi bir kişisel veri toplamaz, işlemez veya saklamaz. Uygulamalarımız tamamen offline çalışır ve kullanıcı verilerini hiçbir şekilde kaydetmez.</p>
-                
-                <h2 style="margin-top: 3rem;">3. Kullanıcı Hakları</h2>
-                <p>KVKK'nın 11. maddesi uyarınca sahip olduğunuz tüm haklara saygı duyuyoruz. Ancak herhangi bir kişisel veri işlemediğimiz için, bu verilerin silinmesi veya düzeltilmesi gibi işlemler teknik olarak uygulanamamaktadır.</p>
-                
-                <h2 style="margin-top: 3rem;">4. İletişim</h2>
-                <p>KVKK kapsamındaki sorularınız için: <a href="mailto:pixelflowsoftware@gmail.com" class="legal-link">pixelflowsoftware@gmail.com</a></p>
-            `);
-            break;
+    case 'kullanim-kosullari':
+      document.title = 'Kullanım Koşulları | PixelFlow Studio';
+      pageContent = wrapContent('Kullanım Koşulları', `
+        <h2>1. Kabul</h2>
+        <p>PixelFlow mobil uygulamalarını indirerek ve kullanarak, bu kullanım koşullarını kabul etmiş sayılırsınız. Bu koşulları kabul etmiyorsanız, uygulamalarımızı kullanmamalısınız.</p>
+        <h2>2. Fikri Mülkiyet</h2>
+        <p>Uygulamalarımızdaki tüm içerik, tasarım, kod ve materyaller PixelFlow'un fikri mülkiyetidir ve telif hakkı yasaları ile korunmaktadır.</p>
+        <h2>3. Sorumluluk Reddi</h2>
+        <p>Uygulamalarımız "olduğu gibi" sunulmaktadır. Uygulamaların kesintisiz veya hatasız çalışacağına dair garanti verilmez. Kullanımdan doğabilecek zararlardan PixelFlow sorumlu değildir.</p>
+        <h2>4. İletişim</h2>
+        <p>E-posta: <a href="mailto:pixelflowsoftware@gmail.com">pixelflowsoftware@gmail.com</a></p>
+      `);
+      break;
 
-        default:
-            pageContent = wrapContent('404', '<p>Sayfa bulunamadı. <a href="index.html">Ana sayfaya dön</a>.</p>');
-    }
+    case 'kvkk':
+      document.title = 'KVKK Aydınlatma Metni | PixelFlow Studio';
+      pageContent = wrapContent('KVKK Aydınlatma Metni', `
+        <h2>1. Veri Sorumlusu</h2>
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca, PixelFlow olarak kişisel verilerinizin korunması konusundaki yaklaşımımızı açıklamaktayız.</p>
+        <h2>2. Kişisel Veri Toplama</h2>
+        <p><strong>Önemli Bilgilendirme:</strong> PixelFlow mobil uygulamaları herhangi bir kişisel veri toplamaz, işlemez veya saklamaz. Uygulamalarımız tamamen çevrimdışı çalışır ve kullanıcı verilerini hiçbir şekilde kaydetmez.</p>
+        <h2>3. Kullanıcı Hakları</h2>
+        <p>KVKK'nın 11. maddesi uyarınca sahip olduğunuz tüm haklara saygı duyuyoruz. Ancak herhangi bir kişisel veri işlemediğimiz için, bu verilerin silinmesi veya düzeltilmesi gibi işlemler teknik olarak uygulanamamaktadır.</p>
+        <h2>4. İletişim</h2>
+        <p>KVKK kapsamındaki sorularınız için: <a href="mailto:pixelflowsoftware@gmail.com">pixelflowsoftware@gmail.com</a></p>
+      `);
+      break;
 
-    // --- Inject Everything ---
-    container.innerHTML = `
-        ${headerHtml}
-        <main id="legal-main">
-            ${pageContent}
-        </main>
-        ${footerHtml}
-    `;
+    default:
+      pageContent = wrapContent('Sayfa bulunamadı', `<p>Aradığınız sayfa mevcut değil. <a href="index.html">Ana sayfaya dönebilirsiniz.</a></p>`);
+  }
 
-    // --- Re-initialize Logic (Mobile Menu & Theme) ---
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav');
-    const navClose = document.querySelector('.nav-close');
-
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            const icon = hamburger.querySelector('i');
-            icon.className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-        });
-
-        if (navClose) {
-            navClose.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-            });
-        }
-
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-            });
-        });
-    }
-
-    const themeToggle = document.querySelector('.theme-toggle');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const setTheme = (theme) => {
-        if (theme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-        } else if (theme === 'light') {
-            document.body.setAttribute('data-theme', 'light');
-        } else {
-            document.body.removeAttribute('data-theme');
-        }
-
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-    };
-
-    const savedTheme = localStorage.getItem('theme');
-    const initialTheme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
-    setTheme(initialTheme);
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
-            const next = current === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('theme', next);
-            setTheme(next);
-        });
-    }
-
-    // ── Back to Top ─────────────────────────────
-    const backToTop = document.querySelector('.back-to-top');
-    if (backToTop) {
-        const handleBackToTop = () => backToTop.classList.toggle('visible', window.scrollY > 400);
-        window.addEventListener('scroll', handleBackToTop, { passive: true });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
-});
+  container.innerHTML = headerHtml + pageContent + footerHtml;
+})();

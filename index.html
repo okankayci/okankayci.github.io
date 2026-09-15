@@ -4,275 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelFlow | Bağımsız Mobil Ürün Stüdyosu · Okan Kaycı</title>
+    <title>PixelFlow Studio — Okan Kaycı | Bağımsız Mobil Ürün Stüdyosu</title>
+    <meta name="description" content="Reklamsız, izsiz ve çevrimdışı çalışan bağımsız iOS ve Android uygulamaları. Vardiyalı çalışanlardan ebeveynlere gerçek ihtiyaçlar için, İstanbul'da tek elden geliştirildi.">
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="description" content="Hayatı kolaylaştıran mobil deneyimler. Sağlık çalışanlarından ebeveynlere, bağımsız ve pro düzeyinde iOS ve Android uygulamaları. Okan Kaycı.">
-    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 </head>
 
 <body>
     <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
-    <!-- APPLE FROSTED GLASS HEADER -->
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat">
-                    <i class="fas fa-times"></i>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg class="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <a href="#hero">Giriş</a>
                 <a href="#apps">Uygulamalar</a>
-                <a href="#craft">Zanaat & Felsefe</a>
+                <a href="#craft">Felsefe</a>
                 <a href="#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)">
-                    <i class="fas fa-moon"></i>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
                 </button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç">
-                    <i class="fas fa-bars"></i>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
                 </button>
             </div>
         </div>
     </header>
 
     <main id="main-content">
-        <!-- APPLE KEYNOTE HERO SECTION -->
+
+        <!-- HERO -->
         <section id="hero" class="hero">
             <div class="container">
-                <div class="hero-header">
-                    <div class="status-pill">
-                        <span class="status-dot" aria-hidden="true"></span>
-                        <span>Bağımsız Ürün Stüdyosu · İstanbul</span>
-                    </div>
-                    <h1 class="hero-title">Hayatı kolaylaştıran mobil deneyimler.</h1>
-                    <p class="hero-desc">
-                        Sağlık çalışanlarından ebeveynlere. Gerçek saha ihtiyaçları için tasarlanmış bağımsız, güvenilir ve pro düzeyinde uygulamalar.
-                    </p>
-                    <div class="hero-actions">
-                        <a class="btn primary" href="#apps">
-                            Uygulamaları Keşfet
-                        </a>
-                        <a class="btn apple-link" href="#craft">
-                            Zanaat ve Felsefe <i class="fas fa-chevron-right" style="font-size: 0.75rem;"></i>
-                        </a>
-                    </div>
-                    <div class="hero-tags">
-                        <span class="hero-tag">iOS & Android</span>
-                        <span class="hero-tag">Flutter & Dart</span>
-                        <span class="hero-tag">Temiz Mimari</span>
-                        <span class="hero-tag">Cihazda Kalan Veri</span>
-                        <span class="hero-tag">Sıfır Reklam</span>
-                    </div>
-                </div>
-
-                <!-- APPLE HARDWARE SHOWCASE (İnteraktif iPhone Vitrini - Çentiksiz) -->
-                <div class="showcase-frame" aria-label="Öne Çıkan Uygulama Vitrini">
-                    <div class="showcase-header">
-                        <span class="showcase-label">Öne Çıkan Donanım & Ürün Vitrini</span>
-                        <div class="showcase-tabs" role="tablist" aria-label="Öne çıkan uygulamalar">
-                            <button class="showcase-tab-btn active" type="button" data-app="routly" role="tab" aria-selected="true">Routly</button>
-                            <button class="showcase-tab-btn" type="button" data-app="jsontools" role="tab" aria-selected="false">JsonTools</button>
-                            <button class="showcase-tab-btn" type="button" data-app="markdown" role="tab" aria-selected="false">Markdown</button>
-                            <button class="showcase-tab-btn" type="button" data-app="shiflabs" role="tab" aria-selected="false">ShifLabs</button>
+                <div class="hero-grid">
+                    <div>
+                        <p class="hero-status mono">
+                            <span class="blip" aria-hidden="true"></span>
+                            Bağımsız mobil ürün stüdyosu — İstanbul
+                        </p>
+                        <h1>
+                            Sade. Hızlı. Dürüst.
+                            <span class="h1-muted">Gerçek ihtiyaçlar için tasarlanmış mobil uygulamalar.</span>
+                        </h1>
+                        <p class="hero-lead">
+                            Ben <strong>Okan Kaycı</strong> — İstanbul'da bağımsız mobil geliştiriciyim.
+                            Vardiyalı çalışanlardan ebeveynlere, günlük hayatın gerçek ihtiyaçları için
+                            iOS ve Android uygulamaları tasarlıyor ve geliştiriyorum. Uygulamalar
+                            ücretsiz indirilir; bazı özellikler uygulama içi satın alma ile açılır.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="#apps">
+                                Uygulamaları keşfet
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                            </a>
+                            <a class="btn btn-ghost" href="#craft">Nasıl çalışıyorum</a>
+                        </div>
+                        <div class="hero-stats" id="hero-stats">
+                            <!-- js/main.js veri.js'ten doldurur -->
                         </div>
                     </div>
 
-                    <div class="showcase-stage">
-                        <div class="showcase-info-col">
-                            <div class="showcase-meta-top">
-                                <img id="showcase-icon" class="showcase-icon" src="assets/apps/routly.png" alt="Routly İkonu" width="64" height="64">
-                                <div>
-                                    <span id="showcase-category" class="category-badge">Aile & Yaşam</span>
-                                    <h3 id="showcase-title">Routly</h3>
-                                </div>
-                            </div>
-                            <p id="showcase-desc">Günlük rutinleri disiplinle takip edin, zinciri kırmayın ve kalıcı olumlu alışkanlıklar kazanın.</p>
-
-                            <ul id="showcase-features" class="showcase-feature-list">
-                                <li>Sabah ve akşam rutin blokları</li>
-                                <li>Streak (zinciri kırma) motivasyon sayacı</li>
-                                <li>Kişiselleştirilebilir hatırlatıcı bildirimler</li>
-                                <li>Haftalık ve aylık başarı analizi</li>
-                            </ul>
-
-                            <div class="showcase-action-row">
-                                <a id="showcase-store-btn" class="btn primary btn-sm" href="#" target="_blank" rel="noopener" style="display:none;">
-                                    <i class="fab fa-apple"></i> App Store
-                                </a>
-                                <a id="showcase-play-btn" class="btn ghost btn-sm" href="#" target="_blank" rel="noopener" style="display:none;">
-                                    <i class="fab fa-google-play"></i> Google Play
-                                </a>
-                                <a id="showcase-detail-link" class="btn apple-link" href="routly.html">
-                                    Detayları Gör <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
-                                </a>
+                    <div class="showcase" aria-label="Öne çıkan uygulama vitrini">
+                        <div class="phone">
+                            <div class="phone-screen">
+                                <img id="showcase-img" src="assets/apps/shiflabs/1.png" alt="Öne çıkan uygulama ekran görüntüsü">
                             </div>
                         </div>
-
-                        <div class="iphone-device-wrap">
-                            <div class="iphone-device">
-                                <div class="iphone-screen">
-                                    <img id="showcase-img" src="assets/apps/routly/1.png" alt="Routly Ekran Görüntüsü">
-                                </div>
-                            </div>
+                        <div class="showcase-tabs" id="showcase-tabs" role="tablist" aria-label="Öne çıkan uygulamalar">
+                            <!-- js/main.js doldurur -->
                         </div>
                     </div>
                 </div>
+
+                <!-- İmza: EKG izi -->
+                <svg class="ecg animate" viewBox="0 0 1440 72" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                    <path pathLength="1000" d="M0 44 H150 l12 -12 10 10 h60 l7 -30 8 52 7 -34 6 14 h90 l14 -14 12 12 h130 l9 -22 10 38 9 -28 6 12 h160 l12 -12 10 10 h110 l7 -30 8 52 7 -34 6 14 h150 l14 -14 12 12 h150 h254"/>
+                </svg>
             </div>
         </section>
 
-        <!-- APPS CATALOG SECTION -->
+        <!-- KATALOG -->
         <section id="apps" class="section">
             <div class="container">
                 <div class="section-head reveal">
-                    <h2>Canlı Uygulamalar ve Araçlar</h2>
-                    <p>App Store ve Google Play üzerinde yayında olan, her detayı titizlikle geliştirilmiş PixelFlow ürünleri.</p>
+                    <span class="mono">Katalog</span>
+                    <h2>Yayında olanlar ve yolda olanlar.</h2>
+                    <p>Her ürün gerçek bir ihtiyaçtan doğdu ve tek elden geliştirildi. Mağaza bağlantıları yalnızca gerçekten yayında olanlara verilir.</p>
                 </div>
 
-                <div class="catalog-filters reveal reveal-delay-1" role="tablist" aria-label="Kategori Filtreleri">
-                    <button class="filter-btn active" type="button" data-category="all">
-                        Tümü <span class="filter-count">21</span>
-                    </button>
-                    <button class="filter-btn" type="button" data-category="health">
-                        Sağlık & Vardiya <span class="filter-count">4</span>
-                    </button>
-                    <button class="filter-btn" type="button" data-category="family">
-                        Aile & Yaşam <span class="filter-count">6</span>
-                    </button>
-                    <button class="filter-btn" type="button" data-category="tools">
-                        Eğitim & Araçlar <span class="filter-count">11</span>
-                    </button>
+                <div class="filters reveal" id="filters" role="tablist" aria-label="Kategori filtreleri">
+                    <!-- js/main.js doldurur -->
                 </div>
 
                 <div id="apps-container" class="apps-grid">
-                    <!-- js/main.js tarafından dinamik olarak doldurulur -->
+                    <!-- js/main.js doldurur -->
                 </div>
             </div>
         </section>
 
-        <!-- CRAFT & PHILOSOPHY SECTION (Apple Keynote Bento Grid) -->
-        <section id="craft" class="section alt">
+        <!-- FELSEFE -->
+        <section id="craft" class="section craft">
             <div class="container">
                 <div class="section-head reveal">
-                    <h2>Hemşirelik Disiplini. Yazılım Zanaatı.</h2>
-                    <p>Hastanenin yoğun bakımından bağımsız mobil yazılım mimarisine uzanan tavizsiz ilkeler.</p>
+                    <span class="mono">Zanaat &amp; felsefe</span>
+                    <h2>Tek kişilik stüdyo, üç tavizsiz ilke.</h2>
+                    <p>Her uygulama aynı ölçütle çıkar: gerçekten işe yaramak ve gereksiz hiçbir şey taşımamak.</p>
                 </div>
 
-                <div class="craft-bento-grid">
-                    <div class="bento-card reveal">
-                        <div class="bento-icon-box blue">
-                            <i class="fas fa-heart-pulse"></i>
+                <div class="craft-grid">
+                    <div class="principles reveal">
+                        <div class="principle">
+                            <h3>Hassasiyet</h3>
+                            <p>Her akış en gerektiği kadar adım içerir. Gereksiz her ekran, seçenek ve izin ayıklanır; kalan her şey işine yarar.</p>
                         </div>
-                        <div class="bento-eyebrow">01. HASSASİYET</div>
-                        <h3>Klinik Ciddiyet.</h3>
-                        <p>Yoğun bakımda ve nöbette hata payı sıfırdır. Bu disiplin, PixelFlow'un her uygulamasındaki hatasız kullanıcı akışlarına ve sarsılmaz arayüz sadeliğine doğrudan yansır.</p>
+                        <div class="principle">
+                            <h3>Gizlilik</h3>
+                            <p>Uygulamalar veri beyanlarına göre kişisel veri toplamaz. Reklamlar ve isteğe bağlı satın almalar mağaza sayfalarında açıkça belirtilir.</p>
+                        </div>
+                        <div class="principle">
+                            <h3>Performans</h3>
+                            <p>Hantal kütüphaneler ve gereksiz bağımlılıklar yok. Flutter ve Dart ile yerel hızda, hafif ve sürdürülebilir mimari.</p>
+                        </div>
                     </div>
 
-                    <div class="bento-card reveal reveal-delay-1">
-                        <div class="bento-icon-box green">
-                            <i class="fas fa-shield-halved"></i>
-                        </div>
-                        <div class="bento-eyebrow">02. GİZLİLİK</div>
-                        <h3>Cihazda Kalan Veri.</h3>
-                        <p>Vardiyalarınız, bebeğinizin gelişim basamakları veya günlük notlarınız sadece sizin cihazınızda yaşar. Çevrimdışı çalışır, verinizi asla toplamaz veya satmaz.</p>
-                    </div>
-
-                    <div class="bento-card reveal reveal-delay-2">
-                        <div class="bento-icon-box purple">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="bento-eyebrow">03. PERFORMANS</div>
-                        <h3>Sıfır Reklam. Saf Hız.</h3>
-                        <p>Gereksiz üçüncü parti takipçiler veya hantal kütüphaneler yok. Flutter ve Dart ile en yüksek yerel performansa kilitlenmiş hafif ve sürdürülebilir mimari.</p>
-                    </div>
-
-                    <div class="bento-card wide reveal">
-                        <div>
-                            <div class="bento-eyebrow">KURUCU & MİMARİ</div>
-                            <h3>Masa başında hayal edilen değil; bizzat nöbette ve sahada ihtiyaç duyulan çözümler.</h3>
-                            <p>
-                                PixelFlow; karmaşık algoritmaları ve yapay zeka şablonlarının gereksiz süslerini bir kenara bırakır. Kullanıcının en yorgun veya en yoğun anında bile tereddüt etmeden tek dokunuşla sonuca ulaşmasını hedefler.
-                            </p>
-                        </div>
-                        <div class="maker-signature-box">
-                            <div class="maker-avatar">OK</div>
+                    <aside class="maker-card reveal">
+                        <blockquote>
+                            İyi bir uygulama sesini çıkarmaz: açarsın, işin biter, hayata dönersin.
+                        </blockquote>
+                        <div class="maker-row">
+                            <span class="maker-avatar" aria-hidden="true">OK</span>
                             <div class="maker-info">
                                 <h4>Okan Kaycı</h4>
-                                <p>Hemşire & Bağımsız Mobil Uygulama Geliştirici<br>İstanbul, Türkiye</p>
+                                <p>Bağımsız mobil uygulama geliştirici</p>
                             </div>
                         </div>
-                    </div>
+                        <div class="maker-meta">
+                            <span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                İstanbul, Türkiye
+                            </span>
+                            <span>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                github.com/okankayci
+                            </span>
+                        </div>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="section">
-            <div class="container contact-layout">
-                <div class="contact-info reveal">
-                    <h2>Doğrudan İletişim</h2>
-                    <p>Uygulamalar hakkında geri bildirim paylaşmak, yeni bir fikir tartışmak veya teknik iş birliği için doğrudan ulaşın.</p>
+        <!-- İLETİŞİM -->
+        <section id="contact" class="section contact">
+            <div class="container contact-grid">
+                <div class="reveal">
+                    <div class="section-head" style="margin-bottom: 0;">
+                        <span class="mono">İletişim</span>
+                        <h2>Doğrudan iletişim.</h2>
+                        <p>Geri bildirim, fikir veya iş birliği için yazın; genellikle aynı gün dönüyorum.</p>
+                    </div>
 
-                    <div class="contact-channels">
-                        <div class="contact-channel-card">
-                            <div class="channel-left">
-                                <div class="channel-icon">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="channel-text">
-                                    <strong>E-posta</strong>
-                                    <span>pixelflowsoftware@gmail.com</span>
-                                </div>
+                    <div class="channel-list">
+                        <div class="channel">
+                            <div class="channel-label">
+                                <span class="mono">E-posta</span>
+                                <a href="mailto:pixelflowsoftware@gmail.com">pixelflowsoftware@gmail.com</a>
                             </div>
                             <button id="copy-email-btn" class="copy-btn" type="button" aria-label="E-posta adresini kopyala">
-                                <i class="fas fa-copy"></i> Kopyala
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Kopyala
                             </button>
                         </div>
-
-                        <div class="contact-channel-card">
-                            <div class="channel-left">
-                                <div class="channel-icon">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="channel-text">
-                                    <strong>Konum</strong>
-                                    <span>İstanbul, Türkiye</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="contact-channel-card">
-                            <div class="channel-left">
-                                <div class="channel-icon">
-                                    <i class="fab fa-github"></i>
-                                </div>
-                                <div class="channel-text">
-                                    <strong>GitHub</strong>
-                                    <span>github.com/okankayci</span>
-                                </div>
+                        <div class="channel">
+                            <div class="channel-label">
+                                <span class="mono">GitHub</span>
+                                <a href="https://github.com/okankayci" target="_blank" rel="noopener">github.com/okankayci</a>
                             </div>
                             <a class="copy-btn" href="https://github.com/okankayci" target="_blank" rel="noopener">
-                                Profil <i class="fas fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i>
+                                Profil
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
                             </a>
                         </div>
+                        <div class="channel">
+                            <div class="channel-label">
+                                <span class="mono">Konum</span>
+                                <span class="val">İstanbul, Türkiye</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <p class="contact-note">Bu site çerez veya izleyici kullanmaz. Uygulamaların veri beyanları ve fiyatlandırma bilgisi mağaza sayfalarında yayımlanır.</p>
                 </div>
 
-                <form class="contact-form reveal reveal-delay-1" id="contact-form" action="https://formspree.io/f/xbdvbagl" method="POST">
+                <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/xbdvbagl" method="POST">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="name">İsim Soyisim</label>
+                            <label for="name">İsim</label>
                             <input type="text" id="name" name="name" placeholder="Adınız Soyadınız" required autocomplete="name">
                         </div>
                         <div class="form-group">
-                            <label for="email">E-posta Adresi</label>
+                            <label for="email">E-posta</label>
                             <input type="email" id="email" name="email" placeholder="ornek@mail.com" required autocomplete="email">
                         </div>
                     </div>
@@ -282,13 +223,11 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Mesaj</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Düşüncelerinizi veya önerilerinizi yazın..." required></textarea>
+                        <textarea id="message" name="message" rows="5" placeholder="Düşüncelerinizi veya önerilerinizi yazın…" required></textarea>
                     </div>
-                    <button type="submit" class="btn primary btn-submit">
-                        <span class="btn-text">Mesajı İlet</span>
-                        <span class="btn-loading" style="display:none;">
-                            <i class="fas fa-spinner fa-spin"></i> İletiliyor...
-                        </span>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <span class="btn-text">Mesajı gönder</span>
+                        <span class="btn-loading" style="display:none;">Gönderiliyor…</span>
                     </button>
                     <div class="form-status" id="form-status" role="alert"></div>
                 </form>
@@ -296,47 +235,47 @@
         </section>
     </main>
 
-    <!-- APPLE MINIMALIST FOOTER -->
     <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu. Tasarım ve kod el yapımıdır.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="#hero">Giriş</a>
-                <a href="#apps">Uygulamalar</a>
-                <a href="#craft">Zanaat & Felsefe</a>
-                <a href="#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="#apps">Uygulamalar</a>
+                    <a href="#craft">Felsefe</a>
+                    <a href="#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="sakura.html">Sakura (Hastane)</a>
-                <a href="jsontools.html">JsonTools (Geliştirici)</a>
-                <a href="linguago.html">LinguaGo (Dil)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                    <a href="projectx.html">ProjectX — geliştirici</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
 
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
 
     <script src="js/data.js"></script>

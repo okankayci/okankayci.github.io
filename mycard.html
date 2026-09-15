@@ -4,129 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyCard | Güvenli Çevrimdışı Kart Kasası</title>
-    <meta name="description" content="MyCard: Kredi ve banka kartlarınızı Face ID / Touch ID koruması altında, tamamen çevrimdışı ve şifreli saklayın.">
+    <title>MyCard — PixelFlow Studio | Güvenlik</title>
+    <meta name="description" content="Kredi ve banka kartlarınız için çevrimdışı, biyometrik kilitli ve şifreli dijital kasa.">
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 </head>
 
-<body class="proj proj-mycard">
-    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
+<body>
+    <a class="skip-link" href="#detail-main">İçeriğe geç</a>
+
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat"><i class="fas fa-times"></i></button>
-                <a href="index.html#hero">Giriş</a>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
                 <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#craft">Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)"><i class="fas fa-moon"></i></button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç"><i class="fas fa-bars"></i></button>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </button>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <main id="proj-main">
-        <section class="proj-hero">
-            <div class="container proj-hero-grid">
-                <div class="reveal-left">
-                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Tüm Uygulamalar</a>
-                    <div class="eyebrow"><i class="fas fa-cube"></i> Güvenlik & Dijital Kasa</div>
-                    <h1>Kartların cebinde,<br>bilgilerin güvende.</h1>
-                    <p class="proj-lead">Biyometrik kilit, AES-256 şifreleme ve tek dokunuşla hızlı kopyalama özellikleri.</p>
-                    <p>MyCard, cüzdanınızı yanınızda taşımak zorunda kalmadan, çevrimdışı çalışan ultra güvenli dijital kart kütüphanenizdir.</p>
-                    <div class="store-badges device-badges">
-                        <span class="category-badge" style="padding: 0.6rem 1.2rem; font-size: 0.88rem;"><i class="fas fa-clock"></i> Geliştirme Aşamasında</span>
+    <main id="detail-main">
+        <section class="detail-hero">
+            <div class="container">
+                <a class="back-link" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tüm uygulamalar</a>
+                <div class="detail-grid">
+                    <div class="detail-copy reveal">
+                        <span class="mono">Eğitim &amp; Araçlar · Güvenlik</span>
+                        <h1>MyCard</h1>
+                        <p class="detail-lead">Kredi ve banka kartlarınız için çevrimdışı, biyometrik kilitli ve şifreli dijital kasa.</p>
+                        <p class="detail-body">MyCard, fiziksel kartlarınızı yanınızda taşımak zorunda kalmadan kart bilgilerinizi Face ID / Touch ID koruması altında ve çevrimdışı güvenle saklar.</p>
+                        <div class="detail-status">
+                            <span class="status-tag coming"><span class="dot"></span>Geliştiriliyor</span>
+                            <div class="platforms"><span>iOS</span><span>Android</span></div>
+                        </div>
                     </div>
+                    <div class="detail-visual reveal">
+                        <div class="detail-icon-float">
+                    <img src="assets/apps/mycard.png" alt="MyCard ikonu" width="96" height="96">
+                    <p class="mono">MyCard<br>Geliştirme aşamasında</p>
                 </div>
-                <div class="reveal-right">
-                    <div class="device" style="max-width:320px;margin:0 auto;display:flex;align-items:center;justify-content:center;padding:3rem 2rem;background:var(--surface);border-radius:var(--radius-xl);border:1px solid var(--border);box-shadow:var(--shadow-xl);">
-                        <img src="assets/apps/mycard.png" alt="MyCard | Güvenli Çevrimdışı Kart Kasası İkonu" width="120" height="120" style="border-radius:var(--radius-2xl);box-shadow:var(--shadow-lg);">
                     </div>
                 </div>
             </div>
         </section>
-
-        <section class="section">
+        <section class="section" style="padding-top: 48px;">
             <div class="container">
                 <div class="section-head reveal">
-                    <h2>Öne Çıkan Özellikler</h2>
-                    <p>Kullanıcı odaklı mimari ve yüksek performans standartları.</p>
+                    <span class="mono">Neler içerir</span>
+                    <h2>Öne çıkan özellikler.</h2>
                 </div>
-                <div class="icon-cards stagger-grid">
-                    <div class="icon-card"><div class="ic"><i class="fas fa-fingerprint"></i></div><h3>Biyometrik Doğrulama</h3><p>Yalnızca Face ID veya parmak izinizle açılan güvenli kasa.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-shield-halved"></i></div><h3>%100 Çevrimdışı</h3><p>İnternet izni istemez; veriler cihazınızın dışına asla çıkamaz.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-copy"></i></div><h3>Hızlı Kopyalama</h3><p>Kart numarası ve son kullanma tarihini tek dokunuşla kopyalayın.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-palette"></i></div><h3>Kart Tasarımları</h3><p>Her kart için banka renkleri ve özel kaplama temaları.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-eye-slash"></i></div><h3>Otomatik Gizleme</h3><p>Uygulama arka plana geçtiğinde ekranı anında karartır.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-ban"></i></div><h3>Sıfır Reklam</h3><p>Güvenlik uygulamasında reklam ve üçüncü taraf takipçi bulunmaz.</p></div>
+                <div class="feature-grid reveal">
+                    
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Biyometrik kilit ve yerel şifreleme</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Tek dokunuşla kart numarası ve son kullanma kopyalama</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Kart renk ve banka özelleştirmeleri</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>%100 çevrimdışı çalışma garantisi</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="shots-empty reveal">
+                    <span class="mono">Galeri</span>
+                    <p>İlk sürümün ekran görüntüleri hazırlanıyor. Bu arada yukarıdaki özellik listesi uygulamayı iyi anlatıyor.</p>
                 </div>
             </div>
         </section>
 
-        <section class="proj-cta">
-            <div class="container reveal">
-                <img src="assets/apps/mycard.png" alt="MyCard | Güvenli Çevrimdışı Kart Kasası" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
-                <h2>Gelişmelerden haberdar olun</h2>
-                <p>Uygulama yayınlandığında ilk siz deneyimleyin.</p>
-                <div class="store-badges device-badges" style="justify-content:center;">
-                    <a href="index.html#apps" class="btn primary"><i class="fas fa-arrow-left"></i> Kataloğa Dön</a>
-                </div>
+        <div class="detail-cta">
+            <div class="container detail-cta-inner">
+                <a class="btn btn-ghost" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kataloğa dön</a>
+                <a class="next-app" href="pharmalens.html">
+                    <span class="mono">Sıradaki<br>uygulama</span>
+                    <span class="next-name"><b>PharmaLens</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu. Tasarım ve kod el yapımıdır.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
-                <a href="index.html#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="index.html#apps">Uygulamalar</a>
+                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="projectx.html">ProjectX (Geliştirici)</a>
-                <a href="recuro.html">Recuro (Finans)</a>
-                <a href="markdown.html">Markdown (Editör)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                    <a href="projectx.html">ProjectX — geliştirici</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
 
-    <script src="js/page.js"></script>
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

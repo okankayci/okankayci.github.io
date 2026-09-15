@@ -1,120 +1,93 @@
-// Shared behaviour for the bespoke project pages:
-// mobile nav, theme toggle, header scroll state and scroll-reveal.
-document.addEventListener('DOMContentLoaded', () => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/**
+ * PixelFlow Studio — alt sayfa ortak davranışı
+ * Tema, mobil gezinme, yukarı çık ve görünüm efektleri.
+ * DOMContentLoaded sonrası çalışır; böylece yasal sayfalarda
+ * legal-pages.js'in enjekte ettiği kabuk da taranabilir.
+ */
+(() => {
+  'use strict';
 
-    // ── Mobile Nav ─────────────────────────────
-    const hamburger = document.querySelector('.hamburger');
-    const nav = document.querySelector('.nav');
-    const navClose = document.querySelector('.nav-close');
+  const init = () => {
 
-    if (hamburger && nav) {
-        hamburger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            hamburger.querySelector('i').className = nav.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        });
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        if (navClose) {
-            navClose.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            });
+  /* ── TEMA ──────────────────────────────────────────────── */
+  const applyTheme = (theme) => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('pf-theme', theme);
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.content = theme === 'dark' ? '#101412' : '#f7f8f5';
+    });
+  };
+
+  const storedTheme = localStorage.getItem('pf-theme');
+  applyTheme(storedTheme || (prefersDark.matches ? 'dark' : 'light'));
+
+  prefersDark.addEventListener('change', (e) => {
+    if (!localStorage.getItem('pf-theme')) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
+  document.querySelectorAll('.theme-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    });
+  });
+
+  /* ── MOBİL GEZİNME ─────────────────────────────────────── */
+  const nav = document.getElementById('site-nav');
+
+  document.querySelector('.hamburger')?.addEventListener('click', () => {
+    nav.classList.add('active');
+    document.body.classList.add('nav-open');
+  });
+
+  const closeNav = () => {
+    nav?.classList.remove('active');
+    document.body.classList.remove('nav-open');
+  };
+
+  document.querySelector('.nav-close')?.addEventListener('click', closeNav);
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeNav));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNav();
+  });
+
+  /* ── YUKARI ÇIK ────────────────────────────────────────── */
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+    });
+  }
+
+  /* ── SCROLL REVEAL ─────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
+    revealEls.forEach((el) => observer.observe(el));
+  }
 
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                hamburger.querySelector('i').className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            });
-        });
-    }
+  };
 
-    // ── Theme Toggle ───────────────────────────
-    const themeToggle = document.querySelector('.theme-toggle');
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    const setTheme = (theme) => {
-        if (theme === 'dark') {
-            document.body.setAttribute('data-theme', 'dark');
-        } else if (theme === 'light') {
-            document.body.setAttribute('data-theme', 'light');
-        } else {
-            document.body.removeAttribute('data-theme');
-        }
-
-        const metaTheme = document.querySelector('meta[name="theme-color"]');
-        if (metaTheme) {
-            metaTheme.content = theme === 'dark' ? '#000000' : '#f5f5f7';
-        }
-
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-                icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-    };
-
-    const savedTheme = localStorage.getItem('pf-theme') || localStorage.getItem('theme');
-    setTheme(savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light'));
-
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            const current = document.body.getAttribute('data-theme') || (prefersDark ? 'dark' : 'light');
-            const next = current === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('pf-theme', next);
-            localStorage.setItem('theme', next);
-            setTheme(next);
-        });
-    }
-
-    // ── Header Scroll State ────────────────────
-    const header = document.querySelector('.site-header');
-    if (header) {
-        const handleScroll = () => header.classList.toggle('scrolled', window.scrollY > 20);
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll();
-    }
-
-    // ── Scroll-triggered Reveals ───────────────
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-fade');
-    const staggerEls = document.querySelectorAll('.stagger-grid');
-    const backToTop = document.querySelector('.back-to-top');
-
-    if (prefersReducedMotion) {
-        revealEls.forEach(el => el.classList.add('visible'));
-        staggerEls.forEach(el => el.classList.add('animate'));
-        if (backToTop) backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        return;
-    }
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-    revealEls.forEach(el => revealObserver.observe(el));
-
-    const staggerObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate');
-                staggerObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-    staggerEls.forEach(el => staggerObserver.observe(el));
-
-    // ── Back to Top ─────────────────────────────
-    if (backToTop) {
-        const handleBackToTop = () => backToTop.classList.toggle('visible', window.scrollY > 400);
-        window.addEventListener('scroll', handleBackToTop, { passive: true });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
-});
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

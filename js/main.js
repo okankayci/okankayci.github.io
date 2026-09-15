@@ -1,303 +1,293 @@
 /**
- * PixelFlow Studio - Apple HIG Client Logic
- * Handles dynamic rendering, segmented tabs, Apple hardware showcase,
- * smooth scrolling, copy actions, and theme switching.
+ * PixelFlow Studio — ana sayfa mantığı
+ * Tema, gezinme, vitrin, katalog, iletişim formu ve görünüm efektleri.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // ── THEME MANAGEMENT ─────────────────────────────────────────
-  const themeToggle = document.querySelector('.theme-toggle');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+(() => {
+  'use strict';
 
+  const EMAIL = 'pixelflowsoftware@gmail.com';
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const getApps = () =>
+    (typeof applications !== 'undefined' ? applications : window.applications) || [];
+
+  /* Türkçe karakterleri güvenli slug'a çevirir (Kan Bağışı → kanbagisi) */
+  const slugify = (name) =>
+    name.toLowerCase().trim()
+      .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
+      .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]/g, '') + '.html';
+
+  const isRealUrl = (url) => !!url && url !== '#';
+
+  const storeUrl = (app) => {
+    if (isRealUrl(app.app_store_url)) return app.app_store_url;
+    if (isRealUrl(app.google_play_url)) return app.google_play_url;
+    return null;
+  };
+
+  /* ── İKONLAR (inline SVG) ──────────────────────────────── */
+  const ICONS = {
+    arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
+    arrowUpRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>'
+  };
+
+  /* ── TEMA ──────────────────────────────────────────────── */
   const applyTheme = (theme) => {
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('pf-theme', theme);
-
-    if (themeToggle) {
-      const icon = themeToggle.querySelector('i');
-      if (icon) {
-        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-      }
-    }
-
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) {
-      metaTheme.content = theme === 'dark' ? '#000000' : '#f5f5f7';
-    }
+    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
+      meta.content = theme === 'dark' ? '#101412' : '#f7f8f5';
+    });
   };
 
   const storedTheme = localStorage.getItem('pf-theme');
-  if (storedTheme) {
-    applyTheme(storedTheme);
-  } else if (prefersDark.matches) {
-    applyTheme('dark');
-  } else {
-    applyTheme('light');
-  }
+  applyTheme(storedTheme || (prefersDark.matches ? 'dark' : 'light'));
 
-  if (themeToggle) {
-    themeToggle.addEventListener('click', () => {
+  prefersDark.addEventListener('change', (e) => {
+    if (!localStorage.getItem('pf-theme')) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
+  document.querySelectorAll('.theme-toggle').forEach((btn) => {
+    btn.addEventListener('click', () => {
       const current = document.body.getAttribute('data-theme') || 'light';
       applyTheme(current === 'dark' ? 'light' : 'dark');
     });
-  }
-
-  prefersDark.addEventListener('change', (e) => {
-    if (!localStorage.getItem('pf-theme')) {
-      applyTheme(e.matches ? 'dark' : 'light');
-    }
   });
 
-  // ── NAVIGATION & MOBILE DRAWER ───────────────────────────────
-  const hamburger = document.querySelector('.hamburger');
-  const nav = document.querySelector('.nav');
-  const navClose = document.querySelector('.nav-close');
+  /* ── MOBİL GEZİNME ─────────────────────────────────────── */
+  const nav = document.getElementById('site-nav');
 
-  if (hamburger && nav) {
-    hamburger.addEventListener('click', () => {
-      nav.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-  }
+  document.querySelector('.hamburger')?.addEventListener('click', () => {
+    nav.classList.add('active');
+    document.body.classList.add('nav-open');
+  });
 
   const closeNav = () => {
-    if (nav) {
-      nav.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+    nav?.classList.remove('active');
+    document.body.classList.remove('nav-open');
   };
 
-  if (navClose) navClose.addEventListener('click', closeNav);
+  document.querySelector('.nav-close')?.addEventListener('click', closeNav);
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeNav));
 
-  document.querySelectorAll('.nav a').forEach(link => {
-    link.addEventListener('click', closeNav);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeNav();
   });
 
-  // ── ACTIVE NAVIGATION HIGHLIGHTING ───────────────────────────
-  const sections = document.querySelectorAll('main section[id]');
-  const navLinks = document.querySelectorAll('.nav a[href^="#"]');
+  /* ── KAYDIRMA İZLEYİCİ ─────────────────────────────────── */
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
 
   const highlightNav = () => {
-    const scrollY = window.scrollY + 100;
-    sections.forEach(section => {
-      const top = section.offsetTop;
-      const height = section.offsetHeight;
-      const id = section.getAttribute('id');
-      if (scrollY >= top && scrollY < top + height) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
+    const pos = window.scrollY + 120;
+    let activeId = '';
+    sections.forEach((section) => {
+      if (pos >= section.offsetTop && pos < section.offsetTop + section.offsetHeight) {
+        activeId = section.id;
       }
+    });
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${activeId}`);
     });
   };
-  window.addEventListener('scroll', highlightNav, { passive: true });
 
-  // ── BACK TO TOP BUTTON ───────────────────────────────────────
-  const backToTopBtn = document.querySelector('.back-to-top');
-  if (backToTopBtn) {
-    window.addEventListener('scroll', () => {
-      backToTopBtn.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
+  /* ── YUKARI ÇIK ────────────────────────────────────────── */
+  const backToTop = document.querySelector('.back-to-top');
 
-    backToTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-
-  // ── APPLE HARDWARE SHOWCASE (Hero Vitrin) ───────────────────
-  const showcaseTabs = document.querySelectorAll('.showcase-tab-btn');
-  const showcaseIcon = document.getElementById('showcase-icon');
-  const showcaseCategory = document.getElementById('showcase-category');
-  const showcaseTitle = document.getElementById('showcase-title');
-  const showcaseDesc = document.getElementById('showcase-desc');
-  const showcaseFeatures = document.getElementById('showcase-features');
-  const showcaseStoreBtn = document.getElementById('showcase-store-btn');
-  const showcasePlayBtn = document.getElementById('showcase-play-btn');
-  const showcaseDetailLink = document.getElementById('showcase-detail-link');
-  const showcaseImg = document.getElementById('showcase-img');
-
-  const getApps = () => (typeof applications !== 'undefined' ? applications : (typeof window !== 'undefined' ? window.applications : [])) || [];
-  const appsList = getApps();
-
-  if (appsList.length > 0) {
-    const showcaseApps = {
-      routly: appsList.find(a => a.name.toLowerCase() === 'routly'),
-      jsontools: appsList.find(a => a.name.toLowerCase() === 'jsontools'),
-      markdown: appsList.find(a => a.name.toLowerCase() === 'markdown'),
-      shiflabs: appsList.find(a => a.name.toLowerCase() === 'shiflabs')
-    };
-
-    const updateShowcase = (appKey) => {
-      const app = showcaseApps[appKey];
-      if (!app) return;
-
-      if (showcaseIcon) {
-        showcaseIcon.src = app.icon;
-        showcaseIcon.alt = `${app.name} İkonu`;
-      }
-      if (showcaseCategory) {
-        showcaseCategory.textContent = app.categoryLabel || app.category;
-      }
-      if (showcaseTitle) {
-        showcaseTitle.textContent = app.name;
-      }
-      if (showcaseDesc) {
-        showcaseDesc.textContent = app.description;
-      }
-      if (showcaseFeatures && app.features) {
-        showcaseFeatures.innerHTML = app.features.slice(0, 4).map(f => `<li>${f}</li>`).join('');
-      }
-
-      if (showcaseStoreBtn) {
-        if (app.app_store_url) {
-          showcaseStoreBtn.href = app.app_store_url;
-          showcaseStoreBtn.style.display = 'inline-flex';
-        } else {
-          showcaseStoreBtn.style.display = 'none';
-        }
-      }
-
-      if (showcasePlayBtn) {
-        if (app.google_play_url) {
-          showcasePlayBtn.href = app.google_play_url;
-          showcasePlayBtn.style.display = 'inline-flex';
-        } else {
-          showcasePlayBtn.style.display = 'none';
-        }
-      }
-
-      if (showcaseDetailLink) {
-        showcaseDetailLink.href = `${app.name.toLowerCase()}.html`;
-      }
-
-      if (showcaseImg) {
-        showcaseImg.style.opacity = '0';
-        setTimeout(() => {
-          showcaseImg.src = app.screenshots && app.screenshots[0] ? app.screenshots[0] : '';
-          showcaseImg.alt = `${app.name} Ekran Görüntüsü`;
-          showcaseImg.style.opacity = '1';
-        }, 150);
-      }
-    };
-
-    showcaseTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        showcaseTabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        updateShowcase(tab.dataset.app);
-      });
-    });
-  }
-
-  // ── APP CATALOG RENDERING ────────────────────────────────────
-  const renderApps = (filter = 'all') => {
-    const container = document.getElementById('apps-container');
-    const appsList = getApps();
-    if (!container || appsList.length === 0) return;
-
-    const filtered = filter === 'all'
-      ? appsList
-      : appsList.filter(app => app.category === filter);
-
-    container.innerHTML = filtered.map(app => {
-      const isAvailable = app.status === 'available';
-      const statusText = isAvailable ? 'Yayında' : 'Geliştiriliyor';
-      const statusClass = isAvailable ? 'available' : 'coming-soon';
-      const pageMap = {
-        'kan bağışı': 'kanbagisi.html',
-        'kan bagisi': 'kanbagisi.html'
-      };
-      const cleanName = app.name.toLowerCase().trim();
-      const detailHref = pageMap[cleanName] || `${cleanName.replace(/\s+/g, '')}.html`;
-
-      const featuresHtml = app.features && app.features.length > 0
-        ? `<ul class="app-card-features">
-            ${app.features.slice(0, 2).map(f => `<li>${f}</li>`).join('')}
-           </ul>`
-        : '';
-
-      const platformsHtml = app.platforms && app.platforms.length > 0
-        ? `<div class="app-platforms">
-            ${app.platforms.map(p => `<span class="platform-pill">${p}</span>`).join('')}
-           </div>`
-        : '';
-
-      const directStoreBtn = app.app_store_url
-        ? `<a class="btn primary btn-xs" href="${app.app_store_url}" target="_blank" rel="noopener" aria-label="${app.name} App Store'da indir">
-            <i class="fab fa-apple"></i> İndir
-           </a>`
-        : '';
-
-      return `
-        <article class="app-card" data-category="${app.category}">
-          <div>
-            <div class="app-card-top">
-              <img class="app-card-icon" src="${app.icon}" alt="${app.name} İkonu" width="56" height="56" loading="lazy">
-              <div class="app-card-badges">
-                <span class="category-badge">${app.categoryLabel || app.category}</span>
-                <span class="status-badge ${statusClass}">● ${statusText}</span>
-              </div>
-            </div>
-            <div class="app-card-body">
-              <h3>${app.name}</h3>
-              <p>${app.description}</p>
-              ${featuresHtml}
-            </div>
-          </div>
-          <div class="app-card-footer">
-            ${platformsHtml}
-            <div class="app-card-action-group">
-              ${directStoreBtn}
-              <a class="app-card-link" href="${detailHref}" aria-label="${app.name} detaylarını gör">
-                Detaylar <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
-              </a>
-            </div>
-          </div>
-        </article>
-      `;
-    }).join('');
+  const onScroll = () => {
+    highlightNav();
+    backToTop?.classList.toggle('visible', window.scrollY > 400);
   };
 
-  renderApps('all');
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-  // Filter Buttons
-  const filterButtons = document.querySelectorAll('.filter-btn');
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      renderApps(btn.dataset.category);
-    });
+  backToTop?.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   });
 
-  // ── SINGLE-CLICK COPY EMAIL ──────────────────────────────────
+  /* ── İSTATİSTİK ŞERİDİ (gerçek ve doğrulanabilir) ──────── */
+  const statsEl = document.getElementById('hero-stats');
+  if (statsEl) {
+    const apps = getApps();
+    const liveCount = apps.filter((a) => a.status === 'available').length;
+    const platformCount = new Set(
+      apps.filter((a) => a.status === 'available').flatMap((a) => a.platforms || [])
+    ).size;
+    const stats = [
+      { n: apps.length, label: 'ürün' },
+      { n: liveCount, label: 'yayında' },
+      { n: platformCount, label: 'platform' },
+      { n: 1, label: 'geliştirici' }
+    ];
+    statsEl.innerHTML = stats.map((s) => `
+      <div class="hero-stat">
+        <b>${s.n}</b>
+        <span>${s.label}</span>
+      </div>
+    `).join('');
+  }
+
+  /* ── VİTRİN ────────────────────────────────────────────── */
+  const showcaseImg = document.getElementById('showcase-img');
+  const showcaseTabs = document.getElementById('showcase-tabs');
+
+  if (showcaseImg && showcaseTabs) {
+    const featured = getApps()
+      .filter((a) => a.flagship && a.screenshots && a.screenshots.length > 0)
+      .slice(0, 5);
+
+    let fadeTimer = null;
+
+    const setScreen = (app) => {
+      const src = app.screenshots[0] || '';
+      if (!src) return;
+      if (prefersReducedMotion) {
+        showcaseImg.src = src;
+        return;
+      }
+      showcaseImg.classList.add('is-fading');
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => {
+        showcaseImg.src = src;
+        showcaseImg.alt = `${app.name} ekran görüntüsü`;
+        showcaseImg.classList.remove('is-fading');
+      }, 180);
+    };
+
+    const selectTab = (app) => {
+      showcaseTabs.querySelectorAll('.showcase-tab').forEach((tab) => {
+        const active = tab.dataset.app === app.name;
+        tab.classList.toggle('active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+      setScreen(app);
+    };
+
+    featured.forEach((app, index) => {
+      const tab = document.createElement('button');
+      tab.type = 'button';
+      tab.className = 'showcase-tab' + (index === 0 ? ' active' : '');
+      tab.textContent = app.name;
+      tab.dataset.app = app.name;
+      tab.setAttribute('role', 'tab');
+      tab.setAttribute('aria-selected', String(index === 0));
+      tab.addEventListener('click', () => selectTab(app));
+      showcaseTabs.appendChild(tab);
+    });
+
+    if (featured.length > 0) {
+      showcaseImg.src = featured[0].screenshots[0];
+      showcaseImg.alt = `${featured[0].name} ekran görüntüsü`;
+    }
+  }
+
+  /* ── KATALOG ───────────────────────────────────────────── */
+  const appsContainer = document.getElementById('apps-container');
+  const filtersEl = document.getElementById('filters');
+
+  const CATEGORIES = [
+    { id: 'all', label: 'Tümü' },
+    { id: 'health', label: 'Sağlık & Vardiya' },
+    { id: 'family', label: 'Aile & Yaşam' },
+    { id: 'tools', label: 'Eğitim & Araçlar' }
+  ];
+
+  const cardHtml = (app) => {
+    const isAvailable = app.status === 'available';
+    const tag = app.tag ? (app.tag === 'Flagship' ? 'Öncü ürün' : app.tag) : '';
+    const tagLine = [app.categoryLabel, tag].filter(Boolean).join(' · ');
+    const statusTag = isAvailable
+      ? '<span class="status-tag available"><span class="dot"></span>Yayında</span>'
+      : '<span class="status-tag coming"><span class="dot"></span>Geliştiriliyor</span>';
+
+    const platforms = (app.platforms || [])
+      .map((p) => `<span>${p}</span>`).join('');
+
+    const download = isAvailable && storeUrl(app)
+      ? `<a class="card-link" href="${storeUrl(app)}" target="_blank" rel="noopener" aria-label="${app.name} mağazada indir">İndir ${ICONS.arrowUpRight}</a>`
+      : '';
+
+    return `
+      <article class="app-card">
+        <div class="app-card-top">
+          <img class="app-icon" src="${app.icon}" alt="${app.name} ikonu" width="52" height="52" loading="lazy">
+          ${statusTag}
+        </div>
+        <div>
+          <h3>${app.name}</h3>
+          <p class="app-tag">${tagLine}</p>
+          <p class="app-desc">${app.description}</p>
+        </div>
+        <div class="app-card-footer">
+          <div class="platforms">${platforms}</div>
+          <div class="card-links">
+            ${download}
+            <a class="card-link" href="${slugify(app.name)}" aria-label="${app.name} detayları">İncele ${ICONS.arrowRight}</a>
+          </div>
+        </div>
+      </article>
+    `;
+  };
+
+  const renderApps = (categoryId = 'all') => {
+    const apps = getApps().filter((a) => categoryId === 'all' || a.category === categoryId);
+    if (!appsContainer) return;
+    appsContainer.innerHTML = apps.map(cardHtml).join('');
+  };
+
+  if (filtersEl && appsContainer) {
+    const apps = getApps();
+    filtersEl.innerHTML = CATEGORIES.map((cat) => {
+      const count = cat.id === 'all'
+        ? apps.length
+        : apps.filter((a) => a.category === cat.id).length;
+      return `
+        <button class="filter-btn${cat.id === 'all' ? ' active' : ''}" type="button"
+                data-category="${cat.id}" role="tab" aria-selected="${cat.id === 'all'}">
+          ${cat.label}<span class="count">${count}</span>
+        </button>
+      `;
+    }).join('');
+
+    filtersEl.querySelectorAll('.filter-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filtersEl.querySelectorAll('.filter-btn').forEach((b) => {
+          b.classList.remove('active');
+          b.setAttribute('aria-selected', 'false');
+        });
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
+        renderApps(btn.dataset.category);
+      });
+    });
+
+    renderApps('all');
+  }
+
+  /* ── E-POSTA KOPYALA ───────────────────────────────────── */
   const copyBtn = document.getElementById('copy-email-btn');
   if (copyBtn) {
+    const original = copyBtn.innerHTML;
     copyBtn.addEventListener('click', () => {
-      const email = 'pixelflowsoftware@gmail.com';
-      navigator.clipboard.writeText(email).then(() => {
-        const originalHtml = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i> Kopyalandı!';
-        copyBtn.style.background = 'var(--success-light)';
-        copyBtn.style.color = 'var(--success)';
-        copyBtn.style.borderColor = 'var(--success)';
+      const done = () => {
+        copyBtn.classList.add('is-copied');
+        copyBtn.innerHTML = `${ICONS.arrowRight} Kopyalandı`;
         setTimeout(() => {
-          copyBtn.innerHTML = originalHtml;
-          copyBtn.style.background = '';
-          copyBtn.style.color = '';
-          copyBtn.style.borderColor = '';
-        }, 2200);
-      }).catch(() => {
-        window.location.href = `mailto:${email}`;
+          copyBtn.classList.remove('is-copied');
+          copyBtn.innerHTML = original;
+        }, 2000);
+      };
+      navigator.clipboard.writeText(EMAIL).then(done).catch(() => {
+        window.location.href = `mailto:${EMAIL}`;
       });
     });
   }
 
-  // ── FORMSPREE AJAX SUBMISSION ────────────────────────────────
+  /* ── FORMSPREE FORMU ───────────────────────────────────── */
   const form = document.getElementById('contact-form');
   const statusDiv = document.getElementById('form-status');
 
@@ -305,35 +295,32 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector('.btn-submit');
-      const btnText = submitBtn ? submitBtn.querySelector('.btn-text') : null;
-      const btnLoading = submitBtn ? submitBtn.querySelector('.btn-loading') : null;
+      const btnText = submitBtn?.querySelector('.btn-text');
+      const btnLoading = submitBtn?.querySelector('.btn-loading');
 
       if (submitBtn) submitBtn.disabled = true;
       if (btnText) btnText.style.display = 'none';
-      if (btnLoading) btnLoading.style.display = 'inline-flex';
-      statusDiv.style.display = 'none';
+      if (btnLoading) btnLoading.style.display = 'inline';
       statusDiv.className = 'form-status';
 
       try {
-        const formData = new FormData(form);
         const response = await fetch(form.action, {
           method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
         });
 
         if (response.ok) {
           form.reset();
           statusDiv.className = 'form-status success';
-          statusDiv.textContent = 'Mesajınız başarıyla iletildi. En kısa sürede dönüş yapılacaktır.';
+          statusDiv.textContent = 'Mesajınız iletildi. En kısa sürede dönüş yapacağım.';
         } else {
-          const data = await response.json();
           statusDiv.className = 'form-status error';
-          statusDiv.textContent = data.error || 'Mesaj iletilirken bir hata oluştu. Lütfen tekrar deneyin.';
+          statusDiv.textContent = 'Mesaj iletilirken bir hata oluştu. Lütfen tekrar deneyin.';
         }
-      } catch (err) {
+      } catch {
         statusDiv.className = 'form-status error';
-        statusDiv.textContent = 'Bağlantı hatası oluştu. Lütfen doğrudan e-posta ile ulaşın.';
+        statusDiv.textContent = 'Bağlantı hatası. Doğrudan e-posta ile ulaşabilirsiniz.';
       } finally {
         if (submitBtn) submitBtn.disabled = false;
         if (btnText) btnText.style.display = 'inline';
@@ -342,20 +329,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ── SCROLL REVEAL OBSERVER ───────────────────────────────────
-  const reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && reveals.length > 0) {
+  /* ── SCROLL REVEAL ─────────────────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach((el) => el.classList.add('visible'));
+  } else {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
-
-    reveals.forEach(el => observer.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('visible'));
+    revealEls.forEach((el) => observer.observe(el));
   }
-});
+})();

@@ -4,205 +4,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toolbox | Hepsi Bir Arada Arac Seti</title>
-    <meta name="description" content="Toolbox: Birim cevirici, QR kod, renk secici, sifre olusturucu ve daha fazlasi. Gunluk dijital ihtiyaclariniz için hepsi bir arada arac seti.">
+    <title>Toolbox — PixelFlow Studio | Yardımcı</title>
+    <meta name="description" content="Birim çevirici, hassas renk seçici, QR kod üretici ve sayaç gibi günlük dijital ihtiyaçlar tek cepte.">
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="theme-color" content="#475569" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
-    <style>
-        /* ── Toolbox · slate, renkli araclar, moduler ── */
-        body.proj-toolbox {
-            --accent: #475569;
-            --accent-hover: #334155;
-            --accent-warm: #64748b;
-            --accent-light: rgba(71, 85, 105, 0.1);
-            --gradient: linear-gradient(135deg, #64748b 0%, #475569 55%, #334155 100%);
-            --gradient-subtle: linear-gradient(135deg, rgba(100,116,139,0.08) 0%, rgba(71,85,105,0.04) 100%);
-            --ring: rgba(71, 85, 105, 0.25);
-            --shadow-glow: 0 0 40px rgba(71, 85, 105, 0.15);
-        }
-        body.proj-toolbox[data-theme="dark"],
-        body.proj-toolbox:not([data-theme="light"]) {
-            --accent: #94a3b8;
-            --accent-hover: #cbd5e1;
-            --accent-warm: #cbd5e1;
-            --accent-light: rgba(148, 163, 184, 0.14);
-            --gradient: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 55%, #64748b 100%);
-            --ring: rgba(148, 163, 184, 0.3);
-            --shadow-glow: 0 0 40px rgba(148, 163, 184, 0.2);
-        }
-
-        /* Tool tile grid (in-device mockup) */
-        .tool-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-top: 0.4rem; }
-        .tool-mini .t {
-            aspect-ratio: 1; border-radius: 14px; display: grid; place-items: center;
-            color: #fff; font-size: 1.15rem; box-shadow: var(--shadow-sm);
-        }
-        .tm1 { background: #6366f1; } .tm2 { background: #0ea5e9; } .tm3 { background: #10b981; }
-        .tm4 { background: #f59e0b; } .tm5 { background: #ec4899; } .tm6 { background: #8b5cf6; }
-
-        /* Colorful tool cards on the page */
-        .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; }
-        .tool-card {
-            background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
-            padding: 1.5rem; display: flex; align-items: center; gap: 1rem;
-            transition: all 0.3s var(--ease);
-        }
-        .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--border-hover); }
-        .tool-card .ti {
-            width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center;
-            color: #fff; font-size: 1.2rem; flex-shrink: 0;
-        }
-        .tool-card h3 { font-size: 1.02rem; margin-bottom: 0.15rem; }
-        .tool-card p { font-size: 0.82rem; margin: 0; }
-        .ti1 { background: linear-gradient(135deg,#818cf8,#6366f1); }
-        .ti2 { background: linear-gradient(135deg,#38bdf8,#0ea5e9); }
-        .ti3 { background: linear-gradient(135deg,#34d399,#10b981); }
-        .ti4 { background: linear-gradient(135deg,#fbbf24,#f59e0b); }
-        .ti5 { background: linear-gradient(135deg,#f472b6,#ec4899); }
-        .ti6 { background: linear-gradient(135deg,#a78bfa,#8b5cf6); }
-    </style>
 </head>
 
-<body class="proj proj-toolbox">
-    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
-        <header class="site-header">
+<body>
+    <a class="skip-link" href="#detail-main">İçeriğe geç</a>
+
+    <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat"><i class="fas fa-times"></i></button>
-                <a href="index.html#hero">Giriş</a>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
                 <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#craft">Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)"><i class="fas fa-moon"></i></button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç"><i class="fas fa-bars"></i></button>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </button>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <main id="proj-main">
-        <section class="proj-hero">
-            <div class="container proj-hero-grid">
-                <div class="reveal-left">
-                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Tüm Uygulamalar</a>
-                    <div class="eyebrow"><i class="fas fa-toolbox"></i> Cok Amacli Araclar</div>
-                    <h1>Ihtiyacin olan arac,<br>hep cebinde.</h1>
-                    <p class="proj-lead">Gunluk dijital ihtiyaclarin için hepsi bir arada arac seti.</p>
-                    <p>Toolbox; birim cevirici, renk secici, QR kod olusturucu ve daha bircok faydali araci tek bir cati altinda toplar. Sade arayuzu ile ihtiyacin olan araca saniyeler içinde ulas.</p>
-                    <div class="store-badges device-badges">
-                        <a href="index.html#contact" class="store-badge"><i class="fas fa-bell"></i> Haberdar Ol</a>
+    <main id="detail-main">
+        <section class="detail-hero">
+            <div class="container">
+                <a class="back-link" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tüm uygulamalar</a>
+                <div class="detail-grid">
+                    <div class="detail-copy reveal">
+                        <span class="mono">Eğitim &amp; Araçlar · Yardımcı</span>
+                        <h1>Toolbox</h1>
+                        <p class="detail-lead">Birim çevirici, hassas renk seçici, QR kod üretici ve sayaç gibi günlük dijital ihtiyaçlar tek cepte.</p>
+                        <p class="detail-body">Toolbox; birim çevirici, renk seçici, QR kod oluşturucu ve daha birçok faydalı aracı tek bir çatı altında toplar. Sade arayüzü ile ihtiyacınız olan araca saniyeler içinde ulaşın.</p>
+                        <div class="detail-status">
+                            <span class="status-tag available"><span class="dot"></span>Yayında</span>
+                            <div class="platforms"><span>iOS</span><span>Android</span></div>
+                        </div>
+                <div class="store-badges">
+                    
+                    
+                </div>
+                    </div>
+                    <div class="detail-visual reveal">
+                        <div class="phone">
+                    <div class="phone-screen">
+                        <img src="assets/apps/toolbox/1.png" alt="Toolbox ekran görüntüsü">
                     </div>
                 </div>
-                <div class="reveal-right">
-                    <div class="device">
-                        <div class="device-screen">
-                            <div style="font-family:var(--font-display);font-weight:600;font-size:0.9rem;color:var(--text);margin-bottom:0.2rem;">Araclar</div>
-                            <div class="tool-mini">
-                                <div class="t tm1"><i class="fas fa-right-left"></i></div>
-                                <div class="t tm2"><i class="fas fa-qrcode"></i></div>
-                                <div class="t tm3"><i class="fas fa-palette"></i></div>
-                                <div class="t tm4"><i class="fas fa-key"></i></div>
-                                <div class="t tm5"><i class="fas fa-stopwatch"></i></div>
-                                <div class="t tm6"><i class="fas fa-note-sticky"></i></div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
+        <section class="section" style="padding-top: 48px;">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="mono">Neler içerir</span>
+                    <h2>Öne çıkan özellikler.</h2>
+                </div>
+                <div class="feature-grid reveal">
+                    
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Kapsamlı metrik ve emperyal birim çevirici</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Kamera ve galeriden HEX/RGB renk yakalayıcı</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Hızlı çevrimdışı QR kod üretici ve tarayıcı</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Güçlü parola ve şifre oluşturma aracı</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="container">
                 <div class="section-head reveal">
-                    <div class="eyebrow">Araclar</div>
-                    <h2>Tek uygulama, onlarca is</h2>
-                    <p>Her biri hizli ve sade; ihtiyacin olan araci sec, isini bitir.</p>
+                    <span class="mono">Galeri</span>
+                    <h2>Uygulamadan görünümler.</h2>
                 </div>
-                <div class="tools stagger-grid">
-                    <div class="tool-card"><div class="ti ti1"><i class="fas fa-right-left"></i></div><div><h3>Birim Donusturucu</h3><p>Uzunluk, agirlik, sicaklik ve daha fazlasi.</p></div></div>
-                    <div class="tool-card"><div class="ti ti2"><i class="fas fa-qrcode"></i></div><div><h3>QR Kod</h3><p>QR olustur ve aninda okut.</p></div></div>
-                    <div class="tool-card"><div class="ti ti3"><i class="fas fa-palette"></i></div><div><h3>Renk Secici</h3><p>Renk sec, palet uret, kodunu kopyala.</p></div></div>
-                    <div class="tool-card"><div class="ti ti4"><i class="fas fa-key"></i></div><div><h3>Sifre Olusturucu</h3><p>Guclu, rastgele sifreler uret.</p></div></div>
-                    <div class="tool-card"><div class="ti ti5"><i class="fas fa-stopwatch"></i></div><div><h3>Sayac & Kronometre</h3><p>Geri sayim ve kronometre tek yerde.</p></div></div>
-                    <div class="tool-card"><div class="ti ti6"><i class="fas fa-note-sticky"></i></div><div><h3>Not Defteri</h3><p>Hizli notlar al, sakla ve eris.</p></div></div>
+                <div class="shots-grid reveal">
+                    
+                    <div class="shot"><img src="assets/apps/toolbox/1.png" alt="Toolbox ekran görüntüsü 1" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/toolbox/2.png" alt="Toolbox ekran görüntüsü 2" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/toolbox/3.png" alt="Toolbox ekran görüntüsü 3" loading="lazy"></div>
                 </div>
             </div>
         </section>
 
-        <section class="section alt">
-            <div class="container">
-                <div class="section-head reveal">
-                    <div class="eyebrow">Arayüz</div>
-                    <h2>Uygulamadan görünümler</h2>
-                </div>
-                <div class="screenshots stagger-grid">
-                    <div class="screenshot-item"><img src="assets/apps/toolbox/1.png" alt="Toolbox ekran görüntüsü 1" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/toolbox/2.png" alt="Toolbox ekran görüntüsü 2" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/toolbox/3.png" alt="Toolbox ekran görüntüsü 3" loading="lazy"></div>
-                </div>
+        <div class="detail-cta">
+            <div class="container detail-cta-inner">
+                <a class="btn btn-ghost" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kataloğa dön</a>
+                <a class="next-app" href="pawsy.html">
+                    <span class="mono">Sıradaki<br>uygulama</span>
+                    <span class="next-name"><b>Pawsy</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
             </div>
-        </section>
-
-        <section class="proj-cta">
-            <div class="container reveal">
-                <img src="assets/apps/toolbox.png" alt="Toolbox" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
-                <h2>Tum araclar tek dokunusta</h2>
-                <p>Toolbox cok yakinda. Gelismelerden haberdar olmak için bizimle iletisimde kal.</p>
-                <a class="btn primary" href="index.html#contact"><i class="fas fa-envelope"></i> Haberdar Ol</a>
-            </div>
-        </section>
+        </div>
     </main>
 
-        <footer class="footer">
+    <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu. Tasarım ve kod el yapımıdır.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
-                <a href="index.html#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="index.html#apps">Uygulamalar</a>
+                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="sakura.html">Sakura (Hastane)</a>
-                <a href="jsontools.html">JsonTools (Geliştirici)</a>
-                <a href="linguago.html">LinguaGo (Dil)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                    <a href="projectx.html">ProjectX — geliştirici</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
 
-    <script src="js/page.js"></script>
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>

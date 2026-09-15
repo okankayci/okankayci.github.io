@@ -4,199 +4,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Routly | Rutin & Aliskanlik Takibi</title>
-    <meta name="description" content="Routly: Gunluk rutinlerini takip et, aliskanliklar gelistir, streak'ini buyut ve hedeflerine ulas. Yakinda!">
+    <title>Routly — PixelFlow Studio | Alışkanlık</title>
+    <meta name="description" content="Günlük rutinleri disiplinle takip edin, zinciri kırmayın ve kalıcı olumlu alışkanlıklar kazanın.">
+    <meta name="theme-color" content="#f7f8f5" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#101412" media="(prefers-color-scheme: dark)">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <meta name="theme-color" content="#a855f7" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a1714" media="(prefers-color-scheme: dark)">
-    <style>
-        /* ── Routly · mor/pembe, motivasyonel ── */
-        body.proj-routly {
-            --accent: #a855f7;
-            --accent-hover: #9333ea;
-            --accent-warm: #c084fc;
-            --accent-light: rgba(168, 85, 247, 0.12);
-            --gradient: linear-gradient(135deg, #c084fc 0%, #a855f7 50%, #ec4899 100%);
-            --gradient-subtle: linear-gradient(135deg, rgba(192,132,252,0.1) 0%, rgba(236,72,153,0.05) 100%);
-            --ring: rgba(168, 85, 247, 0.25);
-            --shadow-glow: 0 0 40px rgba(168, 85, 247, 0.2);
-        }
-        body.proj-routly[data-theme="dark"],
-        body.proj-routly:not([data-theme="light"]) {
-            --accent: #c084fc;
-            --accent-hover: #d8b4fe;
-            --accent-warm: #d8b4fe;
-            --accent-light: rgba(192, 132, 252, 0.14);
-            --gradient: linear-gradient(135deg, #d8b4fe 0%, #c084fc 50%, #f472b6 100%);
-            --ring: rgba(192, 132, 252, 0.3);
-            --shadow-glow: 0 0 40px rgba(192, 132, 252, 0.22);
-        }
-
-        /* Streak ring + checklist */
-        .streak { text-align: center; margin-bottom: 1rem; }
-        .streak-ring {
-            width: 96px; height: 96px; border-radius: 50%; margin: 0 auto; display: grid; place-items: center;
-            background:
-              radial-gradient(closest-side, var(--surface) 78%, transparent 80% 100%),
-              conic-gradient(var(--accent) 82%, var(--border) 0);
-        }
-        .streak-ring i { font-size: 1.5rem; color: #f97316; }
-        .streak b { display: block; font-family: var(--font-display); font-size: 1.15rem; color: var(--text); margin-top: 0.5rem; }
-        .streak small { font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); }
-        .checklist { display: grid; gap: 0.5rem; }
-        .check {
-            display: flex; align-items: center; gap: 0.65rem; padding: 0.6rem 0.8rem;
-            border-radius: 12px; background: var(--surface); border: 1px solid var(--border);
-            font-size: 0.82rem; color: var(--text-secondary);
-        }
-        .check .box {
-            width: 20px; height: 20px; border-radius: 7px; border: 2px solid var(--border);
-            display: grid; place-items: center; flex-shrink: 0; font-size: 0.6rem; color: #fff;
-        }
-        .check.done { color: var(--text-tertiary); text-decoration: line-through; }
-        .check.done .box { background: var(--accent); border-color: transparent; }
-        .check.done .box::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; }
-    </style>
 </head>
 
-<body class="proj proj-routly">
-    <a class="skip-link" href="#proj-main">İçeriğe geç</a>
-        <header class="site-header">
+<body>
+    <a class="skip-link" href="#detail-main">İçeriğe geç</a>
+
+    <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Ana Sayfa">
-                <span class="brand-mark">P</span>
-                <span>PixelFlow</span>
-                <span class="brand-studio">Studio</span>
+            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
+                PixelFlow<span class="brand-sub">· stüdyo</span>
             </a>
-            <nav class="nav" aria-label="Ana menü">
-                <button class="nav-close" type="button" aria-label="Menüyü kapat"><i class="fas fa-times"></i></button>
-                <a href="index.html#hero">Giriş</a>
+            <nav class="nav" id="site-nav" aria-label="Ana menü">
+                <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                </button>
                 <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
+                <a href="index.html#craft">Felsefe</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
-                <button class="theme-toggle" type="button" aria-label="Temayı değiştir (Açık / Koyu)"><i class="fas fa-moon"></i></button>
-                <button class="hamburger" type="button" aria-label="Menüyü aç"><i class="fas fa-bars"></i></button>
+                <button class="theme-toggle icon-btn" type="button" aria-label="Açık / koyu temayı değiştir">
+                    <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                </button>
+                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
             </div>
         </div>
     </header>
 
-    <main id="proj-main">
-        <section class="proj-hero">
-            <div class="container proj-hero-grid">
-                <div class="reveal-left">
-                    <a class="back-link" href="index.html#apps"><i class="fas fa-arrow-left"></i> Tüm Uygulamalar</a>
-                    <div class="eyebrow"><i class="fas fa-repeat"></i> Rutin & Aliskanlik</div>
-                    <h1>Kucuk aliskanliklar,<br>buyuk degisimler.</h1>
-                    <p class="proj-lead">Gunluk rutinlerini takip et, aliskanliklar gelistir ve hedeflerine ulas.</p>
-                    <p>Routly, gunluk rutinlerini takip etmeni, aliskanlik olusturmani ve hedeflerine ulasmani saglayan kapsamlı bir rutin yonetimi uygulamasidir. Tutarli ilerlemen için her gun seni tesvik eder.</p>
-                    <div class="soon-banner"><i class="fas fa-circle"></i> Yakinda · Gelistirme asamasinda</div>
-                </div>
-                <div class="reveal-right">
-                    <div class="device">
-                        <div class="device-screen">
-                            <div class="streak">
-                                <div class="streak-ring"><i class="fas fa-fire"></i></div>
-                                <b>21 gun seri</b>
-                                <small>Bugun %82 tamam</small>
-                            </div>
-                            <div class="checklist">
-                                <div class="check done"><span class="box"></span> Sabah 2 bardak su</div>
-                                <div class="check done"><span class="box"></span> 20 dk okuma</div>
-                                <div class="check"><span class="box"></span> Aksam yuruyusu</div>
-                            </div>
+    <main id="detail-main">
+        <section class="detail-hero">
+            <div class="container">
+                <a class="back-link" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tüm uygulamalar</a>
+                <div class="detail-grid">
+                    <div class="detail-copy reveal">
+                        <span class="mono">Aile &amp; Yaşam · Alışkanlık</span>
+                        <h1>Routly</h1>
+                        <p class="detail-lead">Günlük rutinleri disiplinle takip edin, zinciri kırmayın ve kalıcı olumlu alışkanlıklar kazanın.</p>
+                        <p class="detail-body">Routly, kullanıcıların günlük rutinlerini takip etmelerini, alışkanlık oluşturmalarını ve hedeflerine ulaşmalarını sağlayan kapsamlı bir rutin yönetimi uygulamasıdır. Tutarlı ilerleme yapmanız için hergün sizi teşvik eder.</p>
+                        <div class="detail-status">
+                            <span class="status-tag coming"><span class="dot"></span>Geliştiriliyor</span>
+                            <div class="platforms"><span>iOS</span><span>Android</span></div>
                         </div>
+                    </div>
+                    <div class="detail-visual reveal">
+                        <div class="phone">
+                    <div class="phone-screen">
+                        <img src="assets/apps/routly/1.png" alt="Routly ekran görüntüsü">
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
         </section>
-
+        <section class="section" style="padding-top: 48px;">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="mono">Neler içerir</span>
+                    <h2>Öne çıkan özellikler.</h2>
+                </div>
+                <div class="feature-grid reveal">
+                    
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Sabah ve akşam rutin blokları</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Streak (zinciri kırma) motivasyon sayacı</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Kişiselleştirilebilir hatırlatıcı bildirimler</p>
+                    </div>
+                    <div class="feature-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <p>Haftalık ve aylık başarı yüzdesi analizleri</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <div class="container">
                 <div class="section-head reveal">
-                    <div class="eyebrow">Özellikler</div>
-                    <h2>Tutarliligi kolaylastiran araclar</h2>
-                    <p>Rutin olusturmaktan streak takibine kadar seni her gun motive eden ozellikler.</p>
+                    <span class="mono">Galeri</span>
+                    <h2>Uygulamadan görünümler.</h2>
                 </div>
-                <div class="icon-cards stagger-grid">
-                    <div class="icon-card"><div class="ic"><i class="fas fa-list-check"></i></div><h3>Gunluk Rutin</h3><p>Rutinlerini olustur ve gun boyunca kolayca takip et.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-fire"></i></div><h3>Streak Takibi</h3><p>Aliskanliklarini izle, serini kesintisiz buyut.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-square-check"></i></div><h3>Renkli Kontrol Listesi</h3><p>Gorevlerini renklerle ayir, ilerlemeni gor.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-chart-line"></i></div><h3>Ilerleme Istatistikleri</h3><p>Raporlarla nerede oldugunu net gor.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-bell"></i></div><h3>Hatirlaticilar</h3><p>Dogru zamanda bildirimlerle unutma.</p></div>
-                    <div class="icon-card"><div class="ic"><i class="fas fa-bullseye"></i></div><h3>Hedef Yonetimi</h3><p>Hedefler belirle, adim adim ulas.</p></div>
+                <div class="shots-grid reveal">
+                    
+                    <div class="shot"><img src="assets/apps/routly/1.png" alt="Routly ekran görüntüsü 1" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/routly/2.png" alt="Routly ekran görüntüsü 2" loading="lazy"></div>
+                    <div class="shot"><img src="assets/apps/routly/3.png" alt="Routly ekran görüntüsü 3" loading="lazy"></div>
                 </div>
             </div>
         </section>
 
-        <section class="section alt">
-            <div class="container">
-                <div class="section-head reveal">
-                    <div class="eyebrow">Arayüz</div>
-                    <h2>Uygulamadan görünümler</h2>
-                </div>
-                <div class="screenshots stagger-grid">
-                    <div class="screenshot-item"><img src="assets/apps/routly/1.png" alt="Routly ekran görüntüsü 1" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/routly/2.png" alt="Routly ekran görüntüsü 2" loading="lazy"></div>
-                    <div class="screenshot-item"><img src="assets/apps/routly/3.png" alt="Routly ekran görüntüsü 3" loading="lazy"></div>
-                </div>
+        <div class="detail-cta">
+            <div class="container detail-cta-inner">
+                <a class="btn btn-ghost" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kataloğa dön</a>
+                <a class="next-app" href="picnic.html">
+                    <span class="mono">Sıradaki<br>uygulama</span>
+                    <span class="next-name"><b>Picnic</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </a>
             </div>
-        </section>
-
-        <section class="proj-cta">
-            <div class="container reveal">
-                <img src="assets/apps/routly.png" alt="Routly" width="72" height="72" style="border-radius:18px;margin:0 auto 1.25rem;box-shadow:var(--shadow-lg)">
-                <h2>Routly cok yakinda!</h2>
-                <p>Aliskanliklarini gelistirmene yardimci olacak Routly uzerinde calisiyoruz. Gelismelerden haberdar olmak için bizimle iletisimde kal.</p>
-                <a class="btn primary" href="index.html#contact"><i class="fas fa-envelope"></i> Haberdar Ol</a>
-            </div>
-        </section>
+        </div>
     </main>
 
-        <footer class="footer">
+    <footer class="footer">
         <div class="container footer-grid">
-            <div>
-                <a class="brand" href="index.html#hero">
-                    <span class="brand-mark">P</span>
-                    <span>PixelFlow</span>
-                </a>
-                <p class="footer-brand-p">Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+            <div class="footer-brand">
+                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
+                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu. Tasarım ve kod el yapımıdır.</p>
             </div>
             <div>
-                <h4>Navigasyon</h4>
-                <a href="index.html#hero">Giriş</a>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Zanaat & Felsefe</a>
-                <a href="index.html#contact">İletişim</a>
+                <h4>Buradan</h4>
+                <div class="footer-col">
+                    <a href="index.html#apps">Uygulamalar</a>
+                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#contact">İletişim</a>
+                </div>
             </div>
             <div>
-                <h4>Öne Çıkanlar</h4>
-                <a href="shiflabs.html">ShifLabs (Vardiya)</a>
-                <a href="babyplus.html">BabyPlus (Bebek)</a>
-                <a href="studygo.html">StudyGo (Eğitim)</a>
-                <a href="sakura.html">Sakura (Hastane)</a>
-                <a href="jsontools.html">JsonTools (Geliştirici)</a>
-                <a href="linguago.html">LinguaGo (Dil)</a>
+                <h4>Öne çıkanlar</h4>
+                <div class="footer-col">
+                    <a href="shiflabs.html">ShifLabs — vardiya</a>
+                    <a href="babyplus.html">BabyPlus — bebek</a>
+                    <a href="studygo.html">StudyGo — eğitim</a>
+                    <a href="recuro.html">Recuro — abonelik</a>
+                    <a href="projectx.html">ProjectX — geliştirici</a>
+                </div>
             </div>
             <div>
                 <h4>Yasal</h4>
-                <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                <div class="footer-col">
+                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
+                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
+                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
+                </div>
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>&copy; 2026 PixelFlow · Okan Kaycı. Tüm hakları saklıdır.</span>
-            <span>İstanbul, Türkiye · Bağımsız Yazılım Zanaatı</span>
+            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
 
-    <script src="js/page.js"></script>
-    <button class="back-to-top" type="button" aria-label="Yukarı çık">
-        <i class="fas fa-arrow-up"></i>
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
+
+    <script src="js/page.js"></script>
 </body>
 
 </html>
