@@ -66,27 +66,14 @@
 
   document.querySelectorAll('.section-head h2').forEach(splitWords);
 
-  /* ── YUKARI ÇIK & İLERLEME ÇİZGİSİ ─────────────────────── */
+  /* ── YUKARI ÇIK ────────────────────────────────────────── */
   const backToTop = document.querySelector('.back-to-top');
-  const progressBar = document.querySelector('.scroll-progress');
-
-  const updateProgress = () => {
-    if (!progressBar) return;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
-  };
-
-  const onScroll = () => {
-    updateProgress();
-    backToTop?.classList.toggle('visible', window.scrollY > 400);
-  };
-
-  if (backToTop || progressBar) {
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-  }
 
   if (backToTop) {
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     });

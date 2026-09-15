@@ -77,10 +77,9 @@
     if (e.key === 'Escape') closeNav();
   });
 
-  /* ── KAYDIRMA İZLEYİCİ & İLERLEME ÇİZGİSİ ──────────────── */
+  /* ── KAYDIRMA İZLEYİCİ & HERO PARALAKS ─────────────────── */
   const sections = [...document.querySelectorAll('main section[id]')];
   const navLinks = [...document.querySelectorAll('.nav a[href^="#"]')];
-  const progressBar = document.querySelector('.scroll-progress');
 
   const highlightNav = () => {
     const pos = window.scrollY + 120;
@@ -95,10 +94,15 @@
     });
   };
 
-  const updateProgress = () => {
-    if (!progressBar) return;
-    const max = document.documentElement.scrollHeight - window.innerHeight;
-    progressBar.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
+  /* Hero içeriği scroll ile yumuşakça yükselip erir */
+  const heroInner = document.querySelector('.hero-grid');
+  const updateHeroParallax = () => {
+    if (!heroInner || prefersReducedMotion) return;
+    const y = window.scrollY;
+    if (y <= window.innerHeight) {
+      heroInner.style.transform = `translate3d(0, ${(y * -0.12).toFixed(1)}px, 0)`;
+      heroInner.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.85)));
+    }
   };
 
   /* ── YUKARI ÇIK ────────────────────────────────────────── */
@@ -106,7 +110,7 @@
 
   const onScroll = () => {
     highlightNav();
-    updateProgress();
+    updateHeroParallax();
     backToTop?.classList.toggle('visible', window.scrollY > 400);
   };
 

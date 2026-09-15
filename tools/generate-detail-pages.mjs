@@ -114,6 +114,7 @@ const FOOTER = `
     </button>
 
     <script src="js/page.js"></script>
+    <script src="js/motion.js"></script>
 </body>
 
 </html>
@@ -263,6 +264,7 @@ const legalPage = (title, desc) => `<!DOCTYPE html>
 
     <script src="js/legal-pages.js"></script>
     <script src="js/page.js"></script>
+    <script src="js/motion.js"></script>
 </body>
 </html>
 `;
