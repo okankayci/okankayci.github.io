@@ -160,9 +160,9 @@ const detailPage = (app, next) => {
                     <span class="mono">Neler içerir</span>
                     <h2>Öne çıkan özellikler.</h2>
                 </div>
-                <div class="feature-grid reveal">
-                    ${(app.features || []).map((f) => `
-                    <div class="feature-item">
+                <div class="feature-grid">
+                    ${(app.features || []).map((f, i) => `
+                    <div class="feature-item reveal" style="--d:${Math.min(i * 50, 300)}ms">
                         ${CHECK}
                         <p>${esc(f)}</p>
                     </div>`).join('')}
@@ -178,9 +178,9 @@ const detailPage = (app, next) => {
                     <span class="mono">Galeri</span>
                     <h2>Uygulamadan görünümler.</h2>
                 </div>
-                <div class="shots-grid reveal">
+                <div class="shots-grid">
                     ${app.screenshots.map((s, i) => `
-                    <div class="shot"><img src="${esc(s)}" alt="${esc(app.name)} ekran görüntüsü ${i + 1}" loading="lazy"></div>`).join('')}
+                    <div class="shot reveal" style="--d:${Math.min(i * 80, 240)}ms"><img src="${esc(s)}" alt="${esc(app.name)} ekran görüntüsü ${i + 1}" loading="lazy"></div>`).join('')}
                 </div>
             </div>
         </section>`

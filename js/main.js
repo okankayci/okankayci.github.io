@@ -109,7 +109,44 @@
     window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
   });
 
+  /* ── SCROLL REVEAL (paylaşımlı gözlemci) ───────────────── */
+  const revealObserver = ('IntersectionObserver' in window && !prefersReducedMotion)
+    ? new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' })
+    : null;
+
+  const watchReveal = (el) => {
+    if (!el) return;
+    if (revealObserver) revealObserver.observe(el);
+    else el.classList.add('visible');
+  };
+
+  document.querySelectorAll('.reveal').forEach(watchReveal);
+
   /* ── İSTATİSTİK ŞERİDİ (gerçek ve doğrulanabilir) ──────── */
+  const animateCount = (el, target) => {
+    if (prefersReducedMotion || !target) {
+      el.textContent = target;
+      return;
+    }
+    const duration = 900;
+    const start = performance.now();
+    const tick = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(target * eased);
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+    el.textContent = '0';
+    requestAnimationFrame(tick);
+  };
+
   const statsEl = document.getElementById('hero-stats');
   if (statsEl) {
     const apps = getApps();
@@ -129,6 +166,7 @@
         <span>${s.label}</span>
       </div>
     `).join('');
+    statsEl.querySelectorAll('.hero-stat b').forEach((b, i) => animateCount(b, stats[i].n));
   }
 
   /* ── VİTRİN ────────────────────────────────────────────── */
@@ -196,7 +234,7 @@
     { id: 'tools', label: 'Eğitim & Araçlar' }
   ];
 
-  const cardHtml = (app) => {
+  const cardHtml = (app, index) => {
     const isAvailable = app.status === 'available';
     const tag = app.tag ? (app.tag === 'Flagship' ? 'Öncü ürün' : app.tag) : '';
     const tagLine = [app.categoryLabel, tag].filter(Boolean).join(' · ');
@@ -212,7 +250,7 @@
       : '';
 
     return `
-      <article class="app-card">
+      <article class="app-card reveal" style="--d:${Math.min(index * 45, 315)}ms">
         <div class="app-card-top">
           <img class="app-icon" src="${app.icon}" alt="${app.name} ikonu" width="52" height="52" loading="lazy">
           ${statusTag}
@@ -237,6 +275,7 @@
     const apps = getApps().filter((a) => categoryId === 'all' || a.category === categoryId);
     if (!appsContainer) return;
     appsContainer.innerHTML = apps.map(cardHtml).join('');
+    appsContainer.querySelectorAll('.app-card').forEach(watchReveal);
   };
 
   if (filtersEl && appsContainer) {
@@ -329,19 +368,5 @@
     });
   }
 
-  /* ── SCROLL REVEAL ─────────────────────────────────────── */
-  const revealEls = document.querySelectorAll('.reveal');
-  if (prefersReducedMotion || !('IntersectionObserver' in window)) {
-    revealEls.forEach((el) => el.classList.add('visible'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px 80px 0px' });
-    revealEls.forEach((el) => observer.observe(el));
-  }
+  /* ── SCROLL REVEAL, yukarıda paylaşımlı gözlemci ile yürütülür ── */
 })();

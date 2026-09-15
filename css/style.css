@@ -1012,13 +1012,24 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
 .legal-content a { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
 .legal-list { padding-left: 20px; color: var(--ink-2); display: flex; flex-direction: column; gap: 8px; margin-bottom: 1rem; }
 
-/* ── 13. SCROLL REVEAL ─────────────────────────────────────── */
+/* ── 13. HAREKET: SCROLL REVEAL & AÇILIŞ ───────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  transition-delay: var(--d, 0ms);
 }
 .reveal.visible { opacity: 1; transform: none; }
+
+/* Hero açılış koreografisi — sayfa yüklenince sırayla yükselir */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
+}
+.hero-anim {
+  animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
 
 /* ── 14. DUYARLILIK & ERİŞİLEBİLİRLİK ─────────────────────── */
 @media (max-width: 1020px) {
@@ -1048,6 +1059,7 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .hero-anim { animation: none; }
   .blip::after { animation: none; }
   .ecg.animate path { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
   .phone-screen img, .app-card, .btn { transition: none; }
