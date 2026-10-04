@@ -32,7 +32,7 @@
 - `js/data.js`: canonical records for project detail content and stable page keys.
 - `js/project-detail.js` (new): pure-ish template rendering, metadata updates, input escaping and URL validation.
 - `js/page.js`: bootstrap project renderer only on project pages; retain existing carousel behavior.
-- All 15 project `.html` files: thin bootstrap documents with project keys and shared assets.
+- All 16 project `.html` files: thin bootstrap documents with project keys and shared assets.
 - `docs/superpowers/plans/2026-10-04-shared-project-pages.md`: this execution checklist.
 
 ## Tasks
@@ -41,7 +41,7 @@
 
 **Files:**
 - Modify: `js/data.js`
-- Reference: all 15 current project HTML files
+- Reference: all 16 current project HTML files
 
 - [ ] Add stable slugs matching existing filenames and accent colors to every project record.
 - [ ] Reconcile each record’s description, feature list, platform label, status, app-store links, screenshots, icon and technology line against its current HTML page.
