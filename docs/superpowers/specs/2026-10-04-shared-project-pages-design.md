@@ -2,7 +2,7 @@
 
 ## Amaç
 
-On beş proje detay sayfasındaki ortak HTML kabuğunu tek yerde toplamak. Proje başına içerik, mağaza bağlantıları, renk ve ekran görüntüleri veride kalacak; mevcut `.html` adresleri çalışmaya devam edecek.
+On altı proje detay sayfasındaki ortak HTML kabuğunu tek yerde toplamak. Proje başına içerik, mağaza bağlantıları, renk ve ekran görüntüleri veride kalacak; mevcut `.html` adresleri çalışmaya devam edecek.
 
 ## Mevcut durum
 
@@ -31,7 +31,7 @@ Ana sayfa kataloğunun yeniden tasarımı, yasal sayfalar, CSS görünüm deği�
 
 ## Doğrulama ölçütleri
 
-- On beş mevcut proje dosyasının tamamı geçerli bir proje anahtarıyla aynı shell’i kullanır.
+- On altı mevcut proje dosyasının tamamı geçerli bir proje anahtarıyla aynı shell’i kullanır.
 - Her proje için mevcut başlık, açıklama, özellik, renk, platform, mağaza bağlantısı ve ekran görseli eşleşir.
 - Mevcut olmayan mağaza veya galeri verisi bozuk HTML üretmez.
 - Proje kaynaklarında tekrar eden sayfa içeriği kaldırılır ve bütün eski URL’ler korunur.
