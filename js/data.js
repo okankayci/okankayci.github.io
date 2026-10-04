@@ -20,7 +20,7 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: "https://apps.apple.com/tr/app/vardiya-takip/id6744372540?l=tr",
+    app_store_url: "https://apps.apple.com/us/app/shiftlabs-shift-planner/id6744372540",
     google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip"
   },
   {
@@ -68,7 +68,7 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: "https://apps.apple.com/us/app/studygo/id6753089430",
+    app_store_url: "https://apps.apple.com/us/app/studygo-student-planner/id6753089430",
     google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.studygo"
   },
   {
@@ -90,7 +90,7 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: "https://apps.apple.com/tr/app/sakura-vardiya-takvimi/id6755043441?l=tr",
+    app_store_url: "https://apps.apple.com/us/app/sakura-vardiya-takibi/id6755043441",
     google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.sakura"
   },
   {
@@ -113,8 +113,8 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS"],
-    app_store_url: "https://apps.apple.com/tr/app/json-tools-view-edit/id6756753329?l=tr",
-    google_play_url: "#"
+    app_store_url: "https://apps.apple.com/us/app/json-tools-view-edit/id6756753329",
+    google_play_url: null
   },
   {
     name: "Markdown",
@@ -136,8 +136,8 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: null,
-    google_play_url: null
+    app_store_url: "https://apps.apple.com/us/app/markdown-editor-write-pdf/id6757811258",
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.markdown"
   },
   {
     name: "LinguaGo",
@@ -157,9 +157,9 @@ const applications = [
       "Günlük seri (streak) ve ilerleme istatistikleri"
     ],
     status: "available",
-    platforms: ["iOS"],
-    app_store_url: "https://apps.apple.com/tr/app/linguago-learn-words-faster/id6756240533?l=tr",
-    google_play_url: "#"
+    platforms: ["iOS", "Android"],
+    app_store_url: "https://apps.apple.com/us/app/linguago-learn-words-faster/id6756240533",
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.linguago"
   },
   {
     name: "Toolbox",
@@ -180,8 +180,8 @@ const applications = [
     ],
     status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: "#",
-    google_play_url: "#"
+    app_store_url: "https://apps.apple.com/us/app/toolbox-all-in-one-tools/id6757318969",
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.toolbox"
   },
   {
     name: "Pawsy",
@@ -222,10 +222,10 @@ const applications = [
       "Kişiselleştirilebilir hatırlatıcı bildirimler",
       "Haftalık ve aylık başarı yüzdesi analizleri"
     ],
-    status: "coming_soon",
+    status: "available",
     platforms: ["iOS", "Android"],
-    app_store_url: null,
-    google_play_url: null
+    app_store_url: "https://apps.apple.com/us/app/routly-habit-tracker/id6763784759",
+    google_play_url: "https://play.google.com/store/apps/details?id=com.pixelflow.routly"
   },
   {
     name: "Picnic",
@@ -272,8 +272,8 @@ const applications = [
       "iOS",
       "Android"
     ],
-    "app_store_url": "https://apps.apple.com/app/id6759188799",
-    "google_play_url": "#"
+    "app_store_url": "https://apps.apple.com/us/app/projectx-manage-all-projects/id6759188799",
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.pixelflow.projectx"
   },
   {
     "name": "Appsly",
@@ -298,7 +298,7 @@ const applications = [
       "Android"
     ],
     "app_store_url": null,
-    "google_play_url": "#"
+    "google_play_url": "https://play.google.com/store/apps/details?id=com.pixelflow.appsly.appsly"
   },
   {
     "name": "Recuro",
@@ -318,7 +318,7 @@ const applications = [
       "Gereksiz abonelikleri tespit eden tasarruf analitiği",
       "Tamamen çevrimdışı ve gizlilik odaklı mimari"
     ],
-    "status": "available",
+    "status": "coming_soon",
     "platforms": [
       "iOS",
       "Android"
