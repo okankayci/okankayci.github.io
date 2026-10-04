@@ -6,23 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Okan Kaycı — Freelance Flutter Geliştirici</title>
     <meta name="description" content="Okan Kaycı, freelance Flutter geliştiricisi. iOS, Android ve masaüstü için geliştirdiğim uygulama projelerini keşfedin.">
-    <meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#171923" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <script src="js/theme.js"></script>
 </head>
 
-<body>
+<body class="portfolio">
     <a class="skip-link" href="#main-content">İçeriğe geç</a>
 
     <div class="scroll-progress" aria-hidden="true"></div>
 
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#hero" aria-label="PixelFlow ana sayfa">
-                PixelFlow
+            <a class="brand" href="#hero" aria-label="Okan Kaycı ana sayfa">
+                <span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı
             </a>
             <nav class="nav" id="site-nav" aria-label="Ana menü">
                 <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
@@ -46,118 +48,46 @@
 
     <main id="main-content">
 
-        <!-- HERO -->
         <section id="hero" class="hero">
-            <div class="container">
-                <div class="hero-grid">
-                    <div>
-                        <h1 class="hero-anim" style="--d:90ms">
-                            Fikirleri çalışan ürünlere dönüştürüyorum.
-                            <span class="h1-muted">Flutter ile mobil ve masaüstü uygulamaları geliştiriyorum.</span>
-                        </h1>
-                        <p class="hero-lead hero-anim" style="--d:200ms">
-                            Ben <strong>Okan Kaycı</strong>. Fikir aşamasından yayına kadar Flutter uygulamaları
-                            geliştiriyorum. Aşağıda farklı ihtiyaçlar için tasarlayıp hayata geçirdiğim projeleri
-                            ve her birinin detaylarını bulabilirsin.
-                        </p>
-                        <div class="hero-actions hero-anim" style="--d:320ms">
-                            <a class="btn btn-primary" href="#apps">
-                                Projeleri gör
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                            </a>
-                            <a class="btn btn-ghost" href="#contact">Birlikte çalışalım</a>
-                        </div>
-                        <div class="hero-stats hero-anim" style="--d:440ms" id="hero-stats">
-                            <!-- js/main.js veri.js'ten doldurur -->
-                        </div>
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="hero-intro hero-anim">Merhaba, ben Okan. <span aria-hidden="true">✳</span></p>
+                    <h1 class="hero-anim" style="--d:100ms">İyi fikirler.<br>Güzel uygulamalar.</h1>
+                    <p class="hero-lead hero-anim" style="--d:200ms">Flutter ile hayatı kolaylaştıran mobil ve masaüstü uygulamaları geliştiriyorum.</p>
+                    <div class="hero-actions hero-anim" style="--d:300ms">
+                        <a class="btn btn-primary" href="#apps">Projeleri keşfet <span aria-hidden="true">↗</span></a>
+                        <a class="hero-contact" href="#contact">Birlikte çalışalım</a>
                     </div>
-
-                    <div class="showcase hero-anim" style="--d:280ms" data-featured-projects aria-label="Öne çıkan projeler">
-                        <a class="feature-preview" href="shiflabs.html" data-featured-link aria-label="ShiftLabs proje detaylarını incele">
-                            <img src="assets/apps/shiflabs/gallery/01.png" alt="ShiftLabs uygulamasından ekran görüntüsü" data-featured-image>
-                            <span class="feature-preview-caption">
-                                <img src="assets/apps/shiflabs.png" alt="" width="42" height="42" data-featured-icon>
-                                <span><small data-featured-description>Vardiya ve çalışma planı</small></span>
-                                <span class="preview-open" aria-hidden="true">↗</span>
-                            </span>
-                        </a>
-                        <div class="featured-controls" role="group" aria-label="Öne çıkan projeler arasında gezin">
-                            <button class="featured-nav" type="button" data-featured-prev aria-label="Önceki proje">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
-                            </button>
-                            <button class="featured-nav" type="button" data-featured-next aria-label="Sonraki proje">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
-                            </button>
-                            <span class="sr-only" data-featured-status aria-live="polite" aria-atomic="true"></span>
-                        </div>
-                    </div>
+                    <div class="hero-platforms hero-anim" style="--d:400ms"><span class="platform-symbol" aria-hidden="true">⌘</span> iOS, Android & masaüstü <span class="platform-divider"></span> Flutter & Dart</div>
                 </div>
+                <div class="app-stage hero-anim" style="--d:200ms" aria-label="Geliştirdiğim uygulamalar">
+                    <div class="stage-orbit orbit-one" aria-hidden="true"></div>
+                    <div class="stage-orbit orbit-two" aria-hidden="true"></div>
+                    <span class="stage-spark" aria-hidden="true">✳</span>
+                    <a class="stage-phone phone-left" href="babyplus.html" aria-label="BabyPlus projesini incele"><img src="assets/apps/babyplus/1.png" alt="BabyPlus uygulama ekranı" width="390" height="844"></a>
+                    <a class="stage-phone phone-right" href="studygo.html" aria-label="StudyGo projesini incele"><img src="assets/apps/studygo/gallery/01.png" alt="StudyGo uygulama ekranı" width="390" height="844"></a>
+                    <a class="stage-phone phone-main" href="shiflabs.html" aria-label="ShifLabs projesini incele"><img src="assets/apps/shiflabs/gallery/01.png" alt="ShifLabs uygulama ekranı" width="390" height="844" fetchpriority="high"></a>
+                    <div class="stage-label"><span class="label-dot" aria-hidden="true"></span> Fikirden, ekranına.</div>
+                </div>
+            </div>
+            <div class="container hero-bottom"><span>Tasarım. Geliştirme. Yayın.</span><a href="#apps">Aşağıda keşfet <span aria-hidden="true">↓</span></a></div>
+        </section>
+
+        <section id="apps" class="section projects-section">
+            <div class="container">
+                <div class="project-heading">
+                    <div class="section-head"><h2>Ürettiğim işler.</h2><p>Günlük hayata dokunan küçük, iyi düşünülmüş ürünler.</p></div>
+                    <span class="project-count" id="project-count"></span>
+                </div>
+                <div id="apps-container" class="apps-grid"></div>
+                <div class="projects-more"><button class="btn btn-ghost" id="show-all-projects" type="button" aria-expanded="false" aria-controls="apps-container">Tüm projeleri göster <span aria-hidden="true">+</span></button></div>
             </div>
         </section>
 
-        <!-- KATALOG -->
-        <section id="apps" class="section">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="mono">Seçili işler</span>
-                    <h2>Farklı ihtiyaçlar, tek geliştirme yaklaşımı.</h2>
-                    <p>Her projeyi kullanım amacına göre tasarlıyor, geliştiriyor ve yayın sürecine hazırlıyorum. Ayrıntılar için bir projeyi seç.</p>
-                </div>
-
-                <div id="apps-container" class="apps-grid">
-                    <!-- js/main.js doldurur -->
-                </div>
-            </div>
-        </section>
-
-        <!-- FELSEFE -->
         <section id="craft" class="section craft">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="mono">Hakkımda</span>
-                    <h2>Freelance Flutter geliştiricisi.</h2>
-                    <p>Fikirleri, insanların her gün kullanabileceği güvenilir uygulamalara dönüştürüyorum.</p>
-                </div>
-
-                <div class="craft-grid">
-                    <div class="principles reveal">
-                        <div class="principle">
-                            <h3>Ürün odağı</h3>
-                            <p>İhtiyacı ve kullanıcı akışını netleştirip özellikleri buna göre şekillendiriyorum.</p>
-                        </div>
-                        <div class="principle">
-                            <h3>Uçtan uca geliştirme</h3>
-                            <p>Arayüz, uygulama mimarisi, cihaz özellikleri ve mağaza hazırlığını aynı ürün bütününün parçaları olarak ele alıyorum.</p>
-                        </div>
-                        <div class="principle">
-                            <h3>Flutter ve Dart</h3>
-                            <p>Ortak kod tabanından iOS ve Android uygulamaları; proje ihtiyacına göre masaüstü deneyimleri de geliştiriyorum.</p>
-                        </div>
-                    </div>
-
-                    <aside class="maker-card reveal" style="--d:120ms">
-                        <blockquote>
-                            İyi yazılım, karmaşık işleri kullanıcı için anlaşılır ve kolay hale getirir.
-                        </blockquote>
-                        <div class="maker-row">
-                            <span class="maker-avatar" aria-hidden="true">OK</span>
-                            <div class="maker-info">
-                                <h4>Okan Kaycı</h4>
-                                <p>Freelance Flutter geliştiricisi</p>
-                            </div>
-                        </div>
-                        <div class="maker-meta">
-                            <span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                İstanbul, Türkiye
-                            </span>
-                            <span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                                github.com/okankayci
-                            </span>
-                        </div>
-                    </aside>
-                </div>
+            <div class="container about-layout">
+                <div class="about-monogram" aria-hidden="true">ok<span>.</span></div>
+                <div class="about-copy"><h2>Az karmaşa.<br>Daha iyi deneyim.</h2><p>Ben Okan Kaycı, İstanbul’da bir Flutter geliştiricisiyim. Fikrini sade, hızlı ve kullanımı keyifli bir ürüne dönüştürüyorum.</p><div class="about-skills"><span>Arayüz tasarımı</span><span>Flutter geliştirme</span><span>Mağaza yayını</span></div></div>
             </div>
         </section>
 
@@ -166,9 +96,8 @@
             <div class="container contact-grid">
                 <div class="reveal">
                     <div class="section-head" style="margin-bottom: 0;">
-                        <span class="mono">İletişim</span>
                         <h2>Birlikte çalışalım.</h2>
-                        <p>Yeni bir Flutter projen varsa veya mevcut uygulamanı geliştirmek istiyorsan bana yaz.</p>
+                        <p>Bir fikrin mi var? Konuşalım.</p>
                     </div>
 
                     <div class="channel-list">
@@ -192,15 +121,10 @@
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
                             </a>
                         </div>
-                        <div class="channel">
-                            <div class="channel-label">
-                                <span class="mono">Konum</span>
-                                <span class="val">İstanbul, Türkiye</span>
-                            </div>
-                        </div>
+
                     </div>
 
-                    <p class="contact-note">Proje kapsamı, zaman planı veya teknik ihtiyaçların hakkında konuşabiliriz.</p>
+
                 </div>
 
                 <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/xbdvbagl" method="POST">
@@ -233,38 +157,7 @@
     </main>
 
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a class="brand" href="#hero">PixelFlow</a>
-                <p>Mobil ve masaüstü için Flutter uygulamaları geliştiriyorum.</p>
-            </div>
-            <div>
-                <h4>Buradan</h4>
-                <div class="footer-col">
-                    <a href="#apps">Projeler</a>
-                    <a href="#craft">Hakkımda</a>
-                    <a href="#contact">İletişim</a>
-                </div>
-            </div>
-            <div>
-                <h4>Öne çıkanlar</h4>
-                <div class="footer-col">
-                    <a href="shiflabs.html">ShifLabs — vardiya</a>
-                    <a href="babyplus.html">BabyPlus — bebek</a>
-                    <a href="studygo.html">StudyGo — eğitim</a>
-                    <a href="recuro.html">Recuro — abonelik</a>
-                    <a href="projectx.html">ProjectX — geliştirici</a>
-                </div>
-            </div>
-            <div>
-                <h4>Yasal</h4>
-                <div class="footer-col">
-                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
-                </div>
-            </div>
-        </div>
+        <div class="container footer-simple"><a class="brand" href="#hero"><span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı</a><div class="footer-links"><a href="gizlilik-politikasi.html">Gizlilik</a><a href="kullanim-kosullari.html">Kullanım koşulları</a><a href="kvkk.html">KVKK</a></div></div>
         <div class="container footer-bottom">
             <span>© 2026 Okan Kaycı</span>
             <span>İstanbul · Freelance Flutter geliştiricisi</span>

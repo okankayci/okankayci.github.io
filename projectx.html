@@ -1,31 +1,30 @@
 <!DOCTYPE html>
 <html lang="tr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProjectX — Okan Kaycı | Geliştirici</title>
+    <title>ProjectX — Okan Kaycı</title>
     <meta name="description" content="Geliştiriciler için mobil uygulama notları, sürüm planlaması ve mağaza görev yöneticisi.">
-    <meta name="theme-color" content="#f5f6fa" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#171923" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4f7fc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <script src="js/theme.js"></script>
 </head>
-
-<body>
+<body class="portfolio project-detail" style="--project-bg:#f1e8da">
     <a class="skip-link" href="#detail-main">İçeriğe geç</a>
     <div class="scroll-progress" aria-hidden="true"></div>
-
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html#hero" aria-label="Okan Kaycı ana sayfa">
-                Okan Kaycı<span class="brand-sub">Flutter geliştirici</span>
+                <span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı
             </a>
             <nav class="nav" id="site-nav" aria-label="Ana menü">
                 <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                    <svg class="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
                 <a href="index.html#apps">Projeler</a>
                 <a href="index.html#craft">Hakkımda</a>
@@ -42,142 +41,72 @@
             </div>
         </div>
     </header>
-
     <main id="detail-main">
         <section class="detail-hero">
             <div class="container">
-                <a class="back-link" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Tüm projeler</a>
+                <a class="back-link" href="index.html#apps"><span aria-hidden="true">←</span> Tüm projeler</a>
                 <div class="detail-grid">
-                    <div class="detail-copy reveal">
-                        <span class="mono">Eğitim &amp; Araçlar · Geliştirici</span>
+                    <div class="detail-copy hero-anim">
+                        <div class="project-identity"><img src="assets/apps/projectx.png" alt="" width="48" height="48"><span>iOS & Android uygulaması</span></div>
                         <h1>ProjectX</h1>
                         <p class="detail-lead">Geliştiriciler için mobil uygulama notları, sürüm planlaması ve mağaza görev yöneticisi.</p>
-                        <p class="detail-body">ProjectX, Apple ve Android platformları için uygulama geliştiren yazılımcılara özel not, görev ve mağaza sürüm takip aracıdır. Tüm planlarınızı tek ekrandan yönetin.</p>
-                        <div class="detail-status">
-                            <span class="status-tag available"><span class="dot"></span>Yayında</span>
-                            <div class="platforms"><span>iOS</span><span>Android</span></div>
-                        </div>
-                <div class="store-badges">
-                    <a class="btn btn-primary" href="https://apps.apple.com/us/app/projectx-manage-all-projects/id6759188799" target="_blank" rel="noopener">App Store&#39;dan indir <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-                    <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.pixelflow.projectx" target="_blank" rel="noopener">Google Play&#39;de gör <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
-                </div>
+                        <div class="detail-status"><span class="status-tag available"><span class="dot"></span>Yayında</span><span class="project-stack">Flutter ile geliştirildi</span></div>
+                        <div class="store-badges"><a class="btn btn-primary" href="https://apps.apple.com/us/app/projectx-manage-all-projects/id6759188799" target="_blank" rel="noopener">App Store <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+                        <a class="btn btn-ghost" href="https://play.google.com/store/apps/details?id=com.pixelflow.projectx" target="_blank" rel="noopener">Google Play <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a></div>
                     </div>
-                    <div class="detail-visual reveal">
-                        <div class="phone">
-                    <div class="phone-screen">
-                        <img src="assets/apps/projectx/1.png" alt="ProjectX ekran görüntüsü">
-                    </div>
-                </div>
+                    <div class="project-stage hero-anim" style="--d:160ms">
+                        <div class="project-stage-disc" aria-hidden="true"></div>
+                        <span class="stage-spark" aria-hidden="true">✳</span>
+                        <a class="stage-phone project-phone-back" href="#gallery" aria-label="ProjectX ekran görüntülerini keşfet"><img src="assets/apps/projectx/2.png" alt="ProjectX ikinci ekranı" width="390" height="844"></a>
+                        <a class="stage-phone project-phone-front" href="#gallery" aria-label="ProjectX ekran görüntülerini keşfet"><img src="assets/apps/projectx/1.png" alt="ProjectX uygulama ekranı" width="390" height="844" fetchpriority="high"></a>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="section" style="padding-top: 48px;">
-            <div class="container">
-                <div class="section-head reveal">
-                    <span class="mono">Neler içerir</span>
-                    <h2>Öne çıkan özellikler.</h2>
-                </div>
+        <section class="section project-features">
+            <div class="container project-features-layout">
+                <div class="section-head"><h2>Hayatı kolaylaştıran<br>detaylar.</h2></div>
                 <div class="feature-grid">
-                    
-                    <div class="feature-item reveal" style="--d:0ms">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-                        <p>Uygulama bazlı modüler notlar ve kontrol listeleri</p>
-                    </div>
-                    <div class="feature-item reveal" style="--d:50ms">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-                        <p>App Store ve Google Play sürüm hazırlık takibi</p>
-                    </div>
-                    <div class="feature-item reveal" style="--d:100ms">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-                        <p>Kritik hata, test ve özellik panosu</p>
-                    </div>
-                    <div class="feature-item reveal" style="--d:150ms">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-                        <p>Karanlık mod ve modern akıcı arayüz</p>
-                    </div>
-                    <div class="feature-item reveal" style="--d:200ms">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
-                        <p>Cihazda güvenli yerel veri saklama</p>
-                    </div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><p>Uygulama bazlı modüler notlar ve kontrol listeleri</p></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><p>App Store ve Google Play sürüm hazırlık takibi</p></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><p>Kritik hata, test ve özellik panosu</p></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><p>Karanlık mod ve modern akıcı arayüz</p></div>
+                    <div class="feature-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><p>Cihazda güvenli yerel veri saklama</p></div>
                 </div>
             </div>
         </section>
-        <section class="section">
+        <section id="gallery" class="section project-gallery">
             <div class="container">
-                <div class="section-head reveal">
-                    <span class="mono">Galeri</span>
-                    <h2>Uygulamadan görünümler.</h2>
-                </div>
-                <div class="shots-carousel" data-shots-carousel aria-label="Projectx ekran görüntüsü galerisi">
-                    <button class="shot-nav" type="button" data-shots-prev aria-label="Önceki ekran görüntüleri" disabled><span aria-hidden="true">←</span></button>
-                    <div class="shots-grid" tabindex="0" aria-label="projectx ekran görüntüleri">
-                    
-                    <div class="shot reveal" style="--d:0ms"><img src="assets/apps/projectx/1.png" alt="ProjectX ekran görüntüsü 1" loading="lazy" draggable="false"></div>
-                    <div class="shot reveal" style="--d:80ms"><img src="assets/apps/projectx/2.png" alt="ProjectX ekran görüntüsü 2" loading="lazy" draggable="false"></div>
-                    <div class="shot reveal" style="--d:160ms"><img src="assets/apps/projectx/3.png" alt="ProjectX ekran görüntüsü 3" loading="lazy" draggable="false"></div>
-                </div>
-                    <button class="shot-nav" type="button" data-shots-next aria-label="Sonraki ekran görüntüleri"><span aria-hidden="true">→</span></button>
+                <div class="project-heading"><div class="section-head"><h2>Ekran ekran keşfet.</h2><p>Uygulamanın içinden gerçek görünümler.</p></div><span class="project-count">3 ekran</span></div>
+                <div class="gallery-surface">
+                    <div class="shots-carousel" data-shots-carousel aria-label="ProjectX ekran görüntüsü galerisi">
+                        <button class="shot-nav" type="button" data-shots-prev aria-label="Önceki ekran görüntüleri" disabled><span aria-hidden="true">←</span></button>
+                        <div class="shots-grid" tabindex="0" aria-label="ProjectX ekran görüntüleri">
+                            <div class="shot"><img src="assets/apps/projectx/1.png" alt="ProjectX uygulama ekranı 1" loading="lazy" draggable="false" width="390" height="844"></div>
+                            <div class="shot"><img src="assets/apps/projectx/2.png" alt="ProjectX uygulama ekranı 2" loading="lazy" draggable="false" width="390" height="844"></div>
+                            <div class="shot"><img src="assets/apps/projectx/3.png" alt="ProjectX uygulama ekranı 3" loading="lazy" draggable="false" width="390" height="844"></div>
+                        </div>
+                        <button class="shot-nav" type="button" data-shots-next aria-label="Sonraki ekran görüntüleri"><span aria-hidden="true">→</span></button>
+                    </div>
                 </div>
             </div>
         </section>
-
         <div class="detail-cta">
             <div class="container detail-cta-inner">
-                <a class="btn btn-ghost" href="index.html#apps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Kataloğa dön</a>
-                <a class="next-app" href="appsly.html">
-                    <span class="mono">Sıradaki<br>uygulama</span>
-                    <span class="next-name"><b>Appsly</b> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
-                </a>
+                <a class="btn btn-ghost" href="index.html#apps">Tüm projeler <span aria-hidden="true">↖</span></a>
+                <a class="next-app" href="appsly.html"><img src="assets/apps/appsly.png" alt="" width="44" height="44"><span><span class="mono">Sıradaki proje</span><span class="next-name">Appsly <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span></span></a>
             </div>
         </div>
     </main>
-
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a class="brand" href="index.html#hero">Okan Kaycı<span class="brand-sub">Flutter geliştirici</span></a>
-                <p>Mobil ve masaüstü için Flutter uygulamaları geliştiriyorum.</p>
-            </div>
-            <div>
-                <h4>Buradan</h4>
-                <div class="footer-col">
-                    <a href="index.html#apps">Projeler</a>
-                    <a href="index.html#craft">Hakkımda</a>
-                    <a href="index.html#contact">İletişim</a>
-                </div>
-            </div>
-            <div>
-                <h4>Öne çıkanlar</h4>
-                <div class="footer-col">
-                    <a href="shiflabs.html">ShifLabs — vardiya</a>
-                    <a href="babyplus.html">BabyPlus — bebek</a>
-                    <a href="studygo.html">StudyGo — eğitim</a>
-                    <a href="recuro.html">Recuro — abonelik</a>
-                    <a href="projectx.html">ProjectX — geliştirici</a>
-                </div>
-            </div>
-            <div>
-                <h4>Yasal</h4>
-                <div class="footer-col">
-                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
-                </div>
-            </div>
-        </div>
+        <div class="container footer-simple"><a class="brand" href="index.html#hero"><span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı</a><div class="footer-links"><a href="gizlilik-politikasi.html">Gizlilik</a><a href="kullanim-kosullari.html">Kullanım koşulları</a><a href="kvkk.html">KVKK</a></div></div>
         <div class="container footer-bottom">
             <span>© 2026 Okan Kaycı</span>
-            <span>İstanbul · Bağımsız yazılım zanaatı</span>
+            <span>İstanbul · Freelance Flutter geliştiricisi</span>
         </div>
     </footer>
-
-    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </button>
-
+    <button class="back-to-top" type="button" aria-label="Sayfanın başına dön"><span aria-hidden="true">↑</span></button>
     <script src="js/page.js"></script>
     <script src="js/motion.js"></script>
 </body>
-
 </html>

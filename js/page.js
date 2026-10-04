@@ -9,31 +9,7 @@
 
   const init = () => {
 
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* ── TEMA ──────────────────────────────────────────────── */
-  const applyTheme = (theme) => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('pf-theme', theme);
-    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-      meta.content = theme === 'dark' ? '#171923' : '#f5f6fa';
-    });
-  };
-
-  const storedTheme = localStorage.getItem('pf-theme');
-  applyTheme(storedTheme || (prefersDark.matches ? 'dark' : 'light'));
-
-  prefersDark.addEventListener('change', (e) => {
-    if (!localStorage.getItem('pf-theme')) applyTheme(e.matches ? 'dark' : 'light');
-  });
-
-  document.querySelectorAll('.theme-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const current = document.body.getAttribute('data-theme') || 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  });
 
   /* ── MOBİL GEZİNME ─────────────────────────────────────── */
   const nav = document.getElementById('site-nav');
@@ -64,7 +40,9 @@
     ).join(' ');
   };
 
-  document.querySelectorAll('.section-head h2').forEach(splitWords);
+  if (!document.body.classList.contains('portfolio')) {
+    document.querySelectorAll('.section-head h2').forEach(splitWords);
+  }
 
   /* ── EKRAN GÖRÜNTÜSÜ GALERİLERİ ───────────────────────── */
   document.querySelectorAll('[data-shots-carousel]').forEach((carousel) => {

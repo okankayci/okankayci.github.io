@@ -28,7 +28,7 @@
   const canSmooth = !prefersReducedMotion
     && window.matchMedia('(pointer: fine)').matches;
 
-  if (!canSmooth) return;
+  if (!canSmooth || document.body.classList.contains('portfolio')) return;
 
   let target = window.scrollY;
   let current = window.scrollY;

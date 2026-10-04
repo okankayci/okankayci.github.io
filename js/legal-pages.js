@@ -14,7 +14,7 @@
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="index.html#hero" aria-label="Okan Kaycı ana sayfa">
-                Okan Kaycı<span class="brand-sub">Flutter geliştirici</span>
+                <span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı
             </a>
             <nav class="nav" id="site-nav" aria-label="Ana menü">
                 <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
@@ -38,40 +38,10 @@
 
   const footerHtml = `
     <footer class="footer">
-        <div class="container footer-grid">
-            <div class="footer-brand">
-                <a class="brand" href="index.html#hero">Okan Kaycı<span class="brand-sub">Flutter geliştirici</span></a>
-                <p>Mobil ve masaüstü için Flutter uygulamaları geliştiriyorum.</p>
-            </div>
-            <div>
-                <h4>Buradan</h4>
-                <div class="footer-col">
-                    <a href="index.html#apps">Projeler</a>
-                    <a href="index.html#craft">Hakkımda</a>
-                    <a href="index.html#contact">İletişim</a>
-                </div>
-            </div>
-            <div>
-                <h4>Öne çıkanlar</h4>
-                <div class="footer-col">
-                    <a href="shiflabs.html">ShifLabs — vardiya</a>
-                    <a href="babyplus.html">BabyPlus — bebek</a>
-                    <a href="studygo.html">StudyGo — eğitim</a>
-                    <a href="recuro.html">Recuro — abonelik</a>
-                </div>
-            </div>
-            <div>
-                <h4>Yasal</h4>
-                <div class="footer-col">
-                    <a href="gizlilik-politikasi.html">Gizlilik Politikası</a>
-                    <a href="kullanim-kosullari.html">Kullanım Koşulları</a>
-                    <a href="kvkk.html">KVKK Aydınlatma Metni</a>
-                </div>
-            </div>
-        </div>
+        <div class="container footer-simple"><a class="brand" href="index.html#hero"><span class="brand-mark" aria-hidden="true">ok.</span> Okan Kaycı</a><div class="footer-links"><a href="gizlilik-politikasi.html">Gizlilik</a><a href="kullanim-kosullari.html">Kullanım koşulları</a><a href="kvkk.html">KVKK</a></div></div>
         <div class="container footer-bottom">
             <span>© 2026 Okan Kaycı</span>
-            <span>İstanbul · Bağımsız yazılım zanaatı</span>
+            <span>İstanbul · Freelance Flutter geliştiricisi</span>
         </div>
     </footer>
     <button class="back-to-top" type="button" aria-label="Sayfanın başına dön">

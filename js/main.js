@@ -7,7 +7,6 @@
   'use strict';
 
   const EMAIL = 'pixelflowsoftware@gmail.com';
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const getApps = () =>
@@ -20,42 +19,11 @@
       .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
       .replace(/[^a-z0-9]/g, '') + '.html';
 
-  const isRealUrl = (url) => !!url && url !== '#';
-
-  const storeUrl = (app) => {
-    if (isRealUrl(app.app_store_url)) return app.app_store_url;
-    if (isRealUrl(app.google_play_url)) return app.google_play_url;
-    return null;
-  };
-
   /* ── İKONLAR (inline SVG) ──────────────────────────────── */
   const ICONS = {
     arrowRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
     arrowUpRight: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>'
   };
-
-  /* ── TEMA ──────────────────────────────────────────────── */
-  const applyTheme = (theme) => {
-    document.body.setAttribute('data-theme', theme);
-    localStorage.setItem('pf-theme', theme);
-    document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-      meta.content = theme === 'dark' ? '#171923' : '#f5f6fa';
-    });
-  };
-
-  const storedTheme = localStorage.getItem('pf-theme');
-  applyTheme(storedTheme || (prefersDark.matches ? 'dark' : 'light'));
-
-  prefersDark.addEventListener('change', (e) => {
-    if (!localStorage.getItem('pf-theme')) applyTheme(e.matches ? 'dark' : 'light');
-  });
-
-  document.querySelectorAll('.theme-toggle').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const current = document.body.getAttribute('data-theme') || 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
-    });
-  });
 
   /* ── MOBİL GEZİNME ─────────────────────────────────────── */
   const nav = document.getElementById('site-nav');
@@ -140,147 +108,56 @@
 
   document.querySelectorAll('.reveal').forEach(watchReveal);
 
-  /* ── İSTATİSTİK ŞERİDİ (gerçek ve doğrulanabilir) ──────── */
-  const animateCount = (el, target) => {
-    if (prefersReducedMotion || !target) {
-      el.textContent = target;
-      return;
-    }
-    const duration = 900;
-    const start = performance.now();
-    const tick = (now) => {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(target * eased);
-      if (progress < 1) requestAnimationFrame(tick);
-    };
-    el.textContent = '0';
-    requestAnimationFrame(tick);
-  };
-
-  const statsEl = document.getElementById('hero-stats');
-  if (statsEl) {
-    const apps = getApps();
-    const liveCount = apps.filter((a) => a.status === 'available').length;
-    const platformCount = new Set(
-      apps.filter((a) => a.status === 'available').flatMap((a) => a.platforms || [])
-    ).size;
-    const stats = [
-      { n: apps.length, label: 'ürün' },
-      { n: liveCount, label: 'yayında' },
-      { n: platformCount, label: 'platform' },
-      { n: 1, label: 'geliştirici' }
-    ];
-    statsEl.innerHTML = stats.map((s) => `
-      <div class="hero-stat">
-        <b>${s.n}</b>
-        <span>${s.label}</span>
-      </div>
-    `).join('');
-    statsEl.querySelectorAll('.hero-stat b').forEach((b, i) => animateCount(b, stats[i].n));
-  }
-
   /* ── KATALOG ───────────────────────────────────────────── */
   const appsContainer = document.getElementById('apps-container');
-  const cardHtml = (app, index) => {
-    const isAvailable = app.status === 'available';
-    const statusTag = isAvailable
-      ? '<span class="status-tag available"><span class="dot"></span>Yayında</span>'
-      : '<span class="status-tag coming"><span class="dot"></span>Geliştiriliyor</span>';
-
-    const platforms = (app.platforms || [])
-      .map((p) => `<span>${p}</span>`).join('');
-
-    const download = isAvailable && storeUrl(app)
-      ? `<a class="card-link" href="${storeUrl(app)}" target="_blank" rel="noopener" aria-label="${app.name} mağazada indir">İndir ${ICONS.arrowUpRight}</a>`
-      : '';
-
-    return `
-      <article class="app-card reveal" style="--d:${Math.min(index * 45, 315)}ms">
-        <a class="app-card-preview" href="${slugify(app.name)}" aria-label="${app.name} projesini incele">
-          <img src="${app.screenshots?.[0] || app.icon}" alt="${app.name} uygulama önizlemesi" loading="lazy">
-        </a>
-        <div class="app-card-top">
-          <img class="app-icon" src="${app.icon}" alt="${app.name} ikonu" width="52" height="52" loading="lazy">
-          ${statusTag}
-        </div>
-        <div class="app-card-content">
-          <h3>${app.name}</h3>
-          <p class="app-desc">${app.description}</p>
-        </div>
-        <div class="app-card-footer">
-          <div class="platforms">${platforms}</div>
-          <div class="card-links">
-            ${download}
-            <a class="card-link" href="${slugify(app.name)}" aria-label="${app.name} detayları">İncele ${ICONS.arrowRight}</a>
-          </div>
-        </div>
-      </article>
-    `;
+  const shortDescriptions = {
+    ShifLabs: 'Vardiya ve çalışma planı', BabyPlus: 'Bebek gelişimi ve bakım takibi',
+    StudyGo: 'Ders planı ve odaklanma', Sakura: 'Sağlık çalışanları için vardiya takibi',
+    JsonTools: 'JSON düzenleme araçları', Markdown: 'Yaz, düzenle, dışa aktar',
+    LinguaGo: 'Kelime öğrenme ve tekrar', Toolbox: 'Günlük dijital araçlar',
+    Pawsy: 'Evcil dostlar için bakım takibi', Routly: 'Rutin ve alışkanlık takibi',
+    Picnic: 'Birlikte planlanan etkinlikler', ProjectX: 'Geliştiriciler için proje takibi',
+    Recuro: 'Abonelik ve ödeme takibi'
   };
+  const projectColors = ['#dfeafa', '#f4e4e8', '#e8e5f7', '#ddece7', '#e4e9f0', '#f1e8da'];
+  const cardHtml = (app, index) => `
+    <article class="app-card" style="--project-bg:${projectColors[index % projectColors.length]}">
+      <a class="app-card-preview" href="${slugify(app.name)}" aria-label="${app.name} projesini incele">
+        <img class="${app.screenshots?.[0] ? '' : 'is-icon'}" src="${app.screenshots?.[0] || app.icon}" alt="${app.name} uygulama önizlemesi" loading="lazy" width="390" height="844">
+        <span class="project-open" aria-hidden="true">↗</span>
+      </a>
+      <div class="project-info">
+        <img class="app-icon" src="${app.icon}" alt="" width="38" height="38" loading="lazy">
+        <div><h3><a href="${slugify(app.name)}">${app.name}</a></h3>
+        <p class="app-desc">${shortDescriptions[app.name] || (app.platforms || []).join(' & ') + ' uygulaması'}</p></div>
+        ${app.status !== 'available' ? '<span class="status-tag">Yakında</span>' : ''}
+      </div>
+    </article>`;
 
+  const allApps = getApps();
+  const featuredNames = ['ShifLabs', 'BabyPlus', 'StudyGo', 'Routly', 'Markdown', 'ProjectX'];
+  const selectedApps = featuredNames.map((name) => allApps.find((app) => app.name === name)).filter(Boolean);
+  const orderedApps = [...selectedApps, ...allApps.filter((app) => !featuredNames.includes(app.name))];
+  const moreProjects = document.getElementById('show-all-projects');
+  const projectCount = document.getElementById('project-count');
+  let expanded = false;
   const renderApps = () => {
     if (!appsContainer) return;
-    appsContainer.innerHTML = getApps().map(cardHtml).join('');
-    appsContainer.querySelectorAll('.app-card').forEach(watchReveal);
+    const visibleApps = expanded ? orderedApps : orderedApps.slice(0, 6);
+    appsContainer.innerHTML = visibleApps.map(cardHtml).join('');
+    if (projectCount) projectCount.textContent = `${visibleApps.length} / ${allApps.length} proje`;
+    if (moreProjects) {
+      moreProjects.hidden = allApps.length <= 6;
+      moreProjects.setAttribute('aria-expanded', String(expanded));
+      moreProjects.innerHTML = expanded ? 'Daha az göster <span aria-hidden="true">−</span>' : 'Tüm projeleri göster <span aria-hidden="true">+</span>';
+    }
   };
-
+  moreProjects?.addEventListener('click', () => {
+    expanded = !expanded;
+    renderApps();
+    if (!expanded) document.getElementById('apps')?.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+  });
   renderApps();
-
-  /* ── ÖNE ÇIKAN PROJELER ───────────────────────────────── */
-  const initFeaturedProjects = () => {
-    const showcase = document.querySelector('[data-featured-projects]');
-    if (!showcase) return;
-    const projects = getApps().filter((app) => app?.name && app.icon);
-    if (!projects.length) return;
-
-    const link = showcase.querySelector('[data-featured-link]');
-    const image = showcase.querySelector('[data-featured-image]');
-    const icon = showcase.querySelector('[data-featured-icon]');
-    const description = showcase.querySelector('[data-featured-description]');
-    const status = showcase.querySelector('[data-featured-status]');
-    const previous = showcase.querySelector('[data-featured-prev]');
-    const next = showcase.querySelector('[data-featured-next]');
-    if (!link || !image || !icon || !description || !previous || !next) return;
-
-    let index = Math.max(0, projects.findIndex((app) => app.flagship));
-    let transitionTimer = 0;
-
-    const showProject = (nextIndex, announce = false) => {
-      index = (nextIndex + projects.length) % projects.length;
-      const project = projects[index];
-      const hasScreenshot = !!project.screenshots?.[0];
-      const cover = hasScreenshot ? project.screenshots[0] : project.icon;
-      const update = () => {
-        image.src = cover;
-        image.alt = hasScreenshot ? `${project.name} uygulamasından ekran görüntüsü` : `${project.name} uygulama simgesi`;
-        image.classList.toggle('is-icon', !hasScreenshot);
-        link.href = slugify(project.name);
-        link.setAttribute('aria-label', `${project.name} proje detaylarını incele`);
-        icon.src = project.icon;
-        description.textContent = project.description || 'Flutter uygulaması';
-        description.title = project.description || '';
-        showcase.setAttribute('aria-label', `Öne çıkan proje: ${project.name}`);
-        if (announce && status) status.textContent = project.name;
-        requestAnimationFrame(() => link.classList.remove('is-changing'));
-      };
-
-      clearTimeout(transitionTimer);
-      if (prefersReducedMotion) {
-        link.classList.remove('is-changing');
-        update();
-      } else {
-        link.classList.add('is-changing');
-        transitionTimer = window.setTimeout(update, 120);
-      }
-    };
-
-    previous.addEventListener('click', () => showProject(index - 1, true));
-    next.addEventListener('click', () => showProject(index + 1, true));
-    showProject(index, false);
-  };
-
-  initFeaturedProjects();
 
   /* ── E-POSTA KOPYALA ───────────────────────────────────── */
   const copyBtn = document.getElementById('copy-email-btn');
