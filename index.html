@@ -21,8 +21,8 @@
 
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="#hero" aria-label="Okan Kaycı ana sayfa">
-                Okan Kaycı<span class="brand-sub">Flutter geliştirici</span>
+            <a class="brand" href="#hero" aria-label="PixelFlow ana sayfa">
+                PixelFlow
             </a>
             <nav class="nav" id="site-nav" aria-label="Ana menü">
                 <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
@@ -51,9 +51,6 @@
             <div class="container">
                 <div class="hero-grid">
                     <div>
-                        <p class="hero-status mono hero-anim" style="--d:0ms">
-                            İstanbul'da freelance Flutter geliştirici
-                        </p>
                         <h1 class="hero-anim" style="--d:90ms">
                             Fikirleri çalışan ürünlere dönüştürüyorum.
                             <span class="h1-muted">Flutter ile mobil ve masaüstü uygulamaları geliştiriyorum.</span>
@@ -75,11 +72,24 @@
                         </div>
                     </div>
 
-                    <div class="showcase hero-anim" style="--d:280ms" aria-label="Öne çıkan proje: ShiftLabs">
-                        <a class="feature-preview" href="shiflabs.html" aria-label="ShiftLabs proje detaylarını incele">
-                            <img src="assets/apps/shiflabs/1.png" alt="ShiftLabs uygulamasının vardiya takvimi ekranı">
-                            <span class="feature-preview-caption"><img src="assets/apps/shiflabs.png" alt="" width="42" height="42"><span><b>ShiftLabs</b><small>Vardiya ve çalışma planı</small></span><span class="preview-open" aria-hidden="true">↗</span></span>
+                    <div class="showcase hero-anim" style="--d:280ms" data-featured-projects aria-label="Öne çıkan projeler">
+                        <a class="feature-preview" href="shiflabs.html" data-featured-link aria-label="ShiftLabs proje detaylarını incele">
+                            <img src="assets/apps/shiflabs/gallery/01.png" alt="ShiftLabs uygulamasından ekran görüntüsü" data-featured-image>
+                            <span class="feature-preview-caption">
+                                <img src="assets/apps/shiflabs.png" alt="" width="42" height="42" data-featured-icon>
+                                <span><small data-featured-description>Vardiya ve çalışma planı</small></span>
+                                <span class="preview-open" aria-hidden="true">↗</span>
+                            </span>
                         </a>
+                        <div class="featured-controls" role="group" aria-label="Öne çıkan projeler arasında gezin">
+                            <button class="featured-nav" type="button" data-featured-prev aria-label="Önceki proje">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>
+                            </button>
+                            <button class="featured-nav" type="button" data-featured-next aria-label="Sonraki proje">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                            </button>
+                            <span class="sr-only" data-featured-status aria-live="polite" aria-atomic="true"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -225,7 +235,7 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <a class="brand" href="#hero">Okan Kaycı<span class="brand-sub">Flutter geliştirici</span></a>
+                <a class="brand" href="#hero">PixelFlow</a>
                 <p>Mobil ve masaüstü için Flutter uygulamaları geliştiriyorum.</p>
             </div>
             <div>

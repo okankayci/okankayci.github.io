@@ -227,6 +227,61 @@
 
   renderApps();
 
+  /* ── ÖNE ÇIKAN PROJELER ───────────────────────────────── */
+  const initFeaturedProjects = () => {
+    const showcase = document.querySelector('[data-featured-projects]');
+    if (!showcase) return;
+    const projects = getApps().filter((app) => app?.name && app.icon);
+    if (!projects.length) return;
+
+    const link = showcase.querySelector('[data-featured-link]');
+    const image = showcase.querySelector('[data-featured-image]');
+    const icon = showcase.querySelector('[data-featured-icon]');
+    const description = showcase.querySelector('[data-featured-description]');
+    const status = showcase.querySelector('[data-featured-status]');
+    const previous = showcase.querySelector('[data-featured-prev]');
+    const next = showcase.querySelector('[data-featured-next]');
+    if (!link || !image || !icon || !description || !previous || !next) return;
+
+    let index = Math.max(0, projects.findIndex((app) => app.flagship));
+    let transitionTimer = 0;
+
+    const showProject = (nextIndex, announce = false) => {
+      index = (nextIndex + projects.length) % projects.length;
+      const project = projects[index];
+      const hasScreenshot = !!project.screenshots?.[0];
+      const cover = hasScreenshot ? project.screenshots[0] : project.icon;
+      const update = () => {
+        image.src = cover;
+        image.alt = hasScreenshot ? `${project.name} uygulamasından ekran görüntüsü` : `${project.name} uygulama simgesi`;
+        image.classList.toggle('is-icon', !hasScreenshot);
+        link.href = slugify(project.name);
+        link.setAttribute('aria-label', `${project.name} proje detaylarını incele`);
+        icon.src = project.icon;
+        description.textContent = project.description || 'Flutter uygulaması';
+        description.title = project.description || '';
+        showcase.setAttribute('aria-label', `Öne çıkan proje: ${project.name}`);
+        if (announce && status) status.textContent = project.name;
+        requestAnimationFrame(() => link.classList.remove('is-changing'));
+      };
+
+      clearTimeout(transitionTimer);
+      if (prefersReducedMotion) {
+        link.classList.remove('is-changing');
+        update();
+      } else {
+        link.classList.add('is-changing');
+        transitionTimer = window.setTimeout(update, 120);
+      }
+    };
+
+    previous.addEventListener('click', () => showProject(index - 1, true));
+    next.addEventListener('click', () => showProject(index + 1, true));
+    showProject(index, false);
+  };
+
+  initFeaturedProjects();
+
   /* ── E-POSTA KOPYALA ───────────────────────────────────── */
   const copyBtn = document.getElementById('copy-email-btn');
   if (copyBtn) {
