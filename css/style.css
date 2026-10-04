@@ -1,24 +1,23 @@
 /* ============================================================
-   PixelFlow Studio — "Klinik Editoryal" tasarım sistemi
-   Porselen zemin · mürekkep metin · cerrah yeşili · EKG imzası
-   Archivo (gövde/display) + IBM Plex Mono (etiket/veri)
+   Okan Kaycı — Flutter geliştirici portföyü
+   Açık taş zemin · koyu mürekkep · kobalt vurgu
    ============================================================ */
 
 /* ── 1. TOKENS ─────────────────────────────────────────────── */
 :root {
-  --paper: #f7f8f5;
+  --paper: #f5f6fa;
   --surface: #ffffff;
-  --surface-2: #eef0ea;
-  --ink: #181d1a;
-  --ink-2: #5a645d;
-  --ink-3: #8a948c;
-  --line: #e0e3da;
-  --line-strong: #c9cec4;
+  --surface-2: #eaecf4;
+  --ink: #191b25;
+  --ink-2: #606371;
+  --ink-3: #8b8e9b;
+  --line: #e1e3eb;
+  --line-strong: #c9ccd8;
 
-  --teal: #0e7a5f;        /* cerrah yeşili — birincil vurgu */
-  --teal-deep: #0a5c48;   /* küçük metin için kontrast güvenli */
-  --teal-soft: #e2efe9;   /* dolgulu rozet zemini */
-  --pulse: #d9483b;       /* EKG çizgisi — yalnızca imza öğesi */
+  --teal: #5367dc;
+  --teal-deep: #394bb7;
+  --teal-soft: #e9ebff;
+  --error-color: #c34545;
 
   --radius-s: 8px;
   --radius-m: 12px;
@@ -41,19 +40,19 @@
 }
 
 body[data-theme="dark"] {
-  --paper: #101412;
-  --surface: #171d19;
-  --surface-2: #1e2521;
-  --ink: #e8ece7;
-  --ink-2: #9ba69e;
-  --ink-3: #6d786f;
-  --line: #262d28;
-  --line-strong: #39423b;
+  --paper: #171923;
+  --surface: #20222e;
+  --surface-2: #292c3a;
+  --ink: #eff0f7;
+  --ink-2: #b4b7c6;
+  --ink-3: #818598;
+  --line: #303342;
+  --line-strong: #45485b;
 
-  --teal: #3bb08c;
-  --teal-deep: #4fc49f;
-  --teal-soft: #17251f;
-  --pulse: #3bb08c;       /* koyu modda monitör izi yeşil */
+  --teal: #9ca8ff;
+  --teal-deep: #b2bbff;
+  --teal-soft: #292d48;
+  --error-color: #ef8d8d;
 
   --shadow-s: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-m: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
@@ -163,7 +162,7 @@ main section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
   color: var(--paper);
 }
 .btn-primary:hover { background: var(--teal-deep); color: #ffffff; }
-body[data-theme="dark"] .btn-primary:hover { color: #101412; }
+body[data-theme="dark"] .btn-primary:hover { color: #171923; }
 
 .btn-ghost {
   border-color: var(--line-strong);
@@ -297,12 +296,12 @@ body[data-theme="dark"] .icon-btn .i-moon { display: none; }
 }
 
 /* ── 5. HERO ───────────────────────────────────────────────── */
-.hero { padding: calc(var(--header-h) + 72px) 0 0; }
+.hero { padding: calc(var(--header-h) + 88px) 0 76px; }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  gap: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, .78fr);
+  gap: clamp(44px, 8vw, 112px);
   align-items: center;
 }
 
@@ -313,30 +312,9 @@ body[data-theme="dark"] .icon-btn .i-moon { display: none; }
   margin-bottom: 28px;
 }
 
-.blip {
-  position: relative;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--teal);
-  flex: none;
-}
-.blip::after {
-  content: "";
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 1.5px solid var(--teal);
-  opacity: 0;
-  animation: blip 2.6s ease-out infinite;
-}
-@keyframes blip {
-  0% { transform: scale(0.4); opacity: 0.9; }
-  70%, 100% { transform: scale(1.6); opacity: 0; }
-}
-
 .hero h1 {
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  max-width: 12ch;
+  font-size: clamp(3rem, 6.4vw, 5.4rem);
   font-weight: 800;
   letter-spacing: -0.035em;
   line-height: 1.02;
@@ -389,13 +367,34 @@ body[data-theme="dark"] .icon-btn .i-moon { display: none; }
   color: var(--ink-3);
 }
 
-/* Vitrin — telefon + sekmeler */
+/* Öne çıkan proje */
 .showcase {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 22px;
 }
+
+.feature-preview {
+  display: block;
+  width: min(100%, 390px);
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  border-radius: 30px;
+  padding: 9px;
+  background: var(--surface);
+  box-shadow: 0 34px 80px -38px rgba(37, 43, 90, .42);
+  transform: rotate(2deg);
+  transition: transform .35s var(--ease-out-apple), box-shadow .35s ease;
+}
+.feature-preview:hover { transform: rotate(0) translateY(-5px); box-shadow: 0 38px 90px -38px rgba(37, 43, 90, .48); }
+.feature-preview > img { width: 100%; max-height: 520px; object-fit: cover; object-position: top; border-radius: 22px; }
+.feature-preview-caption { display: flex; align-items: center; gap: 12px; padding: 15px 10px 8px; }
+.feature-preview-caption > img { width: 42px; height: 42px; border-radius: 12px; }
+.feature-preview-caption b, .feature-preview-caption small { display: block; }
+.feature-preview-caption b { font-size: 1rem; }
+.feature-preview-caption small { margin-top: 2px; color: var(--ink-2); font-size: .82rem; }
+.preview-open { margin-left: auto; color: var(--teal-deep); font-size: 1.4rem; }
 
 .phone {
   width: min(292px, 78vw);
@@ -422,85 +421,7 @@ body[data-theme="dark"] .icon-btn .i-moon { display: none; }
 }
 .phone-screen img.is-fading { opacity: 0; }
 
-.showcase-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-}
-.showcase-tab {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  padding: 7px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid transparent;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-.showcase-tab:hover { color: var(--ink); }
-.showcase-tab.active {
-  color: var(--ink);
-  border-color: var(--line-strong);
-  background: var(--surface);
-}
-
-/* ── 6. EKG İMZASI ─────────────────────────────────────────── */
-.ecg {
-  display: block;
-  width: 100%;
-  height: 72px;
-  margin-top: 8px;
-  overflow: visible;
-}
-.ecg path {
-  fill: none;
-  stroke: var(--pulse);
-  stroke-width: 1.6;
-  vector-effect: non-scaling-stroke;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-body[data-theme="dark"] .ecg path {
-  filter: drop-shadow(0 0 6px color-mix(in srgb, var(--pulse) 55%, transparent));
-}
-.ecg.animate path {
-  stroke-dasharray: 1000;
-  stroke-dashoffset: 1000;
-  animation: ecg-draw 2.8s ease-out forwards 0.3s;
-}
-@keyframes ecg-draw { to { stroke-dashoffset: 0; } }
-
-/* ── 7. KATALOG ────────────────────────────────────────────── */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 36px;
-}
-.filter-btn {
-  font-family: var(--font-mono);
-  font-size: 0.74rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  padding: 9px 16px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--line-strong);
-  transition: all 0.2s ease;
-}
-.filter-btn .count { color: var(--ink-3); margin-left: 4px; }
-.filter-btn:hover { border-color: var(--ink); color: var(--ink); }
-.filter-btn.active {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-.filter-btn.active .count { color: color-mix(in srgb, var(--paper) 65%, transparent); }
-
+/* ── 6. PROJELER ───────────────────────────────────────────── */
 .apps-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -511,10 +432,10 @@ body[data-theme="dark"] .ecg path {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding: 22px;
+  padding: 12px 12px 20px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-m);
+  border-radius: 18px;
   box-shadow: var(--shadow-s);
   transition: transform 0.4s var(--ease-spring), border-color 0.3s ease, box-shadow 0.4s ease;
 }
@@ -530,6 +451,11 @@ body[data-theme="dark"] .ecg path {
   justify-content: space-between;
   gap: 12px;
 }
+.app-card-preview { width: 100%; aspect-ratio: 1.55; overflow: hidden; border-radius: 12px; background: var(--surface-2); }
+.app-card-preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .45s var(--ease-out-apple); }
+.app-card:hover .app-card-preview img { transform: scale(1.035); }
+.app-card-content { padding-inline: 8px; }
+.app-card-footer { margin-inline: 8px; }
 .app-icon {
   width: 52px;
   height: 52px;
@@ -565,14 +491,6 @@ body[data-theme="dark"] .ecg path {
 .status-tag.coming .dot { background: var(--ink-3); }
 
 .app-card h3 { font-size: 1.25rem; font-weight: 700; }
-.app-card .app-tag {
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-top: 3px;
-}
 .app-card .app-desc {
   color: var(--ink-2);
   font-size: 0.94rem;
@@ -797,9 +715,9 @@ body[data-theme="dark"] .ecg path {
 }
 .form-status.error {
   display: block;
-  background: color-mix(in srgb, var(--pulse) 8%, var(--surface));
+  background: color-mix(in srgb, var(--error-color) 8%, var(--surface));
   color: #b23c31;
-  border: 1px solid color-mix(in srgb, var(--pulse) 35%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error-color) 35%, transparent);
 }
 body[data-theme="dark"] .form-status.error { color: #e5837a; }
 
@@ -1077,9 +995,6 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
   pointer-events: none;
 }
 
-/* EKG boyunca süzülen nabız noktası */
-.ecg-dot { fill: var(--pulse); opacity: 0.85; }
-
 /* Hover mikro-etkileşimleri */
 .app-icon { transition: transform 0.25s ease; }
 .app-card:hover .app-icon { transform: scale(1.06); }
@@ -1107,7 +1022,8 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
   .principle { grid-template-columns: 1fr; gap: 8px; }
   .contact-form { padding: 24px; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero { padding-top: calc(var(--header-h) + 48px); }
+  .hero { padding-top: calc(var(--header-h) + 56px); }
+  .feature-preview { width: min(82%, 330px); }
   .hero-stat { padding-right: 20px; margin-right: 20px; }
   .detail-cta-inner { flex-direction: column; align-items: flex-start; }
 }
@@ -1117,9 +1033,6 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .word-mask > span { transform: none; transition: none; }
   .hero-anim { animation: none; }
-  .blip::after { animation: none; }
-  .ecg.animate path { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
-  .ecg-dot { display: none; }
   .scroll-progress { display: none; }
-  .phone-screen img, .app-card, .btn, .app-icon, .card-link svg { transition: none; }
+  .phone-screen img, .app-card, .btn, .app-icon, .card-link svg, .feature-preview, .app-card-preview img { transition: none; }
 }

@@ -39,7 +39,7 @@
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('pf-theme', theme);
     document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-      meta.content = theme === 'dark' ? '#101412' : '#f7f8f5';
+      meta.content = theme === 'dark' ? '#171923' : '#f5f6fa';
     });
   };
 
@@ -94,23 +94,11 @@
     });
   };
 
-  /* Hero içeriği scroll ile yumuşakça yükselip erir */
-  const heroInner = document.querySelector('.hero-grid');
-  const updateHeroParallax = () => {
-    if (!heroInner || prefersReducedMotion) return;
-    const y = window.scrollY;
-    if (y <= window.innerHeight) {
-      heroInner.style.transform = `translate3d(0, ${(y * -0.12).toFixed(1)}px, 0)`;
-      heroInner.style.opacity = String(Math.max(0, 1 - y / (window.innerHeight * 0.85)));
-    }
-  };
-
   /* ── YUKARI ÇIK ────────────────────────────────────────── */
   const backToTop = document.querySelector('.back-to-top');
 
   const onScroll = () => {
     highlightNav();
-    updateHeroParallax();
     backToTop?.classList.toggle('visible', window.scrollY > 400);
   };
 
@@ -131,11 +119,6 @@
   };
 
   document.querySelectorAll('.section-head h2').forEach(splitWords);
-
-  /* Hareket azaltma tercihinde süzülen nabız noktasını kaldır */
-  if (prefersReducedMotion) {
-    document.querySelectorAll('.ecg-dot').forEach((dot) => dot.remove());
-  }
 
   /* ── SCROLL REVEAL (paylaşımlı gözlemci) ───────────────── */
   const revealObserver = ('IntersectionObserver' in window && !prefersReducedMotion)
@@ -197,115 +180,10 @@
     statsEl.querySelectorAll('.hero-stat b').forEach((b, i) => animateCount(b, stats[i].n));
   }
 
-  /* ── VİTRİN ────────────────────────────────────────────── */
-  const showcaseImg = document.getElementById('showcase-img');
-  const showcaseTabs = document.getElementById('showcase-tabs');
-
-  if (showcaseImg && showcaseTabs) {
-    const featured = getApps()
-      .filter((a) => a.flagship && a.screenshots && a.screenshots.length > 0)
-      .slice(0, 5);
-
-    let fadeTimer = null;
-
-    const setScreen = (app) => {
-      const src = app.screenshots[0] || '';
-      if (!src) return;
-      if (prefersReducedMotion) {
-        showcaseImg.src = src;
-        return;
-      }
-      showcaseImg.classList.add('is-fading');
-      clearTimeout(fadeTimer);
-      fadeTimer = setTimeout(() => {
-        showcaseImg.src = src;
-        showcaseImg.alt = `${app.name} ekran görüntüsü`;
-        showcaseImg.classList.remove('is-fading');
-      }, 180);
-    };
-
-    let currentIndex = 0;
-
-    const selectTab = (app) => {
-      currentIndex = Math.max(featured.indexOf(app), 0);
-      showcaseTabs.querySelectorAll('.showcase-tab').forEach((tab) => {
-        const active = tab.dataset.app === app.name;
-        tab.classList.toggle('active', active);
-        tab.setAttribute('aria-selected', String(active));
-      });
-      setScreen(app);
-    };
-
-    featured.forEach((app, index) => {
-      const tab = document.createElement('button');
-      tab.type = 'button';
-      tab.className = 'showcase-tab' + (index === 0 ? ' active' : '');
-      tab.textContent = app.name;
-      tab.dataset.app = app.name;
-      tab.setAttribute('role', 'tab');
-      tab.setAttribute('aria-selected', String(index === 0));
-      tab.addEventListener('click', () => {
-        selectTab(app);
-        startRotate();
-      });
-      showcaseTabs.appendChild(tab);
-    });
-
-    if (featured.length > 0) {
-      showcaseImg.src = featured[0].screenshots[0];
-      showcaseImg.alt = `${featured[0].name} ekran görüntüsü`;
-    }
-
-    /* Vitrin otomatik geçişi: hover/odakta durur, ekranda değilken çalışmaz */
-    const showcaseEl = document.querySelector('.showcase');
-    let rotateTimer = null;
-
-    const stopRotate = () => {
-      if (rotateTimer) {
-        clearInterval(rotateTimer);
-        rotateTimer = null;
-      }
-    };
-
-    const startRotate = () => {
-      if (prefersReducedMotion || featured.length < 2 || !showcaseEl) return;
-      stopRotate();
-      rotateTimer = setInterval(() => {
-        if (document.visibilityState !== 'visible') return;
-        currentIndex = (currentIndex + 1) % featured.length;
-        selectTab(featured[currentIndex]);
-      }, 6000);
-    };
-
-    showcaseEl?.addEventListener('mouseenter', stopRotate);
-    showcaseEl?.addEventListener('mouseleave', startRotate);
-    showcaseEl?.addEventListener('focusin', stopRotate);
-    showcaseEl?.addEventListener('focusout', startRotate);
-
-    if ('IntersectionObserver' in window && showcaseEl) {
-      new IntersectionObserver((entries) => {
-        entries.forEach((entry) => (entry.isIntersecting ? startRotate() : stopRotate()));
-      }).observe(showcaseEl);
-    }
-
-    startRotate();
-  }
-
   /* ── KATALOG ───────────────────────────────────────────── */
   const appsContainer = document.getElementById('apps-container');
-  const filtersEl = document.getElementById('filters');
-
-  const CATEGORIES = [
-    { id: 'all', label: 'Tümü' },
-    { id: 'health', label: 'Sağlık & Vardiya' },
-    { id: 'family', label: 'Aile & Yaşam' },
-    { id: 'tools', label: 'Eğitim & Araçlar' }
-  ];
-
   const cardHtml = (app, index) => {
     const isAvailable = app.status === 'available';
-    const tag = app.tag ? (app.tag === 'Flagship' ? 'Öncü ürün' : app.tag) : '';
-    const tagLine = [app.categoryLabel, tag].filter(Boolean).join(' · ');
     const statusTag = isAvailable
       ? '<span class="status-tag available"><span class="dot"></span>Yayında</span>'
       : '<span class="status-tag coming"><span class="dot"></span>Geliştiriliyor</span>';
@@ -319,13 +197,15 @@
 
     return `
       <article class="app-card reveal" style="--d:${Math.min(index * 45, 315)}ms">
+        <a class="app-card-preview" href="${slugify(app.name)}" aria-label="${app.name} projesini incele">
+          <img src="${app.screenshots?.[0] || app.icon}" alt="${app.name} uygulama önizlemesi" loading="lazy">
+        </a>
         <div class="app-card-top">
           <img class="app-icon" src="${app.icon}" alt="${app.name} ikonu" width="52" height="52" loading="lazy">
           ${statusTag}
         </div>
-        <div>
+        <div class="app-card-content">
           <h3>${app.name}</h3>
-          <p class="app-tag">${tagLine}</p>
           <p class="app-desc">${app.description}</p>
         </div>
         <div class="app-card-footer">
@@ -339,41 +219,13 @@
     `;
   };
 
-  const renderApps = (categoryId = 'all') => {
-    const apps = getApps().filter((a) => categoryId === 'all' || a.category === categoryId);
+  const renderApps = () => {
     if (!appsContainer) return;
-    appsContainer.innerHTML = apps.map(cardHtml).join('');
+    appsContainer.innerHTML = getApps().map(cardHtml).join('');
     appsContainer.querySelectorAll('.app-card').forEach(watchReveal);
   };
 
-  if (filtersEl && appsContainer) {
-    const apps = getApps();
-    filtersEl.innerHTML = CATEGORIES.map((cat) => {
-      const count = cat.id === 'all'
-        ? apps.length
-        : apps.filter((a) => a.category === cat.id).length;
-      return `
-        <button class="filter-btn${cat.id === 'all' ? ' active' : ''}" type="button"
-                data-category="${cat.id}" role="tab" aria-selected="${cat.id === 'all'}">
-          ${cat.label}<span class="count">${count}</span>
-        </button>
-      `;
-    }).join('');
-
-    filtersEl.querySelectorAll('.filter-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filtersEl.querySelectorAll('.filter-btn').forEach((b) => {
-          b.classList.remove('active');
-          b.setAttribute('aria-selected', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-        renderApps(btn.dataset.category);
-      });
-    });
-
-    renderApps('all');
-  }
+  renderApps();
 
   /* ── E-POSTA KOPYALA ───────────────────────────────────── */
   const copyBtn = document.getElementById('copy-email-btn');

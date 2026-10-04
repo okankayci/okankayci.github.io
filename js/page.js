@@ -17,7 +17,7 @@
     document.body.setAttribute('data-theme', theme);
     localStorage.setItem('pf-theme', theme);
     document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => {
-      meta.content = theme === 'dark' ? '#101412' : '#f7f8f5';
+      meta.content = theme === 'dark' ? '#171923' : '#f5f6fa';
     });
   };
 

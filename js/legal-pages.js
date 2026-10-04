@@ -13,15 +13,15 @@
     <div class="scroll-progress" aria-hidden="true"></div>
     <header class="site-header">
         <div class="container header-inner">
-            <a class="brand" href="index.html#hero" aria-label="PixelFlow Studio ana sayfa">
-                PixelFlow<span class="brand-sub">· stüdyo</span>
+            <a class="brand" href="index.html#hero" aria-label="Okan Kaycı ana sayfa">
+                Okan Kaycı<span class="brand-sub">Flutter geliştirici</span>
             </a>
             <nav class="nav" id="site-nav" aria-label="Ana menü">
                 <button class="nav-close icon-btn" type="button" aria-label="Menüyü kapat">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
                 </button>
-                <a href="index.html#apps">Uygulamalar</a>
-                <a href="index.html#craft">Felsefe</a>
+                <a href="index.html#apps">Projeler</a>
+                <a href="index.html#craft">Hakkımda</a>
                 <a href="index.html#contact">İletişim</a>
             </nav>
             <div class="header-actions">
@@ -40,14 +40,14 @@
     <footer class="footer">
         <div class="container footer-grid">
             <div class="footer-brand">
-                <a class="brand" href="index.html#hero">PixelFlow<span class="brand-sub">· stüdyo</span></a>
-                <p>Gerçek saha ihtiyaçlarından doğan bağımsız mobil ürün stüdyosu.</p>
+                <a class="brand" href="index.html#hero">Okan Kaycı<span class="brand-sub">Flutter geliştirici</span></a>
+                <p>Mobil ve masaüstü için Flutter uygulamaları geliştiriyorum.</p>
             </div>
             <div>
                 <h4>Buradan</h4>
                 <div class="footer-col">
-                    <a href="index.html#apps">Uygulamalar</a>
-                    <a href="index.html#craft">Felsefe</a>
+                    <a href="index.html#apps">Projeler</a>
+                    <a href="index.html#craft">Hakkımda</a>
                     <a href="index.html#contact">İletişim</a>
                 </div>
             </div>
@@ -70,7 +70,7 @@
             </div>
         </div>
         <div class="container footer-bottom">
-            <span>© 2026 PixelFlow · Okan Kaycı</span>
+            <span>© 2026 Okan Kaycı</span>
             <span>İstanbul · Bağımsız yazılım zanaatı</span>
         </div>
     </footer>
