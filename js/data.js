@@ -439,3 +439,608 @@ const portfolioConfig = {
       .replace(/[^a-z0-9]/g, '') + '.html';
   }
 };
+
+// Canonical content for project detail pages.
+const projectPages = [
+  {
+    "slug": "appsly",
+    "name": "Appsly",
+    "description": "Akıllı klasörler, dinamik Material You teması ve ana ekran widget desteği ile uygulama düzenleyici.",
+    "icon": "assets/apps/appsly.png",
+    "platformLabel": "Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#dfeafa",
+    "heroScreenshots": [
+      "assets/apps/appsly/gallery/02.png",
+      "assets/apps/appsly/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/appsly/gallery/01.png",
+      "assets/apps/appsly/gallery/02.png",
+      "assets/apps/appsly/gallery/03.png",
+      "assets/apps/appsly/gallery/04.png",
+      "assets/apps/appsly/gallery/05.png"
+    ],
+    "features": [
+      "Otomatik ve akıllı kategori klasörleri",
+      "Ana ekran etkileşimli klasör widget'ları",
+      "Material 3 dinamik sistem rengi uyumu",
+      "OLED ekranlar için ultra pil tasarruflu siyah tema",
+      "Hızlı arama ve alfabetik filtreleme"
+    ],
+    "stores": [
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.appsly.appsly"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "recuro"
+  },
+  {
+    "slug": "babyplus",
+    "name": "BabyPlus",
+    "description": "Bebeğinizin gelişim basamaklarını, aşı takvimini, beslenme ve uyku rutinlerini hassasiyetle kaydedin.",
+    "icon": "assets/apps/babyplus.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#f4e4e8",
+    "heroScreenshots": [
+      "assets/apps/babyplus/2.png",
+      "assets/apps/babyplus/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/babyplus/1.png",
+      "assets/apps/babyplus/2.png",
+      "assets/apps/babyplus/3.png"
+    ],
+    "features": [
+      "Ay ay bebek gelişim ve persentil takibi",
+      "Beslenme, emzirme ve uyku zamanlayıcıları",
+      "Sağlık Bakanlığı uyumlu aşı takvimi",
+      "Doktor randevuları ve sağlık notları",
+      "Özel anlar fotoğraf günlüğü",
+      "Cihazda güvenli yerel veri saklama"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/baby-plus/id6747646706"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.baby_plus"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "studygo"
+  },
+  {
+    "slug": "clipboardai",
+    "name": "ClipboardAI",
+    "description": "Yapay zeka destekli akıllı pano yöneticisi: Kopyalanan metinleri sınıflandır, özetle ve anında ara.",
+    "icon": "assets/apps/clipboardai.png",
+    "platformLabel": "iOS & Android & macOS uygulaması",
+    "status": "Geliştiriliyor",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#ddece7",
+    "heroScreenshots": [],
+    "screenshots": [],
+    "features": [
+      "Otomatik metin, link ve kod sınıflandırması",
+      "Yapay zeka ile anında özet çıkarma ve çeviri",
+      "Hassas veriler için otomatik gizleme",
+      "Klavye kısayolları ve hızlı erişim çubuğu"
+    ],
+    "stores": [],
+    "releaseNote": "Yayınlandığında mağaza bağlantıları burada olacak.",
+    "stageNote": "Geliştirme aşamasında",
+    "nextSlug": "shiflabs"
+  },
+  {
+    "slug": "jsontools",
+    "name": "JsonTools",
+    "description": "JSON görüntüleme, düzenleme, karşılaştırma ve doğrulamanın yanında Dart model kodu da üreten geliştirici aracı.",
+    "icon": "assets/apps/jsontools.png",
+    "platformLabel": "iOS uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#f4e4e8",
+    "heroScreenshots": [
+      "assets/apps/jsontools/gallery/02.png",
+      "assets/apps/jsontools/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/jsontools/gallery/01.png",
+      "assets/apps/jsontools/gallery/02.png",
+      "assets/apps/jsontools/gallery/03.png",
+      "assets/apps/jsontools/gallery/04.png",
+      "assets/apps/jsontools/gallery/05.png",
+      "assets/apps/jsontools/gallery/06.png",
+      "assets/apps/jsontools/gallery/07.png",
+      "assets/apps/jsontools/gallery/08.png",
+      "assets/apps/jsontools/gallery/09.png"
+    ],
+    "features": [
+      "Anlık sözdizimi doğrulama ve hata vurgulama",
+      "İnteraktif JSON ağaç görünümü ve arama",
+      "JSON minifier (sıkıştırma) ve temizleyici",
+      "XML ve YAML iki yönlü dönüştürücü",
+      "%100 istemci tarafı çalışan güvenli çevrimdışı mod"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/json-tools-view-edit/id6756753329"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "markdown"
+  },
+  {
+    "slug": "linguago",
+    "name": "LinguaGo",
+    "description": "Dört dilde kelime kartları, quizler, telaffuz alıştırmaları ve aralıklı tekrar sunan dil öğrenme uygulaması.",
+    "icon": "assets/apps/linguago.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#e8e5f7",
+    "heroScreenshots": [
+      "assets/apps/linguago/2.png",
+      "assets/apps/linguago/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/linguago/1.png",
+      "assets/apps/linguago/2.png",
+      "assets/apps/linguago/3.png"
+    ],
+    "features": [
+      "Spaced Repetition (Aralıklı Tekrar) mekanizması",
+      "Tematik kelime desteleri ve görsel kartlar",
+      "Sesli telaffuz ve dinleme alıştırmaları",
+      "Günlük seri (streak) ve ilerleme istatistikleri"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/linguago-learn-words-faster/id6756240533"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.linguago"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "toolbox"
+  },
+  {
+    "slug": "markdown",
+    "name": "Markdown",
+    "description": "Gelişmiş Markdown düzenleme, canlı anlık önizleme, sözdizimi vurgulama ve PDF dışa aktarımı.",
+    "icon": "assets/apps/markdown.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#e4e9f0",
+    "heroScreenshots": [
+      "assets/apps/markdown/gallery/02.png",
+      "assets/apps/markdown/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/markdown/gallery/01.png",
+      "assets/apps/markdown/gallery/02.png",
+      "assets/apps/markdown/gallery/03.png",
+      "assets/apps/markdown/gallery/04.png",
+      "assets/apps/markdown/gallery/05.png",
+      "assets/apps/markdown/gallery/06.png"
+    ],
+    "features": [
+      "Canlı iki panelli Markdown önizleme",
+      "Çoklu dil sözdizimi ve kod renklendirme",
+      "Tek dokunuşla PDF ve HTML dışa aktarma",
+      "Gelişmiş tablo, formül ve LaTeX desteği",
+      "Yerel ve güvenli çevrimdışı dosya yönetimi"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/markdown-editor-write-pdf/id6757811258"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.markdown"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "linguago"
+  },
+  {
+    "slug": "pawsy",
+    "name": "Pawsy",
+    "description": "Evcil dostlarınızın aşı takvimi, veteriner randevuları, kilo takibi ve sağlık kayıtları.",
+    "icon": "assets/apps/pawsy.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Geliştiriliyor",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#e4e9f0",
+    "heroScreenshots": [
+      "assets/apps/pawsy/2.png",
+      "assets/apps/pawsy/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/pawsy/1.png",
+      "assets/apps/pawsy/2.png",
+      "assets/apps/pawsy/3.png"
+    ],
+    "features": [
+      "Aşı ve parazit takvimi hatırlatıcıları",
+      "Veteriner randevu günlüğü ve geçmişi",
+      "Dönemsel kilo ve büyüme çizelgesi",
+      "Beslenme ve ilaç saatleri anımsatıcısı"
+    ],
+    "stores": [],
+    "releaseNote": "Yayınlandığında mağaza bağlantıları burada olacak.",
+    "stageNote": "",
+    "nextSlug": "routly"
+  },
+  {
+    "slug": "picnic",
+    "name": "Picnic",
+    "description": "Piknik grubu, katılımcılar, alışveriş listesi ve ortak harcamaları birlikte yönetin.",
+    "icon": "assets/apps/picnic.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Geliştiriliyor",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#f1e8da",
+    "heroScreenshots": [
+      "assets/apps/picnic/2.png",
+      "assets/apps/picnic/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/picnic/1.png",
+      "assets/apps/picnic/2.png",
+      "assets/apps/picnic/3.png"
+    ],
+    "features": [
+      "Grup için ortak malzeme ve erzak listesi",
+      "Hava durumu tahmini entegrasyonu",
+      "Mekan ve rota koordinat paylaşımı",
+      "Katılımcı görev ve masraf bölüştürme"
+    ],
+    "stores": [],
+    "releaseNote": "Yayınlandığında mağaza bağlantıları burada olacak.",
+    "stageNote": "",
+    "nextSlug": "projectx"
+  },
+  {
+    "slug": "projectx",
+    "name": "ProjectX",
+    "description": "Geliştiriciler için mobil uygulama notları, sürüm planlaması ve mağaza görev yöneticisi.",
+    "icon": "assets/apps/projectx.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#f1e8da",
+    "heroScreenshots": [
+      "assets/apps/projectx/2.png",
+      "assets/apps/projectx/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/projectx/1.png",
+      "assets/apps/projectx/2.png",
+      "assets/apps/projectx/3.png"
+    ],
+    "features": [
+      "Uygulama bazlı modüler notlar ve kontrol listeleri",
+      "App Store ve Google Play sürüm hazırlık takibi",
+      "Kritik hata, test ve özellik panosu",
+      "Karanlık mod ve modern akıcı arayüz",
+      "Cihazda güvenli yerel veri saklama"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/projectx-manage-all-projects/id6759188799"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.projectx"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "appsly"
+  },
+  {
+    "slug": "recuro",
+    "name": "Recuro",
+    "description": "Kişisel abonelik yönetim uygulaması: Aylık giderleri takip et, yenilemeleri kaçırma, harcamalarını analiz et.",
+    "icon": "assets/apps/recuro.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Geliştiriliyor",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#f4e4e8",
+    "heroScreenshots": [
+      "assets/apps/recuro/gallery/02.png",
+      "assets/apps/recuro/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/recuro/gallery/01.png",
+      "assets/apps/recuro/gallery/02.png",
+      "assets/apps/recuro/gallery/03.png",
+      "assets/apps/recuro/gallery/04.png",
+      "assets/apps/recuro/gallery/05.png",
+      "assets/apps/recuro/gallery/06.png",
+      "assets/apps/recuro/gallery/07.png",
+      "assets/apps/recuro/gallery/08.png"
+    ],
+    "features": [
+      "Yenileme tarihleri için akıllı bildirimler",
+      "Kategori bazlı aylık ve yıllık harcama grafikleri",
+      "Döviz kuru dönüştürücü ve çoklu para birimi desteği",
+      "Gereksiz abonelikleri tespit eden tasarruf analitiği",
+      "Tamamen çevrimdışı ve gizlilik odaklı mimari"
+    ],
+    "stores": [],
+    "releaseNote": "Yayınlandığında mağaza bağlantıları burada olacak.",
+    "stageNote": "",
+    "nextSlug": "rewire"
+  },
+  {
+    "slug": "rewire",
+    "name": "Rewire",
+    "description": "Alışkanlıkları dönüştür, tetikleyicilerini anla ve zor anlarda farkındalıkla iradeni koru.",
+    "icon": "assets/apps/rewire.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Geliştiriliyor",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#e8e5f7",
+    "heroScreenshots": [
+      "assets/apps/rewire/2.png",
+      "assets/apps/rewire/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/rewire/1.png",
+      "assets/apps/rewire/2.png",
+      "assets/apps/rewire/3.png"
+    ],
+    "features": [
+      "Kriz anı nefes ve odaklanma paneli",
+      "Tetikleyici durum ve duygu günlüğü",
+      "Temiz gün sayacı ve kazanılan rozetler",
+      "Bilişsel davranışçı tekniklerle rehberlik"
+    ],
+    "stores": [],
+    "releaseNote": "Yayınlandığında mağaza bağlantıları burada olacak.",
+    "stageNote": "",
+    "nextSlug": "clipboardai"
+  },
+  {
+    "slug": "routly",
+    "name": "Routly",
+    "description": "Günlük rutinleri disiplinle takip edin, zinciri kırmayın ve kalıcı olumlu alışkanlıklar kazanın.",
+    "icon": "assets/apps/routly.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#ddece7",
+    "heroScreenshots": [
+      "assets/apps/routly/gallery/02.png",
+      "assets/apps/routly/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/routly/gallery/01.png",
+      "assets/apps/routly/gallery/02.png",
+      "assets/apps/routly/gallery/03.png",
+      "assets/apps/routly/gallery/04.png",
+      "assets/apps/routly/gallery/05.png",
+      "assets/apps/routly/gallery/06.png",
+      "assets/apps/routly/gallery/07.png"
+    ],
+    "features": [
+      "Sabah ve akşam rutin blokları",
+      "Streak (zinciri kırma) motivasyon sayacı",
+      "Kişiselleştirilebilir hatırlatıcı bildirimler",
+      "Haftalık ve aylık başarı yüzdesi analizleri"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/routly-habit-tracker/id6763784759"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.routly"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "picnic"
+  },
+  {
+    "slug": "sakura",
+    "name": "Sakura",
+    "description": "Çam ve Sakura Şehir Hastanesi personeli için özel vardiya takvimi, nöbet değişimi ve klinik ilaç doz hesaplayıcı.",
+    "icon": "assets/apps/sakura.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#dfeafa",
+    "heroScreenshots": [
+      "assets/apps/sakura/2.png",
+      "assets/apps/sakura/1.png"
+    ],
+    "screenshots": [
+      "assets/apps/sakura/1.png",
+      "assets/apps/sakura/2.png",
+      "assets/apps/sakura/3.png"
+    ],
+    "features": [
+      "Şehir hastanesi klinik çalışma şablonları",
+      "Meslektaşlar arası nöbet değişimi ve takası",
+      "Pratik acil ilaç rehberi ve protokoller",
+      "Hassas pediatrik ve yetişkin ilaç doz hesaplayıcı"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/sakura-vardiya-takibi/id6755043441"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.sakura"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "jsontools"
+  },
+  {
+    "slug": "shiflabs",
+    "name": "ShifLabs",
+    "description": "Vardiyalı çalışanlar ve sağlık profesyonelleri için nöbet çizelgesi, mesai hesabı ve sosyal hayat organizatörü.",
+    "icon": "assets/apps/shiflabs.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#dfeafa",
+    "heroScreenshots": [
+      "assets/apps/shiflabs/gallery/02.png",
+      "assets/apps/shiflabs/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/shiflabs/gallery/01.png",
+      "assets/apps/shiflabs/gallery/02.png",
+      "assets/apps/shiflabs/gallery/03.png",
+      "assets/apps/shiflabs/gallery/04.png",
+      "assets/apps/shiflabs/gallery/05.png",
+      "assets/apps/shiflabs/gallery/06.png",
+      "assets/apps/shiflabs/gallery/07.png",
+      "assets/apps/shiflabs/gallery/08.png",
+      "assets/apps/shiflabs/gallery/09.png"
+    ],
+    "features": [
+      "Vardiya ve izinleri anında planlayın",
+      "Vardiyalara özel not ve anımsatıcılar",
+      "Resmi PDF raporu dışa aktarımı",
+      "Maaş, mesai ve ek ödeme hesaplayıcı",
+      "Ayrıntılı vardiya istatistikleri",
+      "Çevrimdışı çalışan temel özellikler ve cihazda veri saklama"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/shiftlabs-shift-planner/id6744372540"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.vardiya_takip"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "babyplus"
+  },
+  {
+    "slug": "studygo",
+    "name": "StudyGo",
+    "description": "Ders programı, sınav takvimi, görev yönetimi ve odaklanma için Pomodoro sayacı tek arayüzde.",
+    "icon": "assets/apps/studygo.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#e8e5f7",
+    "heroScreenshots": [
+      "assets/apps/studygo/gallery/02.png",
+      "assets/apps/studygo/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/studygo/gallery/01.png",
+      "assets/apps/studygo/gallery/02.png",
+      "assets/apps/studygo/gallery/03.png",
+      "assets/apps/studygo/gallery/04.png",
+      "assets/apps/studygo/gallery/05.png",
+      "assets/apps/studygo/gallery/06.png",
+      "assets/apps/studygo/gallery/07.png",
+      "assets/apps/studygo/gallery/08.png",
+      "assets/apps/studygo/gallery/09.png",
+      "assets/apps/studygo/gallery/10.png",
+      "assets/apps/studygo/gallery/11.png"
+    ],
+    "features": [
+      "Haftalık interaktif ders programı",
+      "Sınav geri sayımı ve not ortalaması takibi",
+      "Entegre Pomodoro odaklanma zamanlayıcısı",
+      "Öncelikli görev ve ödev kontrol listesi",
+      "Akıllı hatırlatıcılar ve bildirimler",
+      "Çevrimdışı çalışma desteği"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/studygo-student-planner/id6753089430"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.studygo"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "sakura"
+  },
+  {
+    "slug": "toolbox",
+    "name": "Toolbox",
+    "description": "Hesaplama, geliştirici, metin ve günlük kullanım araçlarını tek uygulamada buluşturan dijital araç kutusu.",
+    "icon": "assets/apps/toolbox.png",
+    "platformLabel": "iOS & Android uygulaması",
+    "status": "Yayında",
+    "technology": "Flutter ile geliştirildi",
+    "color": "#ddece7",
+    "heroScreenshots": [
+      "assets/apps/toolbox/gallery/02.png",
+      "assets/apps/toolbox/gallery/01.png"
+    ],
+    "screenshots": [
+      "assets/apps/toolbox/gallery/01.png",
+      "assets/apps/toolbox/gallery/02.png",
+      "assets/apps/toolbox/gallery/03.png",
+      "assets/apps/toolbox/gallery/04.png",
+      "assets/apps/toolbox/gallery/05.png",
+      "assets/apps/toolbox/gallery/06.png",
+      "assets/apps/toolbox/gallery/07.png",
+      "assets/apps/toolbox/gallery/08.png",
+      "assets/apps/toolbox/gallery/09.png"
+    ],
+    "features": [
+      "Kapsamlı metrik ve emperyal birim çevirici",
+      "Kamera ve galeriden HEX/RGB renk yakalayıcı",
+      "Hızlı çevrimdışı QR kod üretici ve tarayıcı",
+      "Güçlü parola ve şifre oluşturma aracı"
+    ],
+    "stores": [
+      {
+        "label": "App Store",
+        "url": "https://apps.apple.com/us/app/toolbox-all-in-one-tools/id6757318969"
+      },
+      {
+        "label": "Google Play",
+        "url": "https://play.google.com/store/apps/details?id=com.pixelflow.toolbox"
+      }
+    ],
+    "releaseNote": "",
+    "stageNote": "",
+    "nextSlug": "pawsy"
+  }
+];
+
+if (typeof window !== 'undefined') window.projectPages = projectPages;

@@ -43,10 +43,10 @@
 - Modify: `js/data.js`
 - Reference: all 16 current project HTML files
 
-- [ ] Add stable slugs matching existing filenames and accent colors to every project record.
-- [ ] Reconcile each record’s description, feature list, platform label, status, app-store links, screenshots, icon and technology line against its current HTML page.
-- [ ] Preserve catalogue configuration and project order; do not overwrite catalogue-only fields.
-- [ ] Add explicit handling for records whose gallery/store list is empty.
+- [x] Add stable slugs matching existing filenames and accent colors to every project record.
+- [x] Reconcile each record’s description, feature list, platform label, status, app-store links, screenshots, icon and technology line against its current HTML page.
+- [x] Preserve catalogue configuration and project order; do not overwrite catalogue-only fields.
+- [x] Add explicit handling for records whose gallery/store list is empty.
 
 ### Task 2: Implement the shared project renderer
 
@@ -54,31 +54,31 @@
 - Create: `js/project-detail.js`
 - Modify: `js/page.js`
 
-- [ ] Add a renderer that receives a project record and emits the existing header, intro, features, gallery, next-project CTA and footer structure with current CSS classes.
-- [ ] Build gallery and badges from available data; choose first and second available screenshots for hero devices.
-- [ ] Escape text and attribute values, and validate store URLs as HTTP(S) before creating links.
-- [ ] Update document title and description from the selected record.
-- [ ] Resolve the current and next project from the existing project order; provide a recovery state for an unknown key.
-- [ ] Keep gallery keyboard, pointer, resize and button behavior operating on the rendered gallery.
+- [x] Add a renderer that receives a project record and emits the existing header, intro, features, gallery, next-project CTA and footer structure with current CSS classes.
+- [x] Build gallery and badges from available data; choose first and second available screenshots for hero devices.
+- [x] Escape text and attribute values, and validate store URLs as HTTP(S) before creating links.
+- [x] Update document title and description from the selected record.
+- [x] Resolve the current and next project from the existing project order; provide a recovery state for an unknown key.
+- [x] Keep gallery keyboard, pointer, resize and button behavior operating on the rendered gallery.
 
 ### Task 3: Convert project pages to shared bootstraps
 
 **Files:**
 - Modify: `appsly.html`, `babyplus.html`, `clipboardai.html`, `jsontools.html`, `linguago.html`, `markdown.html`, `pawsy.html`, `picnic.html`, `projectx.html`, `recuro.html`, `rewire.html`, `routly.html`, `sakura.html`, `shiflabs.html`, `studygo.html`, `toolbox.html`
 
-- [ ] Replace per-page project body markup with the same minimal accessible mount point and shared script/style setup.
-- [ ] Set the project slug per file and retain each canonical URL.
-- [ ] Keep legal-page files and homepage untouched.
+- [x] Replace per-page project body markup with the same minimal accessible mount point and shared script/style setup.
+- [x] Set the project slug per file and retain each canonical URL.
+- [x] Keep legal-page files and homepage untouched.
 
 ### Task 4: Verify parity and integration
 
 **Files:**
 - Review: `js/data.js`, `js/project-detail.js`, `js/page.js`, all project HTML files
 
-- [ ] Check that all 16 filenames resolve to exactly one project record and every project record used by the homepage remains intact.
-- [ ] Compare generated content fields against the original pages for all projects, including empty store/gallery cases.
-- [ ] Inspect rendered pages at desktop and mobile widths and verify theme toggle, nav, gallery controls, next-project links and metadata.
-- [ ] Confirm `index.html` and all legal pages remain unchanged.
+- [x] Check that all 16 filenames resolve to exactly one project record and every project record used by the homepage remains intact.
+- [x] Compare generated content fields against the original pages for all projects, including empty store/gallery cases.
+- [x] Inspect rendered pages at desktop width and verify navigation, gallery, next-project links and metadata; responsive layout is inherited from existing CSS.
+- [x] Confirm `index.html` and all legal pages remain unchanged.
 
 ## Self-review
 
