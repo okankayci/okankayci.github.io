@@ -412,114 +412,30 @@ const applications = [
     ],
     "app_store_url": null,
     "google_play_url": null
-  },
-  {
-    "name": "Manii",
-    "flagship": false,
-    "description": "Premium kişisel bütçe, nakit akışı ve tasarruf hedefleri yönetim uygulaması.",
-    "detailedDescription": "Manii, gelir ve giderlerinizi estetik grafiklerle takip etmenizi, tasarruf hedefleri belirlemenizi ve finansal özgürlük yolculuğunuzu planlamanızı sağlayan sade bir finans uygulamasıdır.",
-    "icon": "assets/apps/manii.png",
-    "screenshots": [],
-    "features": [
-      "Günlük gelir ve gider girişleri",
-      "Kategori bazlı bütçe limitleri ve uyarılar",
-      "Tasarruf kumbarası ve hedef izleme",
-      "Detaylı harcama dağılım grafikleri"
-    ],
-    "status": "coming_soon",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
-    "app_store_url": null,
-    "google_play_url": null
-  },
-  {
-    "name": "Miras",
-    "flagship": false,
-    "description": "Dijital zaman kapsülü: Bugün bir anıyı, mektubu veya fotoğrafı kilitleyin, gelecekteki bir tarihte açın.",
-    "detailedDescription": "Miras, sevdiklerinize veya gelecekteki kendinize bırakmak istediğiniz mesajları, fotoğrafları ve ses kayıtlarını belirlediğiniz tarihe kadar güvenle saklayan dijital bir zaman kapsülüdür.",
-    "icon": "assets/apps/miras.png",
-    "screenshots": [],
-    "features": [
-      "Gelecek tarih kilitli mesaj ve medya saklama",
-      "Uçtan uca yerel cihaz şifrelemesi",
-      "Özel gün ve yıldönümü hatırlatıcıları",
-      "Zamanı geldiğinde sürpriz bildirim teslimatı"
-    ],
-    "status": "coming_soon",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
-    "app_store_url": null,
-    "google_play_url": null
-  },
-  {
-    "name": "MyCard",
-    "flagship": false,
-    "description": "Kredi ve banka kartlarınız için çevrimdışı, biyometrik kilitli ve şifreli dijital kasa.",
-    "detailedDescription": "MyCard, fiziksel kartlarınızı yanınızda taşımak zorunda kalmadan kart bilgilerinizi Face ID / Touch ID koruması altında ve çevrimdışı güvenle saklar.",
-    "icon": "assets/apps/mycard.png",
-    "screenshots": [],
-    "features": [
-      "Biyometrik kilit ve yerel şifreleme",
-      "Tek dokunuşla kart numarası ve son kullanma kopyalama",
-      "Kart renk ve banka özelleştirmeleri",
-      "%100 çevrimdışı çalışma garantisi"
-    ],
-    "status": "coming_soon",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
-    "app_store_url": null,
-    "google_play_url": null
-  },
-  {
-    "name": "PharmaLens",
-    "flagship": false,
-    "description": "İlaç etkileşim analizi, kullanım talimatları ve klinik güvenlik kontrol rehberi.",
-    "detailedDescription": "PharmaLens, birden fazla ilaç kullanan bireyler ve sağlık çalışanları için olası etken madde etkileşimlerini ve doğru kullanım zamanlarını analiz eden medikal güvenlik rehberidir.",
-    "icon": "assets/apps/pharmalens.png",
-    "screenshots": [],
-    "features": [
-      "Çoklu ilaç etkileşim matrisi ve risk analizi",
-      "Aç/tok ve gün içi dozaj zamanlama rehberi",
-      "Kronik hastalık uyarıları ve yan etki dökümü",
-      "Kamera ile ilaç kutusu tanıma desteği"
-    ],
-    "status": "coming_soon",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
-    "app_store_url": null,
-    "google_play_url": null
-  },
-  {
-    "name": "Kan Bağışı",
-    "flagship": false,
-    "description": "Acil kan ihtiyaçları, bağışçı eşleşmesi ve en yakın kan bağış merkezleri rehberi.",
-    "detailedDescription": "Kan Bağışı, acil durumlarda uygun kan grubuna sahip donörlerle hastaları buluşturan, düzenli bağış hatırlatmaları yapan bir dayanışma platformudur.",
-    "icon": "assets/apps/kanbagisi.png",
-    "screenshots": [],
-    "features": [
-      "Konum tabanlı acil kan talebi oluşturma",
-      "Kan grubu eşleşmeli anlık bildirimler",
-      "Son bağıştan bu yana geçen süre ve uygunluk sayacı",
-      "Harita üzerinde güncel mobil bağış araçları"
-    ],
-    "status": "coming_soon",
-    "platforms": [
-      "iOS",
-      "Android"
-    ],
-    "app_store_url": null,
-    "google_play_url": null
   }
 ];
 
 if (typeof window !== 'undefined') {
   window.applications = applications;
 }
+
+// Presentation metadata shared by the browser and static page generator.
+const portfolioConfig = {
+  featuredNames: ['ShifLabs', 'BabyPlus', 'StudyGo', 'Routly', 'Markdown', 'ProjectX'],
+  shortDescriptions: {
+    ShifLabs: 'Vardiya ve çalışma planı', BabyPlus: 'Bebek gelişimi ve bakım takibi',
+    StudyGo: 'Ders planı ve odaklanma', Sakura: 'Sağlık çalışanları için vardiya takibi',
+    JsonTools: 'JSON düzenleme araçları', Markdown: 'Yaz, düzenle, dışa aktar',
+    LinguaGo: 'Kelime öğrenme ve tekrar', Toolbox: 'Günlük dijital araçlar',
+    Pawsy: 'Evcil dostlar için bakım takibi', Routly: 'Rutin ve alışkanlık takibi',
+    Picnic: 'Birlikte planlanan etkinlikler', ProjectX: 'Geliştiriciler için proje takibi',
+    Recuro: 'Abonelik ve ödeme takibi'
+  },
+  colors: ['#dfeafa', '#f4e4e8', '#e8e5f7', '#ddece7', '#e4e9f0', '#f1e8da'],
+  pageHref(name) {
+    return name.toLowerCase().trim()
+      .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
+      .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
+      .replace(/[^a-z0-9]/g, '') + '.html';
+  }
+};

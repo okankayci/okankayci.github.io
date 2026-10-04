@@ -39,7 +39,7 @@
                     <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                     <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
                 </button>
-                <button class="hamburger icon-btn" type="button" aria-label="Menüyü aç">
+                <button class="hamburger icon-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menüyü aç">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
                 </button>
             </div>
@@ -75,17 +75,18 @@
 
         <section id="apps" class="section projects-section">
             <div class="container">
-                <div class="project-heading">
+                <div class="project-heading reveal">
                     <div class="section-head"><h2>Ürettiğim işler.</h2><p>Günlük hayata dokunan küçük, iyi düşünülmüş ürünler.</p></div>
-                    <span class="project-count" id="project-count"></span>
+                    <span class="project-count" id="project-count" aria-live="polite" aria-atomic="true"></span>
                 </div>
                 <div id="apps-container" class="apps-grid"></div>
+                <noscript><p>Projeleri keşfedin: <a href="shiflabs.html">ShifLabs</a>, <a href="babyplus.html">BabyPlus</a>, <a href="studygo.html">StudyGo</a>.</p></noscript>
                 <div class="projects-more"><button class="btn btn-ghost" id="show-all-projects" type="button" aria-expanded="false" aria-controls="apps-container">Tüm projeleri göster <span aria-hidden="true">+</span></button></div>
             </div>
         </section>
 
         <section id="craft" class="section craft">
-            <div class="container about-layout">
+            <div class="container about-layout reveal">
                 <div class="about-monogram" aria-hidden="true">ok<span>.</span></div>
                 <div class="about-copy"><h2>Az karmaşa.<br>Daha iyi deneyim.</h2><p>Ben Okan Kaycı, İstanbul’da bir Flutter geliştiricisiyim. Fikrini sade, hızlı ve kullanımı keyifli bir ürüne dönüştürüyorum.</p><div class="about-skills"><span>Arayüz tasarımı</span><span>Flutter geliştirme</span><span>Mağaza yayını</span></div></div>
             </div>
@@ -95,7 +96,7 @@
         <section id="contact" class="section contact">
             <div class="container contact-grid">
                 <div class="reveal">
-                    <div class="section-head" style="margin-bottom: 0;">
+                    <div class="section-head">
                         <h2>Birlikte çalışalım.</h2>
                         <p>Bir fikrin mi var? Konuşalım.</p>
                     </div>
@@ -106,7 +107,7 @@
                                 <span class="mono">E-posta</span>
                                 <a href="mailto:pixelflowsoftware@gmail.com">pixelflowsoftware@gmail.com</a>
                             </div>
-                            <button id="copy-email-btn" class="copy-btn" type="button" aria-label="E-posta adresini kopyala">
+                            <button id="copy-email-btn" class="copy-btn" aria-live="polite" type="button" aria-label="E-posta adresini kopyala">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                                 Kopyala
                             </button>
@@ -148,7 +149,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-submit">
                         <span class="btn-text">Mesajı gönder</span>
-                        <span class="btn-loading" style="display:none;">Gönderiliyor…</span>
+                        <span class="btn-loading" hidden>Gönderiliyor…</span>
                     </button>
                     <div class="form-status" id="form-status" role="alert"></div>
                 </form>

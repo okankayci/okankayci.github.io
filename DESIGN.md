@@ -40,7 +40,9 @@ Ekranı henüz bulunmayan projeler gerçek ikonlarıyla gösterilir.
 
 ## Hareket ve erişilebilirlik
 
-Açılış animasyonu ve ekranların üzerine gelindiğinde küçük hareketler.
+Tek seferlik açılış animasyonu, bölüm girişleri ve ekranlarda odak/hover hareketleri.
+Animasyon süreleri `--motion-fast` ve `--motion-enter` değişkenleriyle yönetilir.
+İçerik JavaScript çalışmadığında da görünür; giriş efektleri gözlemci kurulunca etkinleşir.
 Tema `js/theme.js` ile ilk çizimden önce uygulanır; seçim sayfalar arasında
 korunur. Seçim yapılmadığında sistem tercihi izlenir.
 Kaydırma tarayıcının doğal davranışını korur. Hareket azaltma tercihi
@@ -53,3 +55,20 @@ Mobil görünüm 320 px genişliğe kadar uyarlanır.
 üretir. Üst menü, alt bilgi ve yazı tipi bağlantısı `index.html` üzerinden
 alınır; böylece ana sayfanın tasarımıyla tutarlı kalır. Yasal sayfalar bu
 komut tarafından değiştirilmez. Çalışma zamanında derleme veya bağımlılık yoktur.
+
+## Kod sorumlulukları
+
+- `js/data.js`: uygulamalar, seçili proje sırası, renk paleti, kısa açıklamalar
+  ve proje adresi üretimi. Tarayıcı ve statik sayfa üreticisi aynı veriyi kullanır.
+- `js/main.js`: katalog görünürlüğü, e-posta kopyalama ve iletişim formu.
+  Kartlar bir kez oluşturulur; genişletme/daraltma mevcut düğümleri korur.
+- `js/page.js`: galeri düğmeleri, ok tuşları ve fareyle sürükleme.
+- `js/motion.js`: ortak mobil menü, odak yönetimi, aktif bağlantı, yukarı
+  dönme, ilerleme çizgisi ve bölüm girişleri. Kaydırma güncellemeleri
+  tek `requestAnimationFrame` içinde birleştirilir; tekerlek girdisi engellenmez.
+- `js/theme.js`: ilk çizimden önce tema ve kalıcı kullanıcı tercihi.
+
+Mobil menü açıkken arka plan `inert` olur; Tab menüde kalır, Escape menüyü
+kapatıp odağı açma düğmesine döndürür. Masaüstüne geçiş açık menüyü kapatır.
+Galeri ölçüleri ve ilerleme çizgisi içerik boyutu değiştiğinde güncellenir.
+Form istekleri 15 saniye sonunda sonlanır; hata halinde yazılan mesaj korunur.

@@ -63,6 +63,7 @@ body[data-theme="dark"] {
 *, *::before, *::after { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
 
 body {
   margin: 0;
@@ -162,7 +163,7 @@ main section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
   color: var(--paper);
 }
 .btn-primary:hover { background: var(--teal-deep); color: #ffffff; }
-body[data-theme="dark"] .btn-primary:hover { color: #171923; }
+body[data-theme="dark"] .btn-primary:hover { color: var(--primary-ink, #171923); }
 
 .btn-ghost {
   border-color: var(--line-strong);
@@ -1010,11 +1011,12 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
 
 /* ── 13. HAREKET: SCROLL REVEAL & AÇILIŞ ───────────────────── */
 .reveal {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.75s var(--ease-out-apple), transform 0.75s var(--ease-out-apple);
   transition-delay: var(--d, 0ms);
 }
+.reveal.reveal-ready:not(.visible) { opacity: 0; transform: translateY(16px); }
 .reveal.visible { opacity: 1; transform: none; }
 
 /* Kelime maske başlık girişi — h2'ler kelime kelime yükselir */
@@ -1034,7 +1036,7 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
 .reveal.visible .word-mask > span { transform: none; }
 
 /* Galeri karelerinde derinlik */
-.shot.reveal { transform: translateY(16px) scale(0.97); }
+.shot.reveal.reveal-ready:not(.visible) { transform: translateY(16px) scale(0.97); }
 .shot.reveal.visible { transform: none; }
 
 /* Hero açılış koreografisi — sayfa yüklenince sırayla yükselir */

@@ -5,12 +5,13 @@
   --line: #dce4ef; --line-strong: #c6d3e4;
   --teal: #2462eb; --teal-deep: #174dca; --teal-soft: #e4edff;
   --font-sans: 'Manrope', sans-serif; --container: 1240px; --header-h: 88px;
+  --motion-fast: 180ms; --motion-enter: 700ms;
   --project-surface: var(--project-bg, #e6ecfa);
   --preview-halo: #ffffff35; --floating-control: #ffffffc9;
   --floating-ink: #182c49; --control-line: #182c4920;
   --device-frame: #202b3c; --device-edge: #5d6c82;
   --device-shadow: #17335b66; --stage-glow: #a4caff70;
-  --primary-ink: #ffffff; --gallery-scrollbar: #182c4940;
+  --primary-ink: #ffffff; --primary-hover: #174dca; --gallery-scrollbar: #182c4940;
 }
 html[data-theme="dark"] .portfolio {
   --paper: #080808; --surface: #141414; --surface-2: #101010;
@@ -22,7 +23,7 @@ html[data-theme="dark"] .portfolio {
   --floating-ink: #f4f4f5; --control-line: #444444;
   --device-frame: #121212; --device-edge: #454545;
   --device-shadow: #000000b3; --stage-glow: #ffffff08;
-  --primary-ink: #080808; --gallery-scrollbar: #5a5a5a;
+  --primary-ink: #080808; --primary-hover: #b0c5ff; --gallery-scrollbar: #5a5a5a;
 }
 .portfolio .mono, .portfolio .nav a, .portfolio .copy-btn, .portfolio .form-group label, .portfolio .footer-bottom { font-family: var(--font-sans); text-transform: none; letter-spacing: 0; }
 .portfolio .site-header { border: 0; }
@@ -32,17 +33,17 @@ html[data-theme="dark"] .portfolio {
 .portfolio .nav { margin-left: auto; gap: 34px; }
 .portfolio .nav a { font-size: 13px; font-weight: 600; }
 .portfolio .icon-btn { border-color: transparent; background: var(--surface); width: 42px; height: 42px; }
-.portfolio .hero { padding: 158px 0 0; overflow: hidden; position: relative; }
-.portfolio .hero-grid { grid-template-columns: 1.08fr 1fr; gap: 10px; min-height: 560px; }
+.portfolio .hero { padding: calc(var(--header-h) + 64px) 0 0; overflow: hidden; position: relative; }
+.portfolio .hero-grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr); gap: 32px; min-height: 580px; }
 .hero-copy { position: relative; z-index: 2; }
 .hero-intro { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; margin-bottom: 28px; }
 .hero-intro span { color: var(--teal); font-size: 24px; }
 .portfolio .hero h1 { font-size: clamp(44px, 5.2vw, 72px); max-width: none; line-height: 1.08; letter-spacing: -.065em; font-weight: 800; }
-.portfolio .hero-lead { max-width: 365px; margin-top: 26px; font-size: 16px; line-height: 1.8; color: var(--ink-2); }
+.portfolio .hero-lead { max-width: 390px; margin-top: 26px; font-size: 16px; line-height: 1.8; color: var(--ink-2); }
 .portfolio .hero-actions { margin-top: 32px; gap: 25px; display: flex; flex-wrap: wrap; align-items: center; }
 .portfolio .btn { padding: 15px 23px; font-size: 13px; gap: 20px; border-radius: 12px; }
 .portfolio .btn-primary { background: var(--teal); color: var(--primary-ink); box-shadow: 0 8px 22px -12px #2462eb; }
-.portfolio .btn-primary:hover { background: var(--teal-deep); }
+.portfolio .btn-primary:hover { background: var(--primary-hover); color: var(--primary-ink); }
 .portfolio .btn-primary > span[aria-hidden] { font-size: 20px; line-height: 1; }
 .hero-contact { font-weight: 700; font-size: 13px; padding: 12px 0; border-bottom: 1px solid var(--line-strong); }
 .hero-platforms { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--ink-2); margin-top: 43px; }
@@ -54,13 +55,13 @@ html[data-theme="dark"] .portfolio {
 .orbit-two { width: 390px; height: 390px; }
 .stage-phone { position: absolute; width: 210px; padding: 6px; background: var(--device-frame); border: 1px solid var(--device-edge); border-radius: 32px; box-shadow: 0 30px 50px -22px var(--device-shadow), inset 0 0 0 2px #ffffff20; overflow: hidden; transition: transform .6s var(--ease-out-apple), box-shadow .4s; }
 .stage-phone img { width: 100%; height: 424px; object-fit: cover; object-position: top; border-radius: 25px; }
-.phone-main { left: calc(50% - 105px); top: 32px; z-index: 3; transform: rotate(-5deg); animation: phone-arrive 1.3s var(--ease-out-apple) both; }
+.phone-main { left: calc(50% - 105px); top: 32px; z-index: 3; transform: rotate(-5deg); animation: phone-arrive 1.1s var(--ease-out-apple); }
 .phone-left { left: calc(50% - 240px); top: 85px; z-index: 1; transform: rotate(-16deg) scale(.88); }
 .phone-right { left: calc(50% + 30px); top: 65px; z-index: 2; transform: rotate(14deg) scale(.9); }
 .phone-main:hover, .phone-main:focus-visible { transform: translateY(-12px) rotate(0deg); }
 .phone-left:hover, .phone-left:focus-visible { transform: translate(-15px, -12px) rotate(-12deg) scale(.9); z-index: 4; }
 .phone-right:hover, .phone-right:focus-visible { transform: translate(15px, -12px) rotate(10deg) scale(.94); z-index: 4; }
-.stage-spark { position: absolute; right: 20px; top: 4px; color: var(--teal); font-size: 68px; line-height: 1; animation: spark-turn 16s linear infinite; }
+.stage-spark { position: absolute; right: 20px; top: 4px; color: var(--teal); font-size: 68px; line-height: 1; }
 .stage-label { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%) rotate(-4deg); white-space: nowrap; display: flex; align-items: center; gap: 10px; padding: 13px 20px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); font-size: 12px; font-weight: 700; box-shadow: 0 10px 35px -20px var(--device-shadow); z-index: 5; }
 .label-dot { width: 7px; height: 7px; background: var(--teal); border-radius: 50%; }
 .hero-bottom { padding: 24px 0; border-top: 1px solid var(--line); display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-2); }
@@ -71,16 +72,16 @@ html[data-theme="dark"] .portfolio {
 .portfolio h2 { font-size: clamp(32px, 3.5vw, 46px); font-weight: 800; letter-spacing: -.055em; line-height: 1.15; }
 .portfolio .section-head p { font-size: 14px; margin-top: 12px; }
 .project-count { font-size: 12px; color: var(--ink-2); white-space: nowrap; padding-bottom: 3px; }
-.portfolio .apps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-.portfolio .app-card { display: block; min-width: 0; padding: 10px 10px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 24px; box-shadow: none; overflow: hidden; transition: border-color .3s ease, box-shadow .3s ease; }
-.portfolio .app-card:hover { transform: none; border-color: var(--line-strong); box-shadow: 0 16px 35px -25px var(--device-shadow); }
-.portfolio .app-card-preview { display: block; aspect-ratio: auto; min-width: 0; height: 290px; border-radius: 16px; background: var(--project-surface); overflow: hidden; position: relative; margin: 0; border: 0; }
+.portfolio .apps-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 28px; }
+.portfolio .app-card { display: block; min-width: 0; padding: 0 0 22px; background: transparent; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; box-shadow: none; overflow: hidden; transition: border-color var(--motion-fast) ease; }
+.portfolio .app-card:hover { transform: none; border-color: var(--teal); box-shadow: none; }
+.portfolio .app-card-preview { display: block; aspect-ratio: auto; min-width: 0; height: 320px; border-radius: 20px; background: var(--project-surface); overflow: hidden; position: relative; margin: 0; border: 0; }
 .portfolio .app-card-preview::before { content: ''; position: absolute; width: 250px; height: 250px; border-radius: 50%; background: var(--preview-halo); top: 30px; left: calc(50% - 125px); }
-.portfolio .app-card-preview img { position: relative; margin: 32px auto 0; width: 158px; height: auto; min-height: 260px; object-fit: cover; object-position: top; border: 5px solid var(--device-frame); border-radius: 23px; box-shadow: 0 22px 35px -17px var(--device-shadow); transform: rotate(-6deg); transition: transform .65s var(--ease-out-apple); }
+.portfolio .app-card-preview img { position: relative; margin: 32px auto 0; width: 174px; height: auto; min-height: 260px; object-fit: cover; object-position: top; border: 5px solid var(--device-frame); border-radius: 23px; box-shadow: 0 22px 35px -17px var(--device-shadow); transform: rotate(-6deg); transition: transform .65s var(--ease-out-apple); }
 .portfolio .app-card-preview:hover img, .portfolio .app-card-preview:focus-visible img { transform: translateY(-14px) rotate(0deg); }
 .portfolio .app-card-preview img.is-icon { width: 120px; height: 120px; min-height: 0; border: 0; border-radius: 27px; margin-top: 85px; }
 .project-open { position: absolute; right: 17px; bottom: 17px; width: 35px; height: 35px; border-radius: 50%; background: var(--floating-control); color: var(--floating-ink); border: 1px solid var(--control-line); display: grid; place-items: center; font-size: 19px; }
-.project-info { display: flex; align-items: center; gap: 12px; padding: 18px 8px 0; }
+.project-info { display: flex; align-items: center; gap: 12px; padding: 20px 0 0; }
 .portfolio .app-icon { width: 38px; height: 38px; border-radius: 10px; flex: none; }
 .portfolio .app-card h3 { font-size: 16px; letter-spacing: -.025em; }
 .portfolio .app-desc { color: var(--ink-2); font-size: 12px; margin-top: 4px; line-height: 1.5; }
@@ -95,6 +96,7 @@ html[data-theme="dark"] .portfolio {
 .about-skills span { font-size: 11px; padding: 8px 12px; border: 1px solid var(--line-strong); border-radius: 8px; }
 .portfolio .contact-grid { gap: 80px; grid-template-columns: 1fr 1fr; align-items: start; }
 .portfolio .contact-form { padding: 30px; border-radius: 20px; box-shadow: 0 18px 50px -35px var(--device-shadow); }
+.portfolio .channel-label { min-width: 0; }
 .portfolio .channel-label a { font-size: 14px; overflow-wrap: anywhere; }
 .portfolio .channel-label .mono { font-size: 11px; }
 .portfolio .channel { padding: 20px 0; }
@@ -105,13 +107,14 @@ html[data-theme="dark"] .portfolio {
 .footer-simple { display: flex; justify-content: space-between; align-items: center; gap: 25px; padding: 30px 0; }
 .footer-links { display: flex; gap: 24px; font-size: 11px; color: var(--ink-2); }
 .portfolio .footer-bottom { font-size: 10px; padding: 18px 0; }
-.portfolio .reveal { opacity: 1; transform: none; transition: none; }
+.portfolio .reveal { opacity: 1; transform: none; }
+.portfolio .reveal.reveal-ready:not(.visible) { opacity: 0; transform: translateY(18px); }
+.portfolio .reveal.reveal-ready { transition: opacity var(--motion-enter) var(--ease-out-apple), transform var(--motion-enter) var(--ease-out-apple); }
 .portfolio .word-mask > span { transform: none; transition: none; }
 @keyframes phone-arrive { from { opacity: 0; translate: 0 45px; } to { opacity: 1; translate: 0 0; } }
-@keyframes spark-turn { to { transform: rotate(360deg); } }
 @media (max-width: 1100px) {
   .portfolio .hero h1 { font-size: 54px; }
-  .portfolio .hero-grid { grid-template-columns: 1fr 1fr; }
+  .portfolio .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .stage-phone { width: 180px; }
   .stage-phone img { height: 366px; }
   .phone-main { left: calc(50% - 90px); top: 60px; }
@@ -171,7 +174,8 @@ html[data-theme="dark"] .portfolio {
   .about-copy p { font-size: 13px; }
   .portfolio .contact-form { padding: 22px; }
   .portfolio .channel { gap: 8px; }
-  .portfolio .channel-label a { font-size: 12px; }
+  .portfolio .channel-label { min-width: 0; }
+.portfolio .channel-label a { font-size: 12px; }
   .footer-simple { align-items: flex-start; flex-direction: column; gap: 20px; }
   .footer-links { gap: 20px; }
 }
@@ -197,12 +201,12 @@ html[data-theme="dark"] .portfolio {
 .project-stage-disc { width: 450px; height: 450px; border-radius: 50%; position: absolute; top: 25px; left: calc(50% - 225px); background: var(--project-surface); z-index: -1; }
 .project-stage-disc::after { content: ''; position: absolute; inset: -24px; border: 1px solid color-mix(in srgb, var(--teal) 12%, transparent); border-radius: 50%; }
 .project-stage .stage-spark { top: 5px; right: 15px; font-size: 56px; }
-.project-phone-front { left: calc(50% - 140px); top: 20px; z-index: 2; transform: rotate(-7deg); animation: phone-arrive 1.3s var(--ease-out-apple) both; }
+.project-phone-front { left: calc(50% - 140px); top: 20px; z-index: 2; transform: rotate(-7deg); animation: phone-arrive 1.1s var(--ease-out-apple); }
 .project-phone-back { left: calc(50% + 15px); top: 60px; transform: rotate(12deg) scale(.9); }
 .project-phone-front:hover, .project-phone-front:focus-visible { transform: translateY(-10px) rotate(-2deg); }
 .project-phone-back:hover, .project-phone-back:focus-visible { transform: translate(10px, -10px) rotate(8deg) scale(.92); }
 .project-icon-display { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
-.project-icon-display img { width: 140px; height: 140px; border-radius: 34px; box-shadow: 0 25px 45px -20px var(--device-shadow); transform: rotate(-8deg); animation: phone-arrive 1.3s var(--ease-out-apple) both; }
+.project-icon-display img { width: 140px; height: 140px; border-radius: 34px; box-shadow: 0 25px 45px -20px var(--device-shadow); transform: rotate(-8deg); animation: phone-arrive 1.1s var(--ease-out-apple); }
 .project-icon-display span { font-size: 12px; color: var(--floating-ink); padding: 10px 16px; background: var(--floating-control); border: 1px solid var(--control-line); border-radius: 10px; }
 .project-detail .project-features { background: var(--surface-2); padding: 65px 0; }
 .project-features-layout { display: grid; grid-template-columns: .8fr 1.2fr; align-items: start; gap: 60px; }
@@ -270,15 +274,13 @@ html[data-theme="dark"] .portfolio {
 html[data-theme="dark"] .portfolio .app-card {
   --project-surface: color-mix(in srgb, var(--project-bg, #e6ecfa) 4%, #171717);
 }
-.portfolio .btn-primary:hover { color: var(--primary-ink); }
-html[data-theme="dark"] .portfolio .btn-primary:hover { color: var(--primary-ink); }
 .portfolio .btn-ghost:hover { background: var(--surface); }
 .portfolio .site-header.scrolled { border-bottom: 1px solid var(--line); }
 .portfolio .icon-btn:hover { color: var(--ink); border-color: var(--line-strong); }
 html[data-theme="dark"] .portfolio .i-sun { display: block; }
 html[data-theme="dark"] .portfolio .i-moon { display: none; }
 .portfolio .project-open { transition: background .2s ease, color .2s ease, transform .3s ease; }
-.portfolio .app-card-preview:hover .project-open { background: var(--floating-control); color: var(--teal-deep); border-color: var(--teal); transform: rotate(6deg); }
+.portfolio .app-card-preview:is(:hover, :focus-visible) .project-open { background: var(--floating-control); color: var(--teal-deep); border-color: var(--teal); transform: rotate(6deg); }
 .portfolio .form-group input:hover, .portfolio .form-group textarea:hover { border-color: var(--line-strong); }
 .portfolio .form-group input:focus, .portfolio .form-group textarea:focus { border-color: var(--teal); }
 .portfolio .btn:disabled { opacity: .6; cursor: wait; }

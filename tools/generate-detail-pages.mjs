@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 
 const ROOT = new URL('../', import.meta.url);
 const read = (path) => readFileSync(new URL(path, ROOT), 'utf8');
-const applications = new Function(`${read('js/data.js')}; return applications;`)();
+const { applications, portfolioConfig } = new Function(`${read('js/data.js')}; return { applications, portfolioConfig };`)();
 const homepage = read('index.html');
 const header = homepage.match(/<header class="site-header">[\s\S]*?<\/header>/)[0]
   .replace(/href="#(hero|apps|craft|contact)"/g, 'href="index.html#$1"');
@@ -12,15 +12,10 @@ const footer = homepage.match(/<footer class="footer">[\s\S]*?<\/footer>/)[0]
 const fontLink = homepage.match(/<link href="https:\/\/fonts.googleapis.com[^>]+>/)[0];
 const esc = (s = '') => String(s).replaceAll('&', '&amp;').replaceAll('<', '&lt;')
   .replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&#39;');
-const slugify = (name) => name.toLowerCase().trim()
-  .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
-  .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c')
-  .replace(/[^a-z0-9]/g, '') + '.html';
+const { pageHref: slugify, featuredNames: selectedNames, colors } = portfolioConfig;
 const isRealUrl = (url) => !!url && url !== '#';
-const selectedNames = ['ShifLabs', 'BabyPlus', 'StudyGo', 'Routly', 'Markdown', 'ProjectX'];
 const orderedApps = [...selectedNames.map((name) => applications.find((app) => app.name === name)).filter(Boolean),
   ...applications.filter((app) => !selectedNames.includes(app.name))];
-const colors = ['#dfeafa', '#f4e4e8', '#e8e5f7', '#ddece7', '#e4e9f0', '#f1e8da'];
 const arrow = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
 const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
 
