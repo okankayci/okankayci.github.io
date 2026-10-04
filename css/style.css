@@ -888,22 +888,70 @@ body[data-theme="dark"] .form-status.error { color: #e5837a; }
 }
 .feature-item p { font-size: 0.95rem; font-weight: 500; }
 
-/* Ekran görüntüleri */
-.shots-grid {
+/* Yatay ekran görüntüsü galerisi */
+.shots-carousel {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 280px));
-  gap: 24px;
-  justify-content: center;
+  grid-template-columns: 44px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 12px;
 }
+.shot-nav {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, opacity .2s ease;
+}
+.shot-nav[hidden] { display: none; }
+.shots-carousel:not(.is-scrollable) { grid-template-columns: minmax(0, 1fr); }
+.shot-nav:hover:not(:disabled) { background: var(--ink); color: var(--paper); }
+.shot-nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+.shot-nav:disabled { opacity: .35; cursor: default; }
+.shots-grid {
+  display: flex;
+  min-width: 0;
+  gap: 22px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  padding: 12px 4px 24px;
+  scrollbar-width: auto;
+  scrollbar-color: var(--line-strong) transparent;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+  user-select: none;
+  cursor: grab;
+}
+.shots-grid:active { cursor: grabbing; }
+.shots-grid:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
 .shot {
+  flex: 0 0 clamp(190px, 22vw, 260px);
+  min-width: 0;
   border: 1.5px solid var(--ink);
   border-radius: 32px;
   padding: 7px;
   background: var(--surface);
   box-shadow: var(--shadow-phone);
   overflow: hidden;
+  scroll-snap-align: start;
 }
-.shot img { border-radius: 25px; width: 100%; aspect-ratio: 9/19; object-fit: cover; }
+.shot img { display: block; -webkit-user-drag: none; border-radius: 25px; width: 100%; aspect-ratio: 9/19; object-fit: cover; }
+@media (max-width: 600px) {
+  .shots-carousel { grid-template-columns: 38px minmax(0, 1fr) 38px; gap: 6px; }
+  .shot-nav { width: 38px; height: 38px; }
+  .shots-grid { gap: 14px; padding: 12px 2px 20px; }
+  .shot { flex-basis: min(68vw, 240px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shot-nav { transition: none; }
+}
 
 .shots-empty {
   border: 1px dashed var(--line-strong);

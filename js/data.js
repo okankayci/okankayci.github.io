@@ -6,9 +6,15 @@ const applications = [
     detailedDescription: "ShifLabs, vardiyalı çalışanlar için tasarlanmış kapsamlı bir vardiya yönetim uygulamasıdır. Vardiyalarınızı kolayca takip edin, notlar ekleyin ve detaylı raporlar alın.",
     icon: "assets/apps/shiflabs.png",
     screenshots: [
-      "assets/apps/shiflabs/1.png",
-      "assets/apps/shiflabs/2.png",
-      "assets/apps/shiflabs/3.png"
+      "assets/apps/shiflabs/gallery/01.png",
+      "assets/apps/shiflabs/gallery/02.png",
+      "assets/apps/shiflabs/gallery/03.png",
+      "assets/apps/shiflabs/gallery/04.png",
+      "assets/apps/shiflabs/gallery/05.png",
+      "assets/apps/shiflabs/gallery/06.png",
+      "assets/apps/shiflabs/gallery/07.png",
+      "assets/apps/shiflabs/gallery/08.png",
+      "assets/apps/shiflabs/gallery/09.png"
     ],
     features: [
       "Vardiya ve izinleri anında planlayın",
@@ -54,9 +60,17 @@ const applications = [
     detailedDescription: "StudyGo, öğrencilerin ders programlarını yönetmeleri, sınavlarını ve sonuçlarını takip etmeleri, görevlerini organize etmeleri, pomodoro tekniği ile verimli çalışmaları, notlar almaları ve çalışma planları oluşturmaları için tasarlanmış kapsamlı bir eğitim uygulamasıdır.",
     icon: "assets/apps/studygo.png",
     screenshots: [
-      "assets/apps/studygo/1.png",
-      "assets/apps/studygo/2.png",
-      "assets/apps/studygo/3.png"
+      "assets/apps/studygo/gallery/01.png",
+      "assets/apps/studygo/gallery/02.png",
+      "assets/apps/studygo/gallery/03.png",
+      "assets/apps/studygo/gallery/04.png",
+      "assets/apps/studygo/gallery/05.png",
+      "assets/apps/studygo/gallery/06.png",
+      "assets/apps/studygo/gallery/07.png",
+      "assets/apps/studygo/gallery/08.png",
+      "assets/apps/studygo/gallery/09.png",
+      "assets/apps/studygo/gallery/10.png",
+      "assets/apps/studygo/gallery/11.png"
     ],
     features: [
       "Haftalık interaktif ders programı",
@@ -100,9 +114,15 @@ const applications = [
     detailedDescription: "JSON Tools; verileri ağaç görünümünde inceleme, düzenleme ve doğrulamanın yanı sıra JSON farklarını karşılaştırma, sahte veri üretme ve Dart model sınıfları oluşturma araçlarını bir araya getirir.",
     icon: "assets/apps/jsontools.png",
     screenshots: [
-      "assets/apps/jsontools/1.png",
-      "assets/apps/jsontools/2.png",
-      "assets/apps/jsontools/3.png"
+      "assets/apps/jsontools/gallery/01.png",
+      "assets/apps/jsontools/gallery/02.png",
+      "assets/apps/jsontools/gallery/03.png",
+      "assets/apps/jsontools/gallery/04.png",
+      "assets/apps/jsontools/gallery/05.png",
+      "assets/apps/jsontools/gallery/06.png",
+      "assets/apps/jsontools/gallery/07.png",
+      "assets/apps/jsontools/gallery/08.png",
+      "assets/apps/jsontools/gallery/09.png"
     ],
     features: [
       "Anlık sözdizimi doğrulama ve hata vurgulama",
@@ -123,9 +143,12 @@ const applications = [
     detailedDescription: "Markdown Editor, geliştiriciler ve içerik üreticileri için tasarlanmış modern bir Markdown editörüdür. Canlı iki panelli önizleme, çoklu dil sözdizimi vurgulama ve temiz dışa aktarım seçenekleri sunar.",
     icon: "assets/apps/markdown.png",
     screenshots: [
-      "assets/apps/markdown/1.png",
-      "assets/apps/markdown/2.png",
-      "assets/apps/markdown/3.png"
+      "assets/apps/markdown/gallery/01.png",
+      "assets/apps/markdown/gallery/02.png",
+      "assets/apps/markdown/gallery/03.png",
+      "assets/apps/markdown/gallery/04.png",
+      "assets/apps/markdown/gallery/05.png",
+      "assets/apps/markdown/gallery/06.png"
     ],
     features: [
       "Canlı iki panelli Markdown önizleme",
@@ -168,9 +191,15 @@ const applications = [
     detailedDescription: "Toolbox; hesap makinesi ve yaş hesaplayıcı gibi pratik araçlarla JSON biçimleyici, hash oluşturucu ve QR üretici gibi geliştirici yardımcılarını tek uygulamada sunar.",
     icon: "assets/apps/toolbox.png",
     screenshots: [
-      "assets/apps/toolbox/1.png",
-      "assets/apps/toolbox/2.png",
-      "assets/apps/toolbox/3.png"
+      "assets/apps/toolbox/gallery/01.png",
+      "assets/apps/toolbox/gallery/02.png",
+      "assets/apps/toolbox/gallery/03.png",
+      "assets/apps/toolbox/gallery/04.png",
+      "assets/apps/toolbox/gallery/05.png",
+      "assets/apps/toolbox/gallery/06.png",
+      "assets/apps/toolbox/gallery/07.png",
+      "assets/apps/toolbox/gallery/08.png",
+      "assets/apps/toolbox/gallery/09.png"
     ],
     features: [
       "Kapsamlı metrik ve emperyal birim çevirici",
@@ -212,9 +241,13 @@ const applications = [
     detailedDescription: "Routly, kullanıcıların günlük rutinlerini takip etmelerini, alışkanlık oluşturmalarını ve hedeflerine ulaşmalarını sağlayan kapsamlı bir rutin yönetimi uygulamasıdır. Tutarlı ilerleme yapmanız için hergün sizi teşvik eder.",
     icon: "assets/apps/routly.png",
     screenshots: [
-      "assets/apps/routly/1.png",
-      "assets/apps/routly/2.png",
-      "assets/apps/routly/3.png"
+      "assets/apps/routly/gallery/01.png",
+      "assets/apps/routly/gallery/02.png",
+      "assets/apps/routly/gallery/03.png",
+      "assets/apps/routly/gallery/04.png",
+      "assets/apps/routly/gallery/05.png",
+      "assets/apps/routly/gallery/06.png",
+      "assets/apps/routly/gallery/07.png"
     ],
     features: [
       "Sabah ve akşam rutin blokları",
@@ -282,9 +315,11 @@ const applications = [
     "detailedDescription": "Appsly, Android cihazınızdaki uygulamaları tematik akıllı klasörlere ayıran, ana ekran widget desteği ve OLED derin siyah teması sunan modern bir organizasyon aracıdır.",
     "icon": "assets/apps/appsly.png",
     "screenshots": [
-      "assets/apps/appsly/1.png",
-      "assets/apps/appsly/2.png",
-      "assets/apps/appsly/3.png"
+      "assets/apps/appsly/gallery/01.png",
+      "assets/apps/appsly/gallery/02.png",
+      "assets/apps/appsly/gallery/03.png",
+      "assets/apps/appsly/gallery/04.png",
+      "assets/apps/appsly/gallery/05.png"
     ],
     "features": [
       "Otomatik ve akıllı kategori klasörleri",
@@ -307,9 +342,14 @@ const applications = [
     "detailedDescription": "Recuro, dijital servis ve fiziksel aboneliklerinizi tek merkezden takip etmenizi sağlar. Yaklaşan ödemeleri önceden bildirir ve yıllık maliyet projeksiyonlarıyla tasarruf etmenize yardımcı olur.",
     "icon": "assets/apps/recuro.png",
     "screenshots": [
-      "assets/apps/recuro/1.png",
-      "assets/apps/recuro/2.png",
-      "assets/apps/recuro/3.png"
+      "assets/apps/recuro/gallery/01.png",
+      "assets/apps/recuro/gallery/02.png",
+      "assets/apps/recuro/gallery/03.png",
+      "assets/apps/recuro/gallery/04.png",
+      "assets/apps/recuro/gallery/05.png",
+      "assets/apps/recuro/gallery/06.png",
+      "assets/apps/recuro/gallery/07.png",
+      "assets/apps/recuro/gallery/08.png"
     ],
     "features": [
       "Yenileme tarihleri için akıllı bildirimler",

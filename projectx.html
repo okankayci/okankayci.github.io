@@ -109,11 +109,15 @@
                     <span class="mono">Galeri</span>
                     <h2>Uygulamadan görünümler.</h2>
                 </div>
-                <div class="shots-grid">
+                <div class="shots-carousel" data-shots-carousel aria-label="Projectx ekran görüntüsü galerisi">
+                    <button class="shot-nav" type="button" data-shots-prev aria-label="Önceki ekran görüntüleri" disabled><span aria-hidden="true">←</span></button>
+                    <div class="shots-grid" tabindex="0" aria-label="projectx ekran görüntüleri">
                     
-                    <div class="shot reveal" style="--d:0ms"><img src="assets/apps/projectx/1.png" alt="ProjectX ekran görüntüsü 1" loading="lazy"></div>
-                    <div class="shot reveal" style="--d:80ms"><img src="assets/apps/projectx/2.png" alt="ProjectX ekran görüntüsü 2" loading="lazy"></div>
-                    <div class="shot reveal" style="--d:160ms"><img src="assets/apps/projectx/3.png" alt="ProjectX ekran görüntüsü 3" loading="lazy"></div>
+                    <div class="shot reveal" style="--d:0ms"><img src="assets/apps/projectx/1.png" alt="ProjectX ekran görüntüsü 1" loading="lazy" draggable="false"></div>
+                    <div class="shot reveal" style="--d:80ms"><img src="assets/apps/projectx/2.png" alt="ProjectX ekran görüntüsü 2" loading="lazy" draggable="false"></div>
+                    <div class="shot reveal" style="--d:160ms"><img src="assets/apps/projectx/3.png" alt="ProjectX ekran görüntüsü 3" loading="lazy" draggable="false"></div>
+                </div>
+                    <button class="shot-nav" type="button" data-shots-next aria-label="Sonraki ekran görüntüleri"><span aria-hidden="true">→</span></button>
                 </div>
             </div>
         </section>
