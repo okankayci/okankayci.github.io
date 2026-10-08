@@ -143,12 +143,12 @@ const applications = [
     detailedDescription: "Markdown Editor, geliştiriciler ve içerik üreticileri için tasarlanmış modern bir Markdown editörüdür. Canlı iki panelli önizleme, çoklu dil sözdizimi vurgulama ve temiz dışa aktarım seçenekleri sunar.",
     icon: "assets/apps/markdown.png",
     screenshots: [
-      "assets/apps/markdown/gallery/01.png",
-      "assets/apps/markdown/gallery/02.png",
-      "assets/apps/markdown/gallery/03.png",
       "assets/apps/markdown/gallery/04.png",
       "assets/apps/markdown/gallery/05.png",
-      "assets/apps/markdown/gallery/06.png"
+      "assets/apps/markdown/gallery/01.png",
+      "assets/apps/markdown/gallery/02.png",
+      "assets/apps/markdown/gallery/06.png",
+      "assets/apps/markdown/gallery/03.png"
     ],
     features: [
       "Canlı iki panelli Markdown önizleme",
@@ -315,11 +315,9 @@ const applications = [
     "detailedDescription": "Appsly, Android cihazınızdaki uygulamaları tematik akıllı klasörlere ayıran, ana ekran widget desteği ve OLED derin siyah teması sunan modern bir organizasyon aracıdır.",
     "icon": "assets/apps/appsly.png",
     "screenshots": [
-      "assets/apps/appsly/gallery/01.png",
-      "assets/apps/appsly/gallery/02.png",
-      "assets/apps/appsly/gallery/03.png",
-      "assets/apps/appsly/gallery/04.png",
-      "assets/apps/appsly/gallery/05.png"
+      "assets/apps/appsly/1.png",
+      "assets/apps/appsly/2.png",
+      "assets/apps/appsly/3.png"
     ],
     "features": [
       "Otomatik ve akıllı kategori klasörleri",
@@ -452,15 +450,13 @@ const projectPages = [
     "technology": "Flutter ile geliştirildi",
     "color": "#dfeafa",
     "heroScreenshots": [
-      "assets/apps/appsly/gallery/02.png",
-      "assets/apps/appsly/gallery/01.png"
+      "assets/apps/appsly/2.png",
+      "assets/apps/appsly/1.png"
     ],
     "screenshots": [
-      "assets/apps/appsly/gallery/01.png",
-      "assets/apps/appsly/gallery/02.png",
-      "assets/apps/appsly/gallery/03.png",
-      "assets/apps/appsly/gallery/04.png",
-      "assets/apps/appsly/gallery/05.png"
+      "assets/apps/appsly/1.png",
+      "assets/apps/appsly/2.png",
+      "assets/apps/appsly/3.png"
     ],
     "features": [
       "Otomatik ve akıllı kategori klasörleri",
@@ -630,16 +626,16 @@ const projectPages = [
     "technology": "Flutter ile geliştirildi",
     "color": "#e4e9f0",
     "heroScreenshots": [
-      "assets/apps/markdown/gallery/02.png",
-      "assets/apps/markdown/gallery/01.png"
+      "assets/apps/markdown/gallery/01.png",
+      "assets/apps/markdown/gallery/04.png"
     ],
     "screenshots": [
-      "assets/apps/markdown/gallery/01.png",
-      "assets/apps/markdown/gallery/02.png",
-      "assets/apps/markdown/gallery/03.png",
       "assets/apps/markdown/gallery/04.png",
       "assets/apps/markdown/gallery/05.png",
-      "assets/apps/markdown/gallery/06.png"
+      "assets/apps/markdown/gallery/01.png",
+      "assets/apps/markdown/gallery/02.png",
+      "assets/apps/markdown/gallery/06.png",
+      "assets/apps/markdown/gallery/03.png"
     ],
     "features": [
       "Canlı iki panelli Markdown önizleme",
